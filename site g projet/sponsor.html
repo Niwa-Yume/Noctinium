@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="asset/style.css">
+		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+      <meta charset="utf-8" />
+    </head>
+    <body>
+        <header>
+            <a href="index.html"><img class="logo" src="image/gprojectBLANC4.png"></a>
+            <nav>
+                <li><a href="index.html">Liste des évènements</a></li>
+                <li><a href="">Ajouter un évènements</a></li>
+                <li class="active"><a href="#">Nous contacter</a></li>
+                <li><a href="#">Sponsors</a></li>
+                <li><a href="propos.html">A propos</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="inscription.html">Connexion / Inscription</a></li>
+            </nav>
+        </header>
+        <section class="content content-small">
+            <div class="container">
+                <h1 class="gradient-text">Sponsor et aide précieuse </h1>
+            </div>
+        </section>
+        <hr class="gradient">
+        <section class="subscribe">
+          <div class='container2'>
+            <div>
+                <img src='http://ecx.images-amazon.com/images/I/21-leKb-zsL._SL500_AA300_.png' class='iconDetails'>
+            </div>  
+            <div style='margin-left:60px;'>
+            <h4>Nom du Sponsors</h4>
+            <div style="font-size:.6em">fine location, GPS, coarse location</div>
+            <div style="font-size:.6em">0 mins ago</div>
+            </div>
+          </div>
+        </section>
+        <hr>
+        <footer>
+            <ul class="linear-list">
+                <li>
+                    <a href="">Code of Conduct</a>
+                </li>
+                <li>
+                    <a href="">Terms</a>
+                </li>
+                <li>
+                    <a href="">Privacy</a>
+                </li>
+                <li>
+                    <a href="">Évenement sponsorisé</a>
+                </li>
+                <li>
+                    <a href="">G-projet@contact.com</a>
+                </li>
+            </ul>
+        </footer>
+		<script>
+			document.querySelector('#contact-form').addEventListener('submit', (e) => {
+				e.preventDefault();
+				e.target.elements.name.value = '';
+				e.target.elements.email.value = '';
+				e.target.elements.message.value = '';
+			});
+		</script>
+    </body>
+</html>
