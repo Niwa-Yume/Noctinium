@@ -94,6 +94,9 @@ section.updates {
 section.updates p.signup-text {
     font-size: 20px;
 }
+section.subscribe .login .heading p.follow-text {
+    font-size: 20px;
+}
 section.updates p.follow-text {
     margin-top: 35px;
 }
@@ -774,6 +777,7 @@ hr {
 }
 .form-group-insc{
     margin: 5% 0;
+    width: 100%;
 }
 .insc-form-btn{
     width: 500px;
@@ -783,4 +787,28 @@ hr {
 }
 .send-text-1{
     margin-left: 105px;
+}
+.insc-form-checkbox{
+    height: 20px;
+    width: 20px;
+    float: left;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    border: 1px solid white;
+    border-radius: 50%;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #000;
+    cursor: pointer;
+    
+}
+.insc-form-checkbox:checked{
+    background-color: #9867F0;
+}
+.insc-form-checkbox-txt{
+    font-family: 'Lato';
+    font-size: 1.05rem;
+    float: right ;
+    margin-right: 5px;
+    margin-top: 1px;
 }
