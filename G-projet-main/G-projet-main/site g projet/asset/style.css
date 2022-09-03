@@ -518,14 +518,15 @@ section.profile .social svg {
 
 .form-control{
 	border: 1px solid white;
-	width: 100%;
+	width: 50%;
 	background-color: #000;
 	color: #fff;
 	letter-spacing: 1px;
 	padding: 2%;
 	margin-bottom: 2.5%;
 	border-radius: 10px;
-	resize: none;
+    resize: none;
+    align-items: center;
 }
 .form-control:focus{
 	border: 1px solid white;
