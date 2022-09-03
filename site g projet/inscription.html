@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Accueil</title>
+    <title>Inscription</title>
 	<meta charset="utf-8" />
     <link rel="stylesheet" href="asset/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -10,13 +10,13 @@
     <header>
         <a href="index.html"><img class="logo" src="image/gprojectBLANC4.png"></a>
         <nav>
-            <li><a href="#">Liste des évènements</a></li>
-            <li><a href="#">Ajouter un évènements</a></li>
+            <li><a href="index.html">Liste des évènements</a></li>
+            <li><a href="">Ajouter un évènements</a></li>
             <li><a href="contact.html">Nous contacter</a></li>
-            <li><a href="sponsor.html">Sponsors</a></li>
+            <li><a href="">Sponsors</a></li>
             <li><a href="propos.html">A propos</a></li>
             <li><a href="faq.html">FAQ</a></li>
-            <li class="active"><a href="connexion.html">Connexion / Inscription</a></li>
+            <li class="active"><a href="#">Connexion / Inscription</a></li>
         </nav>
     </header>
     <section class="content content-small">
@@ -66,6 +66,13 @@
                 <input type="password" class="form-control insc-form" id="mdp" placeholder=" CONFIRMATION MOT DE PASSE" name="mdp" value="" required>
               </div>
             </div>
+
+            <div class="form-group-insc">
+                <div class="col-sm-12">
+                  <input type="checkbox" class="insc-form-checkbox" id="termes-conditions" name="termes-conditions" value="" required>
+                  <span class="insc-form-checkbox-txt">J'ai lu et j'accepte les <a href="" class="underline">termes et conditions d'utilisation</a> de G-Project</span>
+                </div>
+              </div>
             
             <button class="btn btn-primary send-button gradient insc-form-btn" id="submit" type="submit" value="SEND">
               <div class="alt-send-button">
@@ -76,6 +83,7 @@
             
           </form>
         </div>
+        <p class="follow-text">Si vous possédez déjà un compte, <a href="" class="underline">connectez vous ici.</a></p>
         </div>
     </div>
     </section>
