@@ -759,7 +759,6 @@ hr {
 }
 /* fin contact-form */
 .insc-cont-1 {
-    max-width: 400px;
   font-family: 'Lato';
   font-weight: 400;
   margin:  30px 0;
@@ -767,56 +766,21 @@ hr {
 }
 .insc-cont{
     text-align: center;
-}
-.form-control{
-	border: 1px solid white;
-	width: 100%;
-	background-color: #000;
-	color: #fff;
-	letter-spacing: 1px;
-	padding: 2%;
-	margin-bottom: 2.5%;
-	border-radius: 10px;
-    resize: none;
-    align-items: center;
-}
-.form-control:focus{
-	border: 1px solid white;
-	filter: drop-shadow(0 0 0.15rem white);
-}
-
-.send-button {
-	border-radius: 10px;
-	background: linear-gradient(269.16deg, #FFE580 -15.83%, #FF7571 -4.97%, #FF7270 15.69%, #EA5DAD 32.43%, #C2A0FD 50.09%, #9867F0 67.47%, #3BF0E4 84.13%, #33CE43 105.13%, #B2F4B6 123.24%);
-	background-position: 58% 50%;
-    background-size: 500%;
-	margin-top: 15px;
-	height: 45px;
-	width: 400px;
-	overflow: hidden;
-	transition: all .2s ease-in-out;
-	cursor: pointer;
-}
-
-.alt-send-button {
-  width: 400px;
-  height: 45px;
-  transition: all .2s ease-in-out;
-}
-
-.send-text {
-  display: block;
-  margin-top: 15px;
-  font: 700 12px 'Lato', sans-serif;
-  letter-spacing: 2px;
-}
-
-.alt-send-button:hover {
-  transform: translate3d(0px, -30px, 0px);
+    
 }
 .insc-form {
     height: 50px;
+    width: 500px;
 }
 .form-group-insc{
     margin: 5% 0;
+}
+.insc-form-btn{
+    width: 500px;
+}
+.fa-paper-plane-1{
+    margin-left: 100px;
+}
+.send-text-1{
+    margin-left: 105px;
 }
