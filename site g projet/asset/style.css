@@ -85,8 +85,6 @@ section.updates {
     display: inline-block;
     width: 100%;
     height: auto;
-    border-top: 1px solid rgba(66,82,109,0.5);
-    border-bottom: 1px solid rgba(66,82,109,0.5);
     padding-top: 45px;
     padding-bottom: 45px;
     color: #B5BFD2;
@@ -226,7 +224,7 @@ section.sponsors {
     text-align: center;
     width: 100%;
     height: auto;
-    background-color: #040303;
+    
     /* border-top: 1px solid rgba(66,82,109,0.5); */
 }
 section.speakers {
@@ -282,7 +280,7 @@ section.sponsors h4 {
 }
 section.content h1 {
     font-size: 96px;
-    line-height: 96px;
+    line-height: 125px;
     margin-top: 45px;
     margin-bottom: 25px;
 }
@@ -329,8 +327,8 @@ ul.sponsor-list li a {
     transition: opacity .3s ease-in-out;
 }
 hr.gradient {
-    background: linear-gradient(269.16deg, #FFE580 -15.83%, #FF7571 -4.97%, #FF7270 15.69%, #EA5DAD 32.43%, #C2A0FD 50.09%, #9867F0 67.47%, #3BF0E4 84.13%, #33CE43 105.13%, #B2F4B6 123.24%);
-    height: 8px;
+    background: rgba(66,82,109,0.5);;
+    height: 2px;
 }
 hr {
     background: rgba(66,82,109,0.5);
@@ -517,7 +515,7 @@ section.profile .social svg {
   max-width: 400px;
   font-family: 'Lato';
   font-weight: 400;
-  margin: 0 30px;
+  margin: 0 1   0px;
 }
 
 .form-control{
@@ -576,7 +574,7 @@ section.profile .social svg {
 /* Location, Phone, Email Section */
 .contact-list {
   list-style-type: none;
-  margin-left: -30px;
+  margin-left: 15px;
   padding-right: 20px;
 }
 
@@ -592,15 +590,15 @@ section.profile .social svg {
 }
 
 .place {
-  margin-left: 42px;
+  margin-left: 32px;
 }
 
 .phone {
-  margin-left: 36px;
+  margin-left: 26px;
 }
 
 .gmail {
-  margin-left: 33px;
+  margin-left: 23px;
 }
 
 .contact-text a {
@@ -811,4 +809,8 @@ hr {
     float: right ;
     margin-right: 5px;
     margin-top: 1px;
+}
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    width: 20px;
 }

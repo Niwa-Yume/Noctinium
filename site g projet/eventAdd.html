@@ -1,6 +1,8 @@
+<html>
+
 <head>
-    <title>Connexion</title>
-	<meta charset="utf-8" />
+    <title>Ajout d'évènement</title>
+	  <meta charset="utf-8" />
     <link rel="stylesheet" href="asset/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
@@ -9,17 +11,17 @@
         <a href="index.html"><img class="logo" src="image/gprojectBLANC4.png"></a>
         <nav>
             <li><a href="index.html">Accueil</a></li>
-            <li><a href="eventlist.html">Liste des évènements</a></li>
+            <li class="active"><a href="eventlist.html">Liste des évènements</a></li>
             <li><a href="contact.html">Nous contacter</a></li>
             <li><a href="sponsor.html">Sponsors</a></li>
             <li><a href="propos.html">A propos</a></li>
             <li><a href="faq.html">FAQ</a></li>
-            <li class="active"><a href="inscription.html">Inscription</a></li>
+            <li><a href="inscription.html">Connexion / Inscription</a></li>
         </nav>
     </header>
     <section class="content content-small">
         <div class="container">
-            <h1 class="gradient-text">Connexion</h1>
+            <h1 class="gradient-text">Ajout d'évènements</h1>
         </div>
     </section>
     <hr class="gradient">
@@ -28,35 +30,46 @@
         <div class="heading">
             <div class="insc-cont">
           <form id="contact-form" class="insc-cont-1" role="form">
+       
+            <div class="form-group-insc">
+              <div class="col-sm-12">
+                <input type="text" class="form-control insc-form" id="name" placeholder="NOM DE L'ÉVÈNEMENT'" name="nom_event" value="" required>
+              </div>
+            </div>
             
             <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="email" class="form-control insc-form" id="email" placeholder="EMAIL" name="email" value="" required>
+                  <input type="datetime-local" class="form-control insc-form" id="date" name="date_event" value="" required>
+                </div>
+              </div>
+            
+              <div class="form-group-insc">
+                <div class="col-sm-12">
+                  <textarea class="form-control" rows="10" placeholder="DESCRIPTION DE L'ÉVÈNEMENT " name="description_event" required maxlength="280"></textarea>
+                </div>
+              </div>
+            
+            <div class="form-group-insc">
+                <div class="col-sm-12">
+                  <input type="text" class="form-control insc-form" id="adresse" placeholder="ADRESSE DE L'ÉVÈNEMENT" name="adresse_event" value="" required>
                 </div>
               </div>
 
             <div class="form-group-insc">
-              <div class="col-sm-12">
-                <input type="password" class="form-control insc-form" id="mdp" placeholder="MOT DE PASSE" name="mdp" value="" required>
+                <div class="col-sm-12">
+                  <input type="checkbox" required class="insc-form-checkbox" name="termes-conditions" value="termes-conditions-accept"/>
+                  <span class="insc-form-checkbox-txt">J'ai lu et j'accepte les <a href="" class="underline">termes et conditions d'utilisation</a> de G-Project</span>
+                </div>
               </div>
-            </div>
-
-            </div>
             
             <button class="btn btn-primary send-button gradient insc-form-btn" id="submit" type="submit" value="SEND">
               <div class="alt-send-button">
-                <i class="fa fa-paper-plane fa-paper-plane-1"></i><span class="send-text send-text-1">Connexion</span>
+                <i class="fa fa-paper-plane fa-paper-plane-1"></i><span class="send-text send-text-1">Ajouter l'évènement</span>
               </div>
             
             </button>
             
           </form>
-          <br>
-          <br>
-          <br>
-        </div>
-        <p class="follow-text">Si vous ne possédez pas déjà un compte, <a href="inscription.html" class="underline">inscrivez-vous ici.</a></p>
-        </div>
     </div>
     </section>
     <hr class="gradient">
