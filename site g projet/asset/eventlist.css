@@ -10,11 +10,12 @@
 	 
 }
  .blog-slider {
-	 width: 95%;
+	 width: 75%;
 	 position: relative;
 	 max-width: 800px;
+	 max-height: 700px;
 	 margin: auto;
-	 background: #fff;
+	 background: #343435;
 	 box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
 	 padding: 25px;
 	 border-radius: 25px;
@@ -107,7 +108,7 @@
 	 flex-shrink: 0;
 	 height: 300px;
 	 background-image: linear-gradient(87.54deg, #9867F0 -6.8%, #EA5DAD 84.14%);
-	 box-shadow: 4px 13px 30px 1px rgba(252, 56, 56, 0.2);
+	 box-shadow: 4px 8px 10px 5px rgba(252, 56, 56, 0.1);
 	 border-radius: 20px;
 	 transform: translateX(-80px);
 	 overflow: hidden;
@@ -121,7 +122,7 @@
 	 height: 100%;
 	 background-image: linear-gradient(87.54deg, #9867F0 -6.8%, #EA5DAD 84.14%);
 	 border-radius: 20px;
-	 opacity: 0.8;
+	 opacity: 0.6;
 }
  .blog-slider__img img {
 	 width: 100%;
@@ -169,7 +170,7 @@
 	 transition: all 0.4s;
 }
  .blog-slider__code {
-	 color: #7b7992;
+	 color: #9694a8;
 	 margin-bottom: 15px;
 	 display: block;
 	 font-weight: 500;
@@ -177,11 +178,11 @@
  .blog-slider__title {
 	 font-size: 24px;
 	 font-weight: 700;
-	 color: #0d0925;
+	 color: #9f3fcc;
 	 margin-bottom: 20px;
 }
  .blog-slider__text {
-	 color: #4e4a67;
+	 color: #77738f;
 	 margin-bottom: 30px;
 	 line-height: 1.5em;
 }
@@ -191,7 +192,7 @@
 	 padding: 15px 35px;
 	 border-radius: 50px;
 	 color: #fff;
-	 box-shadow: 0px 14px 80px rgba(252, 56, 56, 0.4);
+	 box-shadow: 0px 6px 8px rgba(252, 56, 56, 0.3);
 	 text-decoration: none;
 	 font-weight: 500;
 	 justify-content: center;
@@ -259,4 +260,34 @@
 		 width: 30px;
 	}
 }
- 
+.newEvent{
+	display: block;
+	position: fixed;
+	z-index: 15;
+	padding-top: 15.5px;
+	padding-left: 26px;
+	right: 3%;
+	bottom: 5%;
+	background-color: #000;
+	width: 80px;
+	height: 80px;
+	font-family: "alliance", mono, sans-serif;
+    align-items: center;
+    justify-content: center;
+    text-transform: none;
+    font-weight: 600;
+    font-size: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    font-feature-settings: 'salt' on, 'ss01' on, 'ss02' on;
+    color: #fff;
+    border: 2px solid #FF7571;
+}
+.newEvent:hover{
+	background: linear-gradient(269.16deg, #FFE580 -15.83%, #FF7571 -4.97%, #FF7270 15.69%, #EA5DAD 32.43%, #C2A0FD 50.09%, #9867F0 67.47%, #3BF0E4 84.13%, #33CE43 105.13%, #B2F4B6 123.24%);
+	background-position: 58% 50%;
+    background-size: 500%;
+    color: black;	
+}
