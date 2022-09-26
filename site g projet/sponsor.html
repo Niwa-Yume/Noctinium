@@ -8,7 +8,7 @@
     </head>
     <body>
         <header>
-            <a href="index.html"><img class="logo" src="image/gprojectBLANC-new.png"></a>
+            <a href="index.html"><img class="" id="logo" src="image/gprojectBLANC-new.png"></a>
             <nav>
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="eventlist.html">Liste des évènements</a></li>
@@ -199,13 +199,13 @@
                 </li>
             </ul>
         </footer>
-		<script>
-			document.querySelector('#contact-form').addEventListener('submit', (e) => {
-				e.preventDefault();
-				e.target.elements.name.value = '';
-				e.target.elements.email.value = '';
-				e.target.elements.message.value = '';
-			});
-		</script>
+        <script>
+            var element = document.getElementById("logo")
+                if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+                    element.classList.toggle("logo-M");
+                }else{
+                    element.classList.toggle("logo");
+                }
+              </script>
     </body>
 </html>

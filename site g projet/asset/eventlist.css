@@ -10,18 +10,17 @@
 	 
 }
  .blog-slider {
-	 width: 75%;
+	 width: 750%;
 	 position: relative;
 	 max-width: 800px;
 	 max-height: 700px;
-	 margin: auto;
 	 background: #343435;
 	 box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
 	 padding: 25px;
 	 border-radius: 25px;
 	 height: 400px;
 	 transition: all 0.3s;
-   margin: 50px auto;
+	 margin: 50px auto;
 }
  @media screen and (max-width: 992px) {
 	 .blog-slider {
@@ -182,9 +181,10 @@
 	 margin-bottom: 20px;
 }
  .blog-slider__text {
-	 color: #77738f;
+	 color: #fff;
 	 margin-bottom: 30px;
 	 line-height: 1.5em;
+	 text-align: justify;
 }
  .blog-slider__button {
 	 display: inline-flex;
@@ -263,7 +263,7 @@
 .newEvent{
 	display: block;
 	position: fixed;
-	z-index: 15;
+	z-index: 25;
 	padding-top: 15.5px;
 	padding-left: 26px;
 	right: 3%;

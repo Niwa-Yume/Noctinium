@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <a href="index.html"><img class="logo" src="image/gprojectBLANC-new.png"></a>
+        <a href="index.html"><img class="logo" id="logo" src="image/gprojectBLANC-new.png"></a>
         <nav>
             <li><a href="index.html">Accueil</a></li>
             <li class="active"><a href="eventlist.html">Liste des évènements</a></li>
@@ -33,7 +33,7 @@
        
             <div class="form-group-insc">
               <div class="col-sm-12">
-                <input type="text" class="form-control insc-form" id="name" placeholder="NOM DE L'ÉVÈNEMENT'" name="nom_event" value="" required>
+                <input type="text" class="form-control insc-form" id="name" placeholder="NOM DE L'ÉVÈNEMENT'" name="nom_event" value="" required autofocus>
               </div>
             </div>
             
@@ -45,7 +45,7 @@
             
               <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <textarea class="form-control" rows="10" placeholder="DESCRIPTION DE L'ÉVÈNEMENT " name="description_event" required maxlength="280"></textarea>
+                  <textarea class="form-control" rows="10" placeholder="DESCRIPTION DE L'ÉVÈNEMENT (333 caractères maximum)" name="description_event" required maxlength="333"></textarea>
                 </div>
               </div>
             
@@ -102,5 +102,11 @@
         </ul>
     </footer>
 </body>
-
+<script>
+  var element = document.getElementById("logo")
+  if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+    element.classList.toggle("logo");
+    element.classList.toggle("logo-M");
+  }
+</script>
 </html>

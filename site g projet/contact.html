@@ -7,7 +7,7 @@
     </head>
     <body>
         <header>
-            <a href="index.html"><img class="logo" src="image/gprojectBLANC-new.png"></a>
+            <a href="index.html"><img class="logo" id="logo" src="image/gprojectBLANC-new.png"></a>
             <nav>
               <li><a href="index.html">Accueil</a></li>
               <li><a href="eventlist.html">Liste des évènements</a></li>
@@ -35,7 +35,7 @@
        
       <div class="form-group">
         <div class="col-sm-12">
-          <input type="text" class="form-control" id="name" placeholder="NAME" name="name" value="" required>
+          <input type="text" class="form-control" id="name" placeholder="NAME" name="name" value="" required autofocus>
         </div>
       </div>
 
@@ -121,6 +121,13 @@
 				e.target.elements.email.value = '';
 				e.target.elements.message.value = '';
 			});
+		</script>
+    <script>
+      var element = document.getElementById("logo")
+			if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        element.classList.toggle("logo");
+        element.classList.toggle("logo-M");
+      }
 		</script>
     </body>
 </html>

@@ -10,9 +10,8 @@
       <title>Évènements</title>
     </head>
     <body>
-      <a href="eventAdd.html" class="newEvent">+</a>
         <header>
-            <a href="index.html"><img class="logo" src="image/gprojectBLANC-new.png"></a>
+            <a href="index.html"><img class="logo" id="logo" src="image/gprojectBLANC-new.png"></a>
             <nav>
                 <li><a href="index.html">Accueil</a></li>
                 <li class="active"><a href="eventlist.html">Liste des évènements</a></li>
@@ -40,8 +39,8 @@
                 <div class="blog-slider__content">
                   <span class="blog-slider__code">26 December 2019</span>
                   <div class="blog-slider__title">Lorem Ipsum Dolor</div>
-                  <div class="blog-slider__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                  <a href="#" class="blog-slider__button">READ MORE</a>
+                  <div class="blog-slider__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing?</div>
+                  <a href="event.html" class="blog-slider__button">READ MORE</a>
                 </div>
               </div>
               <div class="blog-slider__item swiper-slide">
@@ -52,7 +51,7 @@
                   <span class="blog-slider__code">26 December 2019</span>
                   <div class="blog-slider__title">Lorem Ipsum Dolor2</div>
                   <div class="blog-slider__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?</div>
-                  <a href="#" class="blog-slider__button">READ MORE</a>
+                  <a href="event.html" class="blog-slider__button">READ MORE</a>
                 </div>
               </div>
               
@@ -64,7 +63,7 @@
                   <span class="blog-slider__code">26 December 2019</span>
                   <div class="blog-slider__title">Lorem Ipsum Dolor</div>
                   <div class="blog-slider__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?</div>
-                  <a href="#" class="blog-slider__button">READ MORE</a>
+                  <a href="event.html" class="blog-slider__button">READ MORE</a>
                 </div>
               </div>
               
@@ -112,6 +111,7 @@
             </div>
             <div class="blog-slider__pagination"></div>
           </div>
+          <a href="eventAdd.html" class="newEvent">+</a>
         </section>
         <hr class="gradient">
         <footer>
@@ -147,6 +147,13 @@
       clickable: true,
     }
   });
+		</script>
+    <script>
+      var element = document.getElementById("logo")
+			if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        element.classList.toggle("logo");
+        element.classList.toggle("logo-M");
+      }
 		</script>
     </body>
 </html>
