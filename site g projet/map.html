@@ -1,0 +1,69 @@
+    
+<html>
+    <head>
+        <link rel="stylesheet" href="asset/style.css">
+		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+      <meta charset="utf-8" />
+      <title>Contact</title>
+    </head>
+    <body>
+        <header>
+            <a href="index.html"><img class="logo" id="logo" src="image/gprojectBLANC-new.png"></a>
+            <nav>
+              <li><a href="index.html">Accueil</a></li>
+              <li><a href="eventlist.html">Liste des évènements</a></li>
+              <li class="active"><a href="contact.html">Nous contacter</a></li>
+              <li><a href="sponsor.html">Sponsors</a></li>
+              <li><a href="propos.html">A propos</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+              <li><a href="inscription.html">Connexion / Inscription</a></li>
+          </nav>
+        </header>
+        <section class="content content-small">
+            <div class="container">
+                <h1 class="gradient-text">Map</h1>
+            </div>
+        </section>
+        <hr class="gradient">
+        <section class="subscribe">
+            <div>
+                <iframe src="https://yandex.com/maps/-/CCUVv-SqSD" frameborder="0"></iframe> 
+              </div>   
+        </section>
+        <hr class="gradient">
+        <footer>
+            <ul class="linear-list">
+                <li>
+                    <a href="">Code of Conduct</a>
+                </li>
+                <li>
+                    <a href="">Terms</a>
+                </li>
+                <li>
+                    <a href="">Privacy</a>
+                </li>
+                <li>
+                    <a href="">Évenement sponsorisé</a>
+                </li>
+                <li>
+                    <a href="">G-projet@contact.com</a>
+                </li>
+            </ul>
+        </footer>
+		<script>
+			document.querySelector('#contact-form').addEventListener('submit', (e) => {
+				e.preventDefault();
+				e.target.elements.name.value = '';
+				e.target.elements.email.value = '';
+				e.target.elements.message.value = '';
+			});
+		</script>
+    <script>
+      var element = document.getElementById("logo")
+			if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        element.classList.toggle("logo");
+        element.classList.toggle("logo-M");
+      }
+		</script>
+    </body>
+</html>
