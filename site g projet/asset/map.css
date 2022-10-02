@@ -1,0 +1,15 @@
+.mapCont{
+    margin: auto;
+}
+.map{
+    /* icci ce trouvait les paramaètre de la map mais changer pour le nouvelle ID de la map*/
+    width: 100%;
+}
+
+#mapid{
+    width: 100%;
+    height: 100%;
+    max-width: 1600px;
+    max-height:800px;
+    border-radius: 50px;
+}
