@@ -1,8 +1,73 @@
-#map{
+.map-M{
+    width: 100%;
+    height: 100%;
+    max-width: 800px;
+    border-radius: 40px;
+    margin: auto;
+    max-height: 1600px;
+}
+.map{
     width: 100%;
     height: 100%;
     max-width: 1600px;
-    max-height:800px;
+    max-height: 800px;
     border-radius: 40px;
     margin: auto;
+}
+.mapBig{
+    width: 100%;
+    height: 100%;
+    max-width: 1600px;
+    max-height: 1100px;
+    border-radius: 40px;
+    margin: auto;
+}
+@media screen and (max-width: 1610px){
+    .map{
+        max-width: 1200px;
+        max-height: 600px;
+    }
+}
+@media screen and (max-width: 1210px){
+    .map{
+        max-width: 800px;
+        max-height: 400px;
+    }
+}
+@media screen and (max-width: 810px){
+    .map{
+        max-width: 600px;
+        max-height: 300px;
+    }
+}
+@media screen and (max-width: 600px){
+    .map{
+        max-width: 400px;
+        max-height: 200px;
+    }
+}
+
+@media screen and (max-width: 1610px){
+    .mapBig{
+        max-width: 1200px;
+        max-height: 1000px;
+    }
+}
+@media screen and (max-width: 1210px){
+    .mapBig{
+        max-width: 800px;
+        max-height: 700px;
+    }
+}
+@media screen and (max-width: 810px){
+    .mapBig{
+        max-width: 600px;
+        max-height: 500px;
+    }
+}
+@media screen and (max-width: 600px){
+    .mapBig{
+        max-width: 400px;
+        max-height: 300px;
+    }
 }

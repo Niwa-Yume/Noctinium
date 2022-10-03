@@ -365,7 +365,7 @@ ul.sponsor-list li a {
     transition: opacity .3s ease-in-out;
 }
 hr.gradient {
-    background: rgba(66,82,109,0.5);;
+    background: rgba(66,82,109,0.5);
     height: 2px;
 }
 hr {
