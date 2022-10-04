@@ -4,7 +4,6 @@
 		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
           <link rel="stylesheet" href="asset/map.css">
           <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
-          <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
           <meta charset="utf-8" />
       <title>Map</title>
     </head>
@@ -16,43 +15,59 @@
             <nav>
               <li><a href="index.html">Accueil</a></li>
               <li><a href="eventlist.html">Liste des évènements</a></li>
-              <li><a href="contact.html">Nous contacter</a></li>
+              <li class="active"><a href="contact.html">Nous contacter</a></li>
               <li><a href="sponsor.html">Sponsors</a></li>
               <li><a href="propos.html">A propos</a></li>
               <li><a href="faq.html">FAQ</a></li>
               <li><a href="inscription.html">Connexion / Inscription</a></li>
           </nav>
         </header>
+        <section class="content content-small">
+            <div class="container">
+                <h1 class="gradient-text">Map</h1>
+            </div>
+        </section>
+        <hr class="gradient">
 
         <!--DEBUT MAP-->
-        <section class="subscribe">
-            <div id="map" class="mapBig">
-                <script>
-                    // Make sure you put this AFTER Leaflet's CSS
-                    var map = L.map('map').setView([46.20161, 6.14138], 13.5);
-                     L.tileLayer('https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-                     minZoom: 1,
-                     maxZoom: 19,
-                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                     }).addTo(map);
-                
-                    var eventsPointeur = {
-                        "Usine":            {"lat": 46.204      ,   "lon":6.13628},
-                        "Motel Campo":      {"lat": 46.185281864,   "lon": 6.1290354},
-                        "Village du soir":  {"lat": 46.176426   ,   "lon":6.127385},
-                        "MonteCristo Club": {"lat": 46.1900356995,  "lon":6.1382010525},
-                    };
+            <!-- Make sure you put this AFTER Leaflet's CSS -->
+        <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin="">
 
-                    for(lieu in eventsPointeur){
+        </script>
+            <div id="mapid" class="mapCont">
+                <iframe width="100%" height="100%" src="https://api.maptiler.com/maps/4835d93f-28f5-4a74-a9ee-2d58de70a98e/?key=BADZMRNV3gE1wrpmerYB#14.5/46.20161/6.14138"></iframe>
+            </div>   
+    
+         
+        
+        <!--on crée une variable map pour voir ou dans la map on va pointee au début-->
+        <script>
+            var eventsPointeur = {
+                    "Usine":            {"lat": 46.204      ,   "lon":6.13628},
+                    "Motel Campo":      {"lat": 46.185281864,   "lon": 6.1290354},
+                    "Village du soir":  {"lat": 46.176426   ,   "lon":6.127385},
+                    "MonteCristo Club": {"lat": 46.1900356995,  "lon":6.1382010525},
+                };
+            var map = L.map("mapid").setView([46.2043907, 6.1431577], 13);           
+                
+                // on personalise le marqueur sur la map
+                //var icone = L.icone({
+                //    iconUrl: "image/pointeur.png",
+                //    iconSize: [50, 50],
+                //    iconAnchor: [25, 50]
+                //    popupanchor: []   
+                // })
+                
+            for(lieu in eventsPointeur){
                 // On va mettre un pointeur sur une des zone de la map selon des coordonéees GPS
                 // Une pop va apparaitre sur le pointeur en mode pop up
                 var marker = L.marker([eventsPointeur[lieu].lat, eventsPointeur[lieu].lon])
                 .addTo(map); 
                 marker.bindPopup("<p>" +lieu+ "</p>")
             }
-                </script>
-            </div>
-        </section>
+        </script>
+        
+        
         <!--FIN DE LA MAP-->
         <hr class="gradient">
         <footer>
