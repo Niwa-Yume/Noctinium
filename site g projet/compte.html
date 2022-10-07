@@ -26,43 +26,104 @@
         </section>
         <hr class="gradient">
         <section class="subscribe">
+          <div class="changeProfil">
+            <div class="changeProfilCont">
+              <p class="oui">Modifier le profil: </p>
+              <label class="switch">
+                <input id="switch" type="checkbox" onchange="changeProfile()">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
           <div class="profilCompte">
-            <div>
+            <div class="imgCont">
               <img src="image/david.png" class="PP">
-              <div class="form-group-insc">
+              <div id="btnChangeImg" class="form-group-insc hidden">
                 <div class="col-sm-12">
                   <label class="uploadFile">
                     <input type="file" class="btnUpload" accept="images/*" name="newImg" value="" required>
                     Choisir une image
                   </label>
-                  <label class="uploadFile">
+                  <label class="uploadFile" id="margin">
                     <input type="submit" class="btnUpload" name="addImg" value="" required>
                     Upload Images
                   </label>
                 </div>
               </div>
-              <div class="form-group-insc">
+              <div id="btnUploadImg" class="form-group-insc hidden">
                 <div class="col-sm-12">
                   <label class="uploadFile">
-                    <input type="submit" class="btnUpload" name="addImg" value="" required>
-                    Suprimer l'image
+                    <input type="submit" class="btnUpload" name="deleteImg" value="" required>
+                    Supprimer l'image
                   </label>
                 </div>
               </div>
             </div>
+            <div>
             <form class="formUserCont" action="">
-            <div class="form-group-insc">
+              <div class="formGrid">
+              <h3 id="labelNom">NOM:</h3>
+              <h3 id="labelPrenom">PRENOM:</h3>
+            <div id="formNom" class="form-group-insc">
               <div class="col-sm-12">
-                <input type="text" class="formUser insc-form" id="name" placeholder="NOM" name="name" value="" required autofocus>
+                <input type="text" class="formUser hidden insc-form" id="nom" placeholder="NOM" name="name" value="" required autofocus>
+                <p id="infoNom" class="infoUser">David</p>
               </div>
             </div>
       
-            <div class="form-group-insc">
+            <div id="formPrenom" class="form-group-insc">
               <div class="col-sm-12">
-                <input type="text" class="formUser insc-form" id="prenom" placeholder="PRENOM" name="prenom" value="" required>
+                <input type="text" class="formUser hidden insc-form" id="prenom" placeholder="PRENOM" name="prenom" value="" required>
+                <p id="infoPrenom" class="infoUser">Pierella</p>
+              </div>
+            </div>
+            <h3 id="labelPseudo">PSEUDO:</h3>
+            <h3 id="labelEmail">EMAIL:</h3>
+            <div id="formPseudo" class="form-group-insc">
+              <div class="col-sm-12">
+                <input type="text" class="formUser hidden insc-form" id="pseudo" placeholder="PSEUDO" name="pseudo" value="" required autofocus>
+                <p id="infoPseudo" class="infoUser">D4Ly</p>
+              </div>
+            </div>
+      
+            <div id="formEmail" class="form-group-insc">
+              <div class="col-sm-12">
+                <input type="email" class="formUser hidden insc-form" id="email" placeholder="EMAIL" name="email" value="" required>
+                <p id="infoEmail" class="infoUser">d.pierella01@gmail.com</p>
+              </div>
+            </div>
+
+            <h3 id="labelBio">BIO:</h3>
+            <div id="formBio" class="form-group-insc">
+              <div class="col-sm-12">
+                <textarea class="formUserBio hidden" rows="10" placeholder="DESCRIPTION (333 caractères maximum)" id="bio" name="description_event" required maxlength="333"></textarea>
+                <p id="infoBio" class="infoUser">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing?</p>
+              </div>
+            </div>
+
+            <h3 id="labelMdp" class="hidden">MOT DE PASSE:</h3>
+            <h3 id="labelMdp2" class="hidden">CONFIRMATION:</h3>
+            <div id="formMdp" class="form-group-insc">
+              <div class="col-sm-12">
+                <input type="password" class="formUser hidden insc-form" id="mdp" placeholder="MOT DE PASSE" name="mdp" value="" required autofocus>
+              </div>
+            </div>
+            <div id="formMdp2" class="form-group-insc">
+              <div class="col-sm-12">
+                <input type="password" class="formUser hidden insc-form" id="mdp2" placeholder="CONFIRMATION DU MOT DE PASSE" name="mdp2" value="" required>
+              </div>
+            </div>
+            </div>
+            <div id="btnChange" class="form-group-insc hidden">
+              <div class="col-sm-12">
+                <label class="uploadFile">
+                  <input type="submit" class="btnUpload" name="changerInfo" value="" required>
+                  Modifier
+                </label>
               </div>
             </div>
             </form>
+            </div>
           </div>
         </section>
         <hr class="gradient">
@@ -90,6 +151,47 @@
 			if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
         element.classList.toggle("logo");
         element.classList.toggle("logo-M");
+      }
+
+      function changeProfile(){
+        var btnswitch = document.getElementById("switch");
+        if (btnswitch.checked == true){
+          document.getElementById("nom").classList.toggle("hidden");
+          document.getElementById("infoNom").classList.toggle("hidden");
+          document.getElementById("prenom").classList.toggle("hidden");
+          document.getElementById("infoPrenom").classList.toggle("hidden");
+          document.getElementById("pseudo").classList.toggle("hidden");
+          document.getElementById("infoPseudo").classList.toggle("hidden");
+          document.getElementById("email").classList.toggle("hidden");
+          document.getElementById("infoEmail").classList.toggle("hidden");
+          document.getElementById("mdp").classList.toggle("hidden");
+          document.getElementById("labelMdp").classList.toggle("hidden");
+          document.getElementById("mdp2").classList.toggle("hidden");
+          document.getElementById("labelMdp2").classList.toggle("hidden");
+          document.getElementById("bio").classList.toggle("hidden");
+          document.getElementById("infoBio").classList.toggle("hidden");
+          document.getElementById("btnChange").classList.toggle("hidden");
+          document.getElementById("btnChangeImg").classList.toggle("hidden");
+          document.getElementById("btnUploadImg").classList.toggle("hidden");
+        }else{
+          document.getElementById("nom").classList.toggle("hidden");
+          document.getElementById("infoNom").classList.toggle("hidden");
+          document.getElementById("prenom").classList.toggle("hidden");
+          document.getElementById("infoPrenom").classList.toggle("hidden");
+          document.getElementById("pseudo").classList.toggle("hidden");
+          document.getElementById("infoPseudo").classList.toggle("hidden");
+          document.getElementById("email").classList.toggle("hidden");
+          document.getElementById("infoEmail").classList.toggle("hidden");
+          document.getElementById("mdp").classList.toggle("hidden");
+          document.getElementById("labelMdp").classList.toggle("hidden");
+          document.getElementById("mdp2").classList.toggle("hidden");
+          document.getElementById("labelMdp2").classList.toggle("hidden");
+          document.getElementById("bio").classList.toggle("hidden");
+          document.getElementById("infoBio").classList.toggle("hidden");
+          document.getElementById("btnChange").classList.toggle("hidden");
+          document.getElementById("btnChangeImg").classList.toggle("hidden");
+          document.getElementById("btnUploadImg").classList.toggle("hidden");
+        }
       }
 		</script>
     </body>

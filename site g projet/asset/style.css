@@ -522,12 +522,19 @@ section.profile .social svg {
     fill: currentColor;
     margin-right: 25px;
 }
-
+.hidden{
+    display: none;
+}
 /* contact-form */
 
 .contact {
     padding-top: 3%;
     padding-bottom: 3%;
+    width: 100%;
+}
+
+.spacer{
+    height: 100px;
 }
 
 .section-header {
@@ -541,13 +548,26 @@ section.profile .social svg {
 }
 
 .contact-wrapper {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: auto auto;
   justify-content: space-between;
   margin: 0 auto;
   padding: 20px;
   position: relative;
   max-width: 840px;
+}
+
+.contact-wrapper-M {
+    display: inline-block;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    max-width: 840px;
+  }
+
+.contact-wrapper-M .form-horizontal .form-control{
+
 }
 
 /* Left contact page */
@@ -570,6 +590,10 @@ section.profile .social svg {
 	border-radius: 10px;
     resize: none;
     align-items: center;
+}
+input.form-control{
+    height: 50px;
+    margin-bottom: 30px;
 }
 .form-control:focus{
 	border: 1px solid white;
@@ -860,6 +884,7 @@ hr {
     display: inline-block;
     padding: 12px 24px;
     cursor: pointer;
+    border-radius: 15px;
 }
 .uploadFile:hover{
     background: linear-gradient(269.16deg, #FFE580 -15.83%, #FF7571 -4.97%, #FF7270 15.69%, #EA5DAD 32.43%, #C2A0FD 50.09%, #9867F0 67.47%, #3BF0E4 84.13%, #33CE43 105.13%, #B2F4B6 123.24%);

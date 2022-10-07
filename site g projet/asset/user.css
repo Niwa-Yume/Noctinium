@@ -6,7 +6,7 @@
       color: #fff;
       letter-spacing: 1px;
       padding: 2%;
-      margin-bottom: 2.5%;
+      margin-bottom: 3%;
       border-radius: 10px;
       resize: none;
       align-items: center;
@@ -16,11 +16,46 @@
       border: 1px solid white;
       filter: drop-shadow(0 0 0.15rem white);
   }
+  .formUserBio{
+    font-family: 'Lato';
+      border: 1px solid white;
+      width: 100%;
+      background-color: #000;
+      color: #fff;
+      letter-spacing: 1px;
+      padding: 2%;
+      border-radius: 10px;
+      resize: none;
+      align-items: center;
+      max-width: 510px;
+  }
   .formUserCont {
     font-family: 'Lato';
     font-weight: 400;
     margin:  30px 0;
     display: inline-block;
+    width: 100%;
+    max-width: 600px;
+  }
+  .formGrid{
+    display: grid;
+    grid-template-areas: 'labelNom labelPrenom'
+                           'nom prenom'
+                           'labelPseudo labelEmail'
+                           'pseudo email'
+                           'labelBio labelBio'
+                           'bio bio'
+                           'labelMdp labelMdp2'
+                           'mdp mdp2';
+    column-gap: 20px;
+    row-gap: 0;
+  }
+  .formGrid h3{
+    font-family: 'Open Sans';
+  }
+  .infoUser{
+    font-family: 'Open Sans';
+    padding-top: 8px;
   }
   .profilCompte{
     display: grid;
@@ -28,19 +63,140 @@
     max-width: 80%;
     margin: auto;
   }
+  @media screen and (max-width: 1050px){
+    .profilCompte{
+      display: inline;
+    }
+  }
   .PP{
     width: 250px;
     height: 250px;
     object-fit: cover;
     border-radius: 50%;
-    border: 2px solid 
+    border: 4px solid white;
+    margin-bottom: 30px;
   }
-  .profilePicCont{
-	height: 250px;
-	width: 250px;
-	border: 1px groove rgba(255, 255, 255, 0.5);
-	border-radius: 50%;
-	margin: auto;
-	margin-bottom: 10%;
-	background-color: rgba(66,82,109,0.5);
+
+#margin{
+  margin-left: 20px;
+}
+#labelNom{
+  grid-area: labelNom;
+}
+#labelPrenom{
+  grid-area: labelPrenom;
+}
+#labelPseudo{
+  grid-area: labelPseudo;
+}
+#labelEmail{
+  grid-area: labelEmail;
+}
+#labelBio{
+  grid-area: labelBio;
+}
+#labelMdp{
+  grid-area: labelMdp;
+}
+#labelMdp2{
+  grid-area: labelMdp2;
+}
+#formNom{
+  grid-area: nom;
+}
+#formPrenom{
+  grid-area: prenom;
+}
+#formPseudo{
+  grid-area: pseudo;
+}
+#formEmail{
+  grid-area: email;
+}
+#formBio{
+  grid-area: bio;
+}
+#formMdp{
+  grid-area: mdp;
+}
+#formMdp2{
+  grid-area: mdp2;
+}
+#infoBio{
+  text-align: justify;
+  max-width: 500px;
+  margin: auto;
+}
+
+.changeProfil{
+  width: 100%;
+  margin-bottom: 8%;
+  white-space: nowrap;
+}
+.changeProfilCont{
+  float: right;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 10px;
+  margin-right: 20px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-right: 2%;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #9867F0;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #9867F0;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
