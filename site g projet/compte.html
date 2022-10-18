@@ -37,7 +37,7 @@
           </div>
           <div class="profilCompte">
             <div class="imgCont">
-              <img src="image/david.png" class="PP">
+              <img id="pp" src="image/david.png" class="PP-Big">
               <div id="btnChangeImg" class="form-group-insc hidden">
                 <div class="col-sm-12">
                   <label class="uploadFile">
@@ -62,8 +62,8 @@
             <div>
             <form class="formUserCont" action="">
               <div class="formGrid">
-              <h3 id="labelNom">NOM:</h3>
-              <h3 id="labelPrenom">PRENOM:</h3>
+              <h3 class="labelInfo" id="labelNom">NOM:</h3>
+              <h3 class="labelInfo" id="labelPrenom">PRENOM:</h3>
             <div id="formNom" class="form-group-insc">
               <div class="col-sm-12">
                 <input type="text" class="formUser hidden insc-form" id="nom" placeholder="NOM" name="name" value="" required autofocus>
@@ -77,8 +77,8 @@
                 <p id="infoPrenom" class="infoUser">Pierella</p>
               </div>
             </div>
-            <h3 id="labelPseudo">PSEUDO:</h3>
-            <h3 id="labelEmail">EMAIL:</h3>
+            <h3 class="labelInfo" id="labelPseudo">PSEUDO:</h3>
+            <h3 class="labelInfo" id="labelEmail">EMAIL:</h3>
             <div id="formPseudo" class="form-group-insc">
               <div class="col-sm-12">
                 <input type="text" class="formUser hidden insc-form" id="pseudo" placeholder="PSEUDO" name="pseudo" value="" required autofocus>
@@ -93,7 +93,7 @@
               </div>
             </div>
 
-            <h3 id="labelBio">BIO:</h3>
+            <h3 class="labelInfo" id="labelBio">BIO:</h3>
             <div id="formBio" class="form-group-insc">
               <div class="col-sm-12">
                 <textarea class="formUserBio hidden" rows="10" placeholder="DESCRIPTION (333 caractères maximum)" id="bio" name="description_event" required maxlength="333"></textarea>
@@ -101,8 +101,8 @@
               </div>
             </div>
 
-            <h3 id="labelMdp" class="hidden">MOT DE PASSE:</h3>
-            <h3 id="labelMdp2" class="hidden">CONFIRMATION:</h3>
+            <h3 class="labelInfo hidden" id="labelMdp">MOT DE PASSE:</h3>
+            <h3 class="labelInfo hidden" id="labelMdp2">CONFIRMATION:</h3>
             <div id="formMdp" class="form-group-insc">
               <div class="col-sm-12">
                 <input type="password" class="formUser hidden insc-form" id="mdp" placeholder="MOT DE PASSE" name="mdp" value="" required autofocus>
@@ -173,6 +173,8 @@
           document.getElementById("btnChange").classList.toggle("hidden");
           document.getElementById("btnChangeImg").classList.toggle("hidden");
           document.getElementById("btnUploadImg").classList.toggle("hidden");
+          document.getElementById("pp").classList.toggle("PP-Big");
+          document.getElementById("pp").classList.toggle("PP");
         }else{
           document.getElementById("nom").classList.toggle("hidden");
           document.getElementById("infoNom").classList.toggle("hidden");
@@ -191,6 +193,8 @@
           document.getElementById("btnChange").classList.toggle("hidden");
           document.getElementById("btnChangeImg").classList.toggle("hidden");
           document.getElementById("btnUploadImg").classList.toggle("hidden");
+          document.getElementById("pp").classList.toggle("PP");
+          document.getElementById("pp").classList.toggle("PP-Big");
         }
       }
 		</script>
