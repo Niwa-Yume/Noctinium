@@ -8,7 +8,7 @@
     </head>
     <body>
         <header>
-            <a href="index.html"><img class="logo" id="logo" src="image/gprojectBLANC-new.png"></a>
+            <a href="index.html"><img class="logo" id="logo" src="image/logo_noctinium.png"></a>
             <nav>
               <li><a href="index.html">Accueil</a></li>
               <li><a href="eventlist.html">Liste des évènements</a></li>
@@ -30,7 +30,7 @@
             <div class="changeProfilCont">
               <p class="oui">Modifier le profil: </p>
               <label class="switch">
-                <input id="switch" type="checkbox" onchange="changeProfile()">
+                <input id="switch" type="checkbox" onclick="changeProfile()">
                 <span class="slider round"></span>
               </label>
             </div>
@@ -44,14 +44,10 @@
                     <input type="file" class="btnUpload" accept="images/*" name="newImg" value="" required>
                     Choisir une image
                   </label>
-                  <label class="uploadFile" id="margin">
+                  <label class="uploadFile">
                     <input type="submit" class="btnUpload" name="addImg" value="" required>
                     Upload Images
                   </label>
-                </div>
-              </div>
-              <div id="btnUploadImg" class="form-group-insc hidden">
-                <div class="col-sm-12">
                   <label class="uploadFile">
                     <input type="submit" class="btnUpload" name="deleteImg" value="" required>
                     Supprimer l'image
@@ -142,7 +138,7 @@
                     <a href="">Évenement sponsorisé</a>
                 </li>
                 <li>
-                    <a href="">G-projet@contact.com</a>
+                    <a href="">contact@noctinium.com</a>
                 </li>
             </ul>
         </footer>
@@ -172,7 +168,6 @@
           document.getElementById("infoBio").classList.toggle("hidden");
           document.getElementById("btnChange").classList.toggle("hidden");
           document.getElementById("btnChangeImg").classList.toggle("hidden");
-          document.getElementById("btnUploadImg").classList.toggle("hidden");
           document.getElementById("pp").classList.toggle("PP-Big");
           document.getElementById("pp").classList.toggle("PP");
         }else{
@@ -192,7 +187,6 @@
           document.getElementById("infoBio").classList.toggle("hidden");
           document.getElementById("btnChange").classList.toggle("hidden");
           document.getElementById("btnChangeImg").classList.toggle("hidden");
-          document.getElementById("btnUploadImg").classList.toggle("hidden");
           document.getElementById("pp").classList.toggle("PP");
           document.getElementById("pp").classList.toggle("PP-Big");
         }

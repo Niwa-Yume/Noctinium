@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <a href="index.html"><img class="logo" id="logo" src="image/gprojectBLANC-new.png"></a>
+        <a href="index.html"><img class="logo" id="logo" src="image/logo_noctinium.png"></a>
         <nav>
             <li><a href="index.html">Accueil</a></li>
             <li class="active"><a href="eventlist.html">Liste des évènements</a></li>
@@ -56,18 +56,28 @@
               </div>
 
             <div class="form-group-insc">
-                <div class="col-sm-12">
+                <div class="col-sm-12 btnCont">
                   <label class="uploadFile">
                     <input type="file" class="btnUpload" accept="images/*" id="img_event" name="img_event" value="" required>
                     Upload Images
                   </label>
+                  <div>
+                    <input type="checkbox" class="insc-form-checkbox-date" id="date-mask" name="date-mask" value="date-mask" onclick="datemask()"/>
+                    <label class="insc-form-checkbox-txt-date" for="date-mask">Adresse masquée</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group-insc">
+                <div class="col-sm-12">
+                  <input type="datetime-local" class="form-control insc-form hidden" id="adresse_cachee" name="date_event" value="" required>
                 </div>
               </div>
 
             <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="checkbox" required class="insc-form-checkbox" name="termes-conditions" value="termes-conditions-accept"/>
-                  <span class="insc-form-checkbox-txt">J'ai lu et j'accepte les <a href="" class="underline">termes et conditions d'utilisation</a> de G-Project</span>
+                  <input type="checkbox" required class="insc-form-checkbox" id="termes-conditions" name="termes-conditions" value="termes-conditions-accept"/>
+                  <label class="insc-form-checkbox-txt" for="termes-conditions">J'ai lu et j'accepte les <a href="" class="underline">termes et conditions d'utilisation</a> de G-Project</label>
                 </div>
               </div>
             
@@ -97,7 +107,7 @@
                 <a href="">Évenement sponsorisé</a>
             </li>
             <li>
-                <a href="">G-projet@contact.com</a>
+                <a href="">contact@noctinium.com</a>
             </li>
         </ul>
     </footer>
@@ -107,6 +117,15 @@
   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
     element.classList.toggle("logo");
     element.classList.toggle("logo-M");
+  }
+  function datemask(){
+    var mask = document.querySelector(".insc-form-checkbox-date")
+    if (mask.checked == true){
+      document.getElementById("adresse_cachee").classList.toggle("hidden");
+    }else{
+      document.getElementById("adresse_cachee").classList.toggle("hidden");
+
+    }
   }
 </script>
 </html>

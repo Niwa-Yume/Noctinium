@@ -151,9 +151,6 @@ footer .copyright {
     display: inline-block;
     margin-bottom: 30px;
 }
-ul.linear-list {
-
-}
 ul.linear-list li a:hover{
 	color: white;
 }
@@ -403,9 +400,6 @@ ul.blog-utilites li {
     margin-left: 7px;
     margin-right: 7px;
 }
-a.go-back {
-
-}
 a.go-back svg {
     float: left;
 }
@@ -425,12 +419,6 @@ section.faq {
 section.faq h1 {
     font-size: 43px;
     margin-bottom: 39px;
-}
-ul.faq-question {
-
-}
-ul.faq-question li {
-
 }
 ul.faq-question svg {
     float: right;
@@ -569,11 +557,7 @@ section.profile .social svg {
     position: relative;
     max-width: 840px;
   }
-
-.contact-wrapper-M .form-horizontal .form-control{
-
-}
-
+  
 /* Left contact page */
 .form-horizontal {
   /*float: left;*/
@@ -594,6 +578,7 @@ section.profile .social svg {
 	border-radius: 10px;
     resize: none;
     align-items: center;
+    margin-bottom: 30px;
 }
 input.form-control{
     height: 50px;
@@ -867,9 +852,23 @@ hr {
     -webkit-appearance: none;
     background-color: #000;
     cursor: pointer;
-    
 }
 .insc-form-checkbox:checked{
+    background-color: #9867F0;
+}
+.insc-form-checkbox-date{
+    height: 20px;
+    width: 20px;
+    margin-left: 5px;
+    border: 1px solid white;
+    border-radius: 50%;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #000;
+    cursor: pointer;
+    margin-top: 12px;
+}
+.insc-form-checkbox-date:checked{
     background-color: #9867F0;
 }
 .insc-form-checkbox-txt{
@@ -879,9 +878,24 @@ hr {
     margin-right: 5px;
     margin-top: 1px;
 }
+.insc-form-checkbox-txt-date{
+    font-family: 'Lato';
+    font-size: 1.05rem;
+    float: right ;
+    margin-left: -40px;
+    margin-top: 12px;
+    margin-right: 40px;
+}
+.insc-form-checkbox-txt:hover{
+    cursor: pointer;
+}
+.insc-form-checkbox-txt-date:hover{
+    cursor: pointer;
+}
 ::-webkit-calendar-picker-indicator {
     filter: invert(1);
-    width: 20px;
+    width: 30px;
+    cursor: pointer;
 }
 .uploadFile{
     border: 2px solid #FF7571;
@@ -889,6 +903,9 @@ hr {
     padding: 12px 24px;
     cursor: pointer;
     border-radius: 15px;
+    margin-bottom: 20px;
+    width: 60%;
+    margin: auto auto 20px auto;
 }
 .uploadFile:hover{
     background: linear-gradient(269.16deg, #FFE580 -15.83%, #FF7571 -4.97%, #FF7270 15.69%, #EA5DAD 32.43%, #C2A0FD 50.09%, #9867F0 67.47%, #3BF0E4 84.13%, #33CE43 105.13%, #B2F4B6 123.24%);
@@ -898,4 +915,9 @@ hr {
 }
 .btnUpload{
     display: none;
+}
+.btnCont{
+    display: grid;
+    grid-template-columns: auto auto;
+    vertical-align: middle;
 }

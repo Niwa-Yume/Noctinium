@@ -11,7 +11,7 @@
     </head>
     <body>
         <header>
-            <a href="index.html"><img class="logo" id="logo" src="image/gprojectBLANC-new.png"></a>
+            <a href="index.html"><img class="logo" id="logo" src="image/logo_noctinium.png"></a>
             <nav>
                 <li><a href="index.html">Accueil</a></li>
                 <li class="active"><a href="eventlist.html">Liste des évènements</a></li>
@@ -29,6 +29,10 @@
         </section>
         <hr class="gradient">
         <section class="eventlist">
+          <form class="searchCont">
+            <input type="text" class="search insc-form" id="search" placeholder="NOM DE L'ÉVÈNEMENT, CATÉGORIE, ETC." name="name" value="">
+            <button class="searchBtn" id="searchBtn" type="submit"><i class="fa fa-search"></i></button>
+          </form>
         <div class="blog-slider">
             <div class="blog-slider__wrp swiper-wrapper">
               <div class="blog-slider__item swiper-slide">
@@ -111,7 +115,7 @@
             </div>
             <div class="blog-slider__pagination"></div>
           </div>
-          <a href="eventAdd.html" class="newEvent">+</a>
+          <a href="eventAdd.html" id="newEvent" class="newEvent">Ajouter un évènement</a>
         </section>
         <hr class="gradient">
         <footer>
@@ -129,7 +133,7 @@
                     <a href="">Évenement sponsorisé</a>
                 </li>
                 <li>
-                    <a href="">G-projet@contact.com</a>
+                    <a href="">contact@noctinium.com</a>
                 </li>
             </ul>
         </footer>
@@ -150,9 +154,15 @@
 		</script>
     <script>
       var element = document.getElementById("logo")
+      var search = document.getElementById("search")
+      var searchBtn = document.getElementById("searchBtn")
 			if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
         element.classList.toggle("logo");
         element.classList.toggle("logo-M");
+        search.classList.toggle("search");
+        search.classList.toggle("search-M");
+        searchBtn.classList.toggle("searchBtn");
+        searchBtn.classList.toggle("searchBtn-M");
       }
 		</script>
     </body>
