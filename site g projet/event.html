@@ -26,19 +26,70 @@
               <a class="returnBtn" onclick="history.back()">&#8617;</a>
             </div>
             <div class="blog-slider__item swiper-slide">
-              <div class="imgEventCont">
-                <img class="imgEvent" src="https://res.cloudinary.com/muhammederdem/image/upload/q_60/v1535759871/alessandro-capuzzi-799180-unsplash.webp" alt="">
+              <div class="titreEvent">Lorem Ipsum Dolor</div>
+              <div class="eventGrid">
+                <div class="imgEventCont">
+                  <img class="imgEvent" src="https://res.cloudinary.com/muhammederdem/image/upload/q_60/v1535759871/alessandro-capuzzi-799180-unsplash.webp" alt="">
+                </div>
+                <div class="infoSup">
+                  <span class="dateEvent">26 December 2019</span>
+                  <div class="adresseEvent">Rue de la Tambourine 12</div>
+                  <div class="userEvent"><a href="organisateur.html">D4Ly_du_69</a></div>
+                </div>
               </div>
               <div class="blog-slider__content infoCont">
-                <span class="dateEvent">26 December 2019</span>
-                <div class="titreEvent">Lorem Ipsum Dolor</div>
                 <div class="txtEvent">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing?</div>
-                <div class="adresseEvent">Rue de la Tambourine 12</div>
-                <div class="userEvent"><a href="organisateur.html">D4Ly_du_69</a></div>
                 <a href="map.html" class="btnEvent">TROUVER L'EVENEMENT</a>
               </div>
             </div>
           </div>
+        </section>
+        <hr class="gradient">
+        <section class="attends">
+            <div class="interaction">
+              <div class="comment-form">
+                <!-- Comment Avatar -->
+                <div >
+                  <img class="comment-pp" src="image/david.png">
+                </div>
+            
+                <form class="form" name="form" ng-submit="form.$valid && cmntCtrl.addComment()" novalidate>
+                  <div class="form-row">
+                    <textarea
+                              class="input"
+                              ng-model="cmntCtrl.comment.text"
+                              placeholder="AJOUTER UN COMMENTAIRE ..."
+                              required></textarea>
+                  </div>
+                  <div class="form-row">
+                    <input type="submit" value="COMMENTER">
+                  </div>
+                </form>
+                <div class="commCont">
+
+                </div>
+              </div>
+              <div>
+                <h3 class="starTitle">Notez cet Évènement</h3>
+                <form class="starCont" action="">
+                    <fieldset class="rating">
+                        <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                        <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                        <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                        <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                        <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                        <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                        <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                        <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                        <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                        <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                        <div class="form-row">
+                            <input class="noter" type="submit" value="NOTER">
+                        </div>
+                    </fieldset>
+                </form>
+              </div>
+            </div>
         </section>
         <hr class="gradient">
         <footer>

@@ -310,8 +310,12 @@
 	vertical-align: middle;
 }
 .search:focus{
+	filter: drop-shadow(0 0 0.15rem white);
+}
+.search:focus ~ .searchBtn{
 	border: 1px solid white;
 	filter: drop-shadow(0 0 0.15rem white);
+	height: 5.15%;
 }
 .searchBtn{
 	border: 1px solid white;
