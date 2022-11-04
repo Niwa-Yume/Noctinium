@@ -51,12 +51,12 @@
 }
 .eventGrid{
     display: grid;
-    grid-template-columns: 5fr 4fr;
+    grid-template-columns: auto auto;
     width: 80%;
     margin: 40px auto auto auto;
 }
 .infoSup{
-    padding-top: 20%;
+    padding-top: 18%;
 }
 .imgEventCont{
     text-align: center;
@@ -138,14 +138,12 @@
 .infoCont{
     margin-top: 40px;
 }
-@media screen and (max-height: 1050px){
-    .swiper-slide{
-        display: grid;
-        grid-template-columns: auto auto;
+@media screen and (max-width: 1000px){
+    .eventGrid{
+        display: inline;
     }
-    .imgEvent{
-        margin-top: 170px;
-		margin-left: 50px;
+    .infoSup{
+      padding-top: 40px;
     }
 }
 
@@ -162,7 +160,7 @@
 .comment-form{ 
   margin: auto;
   margin-top: 30px;
-  width: 1000px;
+  width: 80%;
  }
 .comment-form .comment-avatar{  }
 
@@ -353,10 +351,6 @@
 /* Star rating */
 
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
-
-fieldset, label { margin: 0; padding: 0; }
-body{ margin: 20px; }
-h1 { font-size: 1.5em; margin: 10px; }
 
 /****** Style Star Rating Widget *****/
 

@@ -224,6 +224,7 @@ input:checked + .slider:before {
 .interaction{
   display: grid;
   grid-template-columns: 6fr 2fr;
+  grid-template-areas: 'comment star';
 }
 
 /* Section Commentaire */
@@ -234,7 +235,8 @@ input:checked + .slider:before {
 .comment-form{ 
   margin: auto;
   margin-top: 30px;
-  width: 1000px;
+  width: 80%;
+  grid-area: comment;
  }
 .comment-form .comment-avatar{  }
 
@@ -426,9 +428,6 @@ input:checked + .slider:before {
 
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
-fieldset, label { margin: 0; padding: 0; }
-body{ margin: 20px; }
-h1 { font-size: 1.5em; margin: 10px; }
 
 /****** Style Star Rating Widget *****/
 
@@ -491,4 +490,7 @@ h1 { font-size: 1.5em; margin: 10px; }
   padding: 6px 15px;
   font-weight: bold;
   font-family: 'Open Sans';
+}
+.star{
+  grid-area: star;
 }

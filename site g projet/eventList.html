@@ -29,10 +29,43 @@
         </section>
         <hr class="gradient">
         <section class="eventlist">
-          <form class="searchCont">
-            <input type="text" class="search insc-form" id="search" placeholder="NOM DE L'ÉVÈNEMENT, CATÉGORIE, ETC." name="name" value="">
-            <button class="searchBtn" id="searchBtn" type="submit"><i class="fa fa-search"></i></button>
-          </form>
+          <div class="searchCont">
+            <div class="filtreCont">
+              <span class="openFiltre" onclick="filtreMenu()">Filtres  &#9776;</span>
+            </div>
+            <div class="searchBarCont">
+              <form class="searchBar">
+                <input type="text" class="search insc-form" id="search" placeholder="NOM DE L'ÉVÈNEMENT, CATÉGORIE, ETC." name="name" value="">
+                <button class="searchBtn" id="searchBtn" type="submit"><i class="fa fa-search"></i></button>
+              </form>
+            </div>
+            <div class="newEventCont">
+              <a href="eventAdd.html" id="newEvent" class="newEvent">Créer un évènement</a>
+            </div>
+          </div>
+        <div id="main" class="main-f">
+          <div id="mySidenav" class="sidenav">
+            <h2>Filtres</h2>
+            <form action="">
+              <h3>Type d'évènement</h3>
+              <div class="typeCont">
+                <input type="checkbox" id="Teckno" name="Teckno"><label for="Teckno"> Teckno</label><br>
+                <input type="checkbox" name="Latino"><label for="Latino"> Latino</label><br>
+                <input type="checkbox" name="AllStyles"><label for="AllStyles"> All Styles</label><br>
+                <input type="checkbox" name="Soirée"><label for="Soirée"> Soirée</label><br>
+              </div>
+              <h3>Date de l'évènement</h3>
+              <div class="typeCont">
+                <div class="form-group-insc">
+                  <div class="col-sm-12">
+                    <input type="date" class="filtreDate insc-form" id="adresse_cachee" name="date_event" value="" required>
+                  </div>
+                </div>
+              </div>
+              <input class="filtreBtn" type="submit" value="FILTRER">
+            </form>
+          </div>
+        <div class="eventCont">
         <div class="blog-slider">
             <div class="blog-slider__wrp swiper-wrapper">
               <div class="blog-slider__item swiper-slide">
@@ -115,7 +148,8 @@
             </div>
             <div class="blog-slider__pagination"></div>
           </div>
-          <a href="eventAdd.html" id="newEvent" class="newEvent">Ajouter un évènement</a>
+        </div>
+        </div>
         </section>
         <hr class="gradient">
         <footer>
@@ -165,5 +199,23 @@
         searchBtn.classList.toggle("searchBtn-M");
       }
 		</script>
+    <script>
+      var verif = false
+      var menu = document.getElementById("mySidenav")
+      var main = document.getElementById("main")
+      function filtreMenu(){
+        if(verif == false){
+          main.classList.toggle("main")
+          main.classList.toggle("main-f")
+          menu.style.width = "120%";
+          verif = true;
+        } else {
+          menu.style.width = "0";
+          verif = false
+          main.classList.toggle("main-f")
+          main.classList.toggle("main")
+        }
+      }
+    </script>
     </body>
 </html>
