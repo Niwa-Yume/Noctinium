@@ -398,7 +398,7 @@
 }
 .newEvent{
 	display: block;
-	padding-top: 16px;
+	padding-top: 4px;
 	padding-bottom: 16px;
 	background-color: #000;
 	width: 190px;
@@ -408,7 +408,7 @@
     justify-content: center;
     text-transform: none;
     font-weight: 600;
-    font-size: 12px;
+    font-size: 14px;
     border-radius: 70px;
     overflow: hidden;
     letter-spacing: 0.07em;
@@ -430,7 +430,7 @@
 /* Filtres */
 
 .sidenav {
-	height: 400px;
+	height: 620px;
 	width: 0;
 	z-index: 5;
 	background-color: #111;
@@ -441,6 +441,7 @@
 	margin-left: -50px;
 	border-radius: 0 30px 30px 0;
 	grid-area: filtre;
+	white-space: nowrap;
   }
   
 .openFiltre{
@@ -494,7 +495,7 @@
 	border-radius: 10px;
     resize: none;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
 }
 .filtreBtn{
 	background: linear-gradient(269.16deg, #FFE580 -15.83%, #FF7571 -4.97%, #FF7270 15.69%, #EA5DAD 32.43%, #C2A0FD 50.09%, #9867F0 67.47%, #3BF0E4 84.13%, #33CE43 105.13%, #B2F4B6 123.24%);
@@ -506,15 +507,21 @@
   color: #000;
   cursor: pointer;
   display: block;
-  margin: auto;
+  margin: 20px auto;
   outline: none;
   padding: 6px 15px;
+  font-size: 1.1rem;
   font-weight: bold;
   font-family: 'Open Sans';
+  width: 100px;
+  height: 40px;
 }
 .filtreBtn:focus{
 	box-shadow: 0 2px 6px #C2A0FD;
 }
 .filtreBtn:hover{
 	box-shadow: 0 2px 6px #C2A0FD;
+}
+.sepFiltre{
+	background-color: rgba(66,82,109,0.5);
 }

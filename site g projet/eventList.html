@@ -47,20 +47,31 @@
           <div id="mySidenav" class="sidenav">
             <h2>Filtres</h2>
             <form action="">
-              <h3>Type d'évènement</h3>
+              <h3>Type d'évènement:</h3>
               <div class="typeCont">
                 <input type="checkbox" id="Teckno" name="Teckno"><label for="Teckno"> Teckno</label><br>
-                <input type="checkbox" name="Latino"><label for="Latino"> Latino</label><br>
-                <input type="checkbox" name="AllStyles"><label for="AllStyles"> All Styles</label><br>
-                <input type="checkbox" name="Soirée"><label for="Soirée"> Soirée</label><br>
+                <input type="checkbox" id="Latino" name="Latino"><label for="Latino"> Latino</label><br>
+                <input type="checkbox" id="AllStyles" name="AllStyles"><label for="AllStyles"> All Styles</label><br>
+                <input type="checkbox" id="Rap" name="Rap"><label for="Rap"> Rap</label><br>
               </div>
-              <h3>Date de l'évènement</h3>
+              <h3>Date de l'évènement:</h3>
               <div class="typeCont">
                 <div class="form-group-insc">
                   <div class="col-sm-12">
                     <input type="date" class="filtreDate insc-form" id="adresse_cachee" name="date_event" value="" required>
                   </div>
                 </div>
+              </div>
+              <h3>Organisateurs:</h3>
+              <div class="typeCont">
+                <input type="checkbox" id="Particuliers" name="Particuliers"><label for="Particuliers"> Particuliers</label><br>
+                <input type="checkbox" id="Associations" name="Associations"><label for="Associations"> Associations</label><br>
+                <input type="checkbox" id="Professionnels" name="Professionnels"><label for="Professionnels"> Professionnels</label><br>
+              </div>
+              <h3>Ordre croissant:</h3>
+              <div class="typeCont">
+                <input type="radio" id="HeureDebut" name="ordrecroissant"><label for="HeureDebut"> Heure de Début</label><br>
+                <input type="radio" id="HeureFin" name="ordrecroissant"><label for="HeureFin"> Heure de Fin</label><br>
               </div>
               <input class="filtreBtn" type="submit" value="FILTRER">
             </form>
@@ -207,13 +218,16 @@
         if(verif == false){
           main.classList.toggle("main")
           main.classList.toggle("main-f")
-          menu.style.width = "120%";
+          menu.style.width = "110%";
           verif = true;
         } else {
           menu.style.width = "0";
           verif = false
-          main.classList.toggle("main-f")
-          main.classList.toggle("main")
+          setTimeout(closefiltre, 350);
+          function closefiltre(){
+            main.classList.toggle("main-f")
+            main.classList.toggle("main")
+          }
         }
       }
     </script>
