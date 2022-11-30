@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="asset/style.css">
+		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+      <meta charset="utf-8" />
+      <link rel="stylesheet" href="asset/event.css">
+      <title>Évènement</title>
+    </head>
+    <body>
+        <header>
+            <a href="index.html"><img class="logo" id="logo" src="image/logo_noctinium.png"></a>
+            <nav>
+              <li><a href="index.html">Accueil</a></li>
+              <li class="active"><a href="eventlist.html">Liste des évènements</a></li>
+              <li><a href="contact.html">Nous contacter</a></li>
+              <li><a href="sponsor.html">Sponsors</a></li>
+              <li><a href="propos.html">A propos</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+              <li><a href="inscription.html">Connexion / Inscription</a></li>
+          </nav>
+        </header>
+        
+        <section class="subscribe coprs-M">
+          <div class="eventCont">
+            <div class="returnBtnCont">
+              <a class="returnBtn" onclick="history.back()">&#8617;</a>
+            </div>
+            
+              <div class="titreEvent">Usine</div>
+              <div class="eventGrid">
+                <img class="imgEvent" src="image/boite-de-nuit-genève-1-1-1024x682.jpeg" alt="">
+                <div class="infoSup">
+                  <span class="dateEvent">26 December 2019</span>
+                  <div class="adresseEvent">Pl. des Volontaires 4</div>
+                  <div class="userEvent"><a href="organisateur.html">D4Ly_du_69</a></div>
+                </div>
+              </div>
+              <div class="blog-slider__content infoCont">
+                <div class="txtEvent">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing?</div>
+                <a href="map.html" class="btnEvent">TROUVER L' ÉVENEMENT</a>
+              </div>
+            
+          </div>
+        </section>
+        <hr class="gradient">
+        <section class="attends">
+            <div class="interaction">
+              <div class="comment-form">
+                <!-- Comment Avatar -->
+                <div >
+                  <img class="comment-pp" src="image/david.png">
+                </div>
+            
+                <form class="form" name="form" ng-submit="form.$valid && cmntCtrl.addComment()" novalidate>
+                  <div class="form-row">
+                    <textarea
+                              class="input"
+                              ng-model="cmntCtrl.comment.text"
+                              placeholder="AJOUTER UN COMMENTAIRE ..."
+                              required></textarea>
+                  </div>
+                  <div class="form-row">
+                    <input type="submit" value="COMMENTER">
+                  </div>
+                </form>
+                <div class="commCont">
+
+                </div>
+              </div>
+              
+            </div>
+        </section>
+        <hr class="gradient">
+        <footer>
+            <ul class="linear-list">
+                <li>
+                    <a href="">Code of Conduct</a>
+                </li>
+                <li>
+                    <a href="">Terms</a>
+                </li>
+                <li>
+                    <a href="">Privacy</a>
+                </li>
+                <li>
+                    <a href="">Évenement sponsorisé</a>
+                </li>
+                <li>
+                    <a href="">contact@noctinium.com</a>
+                </li>
+            </ul>
+        </footer>
+		<script>
+      var element = document.getElementById("logo")
+      var cont = document.querySelector(".eventCont")
+			if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        element.classList.toggle("logo");
+        element.classList.toggle("logo-M");
+        cont.classList.toggle("eventCont");
+        cont.classList.toggle("eventCont-M");
+      }
+		</script>
+    </body>
+</html>
