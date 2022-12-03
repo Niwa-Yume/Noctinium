@@ -48,6 +48,12 @@
                   <textarea class="form-control" rows="10" placeholder="DESCRIPTION DE L'ÉVÈNEMENT (333 caractères maximum)" name="description_event" required maxlength="333"></textarea>
                 </div>
               </div>
+
+              <div class="form-group-insc">
+                <div class="col-sm-12">
+                  <input type="text" class="form-control insc-form" id="note_sup" placeholder="INFOS SUPPLÉMENTAIRES" name="adresse_event" value="">
+                </div>
+              </div>
             
             <div class="form-group-insc">
                 <div class="col-sm-12">
@@ -56,21 +62,32 @@
               </div>
 
             <div class="form-group-insc">
-                <div class="col-sm-12 btnCont">
-                  <label class="uploadFile">
-                    <input type="file" class="btnUpload" accept="images/*" id="img_event" name="img_event" value="" required>
+              <div class="col-sm-12 btnCont">
+                <div class="chBox">
+                  <input type="checkbox" class="insc-form-checkbox-date" id="prive" name="prive" value="prive"/>
+                  <label class="insc-form-checkbox-txt-date" id="txtprive" for="prive">Soirée privée</label><br>
+                  <input type="checkbox" class="insc-form-checkbox-date" id="date-mask" name="date-mask" value="date-mask" onclick="datemask()"/>
+                  <label class="insc-form-checkbox-txt-date" id="txtdate" for="date-mask">Adresse masquée</label>
+                </div>
+                <div class="chBox2">
+                  <input type="checkbox" class="insc-form-checkbox-date" id="payant" name="payant" value="payant" onclick="privatiser()"/>
+                  <label class="insc-form-checkbox-txt-date" id="txtpayant" for="payant">Payant</label><br>
+                  <input type="number" class="insc-form hidden" id="prix" placeholder="PRIX" name="prix_event" value="">
+                </div>
+              </div>
+            </div>
+            <div class="form-group-insc">
+                <div class="col-sm-12">
+                  <label class="addImg">
+                    <input type="file" class="btnUpload" accept="images/*" id="img_event" name="img_event" value="">
                     Upload Images
                   </label>
-                  <div>
-                    <input type="checkbox" class="insc-form-checkbox-date" id="date-mask" name="date-mask" value="date-mask" onclick="datemask()"/>
-                    <label class="insc-form-checkbox-txt-date" for="date-mask">Adresse masquée</label>
-                  </div>
                 </div>
               </div>
 
               <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="datetime-local" class="form-control insc-form hidden" id="adresse_cachee" name="date_event" value="" required>
+                  <input type="datetime-local" class="form-control insc-form hidden" id="adresse_cachee" name="date_event" value="">
                 </div>
               </div>
 
@@ -119,12 +136,20 @@
     element.classList.toggle("logo-M");
   }
   function datemask(){
-    var mask = document.querySelector(".insc-form-checkbox-date")
-    if (mask.checked == true){
+    var mask = document.getElementById("date-mask")
+    if (mask.checked){
       document.getElementById("adresse_cachee").classList.toggle("hidden");
     }else{
       document.getElementById("adresse_cachee").classList.toggle("hidden");
 
+    }
+  }
+  function privatiser(){
+    var mask = document.getElementById("payant")
+    if (mask.checked){
+      document.getElementById("prix").classList.toggle("hidden");
+    }else{
+      document.getElementById("prix").classList.toggle("hidden");
     }
   }
 </script>

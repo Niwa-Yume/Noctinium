@@ -586,6 +586,7 @@ input.form-control{
 }
 textarea.form-control{
     margin-bottom: 0;
+    width: 95%;
 }
 .form-control:focus{
 	border: 1px solid white;
@@ -847,8 +848,9 @@ hr {
     height: 20px;
     width: 20px;
     float: left;
-    margin-left: 5px;
+    margin-top: 1px;
     margin-bottom: 10px;
+    margin-right: 10px;
     border: 1px solid white;
     border-radius: 50%;
     appearance: none;
@@ -862,32 +864,26 @@ hr {
 .insc-form-checkbox-date{
     height: 20px;
     width: 20px;
-    margin-left: 5px;
     border: 1px solid white;
     border-radius: 50%;
     appearance: none;
     -webkit-appearance: none;
     background-color: #000;
     cursor: pointer;
-    margin-top: 12px;
+    margin-bottom: 5px;
 }
 .insc-form-checkbox-date:checked{
     background-color: #9867F0;
 }
 .insc-form-checkbox-txt{
-    font-family: 'Lato';
-    font-size: 1.05rem;
+    font-family: 'Open Sans';
+    font-size: 1rem;
     float: right ;
-    margin-right: 5px;
-    margin-top: 1px;
 }
 .insc-form-checkbox-txt-date{
-    font-family: 'Lato';
-    font-size: 1.05rem;
-    float: right ;
-    margin-left: -40px;
-    margin-top: 12px;
-    margin-right: 40px;
+    font-family: 'Open Sans';
+    font-size: 1rem;
+    text-align: left;
 }
 .insc-form-checkbox-txt:hover{
     cursor: pointer;
@@ -899,6 +895,27 @@ hr {
     filter: invert(1);
     width: 30px;
     cursor: pointer;
+}
+.chBox{
+    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr 9fr;
+    grid-row-gap: 20px;
+    grid-column-gap: 10px;
+    grid-template-areas: 'btn1 desc1'
+    'btn2 desc2';
+    height: 50px;
+}
+.chBox2{
+    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr 9fr;
+    grid-row-gap: 15px;
+    grid-column-gap: 10px;
+    grid-template-areas: 'btn3 desc3'
+    'prix prix';
+    height: 50px;
+
 }
 .uploadFile{
     border: 2px solid #FF7571;
@@ -923,4 +940,58 @@ hr {
     display: grid;
     grid-template-columns: auto auto;
     vertical-align: middle;
+    width: 70%;
+    margin: auto;
+    height: 60px;
+}
+.addImg{
+    border: 2px solid #FF7571;
+    display: inline-block;
+    padding: 12px 24px;
+    cursor: pointer;
+    border-radius: 15px;
+    width: 40%;
+    height: 50px;
+    font-family: 'Open Sans';
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .addImg:hover{
+    background: linear-gradient(269.16deg, #FFE580 -15.83%, #FF7571 -4.97%, #FF7270 15.69%, #EA5DAD 32.43%, #C2A0FD 50.09%, #9867F0 67.47%, #3BF0E4 84.13%, #33CE43 105.13%, #B2F4B6 123.24%);
+    background-position: 58% 50%;
+    background-size: 500%;
+    color: black;
+  }
+#prive{
+    grid-area: btn1;
+}
+#txtprive{
+    grid-area: desc1;
+}
+#date-mask{
+    grid-area: btn2;
+}
+#txtdate{
+    grid-area: desc2;
+}
+#payant{
+    grid-area: btn3;
+}
+#txtpayant{
+    grid-area: desc3;
+}
+#prix{
+    grid-area: prix;
+    border: 1px solid white;
+	width: 50%;
+	background-color: #000;
+	color: #fff;
+	letter-spacing: 1px;
+	padding: 2%;
+	border-radius: 10px;
+    resize: none;
+    align-items: center;
+    margin-bottom: 30px;
+    height: 35px;
+    margin-left: 5px;
 }
