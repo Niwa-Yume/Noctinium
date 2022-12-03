@@ -1,16 +1,38 @@
-.iconDetails {
-    margin-left:2%; 
-   height:65px;
-   width:65px; 
-   } 
-   
-   .container2 {
-       width:100%;
-       height:auto;
-       padding:1%;
-       margin-bottom: 2%;
-   }
-   
-   h4 {
-       margin:0px;
-   }
+h4 {
+    margin:0px;
+}
+.flex{
+    width: 18%;
+    height: auto;
+    margin: auto;
+    background-color: #343435;
+    border-radius: 30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-bottom: 40px;
+}
+.flex img{
+    width: 80%;
+    height: 260px;
+    border-radius: 30px;
+    margin-top: 20px;
+    object-fit: cover;
+}
+
+.description{
+    text-align: justify;
+    margin: auto;
+    font-size: 1.2rem;
+    padding: 10px;
+}
+.flexible{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    width: 100%;
+    z-index: 1;
+    padding: 40px;
+}
+.partenaire{
+    padding-top: 40px;
+}

@@ -40,7 +40,7 @@
               </form>
             </div>
             <div class="newEventCont">
-              <a href="eventAdd.html" id="newEvent" class="newEvent">Créer un évènement</a>
+              <a href="eventAdd.html" id="newEvent" class="newEvent">Ajouter</a>
             </div>
           </div>
         <div id="main" class="main-f">
@@ -218,7 +218,11 @@
         if(verif == false){
           main.classList.toggle("main")
           main.classList.toggle("main-f")
-          menu.style.width = "110%";
+          if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+            menu.style.width = "250px";
+          }else{
+            menu.style.width = "100%";
+          }
           verif = true;
         } else {
           menu.style.width = "0";

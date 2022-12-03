@@ -574,7 +574,7 @@ section.profile .social svg {
 	color: #fff;
 	letter-spacing: 1px;
 	padding: 2%;
-	margin-bottom: 2.5%;
+	margin-bottom: 1%;
 	border-radius: 10px;
     resize: none;
     align-items: center;
@@ -582,7 +582,10 @@ section.profile .social svg {
 }
 input.form-control{
     height: 50px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+}
+textarea.form-control{
+    margin-bottom: 0;
 }
 .form-control:focus{
 	border: 1px solid white;
@@ -905,6 +908,7 @@ hr {
     border-radius: 15px;
     width: 60%;
     margin: auto auto 20px auto;
+    font-family: 'Open Sans';
 }
 .uploadFile:hover{
     background: linear-gradient(269.16deg, #FFE580 -15.83%, #FF7571 -4.97%, #FF7270 15.69%, #EA5DAD 32.43%, #C2A0FD 50.09%, #9867F0 67.47%, #3BF0E4 84.13%, #33CE43 105.13%, #B2F4B6 123.24%);
