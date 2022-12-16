@@ -13,9 +13,8 @@
             <a href="index.html"><img class="logo" id="logo" src="image/logo_noctinium.png"></a>
             <nav>
                 <li class="active"><a href="index.html">Accueil</a></li>
-                <li><a href="eventlist.html">Liste des évènements</a></li>
-                <li><a href="contact.html">Nous contacter</a></li>
-                <li><a href="sponsor.html">Sponsors</a></li>
+                <li><a href="eventlist.html">Évènements</a></li>
+                <li><a href="contact.html">Contacter</a></li>
                 <li><a href="propos.html">A propos</a></li>
                 <li><a href="faq.html">FAQ</a></li>
                 <li><a href="connexion.html">Connexion</a></li>
@@ -30,13 +29,13 @@
                 </p>
                 <br>
                 <br>
-                <a class="button" href="eventList.html">
+                <a class="button" href="#ancre">
                     Voir les évènements
                 </a>
             </div>
         </section>
        
-        <hr class="gradient">
+        <hr class="gradient" id="ancre">
 
         <section class="subscribe">
             <div id="map" class="map">
@@ -104,7 +103,7 @@
                     <a href="">Privacy</a>
                 </li>
                 <li>
-                    <a href="">Évenement sponsorisé</a>
+                    <a href="sponsor.html">Sponsors</a>
                 </li>
                 <li>
                     <a href="">contact@noctinium.com</a>
@@ -115,11 +114,14 @@
     <script>
         var element = document.getElementById("logo")
         var map = document.getElementById("map")
+        var main = document.querySelector(".main")
             if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
                 element.classList.toggle("logo");
                 element.classList.toggle("logo-M");
                 map.classList.toggle("map");
                 map.classList.toggle("map-M");
+                main.classList.toggle("main-M");
+                main.classList.toggle("main");
             }
 
           </script>

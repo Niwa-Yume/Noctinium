@@ -10,9 +10,8 @@
             <a href="index.html"><img class="logo" id="logo" src="image/logo_noctinium.png"></a>
             <nav>
               <li><a href="index.html">Accueil</a></li>
-              <li><a href="eventlist.html">Liste des évènements</a></li>
-              <li class="active"><a href="contact.html">Nous contacter</a></li>
-              <li><a href="sponsor.html">Sponsors</a></li>
+              <li><a href="eventlist.html">Évènements</a></li>
+              <li class="active"><a href="contact.html">Contact</a></li>
               <li><a href="propos.html">A propos</a></li>
               <li><a href="faq.html">FAQ</a></li>
                 <li><a href="connexion.html">Connexion</a></li>
@@ -35,17 +34,17 @@
        
       <div class="form-group">
         <div class="col-sm-12">
-          <input type="text" class="form-control" id="name" placeholder="NAME" name="name" value="" required autofocus>
+          <input type="text" class="form-control switch" id="name" placeholder="NAME" name="name" value="" required autofocus>
         </div>
       </div>
 
       <div class="form-group">
         <div class="col-sm-12">
-          <input type="email" class="form-control" id="email" placeholder="EMAIL" name="email" value="" required>
+          <input type="email" class="form-control switch" id="email" placeholder="EMAIL" name="email" value="" required>
         </div>
       </div>
 
-      <textarea class="form-control" rows="10" placeholder="MESSAGE" name="message" required></textarea>
+      <textarea id="message" class="form-control switch" rows="10" placeholder="MESSAGE" name="message" required></textarea>
       
       <button class="btn btn-primary send-button gradient" id="submit" type="submit" value="SEND">
         <div class="alt-send-button">
@@ -107,7 +106,7 @@
                     <a href="">Privacy</a>
                 </li>
                 <li>
-                    <a href="">Évenement sponsorisé</a>
+                    <a href="sponsor.html">Sponsors</a>
                 </li>
                 <li>
                     <a href="">contact@noctinium.com</a>
@@ -123,15 +122,26 @@
 			});
 		</script>
     <script>
-      var element = document.getElementById("logo")
-      var form = document.getElementById("contactForm")
-      var spacer = document.getElementById("spacer")
+      var element = document.getElementById("logo");
+      var formCont = document.getElementById("contactForm");
+      var spacer = document.getElementById("spacer");
+      var formN = document.getElementById("name");
+      var formE = document.getElementById("email");
+      var formM = document.getElementById("message");
+      var contact = document.getElementById("contact-form")
 			if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
         element.classList.toggle("logo");
         element.classList.toggle("logo-M");
-        form.classList.toggle("contact-wrapper");
-        form.classList.toggle("contact-wrapper-M");
+        formCont.classList.toggle("contact-wrapper");
+        formCont.classList.toggle("contact-wrapper-M");
         spacer.classList.toggle("hidden");
+        formN.classList.toggle("form-control");
+        formN.classList.toggle("form-control-M");
+        formE.classList.toggle("form-control");
+        formE.classList.toggle("form-control-M");
+        formM.classList.toggle("form-control");
+        formM.classList.toggle("form-control-M");
+        contact.style.margin = "0px"
       }
 		</script>
     </body>

@@ -135,6 +135,7 @@ footer {
     width: 100%;
     height: auto;
     color: #959da5;
+    font-size: 1.6rem;
 }
 footer ul {
     width: 100%;
@@ -161,7 +162,7 @@ ul.linear-list li {
 header {
     display: inline-block;
     width: 100%;
-    height: 80px;
+    height: 120px;
     background: #040303;
     border-bottom: 1px solid rgba(66,82,109,0.5);
     padding-top: 5px;
@@ -173,14 +174,15 @@ header nav {
 }
 header nav li {
     display: inline-block;
-	height: 108%;
+	height: 105%;
     padding-right: 5px;
     padding-left: 5px;
-    padding-top: 22px;
+    padding-top: 42px;
     padding-bottom: 20px;
 }
 header nav a{
-    font-size: 1.2rem;
+    font-size: 1.6rem;
+    font-weight: bold;
 }
 header nav li.active {
     border-bottom: 2px solid #d73a49;
@@ -308,7 +310,6 @@ section.content {
     text-align: center;
     display: inline-block;
     width: 100%;
-    height: 500px;
     background-color: #040303;
     background-image: url('pattern-light.svg');
     background-position: center;
@@ -319,7 +320,18 @@ section.main {
     text-align: center;
     display: inline-block;
     width: 100%;
-    height: 500px;
+    height: 100%;
+    background-color: #040303;
+    background-image: url('../image/nightclub-crowd1.png');
+    background-position: center;
+    background-attachment: cover;
+    background-repeat: no-repeat;
+}
+section.main-M {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    height: 30%;
     background-color: #040303;
     background-image: url('../image/nightclub-crowd1.png');
     background-position: center;
@@ -339,7 +351,7 @@ section.content h1 {
 section.content p {
     margin-bottom: 15px;
     color: #B5BFD2;
-    font-size: 22px;
+    font-size: 1.7rem;
 }
 section.main h1 {
     font-size: 96px;
@@ -352,10 +364,24 @@ section.main p {
     color: #B5BFD2;
     font-size: 22px;
 }
+section.main-M h1 {
+    font-size: 96px;
+    line-height: 125px;
+    margin-top: 45px;
+    margin-bottom: 25px;
+}
+section.main-M p {
+    margin-bottom: 15px;
+    color: #B5BFD2;
+    font-size: 22px;
+}
 .container {
     width: 90%;
     padding: 45px;
     margin: auto;
+}
+.container p{
+    font-size: 1.5rem;
 }
 ul.sponsor-list {
     float: left;
@@ -408,8 +434,7 @@ section.subscribe {
 }
 section.subscribe p {
     width: 100%;
-    font-size: 24px;
-    margin-bottom: 20px;
+    font-size: 1.7rem;
 }
 section.subscribe h4{
     font-size: 36px;
@@ -587,10 +612,23 @@ section.profile .social svg {
   max-width: 400px;
   font-family: 'Lato';
   font-weight: 400;
-  margin: 0 1   0px;
+  margin: 0 20px;
 }
 
 .form-control{
+	border: 1px solid white;
+	width: 100%;
+	background-color: #000;
+	color: #fff;
+	letter-spacing: 1px;
+	padding: 2%;
+	margin-bottom: 1%;
+	border-radius: 10px;
+    resize: none;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.form-control-M{
 	border: 1px solid white;
 	width: 100%;
 	background-color: #000;
@@ -615,6 +653,20 @@ textarea.form-control{
 	border: 1px solid white;
 	filter: drop-shadow(0 0 0.15rem white);
 }
+input.form-control-M{
+    height: 3.5%;
+    margin-bottom: 30px;
+    min-height: 50px;
+}
+textarea.form-control-M{
+    margin-bottom: 0;
+    width: 100%;
+    height: 15%;
+}
+.form-control-M:focus{
+	border: 1px solid white;
+	filter: drop-shadow(0 0 0.15rem white);
+}
 
 .send-button {
 	border-radius: 10px;
@@ -622,11 +674,12 @@ textarea.form-control{
 	background-position: 58% 50%;
     background-size: 500%;
 	margin-top: 15px;
-	height: 45px;
-	width: 400px;
+	height: 50px;
+	width: 100%;
 	overflow: hidden;
 	transition: all .2s ease-in-out;
 	cursor: pointer;
+    max-width: 400px;
 }
 
 .alt-send-button {
@@ -649,7 +702,8 @@ textarea.form-control{
 /* Begin Right Contact Page */
 .direct-contact-container {
   max-width: 400px;
-  margin: 0 30px;
+  margin-left: 0;
+  margin-top: 0;
 }
 
 /* Location, Phone, Email Section */
@@ -662,12 +716,14 @@ textarea.form-control{
 .list-item {
   line-height: 4;
   color: #aaa;
+  font-size: 1.4rem;
 }
 
 .contact-text {
   font: 300 18px 'Lato', sans-serif;
   letter-spacing: 1.9px;
   color: #bbb;
+  font-size: 1.4rem;
 }
 
 .place {
@@ -697,7 +753,7 @@ textarea.form-control{
 /* Social Media Icons */
 .social-media-list {
   position: relative;
-  font-size: 22px;
+  font-size: 2rem;
   text-align: center;
   width: 100%;
   margin: 0 auto;
@@ -756,6 +812,7 @@ textarea.form-control{
   letter-spacing: 1px;
   text-align: center;
   margin-top: 5px;
+  font-size: 1.4rem;
 }
 
 hr {
@@ -834,10 +891,11 @@ hr {
 	text-align: left;
 }
 .fa-paper-plane{
-	margin-top: 15px;
+	margin-top: 17px;
+    margin-bottom: 3px;
 }
 .fa-social{
-	margin-top: 18px;
+	margin-top: 15px;
 }
 /* fin contact-form */
 .insc-cont-1 {
