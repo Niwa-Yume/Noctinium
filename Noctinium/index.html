@@ -14,7 +14,7 @@
             <nav>
                 <li class="active"><a href="index.html">Accueil</a></li>
                 <li><a href="eventlist.html">Évènements</a></li>
-                <li><a href="contact.html">Contacter</a></li>
+                <li><a href="contact.html">Contact</a></li>
                 <li><a href="propos.html">A propos</a></li>
                 <li><a href="faq.html">FAQ</a></li>
                 <li><a href="connexion.html">Connexion</a></li>
@@ -24,8 +24,22 @@
             <div class="container">
                 <h1 class="gradient-text">Noctinium</h1>
                 <p>
-                    Trouvez vos soirées simplement et rapidement sur Genève et vos alentours !
-                    
+                    Trouvez vos soirées simplement et rapidement sur Genève et vos alentours !<br><br>
+                    Vous pouvez aussi <a class="underline" href="">télécharger</a> l'application mobile ! <br><br>
+                    Suivez-nous sur les réseau <span class="text-gradient-purple">#FindTheNight</span>
+                    <ul class="linear-list">
+                        <li>
+                            <a href="">
+                                <img src="asset/twitter.svg">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src="asset/instagram.svg">
+                            </a>
+                        </li>
+                        
+                    </ul>
                 </p>
                 <br>
                 <br>
@@ -67,30 +81,6 @@
         </section>
 
         <hr class="gradient">
-
-        <section class="updates">
-			<a href="contact.html" class="button">CONTACTEZ-NOUS</a>
-			<br><br>
-			<p class="signup-text"><a class="underline" href="">Rejoignez-nous</a> sur les réseaux pour plus
-				d'informations !</p>
-			<br><br>
-			<p>Vous pouvez aussi <a class="underline" href="">télécharger</a> l'application mobile !!!</p>
-			<p class="follow-text">Suivez-nous sur les réseau <span class="text-gradient-purple">#FindTheNight</span></p>
-            <ul class="linear-list">
-                <li>
-                    <a href="">
-                        <img src="asset/twitter.svg">
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <img src="asset/instagram.svg">
-                    </a>
-                </li>
-                
-            </ul>
-        </section>
-        <hr class="gradient">
         <footer>
             <ul class="linear-list">
                 <li>
@@ -115,6 +105,7 @@
         var element = document.getElementById("logo")
         var map = document.getElementById("map")
         var main = document.querySelector(".main")
+        var btn = document.querySelector(".button")
             if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
                 element.classList.toggle("logo");
                 element.classList.toggle("logo-M");
@@ -122,6 +113,7 @@
                 map.classList.toggle("map-M");
                 main.classList.toggle("main-M");
                 main.classList.toggle("main");
+                btn.classList.toggle("hidden")
             }
 
           </script>

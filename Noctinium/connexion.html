@@ -10,7 +10,7 @@
         <nav>
             <li><a href="index.html">Accueil</a></li>
             <li><a href="eventlist.html">Évènements</a></li>
-            <li><a href="contact.html">Contacter</a></li>
+            <li><a href="contact.html">Contact</a></li>
             <li><a href="propos.html">A propos</a></li>
             <li><a href="faq.html">FAQ</a></li>
             <li class="active"><a href="inscription.html">Inscription</a></li>
@@ -81,9 +81,15 @@
 </body>
 <script>
   var element = document.getElementById("logo")
+  var formN = document.getElementById("mdp");
+      var formE = document.getElementById("email");
   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
     element.classList.toggle("logo");
     element.classList.toggle("logo-M");
+    formN.classList.toggle("form-control");
+    formN.classList.toggle("form-control-M");
+    formE.classList.toggle("form-control");
+    formE.classList.toggle("form-control-M");
   }
 </script>
 </html>
