@@ -25,26 +25,34 @@
         </section>
         <hr class="gradient">
         <section class="subscribe">
-          <a href=""><button class="pageOrga">Page organisateur</button></a>
+          <div class="changeProfil">
+            <div class="changeProfilCont">
+              <p class="oui">Modifier le profil: </p>
+              <label class="switch">
+                <input id="switch" type="checkbox" onchange="changeProfile()">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
           <div class="profilCompte">
             <div class="imgCont">
-              <img id="pp" src="image/alieu.jfif" class="PP">
-              <form id="btnChangeImg" class="form-group-insc ">
+              <img id="pp" src="image/david.png" class="PP-Big">
+              <div id="btnChangeImg" class="form-group-insc hidden">
                 <div class="col-sm-12">
                   <label class="uploadFile">
                     <input type="file" class="btnUpload" accept="images/*" name="newImg" value="" required>
                     Choisir une image
-                  </label><br>
-                  <label class="uploadFile">
+                  </label>
+                  <label class="uploadFile" id="margin">
                     <input type="submit" class="btnUpload" name="addImg" value="" required>
                     Upload Images
-                  </label><br>
+                  </label>
                   <label class="uploadFile">
                     <input type="submit" class="btnUpload" name="deleteImg" value="" required>
                     Supprimer l'image
                   </label>
                 </div>
-              </form>
+              </div>
             </div>
             <div>
             <form class="formUserCont" action="">
@@ -53,53 +61,58 @@
               <h3 class="labelInfo" id="labelPrenom">PRENOM:</h3>
             <div id="formNom" class="form-group-insc">
               <div class="col-sm-12">
-                <input type="text" class="formUser insc-form" id="nom" placeholder="NOM" name="name" value="" autofocus>
+                <input type="text" class="formUser hidden insc-form" id="nom" placeholder="NOM" name="name" value="" required autofocus>
+                <p id="infoNom" class="infoUser">David</p>
               </div>
             </div>
       
             <div id="formPrenom" class="form-group-insc">
               <div class="col-sm-12">
-                <input type="text" class="formUser insc-form" id="prenom" placeholder="PRENOM" name="prenom" value="" >
+                <input type="text" class="formUser hidden insc-form" id="prenom" placeholder="PRENOM" name="prenom" value="" required>
+                <p id="infoPrenom" class="infoUser">Pierella</p>
               </div>
             </div>
             <h3 class="labelInfo" id="labelPseudo">PSEUDO:</h3>
             <h3 class="labelInfo" id="labelEmail">EMAIL:</h3>
             <div id="formPseudo" class="form-group-insc">
               <div class="col-sm-12">
-                <input type="text" class="formUser insc-form" id="pseudo" placeholder="PSEUDO" name="pseudo" value=""  autofocus>
+                <input type="text" class="formUser hidden insc-form" id="pseudo" placeholder="PSEUDO" name="pseudo" value="" required autofocus>
+                <p id="infoPseudo" class="infoUser">D4Ly</p>
               </div>
             </div>
       
             <div id="formEmail" class="form-group-insc">
               <div class="col-sm-12">
-                <input type="email" class="formUser insc-form" id="email" placeholder="EMAIL" name="email" value="" >
+                <input type="email" class="formUser hidden insc-form" id="email" placeholder="EMAIL" name="email" value="" required>
+                <p id="infoEmail" class="infoUser">d.pierella01@gmail.com</p>
               </div>
             </div>
 
             <h3 class="labelInfo" id="labelBio">BIO:</h3>
             <div id="formBio" class="form-group-insc">
               <div class="col-sm-12">
-                <textarea class="formUserBio" rows="10" placeholder="DESCRIPTION (333 caractères maximum)" id="bio" name="description_event"  maxlength="333"></textarea>
+                <textarea class="formUserBio hidden" rows="10" placeholder="DESCRIPTION (333 caractères maximum)" id="bio" name="description_event" required maxlength="333"></textarea>
+                <p id="infoBio" class="infoUser">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing?</p>
               </div>
             </div>
 
-            <h3 class="labelInfo" id="labelMdp">MOT DE PASSE:</h3>
-            <h3 class="labelInfo" id="labelMdp2">CONFIRMATION:</h3>
+            <h3 class="labelInfo hidden" id="labelMdp">MOT DE PASSE:</h3>
+            <h3 class="labelInfo hidden" id="labelMdp2">CONFIRMATION:</h3>
             <div id="formMdp" class="form-group-insc">
               <div class="col-sm-12">
-                <input type="password" class="formUser insc-form" id="mdp" placeholder="MOT DE PASSE" name="mdp" value=""  autofocus>
+                <input type="password" class="formUser hidden insc-form" id="mdp" placeholder="MOT DE PASSE" name="mdp" value="" required autofocus>
               </div>
             </div>
             <div id="formMdp2" class="form-group-insc">
               <div class="col-sm-12">
-                <input type="password" class="formUser insc-form" id="mdp2" placeholder="CONFIRMATION" name="mdp2" value="" >
+                <input type="password" class="formUser hidden insc-form" id="mdp2" placeholder="CONFIRMATION DU MOT DE PASSE" name="mdp2" value="" required>
               </div>
             </div>
             </div>
-            <div id="btnChange" class="form-group-insc">
+            <div id="btnChange" class="form-group-insc hidden">
               <div class="col-sm-12">
                 <label class="uploadFile">
-                  <input type="submit" class="btnUpload" name="changerInfo" value="" >
+                  <input type="submit" class="btnUpload" name="changerInfo" value="" required>
                   Modifier
                 </label>
               </div>
@@ -107,11 +120,24 @@
             </form>
             </div>
           </div>
-          <div class="addSocial">
+          <div id="socialView">
+            <ul class="link-list">
+              <li><a href="#" target="_blank" class="contact-icon">
+                <i class="fa fa-social fa-instagram" aria-hidden="true"></i></a>
+              </li>
+              <li><a href="#" target="_blank" class="contact-icon">
+                <i class="fa fa-social fa-twitter" aria-hidden="true"></i></a>
+              </li>
+              <li><a href="#" target="_blank" class="contact-icon">
+                <i class="fa fa-social fa-link" aria-hidden="true"></i></a>
+              </li>      
+            </ul>
+          </div>
+          <div id="social" class="addSocial">
             <form action="">
               <div class="form-group">
                 <div class="col-sm-12 ajout">
-                  <input type="text" class="form-control" id="name" placeholder="INSTAGRAM (LIEN)" name="name" value="" required autofocus>
+                  <input type="text" class="form-control" id="name" placeholder="INSTAGRAM (LIEN)" name="name" value="" required>
                   <label class="uploadFile">
                     <input type="submit" class="btnUpload" name="changerInfo" value="" required>
                     Ajouter
@@ -122,7 +148,7 @@
             <form action="">
               <div class="form-group">
                 <div class="col-sm-12 ajout">
-                  <input type="text" class="form-control" id="name" placeholder="TWITTER (LIEN)" name="name" value="" required autofocus>
+                  <input type="text" class="form-control" id="name" placeholder="TWITTER (LIEN)" name="name" value="" required>
                   <label class="uploadFile">
                     <input type="submit" class="btnUpload" name="changerInfo" value="" required>
                     Ajouter
@@ -133,7 +159,7 @@
             <form action="">
               <div class="form-group">
                 <div class="col-sm-12 ajout">
-                  <input type="text" class="form-control" id="name" placeholder="SITE WEB (LIEN)" name="name" value="" required autofocus>
+                  <input type="text" class="form-control" id="name" placeholder="SITE WEB (LIEN)" name="name" value="" required>
                   <label class="uploadFile">
                     <input type="submit" class="btnUpload" name="changerInfo" value="" required>
                     Ajouter
@@ -191,6 +217,9 @@
           document.getElementById("btnChangeImg").classList.toggle("hidden");
           document.getElementById("pp").classList.toggle("PP-Big");
           document.getElementById("pp").classList.toggle("PP");
+          document.getElementById("social").classList.toggle("addSocial");
+          document.getElementById("social").classList.toggle("addSocialGrid");
+          document.getElementById("socialView").classList.toggle("hidden");
         }else{
           document.getElementById("nom").classList.toggle("hidden");
           document.getElementById("infoNom").classList.toggle("hidden");
@@ -210,6 +239,9 @@
           document.getElementById("btnChangeImg").classList.toggle("hidden");
           document.getElementById("pp").classList.toggle("PP");
           document.getElementById("pp").classList.toggle("PP-Big");
+          document.getElementById("social").classList.toggle("addSocialGrid");
+          document.getElementById("social").classList.toggle("addSocial");
+          document.getElementById("socialView").classList.toggle("hidden");
         }
       }
 		</script>

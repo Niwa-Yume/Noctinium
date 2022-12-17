@@ -196,14 +196,14 @@
   color: #000;
 }
 .addSocial{
+  display: none;
+}
+.addSocialGrid{
   width: 50%;
   display: grid;
   grid-template-columns: auto auto auto;
   margin: auto;
   column-gap: 50px;
-}
-#margin{
-  margin-bottom: 0;
 }
 #labelNom{
   grid-area: labelNom;
@@ -252,7 +252,8 @@
   max-width: 600px;
   margin: auto;
 }
-
+#infoEmail{
+}
 .changeProfil{
   width: 100%;
   margin-bottom: 8%;
@@ -262,7 +263,7 @@
   float: right;
   display: grid;
   grid-template-columns: auto auto;
-  column-gap: 10px;
+  column-gap: 30px;
   margin-right: 20px;
 }
 

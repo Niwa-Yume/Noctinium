@@ -136,7 +136,7 @@ footer {
     width: 100%;
     height: auto;
     color: #959da5;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
 }
 footer ul {
     width: 100%;
@@ -1015,7 +1015,7 @@ hr {
 
 }
 .ajout .uploadFile{
-    width: 30%;
+    width: 60%;
     padding: 12px 0;
 }
 .uploadFile{
