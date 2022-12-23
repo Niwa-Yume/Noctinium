@@ -1036,6 +1036,7 @@ hr {
 .chBox-F input[type='radio']{
     transform: scale(1.8);
     margin-bottom: 10px;
+    margin-right: 5px;
 }
 .insc-cont-1 h1{
     font-family: 'Open Sans';
@@ -1078,7 +1079,7 @@ hr {
 .addImg{
     border: 2px solid #FF7571;
     display: inline-block;
-    padding: 12px 24px;
+    padding: 10px 24px;
     cursor: pointer;
     border-radius: 15px;
     width: 40%;
