@@ -7,6 +7,7 @@
           <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
         <meta charset="utf-8" />
         <title>Accueil</title>
+        <link rel="icon" href="image/logo_noctinium.png">
     </head>
     <body>
         <header>
@@ -43,7 +44,7 @@
                 </p>
                 <br>
                 <br>
-                <a class="button" href="#ancre">
+                <a class="button" href="#ancre" onclick="scroll()">
                     Voir les évènements
                 </a>
             </div>
@@ -116,5 +117,9 @@
                 btn.classList.toggle("hidden")
             }
 
-          </script>
+        var scroll_map = document.getElementById("map")
+        function scroll(){
+            scrollTo(scroll_map);
+        }
+    </script>
 </html>

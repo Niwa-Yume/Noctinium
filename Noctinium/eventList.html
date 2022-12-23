@@ -8,6 +8,7 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
       <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
       <title>Évènements</title>
+      <link rel="icon" href="image/logo_noctinium.png">
     </head>
     <body>
         <header>
@@ -30,7 +31,7 @@
         <section class="eventlist">
           <div class="searchCont">
             <div class="filtreCont">
-              <span class="openFiltre" onclick="filtreMenu()">Filtres  &#9776;</span>
+              <a class="openFiltre" onclick="filtreMenu()">Filtres &#9776;</a>
             </div>
             <div class="searchBarCont">
               <form class="searchBar">
@@ -46,12 +47,18 @@
           <div id="mySidenav" class="sidenav">
             <h2>Filtres</h2>
             <form action="">
-              <h3>Type d'évènement:</h3>
+              <h3>Musique:</h3>
               <div class="typeCont">
                 <input type="checkbox" id="Teckno" name="Teckno"><label for="Teckno"> Teckno</label><br>
                 <input type="checkbox" id="Latino" name="Latino"><label for="Latino"> Latino</label><br>
-                <input type="checkbox" id="AllStyles" name="AllStyles"><label for="AllStyles"> All Styles</label><br>
                 <input type="checkbox" id="Rap" name="Rap"><label for="Rap"> Rap</label><br>
+                <input type="checkbox" id="AllStyles" name="AllStyles"><label for="AllStyles"> All Styles</label><br>
+              </div>
+              <h3>Type d'évènement:</h3>
+              <div class="typeCont">
+                <input type="checkbox" id="before" name="before"><label for="before"> Before</label><br>
+                <input type="checkbox" id="soiree" name="soiree"><label for="soiree"> Soirée</label><br>
+                <input type="checkbox" id="after" name="after"><label for="after"> After</label><br>
               </div>
               <h3>Date de l'évènement:</h3>
               <div class="typeCont">
@@ -97,7 +104,7 @@
                 <div class="blog-slider__content">
                   <span class="blog-slider__code">26 December 2019</span>
                   <div class="blog-slider__title">L'usine</div>
-                  <div class="blog-slider__text">L’Usine est une association faîtière qui regroupe une vingtaine de collectifs et associations dont les plus visibles sont les lieux publics qui proposent une programmation de spectacles vivants, concerts, cinéma, expositions, performances, festivals et fêtes. L’Usine accueille aussi une multitude d’ateliers et d’espaces de création.</div>
+                  <div class="blog-slider__text">L’Usine est une association faîtière qui regroupe une vingtaine de collectifs et associations dont les plus visibles sont les lieux publics qui proposent une programmation de spectacles vivants, concerts, cinéma, expositions, performances, festivals et fêtes.</div>
                   <a href="event.html" class="blog-slider__button">En savoir plus</a>
                 </div>
               </div>
@@ -181,6 +188,7 @@
                 </li>
             </ul>
         </footer>
+        <button id="btnretour" onclick="topScroll()"> &#8613; </button>
 		<script>
 			var swiper = new Swiper('.blog-slider', {
     spaceBetween: 30,
@@ -208,8 +216,6 @@
         searchBtn.classList.toggle("searchBtn");
         searchBtn.classList.toggle("searchBtn-M");
       }
-		</script>
-    <script>
       var verif = false
       var menu = document.getElementById("mySidenav")
       var main = document.getElementById("main")
@@ -218,7 +224,7 @@
           main.classList.toggle("main")
           main.classList.toggle("main-f")
           if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-            menu.style.width = "250px";
+            menu.style.width = "200%";
           }else{
             menu.style.width = "100%";
           }
@@ -232,6 +238,23 @@
             main.classList.toggle("main")
           }
         }
+      }
+
+      let retour = document.getElementById("btnretour");
+
+      window.onscroll = function() {scroll()};
+
+      function scroll() {
+        if (document.body.scrollTop > 475 || document.documentElement.scrollTop > 475) {
+          retour.style.display = "block";
+        } else {
+          retour.style.display = "none";
+        }
+      }
+
+      function topScroll() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
       }
     </script>
     </body>

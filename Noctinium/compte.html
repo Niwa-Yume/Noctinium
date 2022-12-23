@@ -5,6 +5,7 @@
       <meta charset="utf-8" />
       <link rel="stylesheet" href="asset/user.css">
       <title>Compte</title>
+      <link rel="icon" href="image/logo_noctinium.png">
     </head>
     <body>
         <header>
@@ -15,7 +16,7 @@
               <li><a href="contact.html">Contact</a></li>
               <li><a href="propos.html">A propos</a></li>
               <li><a href="faq.html">FAQ</a></li>
-              <li><a href="connexion.html">Connexion</a></li>
+              <li class="active"><a href="connexion.html">Connexion</a></li>
           </nav>
         </header>
         <section class="content content-small">
@@ -62,14 +63,14 @@
             <div id="formNom" class="form-group-insc">
               <div class="col-sm-12">
                 <input type="text" class="formUser hidden insc-form" id="nom" placeholder="NOM" name="name" value="" required autofocus>
-                <p id="infoNom" class="infoUser">David</p>
+                <div id="infoNom" class="infoUser">David</div>
               </div>
             </div>
       
             <div id="formPrenom" class="form-group-insc">
               <div class="col-sm-12">
                 <input type="text" class="formUser hidden insc-form" id="prenom" placeholder="PRENOM" name="prenom" value="" required>
-                <p id="infoPrenom" class="infoUser">Pierella</p>
+                <div id="infoPrenom" class="infoUser">Pierella</div>
               </div>
             </div>
             <h3 class="labelInfo" id="labelPseudo">PSEUDO:</h3>
@@ -77,14 +78,14 @@
             <div id="formPseudo" class="form-group-insc">
               <div class="col-sm-12">
                 <input type="text" class="formUser hidden insc-form" id="pseudo" placeholder="PSEUDO" name="pseudo" value="" required autofocus>
-                <p id="infoPseudo" class="infoUser">D4Ly</p>
+                <div id="infoPseudo" class="infoUser">D4Ly</div>
               </div>
             </div>
       
             <div id="formEmail" class="form-group-insc">
               <div class="col-sm-12">
                 <input type="email" class="formUser hidden insc-form" id="email" placeholder="EMAIL" name="email" value="" required>
-                <p id="infoEmail" class="infoUser">d.pierella01@gmail.com</p>
+                <div id="infoEmail" class="infoUser">d.pierella01@gmail.com</div>
               </div>
             </div>
 
@@ -92,7 +93,7 @@
             <div id="formBio" class="form-group-insc">
               <div class="col-sm-12">
                 <textarea class="formUserBio hidden" rows="10" placeholder="DESCRIPTION (333 caractères maximum)" id="bio" name="description_event" required maxlength="333"></textarea>
-                <p id="infoBio" class="infoUser">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing?</p>
+                <div id="infoBio" class="infoUser">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing?</div>
               </div>
             </div>
 
@@ -137,7 +138,7 @@
             <form action="">
               <div class="form-group">
                 <div class="col-sm-12 ajout">
-                  <input type="text" class="form-control" id="name" placeholder="INSTAGRAM (LIEN)" name="name" value="" required>
+                  <input type="text" class="form-control" id="insta" placeholder="INSTAGRAM (LIEN)" name="name" value="" required>
                   <label class="uploadFile">
                     <input type="submit" class="btnUpload" name="changerInfo" value="" required>
                     Ajouter
@@ -148,7 +149,7 @@
             <form action="">
               <div class="form-group">
                 <div class="col-sm-12 ajout">
-                  <input type="text" class="form-control" id="name" placeholder="TWITTER (LIEN)" name="name" value="" required>
+                  <input type="text" class="form-control" id="twitter" placeholder="TWITTER (LIEN)" name="name" value="" required>
                   <label class="uploadFile">
                     <input type="submit" class="btnUpload" name="changerInfo" value="" required>
                     Ajouter
@@ -159,7 +160,7 @@
             <form action="">
               <div class="form-group">
                 <div class="col-sm-12 ajout">
-                  <input type="text" class="form-control" id="name" placeholder="SITE WEB (LIEN)" name="name" value="" required>
+                  <input type="text" class="form-control" id="siteweb" placeholder="SITE WEB (LIEN)" name="name" value="" required>
                   <label class="uploadFile">
                     <input type="submit" class="btnUpload" name="changerInfo" value="" required>
                     Ajouter
@@ -167,6 +168,18 @@
                 </div>
               </div>
             </form>
+          </div>
+          <div>
+            <h1 class="myeventTitle gradient-text">Mes Évènements</h1>
+            <div class="myeventCont">
+              <div>
+                <h2>Mon Event</h2>
+                <div>jj.mm.aaaa</div>
+              </div>
+              <form action="">
+                <button>Supprimer</button>
+              </form>
+            </div>
           </div>
         </section>
         <hr class="gradient">

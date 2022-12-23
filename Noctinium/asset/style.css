@@ -16,6 +16,9 @@
 *, *:before, *:after {
     box-sizing: border-box;
 }
+html{
+    scroll-behavior: smooth;
+}
 body {
     background: #000;
     color: white;
@@ -57,6 +60,13 @@ a.underline:hover{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: bold;
+}
+.main .button {
+    width: 17%;
+    height: 12%;
+    font-size: 1.5rem;
+    min-width: 220px;
+    min-height: 100px;
 }
 .button {
     font-family: "alliance", mono, sans-serif;
@@ -111,6 +121,21 @@ a.underline:hover{
 .buttonBW:hover{
     background: linear-gradient(87.54deg, #3a3a3a -6.8%, #afabab 84.14%);
     color: black;
+}
+#btnretour{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: black;
+    background-color: white;
+    font-weight: bolder;
+    position: fixed;
+    bottom: 20;
+    right: 20;
+    z-index: 100;
+    border: none;
+    font-size: 2.2rem;
+    display: none;
 }
 section.updates {
     text-align: center;
@@ -369,7 +394,7 @@ section.content p {
     font-size: 1.7rem;
 }
 section.main h1 {
-    font-size: 96px;
+    font-size: 7rem;
     line-height: 125px;
     margin-top: 45px;
     margin-bottom: 25px;
@@ -642,7 +667,7 @@ section.profile .social svg {
 	border-radius: 10px;
     resize: none;
     align-items: center;
-    margin-bottom: 30px;
+    font-size: 1.25rem;
 }
 .form-control-M{
 	border: 1px solid white;
@@ -655,14 +680,15 @@ section.profile .social svg {
 	border-radius: 10px;
     resize: none;
     align-items: center;
-    margin-bottom: 30px;
+    font-size: 1.25rem;
+
 }
 input.form-control{
     height: 50px;
-    margin-bottom: 10px;
+    margin-bottom: 1%;
 }
 textarea.form-control{
-    margin-bottom: 0;
+    margin-bottom: 1%;
     width: 100%;
 }
 .form-control:focus{
@@ -929,7 +955,7 @@ hr {
     width: 500px;
 }
 .form-group-insc{
-    margin: 5% 0;
+    margin: 1% 0 3% 0;
     width: 100%;
 }
 .insc-form-btn{
@@ -945,8 +971,7 @@ hr {
     height: 20px;
     width: 20px;
     float: left;
-    margin-top: 1px;
-    margin-bottom: 10px;
+    margin-top: 5px;
     margin-right: 10px;
     border: 1px solid white;
     border-radius: 50%;
@@ -967,20 +992,21 @@ hr {
     -webkit-appearance: none;
     background-color: #000;
     cursor: pointer;
-    margin-bottom: 5px;
+    margin-top: 8px;
 }
 .insc-form-checkbox-date:checked{
     background-color: #9867F0;
 }
 .insc-form-checkbox-txt{
     font-family: 'Open Sans';
-    font-size: 1rem;
+    font-size: 1.3rem;
     float: right ;
 }
 .insc-form-checkbox-txt-date{
     font-family: 'Open Sans';
-    font-size: 1rem;
+    font-size: 1.4rem;
     text-align: left;
+    margin-bottom: 10px;
 }
 .insc-form-checkbox-txt:hover{
     cursor: pointer;
@@ -995,27 +1021,32 @@ hr {
 }
 .chBox{
     text-align: left;
-    display: grid;
-    grid-template-columns: 1fr 9fr;
-    grid-row-gap: 20px;
-    grid-column-gap: 10px;
-    grid-template-areas: 'btn1 desc1'
-    'btn2 desc2';
-    height: 50px;
+    width: 40%;
+    margin: auto;
 }
-.chBox2{
+.chBox-F{
     text-align: left;
-    display: grid;
-    grid-template-columns: 1fr 9fr;
-    grid-row-gap: 15px;
-    grid-column-gap: 10px;
-    grid-template-areas: 'btn3 desc3'
-    'prix prix';
-    height: 50px;
+    font-family: 'Open Sans';
+    padding-left: 40px;
+}
+.chBox-F h2{
+    margin-left: -40px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.chBox-F input[type='radio']{
+    transform: scale(1.8);
+    margin-bottom: 10px;
+}
+.insc-cont-1 h1{
+    font-family: 'Open Sans';
+    text-align: center;
+    margin-bottom: 10px;
 
 }
 .ajout .uploadFile{
-    width: 60%;
+    margin-top: 20px;
+    width: 80%;
     padding: 12px 0;
 }
 .uploadFile{
@@ -1027,6 +1058,7 @@ hr {
     width: 60%;
     margin: auto auto 20px auto;
     font-family: 'Open Sans';
+    font-size: 1.4rem;
 }
 .uploadFile:hover{
     background: linear-gradient(269.16deg, #FFE580 -15.83%, #FF7571 -4.97%, #FF7270 15.69%, #EA5DAD 32.43%, #C2A0FD 50.09%, #9867F0 67.47%, #3BF0E4 84.13%, #33CE43 105.13%, #B2F4B6 123.24%);
@@ -1043,7 +1075,6 @@ hr {
     vertical-align: middle;
     width: 70%;
     margin: auto;
-    height: 60px;
 }
 .addImg{
     border: 2px solid #FF7571;
@@ -1056,6 +1087,7 @@ hr {
     font-family: 'Open Sans';
     margin-left: auto;
     margin-right: auto;
+    font-size: 1.2rem;
   }
   .addImg:hover{
     background: linear-gradient(269.16deg, #FFE580 -15.83%, #FF7571 -4.97%, #FF7270 15.69%, #EA5DAD 32.43%, #C2A0FD 50.09%, #9867F0 67.47%, #3BF0E4 84.13%, #33CE43 105.13%, #B2F4B6 123.24%);
@@ -1081,21 +1113,6 @@ hr {
 #txtpayant{
     grid-area: desc3;
 }
-#prix{
-    grid-area: prix;
-    border: 1px solid white;
-	width: 50%;
-	background-color: #000;
-	color: #fff;
-	letter-spacing: 1px;
-	padding: 2%;
-	border-radius: 10px;
-    resize: none;
-    align-items: center;
-    margin-bottom: 30px;
-    height: 35px;
-    margin-left: 5px;
-}
 .text-control{
 	border: 1px solid white;
 	width: 100%;
@@ -1108,14 +1125,17 @@ hr {
     resize: none;
     align-items: center;
     margin-bottom: 30px;
+    font-size: 1.25rem;
 }
 input.text-control{
     height: 50px;
     margin-bottom: 10px;
+    
 }
 textarea.text-control{
     margin-bottom: 0;
     width: 95%;
+    max-width: 500px;
 }
 .text-control:focus{
 	border: 1px solid white;

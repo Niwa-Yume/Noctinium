@@ -173,18 +173,19 @@
 	 margin-bottom: 15px;
 	 display: block;
 	 font-weight: 500;
+	 font-size: 1.2rem;
 }
  .blog-slider__title {
-	 font-size: 24px;
+	 font-size: 1.5rem;
 	 font-weight: 700;
 	 color: #9f3fcc;
 	 margin-bottom: 20px;
 }
  .blog-slider__text {
 	 color: #fff;
-	 margin-bottom: 30px;
+	 margin-bottom: 20px;
 	 line-height: 1.5em;
-	 text-align: justify;
+	 font-size: 1.2rem;
 }
  .blog-slider__button {
 	 display: inline-flex;
@@ -313,6 +314,7 @@
     resize: none;
     align-items: center;
 	vertical-align: middle;
+	font-size: 1.25rem;
 }
 .search:focus{
 	filter: drop-shadow(0 0 0.15rem white);
@@ -356,12 +358,13 @@
 	background-color: #000;
 	color: #fff;
 	letter-spacing: 1px;
-	padding: 25px;
+	padding: 30px;
 	margin-bottom: 2.5%;
 	border-radius: 30px 0 0 30px;
     resize: none;
     align-items: center;
 	vertical-align: middle;
+	font-size: 1.25rem;
 }
 .search-M:focus{
 	filter: drop-shadow(0 0 0.15rem white);
@@ -378,7 +381,7 @@
 	background-color: #000;
 	color: #fff;
 	letter-spacing: 1px;
-	padding-top: 21px;
+	padding-top: 26px;
 	padding-bottom: 29px;
 	margin-bottom: 2.5%;
 	border-radius: 0 30px 30px 0;
@@ -397,30 +400,25 @@
 	filter: drop-shadow(0 0 0.15rem white);
 }
 .newEvent{
-	display: block;
-	padding-top: 7px;
+	padding: 7px;
 	background-color: #000;
-	height: 65%;
-	width: 110px;
-    align-items: center;
-    justify-content: center;
     text-transform: none;
-    font-size: 25px;
+    font-size: 1.6rem;
     border-radius: 30px;
-    overflow: hidden;
-    letter-spacing: 0.07em;
     font-feature-settings: 'salt' on, 'ss01' on, 'ss02' on;
     color: #fff;
     border: 1px solid white;
-	text-align: center;
 	line-height: 1.5;
 	margin: auto;
+	height: 100%;
 }
 .newEvent:hover{
 	background: #fff;
     color: black;	
 }
-
+.chbxAdd{
+	font-size: 1.7rem;
+}
 /* Filtres */
 
 .sidenav {
@@ -439,12 +437,12 @@
   }
   
 .openFiltre{
-	font-size:25px;
+	font-size: 1.6rem;
 	cursor:pointer;
 	border: 1px solid white;
 	padding: 7px;
 	border-radius: 30px;
-	height: 65%;
+	height: 100%;
 	margin: auto;
 }
 .openFiltre:hover{
@@ -452,8 +450,14 @@
     color: black;	
 }
 .filtreCont{
-	margin-top: 10px;
+	margin-top: 7px;
 	margin-left: 20%;
+	text-align: center;
+}
+.newEventCont{
+	margin-top: 7px;
+	margin-right: 20%;
+	text-align: center;
 }
 .main{
 	display: grid;
@@ -476,11 +480,28 @@
 .sidenav h2{
 	margin-bottom: 20px;
 	text-decoration: underline;
+	font-size: 2.2rem;
 }
 .sidenav form h3{
 	margin-top: 20px;
 	margin-bottom: 20px;
 	width: 100%;
+	font-size: 1.7rem;
+}
+.sidenav form label{
+	font-size: 1.4rem;
+	margin-left: 5px;
+	margin-bottom: 15px;
+}
+.sidenav form input[type = 'checkbox']{
+	transform: scale(1.8);
+	margin-bottom: 15px;
+
+}
+.sidenav form input[type = 'radio']{
+	transform: scale(1.8);
+	margin-bottom: 15px;
+
 }
 .filtreDate{
 	border: 1px solid white;
@@ -494,6 +515,7 @@
     resize: none;
     align-items: center;
     margin-bottom: 0px;
+	font-size: 1.25rem;
 }
 .filtreBtn{
 	background: linear-gradient(269.16deg, #FFE580 -15.83%, #FF7571 -4.97%, #FF7270 15.69%, #EA5DAD 32.43%, #C2A0FD 50.09%, #9867F0 67.47%, #3BF0E4 84.13%, #33CE43 105.13%, #B2F4B6 123.24%);

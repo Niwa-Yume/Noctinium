@@ -61,10 +61,13 @@
   }
   .infoUser{
     font-family: 'Open Sans';
+    font-size: 1.6rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
   .profilCompte{
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr 1fr;
     max-width: 80%;
     margin: auto;
     column-gap: 30px;
@@ -195,11 +198,15 @@
 .link-list li:hover a {
   color: #000;
 }
+#socialView{
+  margin-bottom: 50px;
+}
 .addSocial{
   display: none;
+  margin-bottom: 50px;
 }
 .addSocialGrid{
-  width: 50%;
+  width: 70%;
   display: grid;
   grid-template-columns: auto auto auto;
   margin: auto;
@@ -251,8 +258,7 @@
   text-align: justify;
   max-width: 600px;
   margin: auto;
-}
-#infoEmail{
+  font-size: 1.5rem;
 }
 .changeProfil{
   width: 100%;
@@ -338,6 +344,40 @@ input:checked + .slider:before {
   display: grid;
   grid-template-columns: 6fr 2fr;
   grid-template-areas: 'comment star';
+}
+.myeventTitle{
+  font-size: 3rem;
+  font-weight: 100px;
+}
+.myeventCont{
+  width: 60%;
+  background-color: #343435;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  padding: 20px;
+  border-radius: 20px;
+}
+.myeventCont h2{
+  background: linear-gradient(87.54deg, #9867F0 -6.8%, #ED4E50 84.14%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.8rem;
+}
+.myeventCont div div{
+  font-size: 1.4rem;
+}
+.myeventCont form button{
+  background: linear-gradient(269.16deg, #FFE580 -15.83%, #FF7571 -4.97%, #FF7270 15.69%, #EA5DAD 32.43%, #C2A0FD 50.09%, #9867F0 67.47%, #3BF0E4 84.13%, #33CE43 105.13%, #B2F4B6 123.24%);
+	background-position: 58% 50%;
+  background-size: 500%;
+  width: 80%;
+  height: 50px;
+  font-size: 1.5rem;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
 /* Section Commentaire */

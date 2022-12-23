@@ -5,6 +5,7 @@
 	  <meta charset="utf-8" />
     <link rel="stylesheet" href="asset/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="icon" href="image/logo_noctinium.png">
 </head>
 <body>
     <header>
@@ -38,19 +39,19 @@
             
             <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="datetime-local" class="form-control insc-form" id="date" name="date_event" value="" required>
+                  <input type="datetime-local" class="form-control insc-form" id="date_event" name="date_event" value="" required>
                 </div>
               </div>
             
               <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <textarea class="text-control" rows="10" placeholder="DESCRIPTION DE L'ÉVÈNEMENT (333 caractères maximum)" name="description_event" required maxlength="333"></textarea>
+                  <textarea class="text-control" id="description" rows="10" placeholder="DESCRIPTION DE L'ÉVÈNEMENT (350 caractères maximum)" name="description_event" required maxlength="350"></textarea>
                 </div>
               </div>
 
               <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="text" class="form-control insc-form" id="note_sup" placeholder="INFOS SUPPLÉMENTAIRES" name="adresse_event" value="">
+                  <input type="text" class="form-control insc-form" id="note_sup" placeholder="INFOS SUPPLÉMENTAIRES (350 caractères maximum)" name="adresse_event" value="" required maxlength="350">
                 </div>
               </div>
             
@@ -59,19 +60,40 @@
                   <input type="text" class="form-control insc-form" id="adresse" placeholder="ADRESSE DE L'ÉVÈNEMENT" name="adresse_event" value="" required>
                 </div>
               </div>
-
+              <div class="form-group-insc">
+                <div class="col-sm-12 btnCont">
+                  <div class="chBox-F">
+                    <h2>Musique</h2>
+                    <input type="radio" id="Teckno" name="musique" value="Teckno" required/>
+                    <label class="insc-form-checkbox-txt-date" for="Teckno">Teckno</label><br>
+                    <input type="radio" id="Latino" name="musique" value="Latino" required/>
+                    <label class="insc-form-checkbox-txt-date" for="Latino">Latino</label><br>
+                    <input type="radio" id="Rap" name="musique" value="Rap" required/>
+                    <label class="insc-form-checkbox-txt-date" for="Rap">Rap</label><br>
+                    <input type="radio" id="AllStyles" name="musique" value="AllStyles" required/>
+                    <label class="insc-form-checkbox-txt-date" for="AllStyles ">All Styles</label><br>
+                  </div>
+                  <div class="chBox-F">
+                    <h2>Type</h2>
+                    <input type="radio" id="Before" name="type" value="Before" required/>
+                    <label class="insc-form-checkbox-txt-date" for="Before">Before</label><br>
+                    <input type="radio" id="Soiree" name="type" value="Soiree"/>
+                    <label class="insc-form-checkbox-txt-date" for="Soiree" required>Soirée</label><br>
+                    <input type="radio" id="After" name="type" value="After"/>
+                    <label class="insc-form-checkbox-txt-date" for="After" required>After</label><br>
+                  </div>
+                </div>
+              </div>
             <div class="form-group-insc">
-              <div class="col-sm-12 btnCont">
+              <h1>Ajouts</h1>
+              <div class="col-sm-12">
                 <div class="chBox">
                   <input type="checkbox" class="insc-form-checkbox-date" id="prive" name="prive" value="prive"/>
                   <label class="insc-form-checkbox-txt-date" id="txtprive" for="prive">Soirée privée</label><br>
                   <input type="checkbox" class="insc-form-checkbox-date" id="date-mask" name="date-mask" value="date-mask" onclick="datemask()"/>
-                  <label class="insc-form-checkbox-txt-date" id="txtdate" for="date-mask">Adresse masquée</label>
-                </div>
-                <div class="chBox2">
+                  <label class="insc-form-checkbox-txt-date" id="txtdate" for="date-mask">Adresse masquée</label><br>
                   <input type="checkbox" class="insc-form-checkbox-date" id="payant" name="payant" value="payant" onclick="privatiser()"/>
                   <label class="insc-form-checkbox-txt-date" id="txtpayant" for="payant">Payant</label><br>
-                  <input type="number" class="insc-form hidden" id="prix" placeholder="PRIX" name="prix_event" value="">
                 </div>
               </div>
             </div>
@@ -87,6 +109,12 @@
               <div class="form-group-insc">
                 <div class="col-sm-12">
                   <input type="datetime-local" class="form-control insc-form hidden" id="adresse_cachee" name="date_event" value="">
+                </div>
+              </div>
+
+              <div class="form-group-insc">
+                <div class="col-sm-12">
+                  <input type="number" class="form-control insc-form hidden" id="prix" placeholder="PRIX" name="prix_event" value="">
                 </div>
               </div>
 
@@ -130,9 +158,23 @@
 </body>
 <script>
   var element = document.getElementById("logo")
+  var formN = document.getElementById("name");
+  var formE = document.getElementById("description");
+  var formD = document.getElementById("date_event");
+  var formP = document.getElementById("note_sup");
+  var formPS = document.getElementById("adresse");
   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
     element.classList.toggle("logo");
     element.classList.toggle("logo-M");
+    formN.classList.toggle("form-control");
+        formN.classList.toggle("form-control-M");
+        formE.style.margin = "";
+        formP.classList.toggle("form-control");
+        formP.classList.toggle("form-control-M");
+        formD.classList.toggle("form-control");
+        formD.classList.toggle("form-control-M");
+        formPS.classList.toggle("form-control");
+        formPS.classList.toggle("form-control-M");
   }
   function datemask(){
     var mask = document.getElementById("date-mask")
