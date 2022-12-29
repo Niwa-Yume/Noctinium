@@ -201,6 +201,9 @@
 #socialView{
   margin-bottom: 50px;
 }
+#socialView i{
+  padding-top: 5px;
+}
 .addSocial{
   display: none;
   margin-bottom: 50px;
@@ -399,7 +402,7 @@ input:checked + .slider:before {
 .comment-form .form .form-row:last-child{ margin-bottom: 0; }
 
 .comment-form .form .input{
-  font-family: 'Lato';
+  font-family: 'Open Sans';
       border: 1px solid white;
       width: 100%;
       background-color: #000;
@@ -409,6 +412,7 @@ input:checked + .slider:before {
       border-radius: 10px;
       resize: none;
       align-items: center;
+      font-size: 1.25rem;
 
   -webkit-transition: 350ms box-shadow;
   -moz-transition: 350ms box-shadow;
@@ -443,6 +447,7 @@ input:checked + .slider:before {
   padding: 6px 15px;
   font-weight: bold;
   font-family: 'Open Sans';
+  font-size: 1.25rem;
 
   -webkit-transition: 350ms box-shadow;
   -moz-transition: 350ms box-shadow;

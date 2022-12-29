@@ -4,7 +4,7 @@
     max-width: 800px;
     border-radius: 40px;
     margin: auto;
-    max-height: 800px;
+    max-height: 500px;
 }
 .mapBig-M{
     width: 100%;
@@ -12,7 +12,7 @@
     max-width: 800px;
     border-radius: 40px;
     margin: auto;
-    max-height: 1300px;
+    max-height: 720px;
 }
 .map{
     width: 80%;
@@ -77,10 +77,5 @@
     .mapBig{
         max-width: 400px;
         max-height: 300px;
-    }
-}
-@media screen and (max-height: 1350px){
-    .mapBig-M{
-        max-height: 900px;
     }
 }
