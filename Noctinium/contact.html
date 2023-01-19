@@ -77,10 +77,10 @@
           <li><a href="#" target="_blank" class="contact-icon">
             <i class="fa fa-social fa-apple" aria-hidden="true"></i></a>
           </li>
-          <li><a href="https://twitter.com/NoctiniumGE" target="_blank" class="contact-icon">
+          <li onclick="twitter()"><a href="https://twitter.com/NoctiniumGE" target="_blank" class="contact-icon">
             <i class="fa fa-social fa-twitter" aria-hidden="true"></i></a>
           </li>
-          <li><a href="https://www.instagram.com/noctiniumge" target="_blank" class="contact-icon">
+          <li onclick="insta()"><a href="https://www.instagram.com/noctiniumge" target="_blank" class="contact-icon">
             <i class="fa fa-social fa-instagram" aria-hidden="true"></i></a>
           </li>       
         </ul>
@@ -143,6 +143,14 @@
         formM.classList.toggle("form-control");
         formM.classList.toggle("form-control-M");
         contact.style.margin = "0px"
+      }
+
+      function twitter(){
+        window.open("https://twitter.com/NoctiniumGE");
+      }
+
+      function insta(){
+        window.open("https://www.instagram.com/noctiniumge");
       }
 		</script>
     </body>
