@@ -445,6 +445,7 @@
 	border-radius: 30px;
 	height: 100%;
 	margin: auto;
+	background-color: #000;
 }
 .openFiltre:hover{
 	background: #fff;
