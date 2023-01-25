@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" href="asset/style.css">
@@ -9,7 +10,7 @@
     </head>
     <body>
         <header>
-            <a href="index.html"><img class="logo" id="logo" src="image/logo_noctinium.png"></a>
+            <a href="index.html"><img class="logo" id="logo" src="image/logo_noctinium.png" alt="Logo"></a>
             <nav>
               <li><a href="index.html">Accueil</a></li>
               <li><a href="eventlist.html">Évènements</a></li>
@@ -28,20 +29,20 @@
         <section class="subscribe">
             <div class="profilCompte">
                 <div>
-                    <img src="image/alieu.jfif" class="img-Orga">
+                    <img src="image/alieu.jfif" class="img-Orga" alt="Organisateur">
                 </div>
                 <div class="infoCont">
                     <p id="infoBio" class="infoUser">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing?</p>
                 </div>
             </div>
             <ul class="link-list">
-              <li><a href="#" target="_blank" class="contact-icon">
+              <li class="orga"><a href="#" target="_blank" class="contact-icon">
                 <i class="fa fa-social fa-instagram" aria-hidden="true"></i></a>
               </li>
-              <li><a href="#" target="_blank" class="contact-icon">
+              <li class="orga"><a href="#" target="_blank" class="contact-icon">
                 <i class="fa fa-social fa-twitter" aria-hidden="true"></i></a>
               </li>
-              <li><a href="#" target="_blank" class="contact-icon">
+              <li class="orga"><a href="#" target="_blank" class="contact-icon">
                 <i class="fa fa-social fa-link" aria-hidden="true"></i></a>
               </li>      
             </ul>
@@ -52,7 +53,7 @@
               <div class="comment-form">
                 <!-- Comment Avatar -->
                 <div >
-                  <img class="comment-pp" src="image/david.png">
+                  <img class="comment-pp" src="image/david.png" alt="Image de profil">
                 </div>
             
                 <form class="form" name="form" ng-submit="form.$valid && cmntCtrl.addComment()" novalidate>

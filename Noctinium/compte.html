@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" href="asset/style.css">
@@ -9,7 +10,7 @@
     </head>
     <body>
         <header>
-            <a href="index.html"><img class="logo" id="logo" src="image/logo_noctinium.png"></a>
+            <a href="index.html"><img class="logo" id="logo" src="image/logo_noctinium.png" alt="Logo"></a>
             <nav>
               <li><a href="index.html">Accueil</a></li>
               <li><a href="eventlist.html">Évènements</a></li>
@@ -28,16 +29,12 @@
         <section class="subscribe">
           <div class="changeProfil">
             <div class="changeProfilCont">
-              <p class="oui">Modifier le profil: </p>
-              <label class="switch">
-                <input id="switch" type="checkbox" onchange="changeProfile()">
-                <span class="slider round"></span>
-              </label>
+              <a href="compteConfiguration.html"><button class="eventParam">Modifier</button></a>
             </div>
           </div>
           <div class="profilCompte">
             <div class="imgCont">
-              <img id="pp" src="image/david.png" class="PP-Big">
+              <img id="pp" src="image/david.png" class="PP-Big" alt="Image de profil">
               <div id="btnChangeImg" class="form-group-insc hidden">
                 <div class="col-sm-12">
                   <label class="uploadFile">
@@ -56,35 +53,38 @@
               </div>
             </div>
             <div>
-            <form class="formUserCont" action="">
+            <div class="formUserCont" action="">
               <div class="formGrid">
               <h3 class="labelInfo" id="labelNom">NOM:</h3>
               <h3 class="labelInfo" id="labelPrenom">PRENOM:</h3>
             <div id="formNom" class="form-group-insc">
               <div class="col-sm-12">
-                <input type="text" class="formUser hidden insc-form" id="nom" placeholder="NOM" name="name" value="" required autofocus>
                 <div id="infoNom" class="infoUser">David</div>
               </div>
             </div>
       
             <div id="formPrenom" class="form-group-insc">
               <div class="col-sm-12">
-                <input type="text" class="formUser hidden insc-form" id="prenom" placeholder="PRENOM" name="prenom" value="" required>
                 <div id="infoPrenom" class="infoUser">Pierella</div>
               </div>
             </div>
             <h3 class="labelInfo" id="labelPseudo">PSEUDO:</h3>
-            <h3 class="labelInfo" id="labelEmail">EMAIL:</h3>
+            <h3 class="labelInfo" id="labelTel">TÉLÉPHONE:</h3>
             <div id="formPseudo" class="form-group-insc">
               <div class="col-sm-12">
-                <input type="text" class="formUser hidden insc-form" id="pseudo" placeholder="PSEUDO" name="pseudo" value="" required autofocus>
                 <div id="infoPseudo" class="infoUser">D4Ly</div>
               </div>
             </div>
-      
+
+            <div id="formTel" class="form-group-insc">
+              <div class="col-sm-12">
+                <div id="infoEmail" class="infoUser">+41 12 345 67 89</div>
+              </div>
+            </div>
+
+            <h3 class="labelInfo" id="labelEmail">EMAIL:</h3>
             <div id="formEmail" class="form-group-insc">
               <div class="col-sm-12">
-                <input type="email" class="formUser hidden insc-form" id="email" placeholder="EMAIL" name="email" value="" required>
                 <div id="infoEmail" class="infoUser">d.pierella01@gmail.com</div>
               </div>
             </div>
@@ -92,21 +92,7 @@
             <h3 class="labelInfo" id="labelBio">BIO:</h3>
             <div id="formBio" class="form-group-insc">
               <div class="col-sm-12">
-                <textarea class="formUserBio hidden" rows="10" placeholder="DESCRIPTION (333 caractères maximum)" id="bio" name="description_event" required maxlength="333"></textarea>
                 <div id="infoBio" class="infoUser">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing?</div>
-              </div>
-            </div>
-
-            <h3 class="labelInfo hidden" id="labelMdp">MOT DE PASSE:</h3>
-            <h3 class="labelInfo hidden" id="labelMdp2">CONFIRMATION:</h3>
-            <div id="formMdp" class="form-group-insc">
-              <div class="col-sm-12">
-                <input type="password" class="formUser hidden insc-form" id="mdp" placeholder="MOT DE PASSE" name="mdp" value="" required autofocus>
-              </div>
-            </div>
-            <div id="formMdp2" class="form-group-insc">
-              <div class="col-sm-12">
-                <input type="password" class="formUser hidden insc-form" id="mdp2" placeholder="CONFIRMATION DU MOT DE PASSE" name="mdp2" value="" required>
               </div>
             </div>
             </div>
@@ -118,7 +104,7 @@
                 </label>
               </div>
             </div>
-            </form>
+          </div>
             </div>
           </div>
           <div id="socialView">
@@ -134,41 +120,9 @@
               </li>      
             </ul>
           </div>
-          <div id="social" class="addSocial">
-            <form action="">
-              <div class="form-group">
-                <div class="col-sm-12 ajout">
-                  <input type="text" class="form-control" id="insta" placeholder="INSTAGRAM (LIEN)" name="name" value="" required>
-                  <label class="uploadFile">
-                    <input type="submit" class="btnUpload" name="changerInfo" value="" required>
-                    Ajouter
-                  </label>
-                </div>
-            </form>
-            </div>
-            <form action="">
-              <div class="form-group">
-                <div class="col-sm-12 ajout">
-                  <input type="text" class="form-control" id="twitter" placeholder="TWITTER (LIEN)" name="name" value="" required>
-                  <label class="uploadFile">
-                    <input type="submit" class="btnUpload" name="changerInfo" value="" required>
-                    Ajouter
-                  </label>
-                </div>
-              </div>
-            </form>
-            <form action="">
-              <div class="form-group">
-                <div class="col-sm-12 ajout">
-                  <input type="text" class="form-control" id="siteweb" placeholder="SITE WEB (LIEN)" name="name" value="" required>
-                  <label class="uploadFile">
-                    <input type="submit" class="btnUpload" name="changerInfo" value="" required>
-                    Ajouter
-                  </label>
-                </div>
-              </div>
-            </form>
-          </div>
+        </section>
+        <hr class="gradient">
+        <section class="subscribe">
           <div>
             <h1 class="myeventTitle gradient-text">Mes Évènements</h1>
             <div class="myeventCont">
@@ -176,8 +130,9 @@
                 <h2>Mon Event</h2>
                 <div>jj.mm.aaaa</div>
               </div>
+              <button class="eventParam">Modifier</button>
               <form action="">
-                <button>Supprimer</button>
+                <button class="eventParam">Supprimer</button>
               </form>
             </div>
           </div>

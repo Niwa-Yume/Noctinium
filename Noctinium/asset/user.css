@@ -9,7 +9,9 @@
       border-radius: 10px;
       resize: none;
       align-items: center;
-      max-width: 200px;
+      max-width: 450px;
+      height: 50px;
+      font-size: 1.2rem;
   }
   .formUser:focus{
       border: 1px solid white;
@@ -25,15 +27,33 @@
       border-radius: 10px;
       resize: none;
       align-items: center;
-      max-width: 510px;
+      font-size: 1.2rem;
+      height: 70%;
+      margin-bottom: 20px;
   }
+  .formUserBio:focus{
+    border: 1px solid white;
+    filter: drop-shadow(0 0 0.15rem white);
+}
+  .formUserBio-M{
+    border: 1px solid white;
+    width: 70%;
+    background-color: #000;
+    color: #fff;
+    letter-spacing: 1px;
+    padding: 2%;
+    border-radius: 10px;
+    resize: none;
+    align-items: center;
+    font-size: 1.2rem;
+    height: 20%;
+    margin-bottom: 20px;
+}
   .formUserCont {
     font-family: 'Lato';
-    font-weight: 400;
-    margin:  30px 0;
     display: inline-block;
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
   }
 
   .formGrid{
@@ -41,12 +61,12 @@
     grid-template-columns: 1fr 1fr;
     grid-template-areas: 'labelNom labelPrenom'
                            'nom prenom'
-                           'labelPseudo labelEmail'
-                           'pseudo email'
+                           'labelPseudo labelTel'
+                           'pseudo tel'
+                           'labelEmail labelEmail'
+                           'email email'
                            'labelBio labelBio'
-                           'bio bio'
-                           'labelMdp labelMdp2'
-                           'mdp mdp2';
+                           'bio bio';
     column-gap: 0px;
     row-gap: 0;
   }
@@ -72,10 +92,35 @@
     margin: auto;
     column-gap: 30px;
   }
+  .profilCompteModif{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    max-width: 90%;
+    margin: auto;
+    column-gap: 30px;
+  }
+  .profilCompteModifTel{
+    display: inline;
+    max-width: 90%;
+    margin: auto;
+    column-gap: 30px;
+  }
   @media screen and (max-width: 1050px){
     .profilCompte{
       display: inline;
     }
+  }
+  @media screen and (max-width: 1050px){
+    .profilCompteModif{
+      display: inline;
+    }
+  }
+  form.col-sm-12 .uploadFile{
+    width: 20%;
+    margin-left: 10%;
+  }
+  .labelInfo{
+    color: rgb(133, 133, 133);
   }
   .PP{
     width: 250px;
@@ -131,7 +176,6 @@
   background-color: rgb(27,27,27);
   cursor: pointer; 
   transition: all .2s ease-in-out;
-  padding-top: 5px;
 }
 
 .link-list li:after {
@@ -161,6 +205,9 @@
 .link-list li:hover a {
   color: #000;
 }
+.orga{
+  padding-top: 5px;
+}
 #socialView{
   margin-bottom: 50px;
 }
@@ -168,7 +215,6 @@
   padding-top: 5px;
 }
 .addSocial{
-  display: none;
   margin-bottom: 50px;
 }
 .addSocialGrid{
@@ -177,6 +223,10 @@
   grid-template-columns: auto auto auto;
   margin: auto;
   column-gap: 50px;
+}
+.mdp{
+  max-width: 600px;
+  margin: auto;
 }
 #labelNom{
   grid-area: labelNom;
@@ -195,9 +245,11 @@
 }
 #labelMdp{
   grid-area: labelMdp;
+  max-width: 200px;
 }
 #labelMdp2{
   grid-area: labelMdp2;
+  max-width: 200px;
 }
 #formNom{
   grid-area: nom;
@@ -222,14 +274,15 @@
 }
 #infoBio{
   text-align: justify;
-  max-width: 600px;
+  max-width: 800px;
   margin: auto;
   font-size: 1.5rem;
 }
-.changeProfil{
-  width: 100%;
-  margin-bottom: 8%;
-  white-space: nowrap;
+#formTel{
+  grid-area: tel;
+}
+#labelTel{
+  grid-area: labelTel;
 }
 .changeProfilCont{
   float: right;
@@ -237,6 +290,7 @@
   grid-template-columns: auto auto;
   column-gap: 30px;
   margin-right: 20px;
+  width: 200px;
 }
 
 .switch {
@@ -320,7 +374,7 @@ input:checked + .slider:before {
   background-color: #343435;
   margin: 20px auto;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: auto auto auto;
   padding: 20px;
   border-radius: 20px;
 }
@@ -333,7 +387,7 @@ input:checked + .slider:before {
 .myeventCont div div{
   font-size: 1.4rem;
 }
-.myeventCont form button{
+.eventParam{
   background: linear-gradient(269.16deg, #FFE580 -15.83%, #FF7571 -4.97%, #FF7270 15.69%, #EA5DAD 32.43%, #C2A0FD 50.09%, #9867F0 67.47%, #3BF0E4 84.13%, #33CE43 105.13%, #B2F4B6 123.24%);
 	background-position: 58% 50%;
   background-size: 500%;
@@ -344,6 +398,9 @@ input:checked + .slider:before {
   border: none;
   cursor: pointer;
   margin-top: 10px;
+}
+.eventParam:hover{
+  box-shadow: 0 2px 6px white;
 }
 
 /* Section Commentaire */
@@ -617,6 +674,9 @@ label:hover ~ input:checked ~ label /* highlight previous selected stars */ { co
   font-weight: bold;
   font-family: 'Open Sans';
   font-size: 1.5rem;
+}
+.noter:hover{
+  box-shadow: 0 2px 6px #C2A0FD;
 }
 .star{
   grid-area: star;
