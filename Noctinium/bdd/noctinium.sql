@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `noctinium`.`user` (
   `user_email` VARCHAR(50) NOT NULL,
   `user_telephone` VARCHAR(12) NOT NULL,
   `user_birthdate` DATE NOT NULL,
-  `user_password` VARCHAR(30) NOT NULL,
+  `user_password` VARCHAR(60) NOT NULL,
   `user_timecreation` DATETIME NOT NULL,
   `user_type` INT NOT NULL DEFAULT 1,
   `user_typesubcription` INT NOT NULL DEFAULT 1,

@@ -15,16 +15,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- -----------------------------------------------------
--- Schema noctinium
--- -----------------------------------------------------
-DROP DATABASE IF EXISTS `noctinium` ;
-
--- -----------------------------------------------------
--- Schema noctinium
--- -----------------------------------------------------
-CREATE DATABASE IF NOT EXISTS `noctinium` DEFAULT CHARACTER SET utf8mb4 ;
-USE `noctinium` ;
 
 --
 -- Table structure for table `commentevent`
