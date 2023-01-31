@@ -129,6 +129,7 @@
     border-radius: 50%;
     border: 4px solid rgba(255,255,255,.6);
     margin-bottom: 30px;
+    background-color: #000;
   }
   .PP-Big{
     width: 500px;
@@ -137,6 +138,7 @@
     border-radius: 50%;
     border: 4px solid rgba(255,255,255,.6);
     margin-bottom: 30px;
+    background-color: #000;
   }
   .img-Orga{
     width: 400px;
@@ -290,7 +292,7 @@
   grid-template-columns: auto auto;
   column-gap: 30px;
   margin-right: 20px;
-  width: 200px;
+  width: 400px;
 }
 
 .switch {
@@ -377,6 +379,7 @@ input:checked + .slider:before {
   grid-template-columns: auto auto auto;
   padding: 20px;
   border-radius: 20px;
+  row-gap: 20px;
 }
 .myeventCont h2{
   background: linear-gradient(87.54deg, #9867F0 -6.8%, #ED4E50 84.14%);
@@ -391,7 +394,7 @@ input:checked + .slider:before {
   background: linear-gradient(269.16deg, #FFE580 -15.83%, #FF7571 -4.97%, #FF7270 15.69%, #EA5DAD 32.43%, #C2A0FD 50.09%, #9867F0 67.47%, #3BF0E4 84.13%, #33CE43 105.13%, #B2F4B6 123.24%);
 	background-position: 58% 50%;
   background-size: 500%;
-  width: 80%;
+  width: 90%;
   height: 50px;
   font-size: 1.5rem;
   border-radius: 20px;
@@ -467,7 +470,7 @@ input:checked + .slider:before {
   padding: 6px 15px;
   font-weight: bold;
   font-family: 'Open Sans';
-  font-size: 1.5rem;
+  font-size: 1.35rem;
 
   -webkit-transition: 350ms box-shadow;
   -moz-transition: 350ms box-shadow;
@@ -673,7 +676,7 @@ label:hover ~ input:checked ~ label /* highlight previous selected stars */ { co
   padding: 5px 15px;
   font-weight: bold;
   font-family: 'Open Sans';
-  font-size: 1.5rem;
+  font-size: 1.35rem;
 }
 .noter:hover{
   box-shadow: 0 2px 6px #C2A0FD;

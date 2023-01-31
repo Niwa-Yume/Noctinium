@@ -1,6 +1,6 @@
 <?php
-    require './script_php/database-connection.php';
-    include './script_php/sessions.php';
+    require 'script_php/database-connection.php';
+    include 'script_php/sessions.php';
     if ($logged_in != true){
       header('Location: ./connexion.php');
     };
@@ -46,27 +46,14 @@
           <div class="changeProfil">
             <div class="changeProfilCont">
               <a href="compteConfiguration.php"><button class="eventParam">Modifier</button></a>
+              <form action="script_php/logout.php"><button class="eventParam">Logout</button></form>
             </div>
           </div>
           <div class="profilCompte">
             <div class="imgCont">
-              <img id="pp" src="image/david.png" class="PP-Big" alt="Image de profil">
-              <div id="btnChangeImg" class="form-group-insc hidden">
-                <div class="col-sm-12">
-                  <label class="uploadFile">
-                    <input type="file" class="btnUpload" accept="images/*" name="newImg" value="" required>
-                    Choisir une image
-                  </label>
-                  <label class="uploadFile" id="margin">
-                    <input type="submit" class="btnUpload" name="addImg" value="" required>
-                    Upload Images
-                  </label>
-                  <label class="uploadFile">
-                    <input type="submit" class="btnUpload" name="deleteImg" value="" required>
-                    Supprimer l'image
-                  </label>
-                </div>
-              </div>
+              <img id="pp" src="<?php
+              echo $_SESSION['user_img'];
+              ?>" class="PP-Big" alt="Image de profil">
             </div>
             <div>
             <div class="formUserCont" action="">
@@ -75,50 +62,59 @@
               <h3 class="labelInfo" id="labelPrenom">PRENOM:</h3>
             <div id="formNom" class="form-group-insc">
               <div class="col-sm-12">
-                <div id="infoNom" class="infoUser">David</div>
+                <div id="infoNom" class="infoUser"><?php
+                echo $_SESSION['user_surname'];
+                ?></div>
               </div>
             </div>
       
             <div id="formPrenom" class="form-group-insc">
               <div class="col-sm-12">
-                <div id="infoPrenom" class="infoUser">Pierella</div>
+                <div id="infoPrenom" class="infoUser"><?php
+                echo $_SESSION['user_name'];
+                ?></div>
               </div>
             </div>
             <h3 class="labelInfo" id="labelPseudo">PSEUDO:</h3>
             <h3 class="labelInfo" id="labelTel">TÉLÉPHONE:</h3>
             <div id="formPseudo" class="form-group-insc">
               <div class="col-sm-12">
-                <div id="infoPseudo" class="infoUser">D4Ly</div>
+                <div id="infoPseudo" class="infoUser"><?php
+                echo $_SESSION['user_username'];
+                ?></div>
               </div>
             </div>
 
             <div id="formTel" class="form-group-insc">
               <div class="col-sm-12">
-                <div id="infoEmail" class="infoUser">+41 12 345 67 89</div>
+                <div id="infoEmail" class="infoUser"><?php
+                echo $_SESSION['user_telephone'];
+                ?></div>
               </div>
             </div>
 
             <h3 class="labelInfo" id="labelEmail">EMAIL:</h3>
             <div id="formEmail" class="form-group-insc">
               <div class="col-sm-12">
-                <div id="infoEmail" class="infoUser">d.pierella01@gmail.com</div>
+                <div id="infoEmail" class="infoUser"><?php
+                echo $_SESSION['user_email'];
+                ?></div>
               </div>
             </div>
 
             <h3 class="labelInfo" id="labelBio">BIO:</h3>
             <div id="formBio" class="form-group-insc">
               <div class="col-sm-12">
-                <div id="infoBio" class="infoUser">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing?</div>
+                <div id="infoBio" class="infoUser"><?php
+                if ($_SESSION['user_description'] != []){
+                  echo $_SESSION['user_description'];
+                } else{
+                  echo ("<div style=\"text-align: center;\">Vous n'avez pas ajouté de description.</div>");
+                }
+                ?></div>
+                <div style="text-align: center;"></div>
               </div>
             </div>
-            </div>
-            <div id="btnChange" class="form-group-insc hidden">
-              <div class="col-sm-12">
-                <label class="uploadFile">
-                  <input type="submit" class="btnUpload" name="changerInfo" value="" required>
-                  Modifier
-                </label>
-              </div>
             </div>
           </div>
             </div>
@@ -141,7 +137,7 @@
         <section class="subscribe">
           <div>
             <h1 class="myeventTitle gradient-text">Mes Évènements</h1>
-            <div class="myeventCont">
+            <a href="event.php"><div class="myeventCont">
               <div>
                 <h2>Mon Event</h2>
                 <div>jj.mm.aaaa</div>
@@ -150,7 +146,7 @@
               <form action="">
                 <button class="eventParam">Supprimer</button>
               </form>
-            </div>
+            </div></a>
           </div>
         </section>
         <?php
