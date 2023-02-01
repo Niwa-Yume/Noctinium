@@ -28,7 +28,7 @@ CREATE TABLE `commentevent`(
   `commentevent_content` VARCHAR(500) NOT NULL,
   `commentevent_date` DATETIME NOT NULL,
   `commentevent_user_id` INT NOT NULL,
-  `commentevent_event_id` INT NOT NULL,
+  `commentevent_events_id` INT NOT NULL,
   PRIMARY KEY(`commentevent_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -69,13 +69,13 @@ LOCK TABLES `commentorganiser` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `event`
+-- Table structure for table `events`
 --
 
-DROP TABLE IF EXISTS `event`;
+DROP TABLE IF EXISTS `events`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `event`(
+CREATE TABLE `events`(
   `event_id` INT NOT NULL AUTO_INCREMENT,
   `event_title` VARCHAR(30) NOT NULL,
   `event_datetime` DATETIME NOT NULL,
@@ -92,12 +92,12 @@ CREATE TABLE `event`(
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `event`
+-- Dumping data for table `events`
 --
 
-LOCK TABLES `event` WRITE;
-/*!40000 ALTER TABLE `event` DISABLE KEYS */;
-/*!40000 ALTER TABLE `event` ENABLE KEYS */;
+LOCK TABLES `events` WRITE;
+/*!40000 ALTER TABLE `events` DISABLE KEYS */;
+/*!40000 ALTER TABLE `events` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --

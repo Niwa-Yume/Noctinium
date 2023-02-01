@@ -708,6 +708,12 @@ textarea.form-control-M{
     margin-bottom: 0;
     width: 100%;
     height: 15%;
+    margin-bottom: 30px;
+}
+select.form-control-M{
+    height: 3.5%;
+    margin-bottom: 30px;
+    min-height: 50px;
 }
 .form-control-M:focus{
 	border: 1px solid white;
@@ -1023,20 +1029,27 @@ hr {
     width: 30px;
     cursor: pointer;
 }
+.col-sm-15{
+    margin-bottom: 30px;
+}
+.col-sm-20{
+    margin-bottom: 30px;
+}
+.col-sm-25{
+    margin-bottom: 15px;
+}
 .chBox{
     text-align: left;
     width: 40%;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
 }
 .chBox-F{
-    text-align: left;
-    font-family: 'Open Sans';
-    padding-left: 40px;
-}
-.chBox-F h2{
-    margin-left: -40px;
     text-align: center;
-    margin-bottom: 10px;
+    font-family: 'Open Sans';
+    max-width: 500px;
+    margin: auto;
 }
 .chBox-F input[type='radio']{
     transform: scale(1.8);
