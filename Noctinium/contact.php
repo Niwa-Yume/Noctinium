@@ -45,7 +45,7 @@
   
   <!-- Left contact page --> 
     
-    <form id="contact-form" class="form-horizontal" role="form">
+    <form id="contact-form" class="form-horizontal" role="form" method="POST" action="./script_php/contact_mail.php">
        
       <div class="form-group">
         <div class="col-sm-12">
@@ -111,14 +111,6 @@
         <?php
           include './script_php/footer.php'
         ?>
-		<script>
-			document.querySelector('#contact-form').addEventListener('submit', (e) => {
-				e.preventDefault();
-				e.target.elements.name.value = '';
-				e.target.elements.email.value = '';
-				e.target.elements.message.value = '';
-			});
-		</script>
     <script>
       var element = document.getElementById("logo");
       var formCont = document.getElementById("contactForm");

@@ -30,6 +30,7 @@
       font-size: 1.2rem;
       height: 70%;
       margin-bottom: 20px;
+      font-family: 'Open Sans';
   }
   .formUserBio:focus{
     border: 1px solid white;
@@ -48,9 +49,10 @@
     font-size: 1.2rem;
     height: 20%;
     margin-bottom: 20px;
+    font-family: 'Open Sans';
 }
   .formUserCont {
-    font-family: 'Lato';
+    font-family: 'Open Sans';
     display: inline-block;
     width: 100%;
     max-width: 800px;

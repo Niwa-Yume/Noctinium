@@ -120,7 +120,7 @@
             <div>
               <form id="formBio" class="form-group-insc">
                 <div class="col-sm-12">
-                  <textarea class="formUserBio" rows="10" placeholder="DESCRIPTION (500 caractères maximum)" id="bio" name="description_event" required maxlength="500"></textarea>
+                  <textarea class="formUserBio" rows="10" placeholder="DESCRIPTION (1000 caractères maximum)" id="bio" name="description_event" required maxlength="500"></textarea>
                   <label class="uploadFile">
                     <input type="submit" class="btnUpload" name="changerInfo" value="" required>
                     Modifier
