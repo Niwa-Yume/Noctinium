@@ -92,8 +92,6 @@
             
             header('Location: ../event.php?event='. $event_id .'');;
         } else {           
-            echo ("L'image na pas pu être ajoutée mais l'évènement est disponible.\nVous allez être redirigé vers la page de l'évènement");                                               // Otherwise
-            sleep(8);
             header('Location: ../event.php?event='. $event_id .'');         // Error page
             exit;
         }

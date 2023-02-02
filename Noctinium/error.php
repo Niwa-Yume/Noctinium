@@ -44,7 +44,6 @@
                 </a>
             </div>
         </section>
-        <hr class="gradient">
         <?php
           include './script_php/footer.php'
         ?>

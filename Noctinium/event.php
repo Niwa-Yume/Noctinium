@@ -33,57 +33,80 @@
 				};?></a></li>
           </nav>
         </header>
+            <?php
+              if (isset($_GET['event'])){
+                $sql = "SELECT * FROM events WHERE event_id = '". $_GET['event'] ."';";
         
-        <section class="subscribe coprs-M">
-          <div class="eventCont">
-            <div class="returnBtnCont">
-              <a title="Retour" class="returnBtn" onclick="history.back()">&#60;</a>
-            </div>
-            
-              <div class="titreEvent">Usine</div>
-              <div class="eventGrid">
-                <img class="imgEvent" src="image/l-usine-geneve.jpg" alt="Image de l'évènement">
-                <div class="infoSup">
-                  <span class="dateEvent">26 December 2019</span>
-                  <div class="adresseEvent">Pl. des Volontaires 4</div>
-                  <div class="userEvent"><a href="organisateur.php">D4Ly_du_69</a></div>
-                </div>
-              </div>
-              <div class="blog-slider__content infoCont">
-                <div class="txtEvent">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing?</div>
-                <a href="map.php" class="btnEvent">TROUVER L' ÉVENEMENT</a>
-              </div>
-            
-          </div>
-        </section>
-        <hr class="gradient">
-        <section class="attends">
-            <div class="interaction">
-              <div class="comment-form">
-                <!-- Comment Avatar -->
-                <div >
-                  <img class="comment-pp" src="image/david.png" alt="Image de profil">
-                </div>
-            
-                <form class="form" name="form">
-                  <div class="form-row">
-                    <textarea
-                              class="input"
-                              ng-model="cmntCtrl.comment.text"
-                              placeholder="AJOUTER UN COMMENTAIRE"
-                              required></textarea>
+                $statement = mysqli_query($mysqli, $sql);
+                if ($statement->num_rows === 0){
+                  echo ("<section class=\"subscribe\"><div style=\"height: 80%;margin-top: 100px;\" class=\"adresseEvent\"><h1>L'évènement sélectionné n'existe pas.<br><br>Veuillez réessayer.</h1></div></section>");
+                }else{
+                  $event = mysqli_fetch_array($statement);
+  
+                  $image = "SELECT imageevent_url FROM imageevent WHERE imageevent_event_id = '". $event['event_id'] ."';";
+                  $statement2 = mysqli_query($mysqli, $image);
+                  if ($statement2->num_rows === 0){
+                    $image_event['imageevent_url'] = "image/GPROJECT.png";
+                  }else{
+                    $image_event = mysqli_fetch_array($statement2);
+                  }
+                  $orga = "SELECT user_username FROM user WHERE user_id = '". $event['event_user_id'] ."';";
+                  $statement3 = mysqli_query($mysqli, $orga);
+                  $organisateur = mysqli_fetch_array($statement3);
+                  echo ("<section class=\"subscribe\">
+                  <div class=\"eventCont\">
+                    <div class=\"returnBtnCont\">
+                      <a title=\"Retour\" class=\"returnBtn\" onclick=\"history.back()\">&#60;</a>
+                    </div>
+                    <div class=\"titreEvent\">". $event['event_title'] ."</div>
+                  <div class=\"eventGrid\">
+                    <img class=\"imgEvent\" src=\"". $image_event['imageevent_url'] ."\" alt=\"Image de l'évènement\">
+                    <div class=\"infoSup\">
+                      <span class=\"dateEvent\">". $event['event_datetime'] ."</span>
+                      <div class=\"adresseEvent\">". $event['event_location'] ."</div>
+                      <div class=\"userEvent\"><a href=\"organisateur.php?organisateur=". $event['event_user_id'] ."\">". $organisateur['user_username'] ."</a></div>
+                    </div>
                   </div>
-                  <div class="form-row">
-                    <input type="submit" value="COMMENTER">
+                  <div class=\"blog-slider__content infoCont\">
+                    <div class=\"txtEvent\">". $event['event_description'] ."</div>
+                    <a href=\"map.php\" class=\"btnEvent\">TROUVER L'ÉVENEMENT</a>
                   </div>
-                </form>
-                <div class="commCont">
-
-                </div>
-              </div>
+                  </div>
+                  </section>
+                  <hr class=\"gradient\">
+                  <section class=\"attends\">
+                      <div class=\"interaction\">
+                        <div class=\"comment-form\">
+                          <!-- Comment Avatar -->
+                          <div >
+                            <img class=\"comment-pp\" src=\"image/david.png\" alt=\"Image de profil\">
+                          </div>
+                      
+                          <form class=\"form\" name=\"form\">
+                            <div class=\"form-row\">
+                              <textarea
+                                        class=\"input\"
+                                        ng-model=\"cmntCtrl.comment.text\"
+                                        placeholder=\"AJOUTER UN COMMENTAIRE\"
+                                        required></textarea>
+                            </div>
+                            <div class=\"form-row\">
+                              <input type=\"submit\" value=\"COMMENTER\">
+                            </div>
+                          </form>
+                          <div class=\"commCont\">
+          
+                          </div>
+                        </div>
+                        
+                      </div>
+                  </section>");
+                }
+              }else{
+                echo ("<section class=\"subscribe\"><div style=\"height: 80%;margin-top: 100px;\" class=\"adresseEvent\"><h1>L'évènement sélectionné n'existe pas.<br><br>Veuillez réessayer.</h1></div></section>");
+              }
               
-            </div>
-        </section>
+            ?>
         <?php
           include './script_php/footer.php'
         ?>
