@@ -5,8 +5,8 @@
     date_default_timezone_set('Europe/Zurich');
 
 	$sql = "INSERT INTO events (event_title, event_datetime, event_location, event_description, event_music,
-     event_type, event_private, event_maskedlocation, event_price, event_user_id)
-				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+     event_type, event_private, event_maskedlocation, event_price, event_user_id, event_imageevent_id)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	
 	if (isset($_POST['nom_event']) and isset($_POST['date_event']) and isset($_POST['description_event']) 
     and isset($_POST['adresse_event']) and isset($_POST['musique']) and isset($_POST['type']) and isset($_POST['conditions'])){
@@ -32,14 +32,6 @@
         }else{
             $event['event_price'] = $_POST['prix_event'];
         }
-
-        $event_add = $mysqli->prepare($sql);
-	    $event_add->bind_param("ssssiissii", $event['event_title'], $event['event_datetime'], $event['event_location'],
-        $event['event_description'], $event['event_music'], $event['event_type'], $event['event_private'],
-        $event['event_maskedlocation'], $event['event_price'], $event['event_user_id']);
-	    $event_add->execute();
-
-        $event_id = $mysqli->insert_id;
 
         if ($_FILES['img_event']['name'] != "") {
             $moved         = false;                                        // Initialize
@@ -81,25 +73,34 @@
             }
         }
         if ($moved === true) {                                            // If it moved
-            $imgAdded = "INSERT INTO imageevent (imageevent_url, imageevent_event_id)
-                        VALUES (?, ?);";
+            $imgAdded = "INSERT INTO imageevent (imageevent_url)
+                        VALUES (?);";
             
-            $img_add['url'] = $destination;
+            $img_add['url'] = "imageevent/". $filename;
             
             $statement = $mysqli->prepare($imgAdded);
-            $statement->bind_param("si", $img_add['url'], $event_id);
+            $statement->bind_param("s", $img_add['url']);
             $statement->execute();
-            
-            header('Location: ../event.php?event='. $event_id .'');;
+
+            $event['event_imageevent_id'] = $mysqli->insert_id;
+
         } else {           
-            header('Location: ../event.php?event='. $event_id .'');         // Error page
-            exit;
+            $event['event_imageevent_id'] = 1;
         }
         }else{
-            header('Location: ../event.php?event='. $event_id .'');
-            exit;
+            $event['event_imageevent_id'] = 1;
         }
-		
+
+		$event_add = $mysqli->prepare($sql);
+	    $event_add->bind_param("ssssiissdii", $event['event_title'], $event['event_datetime'], $event['event_location'],
+        $event['event_description'], $event['event_music'], $event['event_type'], $event['event_private'],
+        $event['event_maskedlocation'], $event['event_price'], $event['event_user_id'], $event['event_imageevent_id']);
+	    $event_add->execute();
+
+        $event_id = $mysqli->insert_id;
+
+        header('Location: ../event.php?event='. $event_id .'');
+
 	}else{
 		header('Location: ../error.php');
 		exit;

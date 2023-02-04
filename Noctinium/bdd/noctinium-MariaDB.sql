@@ -97,6 +97,7 @@ CREATE TABLE `events`(
   `event_maskedlocation` DATETIME DEFAULT(NULL) NULL,
   `event_price` DECIMAL DEFAULT(0) NULL,
   `event_user_id` INT NOT NULL,
+  `imageevent_event_id` INT NOT NULL,
   PRIMARY KEY(`event_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -120,7 +121,6 @@ DROP TABLE IF EXISTS `imageevent`;
 CREATE TABLE `imageevent`(
   `imageevent_id` INT NOT NULL AUTO_INCREMENT,
   `imageevent_url` VARCHAR(50) NOT NULL,
-  `imageevent_event_id` INT NOT NULL,
   PRIMARY KEY(`imageevent_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -202,7 +202,7 @@ CREATE TABLE `user`(
   `user_imageuser_id` INT NOT NULL,
   `user_type` INT DEFAULT(1) NOT NULL,
   `user_typesubcription` INT DEFAULT(1) NOT NULL,
-  `user_decription` VARCHAR(1000)  NULL,
+  `user_description` VARCHAR(1000)  NULL,
   `user_instagram` VARCHAR(50) NULL,
   `user_twitter` VARCHAR(50) NULL,
   `user_site` VARCHAR(50) NULL,

@@ -23,7 +23,7 @@
 		header('Location: ../error.php');
 		} else {    //if details correct
 		$sql = "SELECT user_id, user_surname, user_name, user_username, user_telephone, user_birthdate, user_timecreation, 
-		user_imageuser_id, user_type, user_typesubcription, user_decription, user_instagram, user_twitter, user_site 
+		user_imageuser_id, user_type, user_typesubcription, user_description, user_instagram, user_twitter, user_site 
 		FROM user WHERE user_email = '". $user_email ."' AND user_password = '". $user_password ."';";
 	
 		$statement2 = mysqli_query($mysqli, $sql);
@@ -38,7 +38,7 @@
 		$user_imageuser_id = $infoUser['user_imageuser_id'];
 		$user_type = $infoUser['user_type'];
 		$user_typesubcription = $infoUser['user_typesubcription'];
-		$user_decription = $infoUser['user_decription'];
+		$user_decription = $infoUser['user_description'];
 		$user_instagram = $infoUser['user_instagram'];
 		$user_twitter = $infoUser['user_twitter'];
 		$user_site = $infoUser['user_site'];

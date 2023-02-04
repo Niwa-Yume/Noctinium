@@ -289,12 +289,14 @@
   grid-area: labelTel;
 }
 .changeProfilCont{
-  float: right;
   display: grid;
   grid-template-columns: auto auto;
   column-gap: 30px;
-  margin-right: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
   width: 400px;
+  
 }
 
 .switch {

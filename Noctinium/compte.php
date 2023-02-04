@@ -121,13 +121,13 @@
           </div>
           <div id="socialView">
             <ul class="link-list">
-              <li><a href="#" target="_blank" class="contact-icon">
+              <li onclick="insta()"><a href="#" target="_blank" class="contact-icon">
                 <i class="fa fa-social fa-instagram" aria-hidden="true"></i></a>
               </li>
-              <li><a href="#" target="_blank" class="contact-icon">
+              <li onclick="twitter()"><a href="#" target="_blank" class="contact-icon">
                 <i class="fa fa-social fa-twitter" aria-hidden="true"></i></a>
               </li>
-              <li><a href="#" target="_blank" class="contact-icon">
+              <li onclick="site()"><a href="#" target="_blank" class="contact-icon">
                 <i class="fa fa-social fa-link" aria-hidden="true"></i></a>
               </li>      
             </ul>
@@ -159,5 +159,28 @@
         element.classList.toggle("logo-M");
       }
 		</script>
+    <?php
+      if ($_SESSION['user_instagram'] != []){
+        echo ('<script>
+        function insta(){
+          window.open("'. $_SESSION['user_instagram'] .'");
+        }
+        </script>');
+      }
+      if ($_SESSION['user_twitter'] != []){
+        echo ('<script>
+        function twitter(){
+          window.open("'. $_SESSION['user_twitter'] .'");
+        }
+        </script>');
+      }
+      if ($_SESSION['user_site'] != []){
+        echo ('<script>
+        function site(){
+          window.open("'. $_SESSION['user_site'] .'");
+        }
+        </script>');
+      }
+    ?>
     </body>
 </html>

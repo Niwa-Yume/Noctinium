@@ -43,16 +43,14 @@
                 }else{
                   $event = mysqli_fetch_array($statement);
   
-                  $image = "SELECT imageevent_url FROM imageevent WHERE imageevent_event_id = '". $event['event_id'] ."';";
+                  $image = "SELECT imageevent_url FROM imageevent WHERE imageevent_id = '". $event['event_imageevent_id'] ."';";
                   $statement2 = mysqli_query($mysqli, $image);
-                  if ($statement2->num_rows === 0){
-                    $image_event['imageevent_url'] = "image/GPROJECT.png";
-                  }else{
-                    $image_event = mysqli_fetch_array($statement2);
-                  }
+                  $image_event = mysqli_fetch_array($statement2);
+
                   $orga = "SELECT user_username FROM user WHERE user_id = '". $event['event_user_id'] ."';";
                   $statement3 = mysqli_query($mysqli, $orga);
                   $organisateur = mysqli_fetch_array($statement3);
+
                   echo ("<section class=\"subscribe\">
                   <div class=\"eventCont\">
                     <div class=\"returnBtnCont\">
