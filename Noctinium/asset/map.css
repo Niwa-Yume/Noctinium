@@ -30,6 +30,12 @@
     border-radius: 40px;
     margin: auto;
 }
+.imgMap{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin: auto;
+}
 @media screen and (max-width: 1610px){
     .map{
         max-width: 1000px;

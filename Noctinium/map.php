@@ -24,7 +24,8 @@
               <li><a href="contact.php">Contact</a></li>
               <li><a href="propos.php">A propos</a></li>
               <li><a href="faq.php">FAQ</a></li>
-              <li><a href="<?php 
+              <li><a href="
+              <?php 
 				if($logged_in == true){
 					echo("compte.php");
 				}else{
@@ -40,10 +41,61 @@
 
         <!--DEBUT MAP-->
         <section class="subscribe">
+        <?php
+              if (isset($_GET['event'])){
+                $event_id = $_GET['event'];
+
+                $sql = "SELECT * FROM events WHERE event_id = '". $event_id ."';";
+        
+                $statement = mysqli_query($mysqli, $sql);
+                $event = mysqli_fetch_array($statement);
+
+                $sql2 = "SELECT user_imageuser_id FROM user WHERE user_id = '". $event['event_user_id'] ."';";
+
+                $statement2 = mysqli_query($mysqli, $sql2);
+                $user = mysqli_fetch_array($statement2);
+
+                $sql3 = "SELECT imageuser_url FROM imageuser WHERE imageuser_id = '". $user['user_imageuser_id'] ."';";
+
+                $statement3 = mysqli_query($mysqli, $sql3);
+                $user_image = mysqli_fetch_array($statement3);
+              }
+              $address = $event['event_location'];
+
+            // Envoi de la requête à Nominatim
+            //$url = "https://nominatim.openstreetmap.org/search?q=".urlencode($address)."&limit=1&format=json";
+            
+            function geocode($address){
+                $addresse = urlencode($address);
+            
+                $url = "https://nominatim.openstreetmap.org/?addressdetails=1&q=$addresse&format=json&limit=1";
+            
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_URL,$url);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($ch, CURLOPT_HEADER, false);
+                curl_setopt($ch, CURLOPT_REFERER, $url);
+                curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36");
+            
+                $result = curl_exec($ch);
+            
+                curl_close($ch);
+            
+                return json_decode($result, true);
+            }
+
+            $response = geocode($address);
+
+            // Récupération des coordonnées GPS
+            $lat = $response[0]['lat'];
+            $lon = $response[0]['lon'];
+
+        ?>
             <div id="map" class="mapBig">
                 <script>
                     // Make sure you put this AFTER Leaflet's CSS
-                    var map = L.map('map').setView([46.20161, 6.14138], 13.5);
+                    var map = L.map('map').setView([<?php echo ($lat)?>, <?php echo ($lon)?>], 18);
                      L.tileLayer('https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
                      minZoom: 1,
                      maxZoom: 19,
@@ -51,10 +103,7 @@
                      }).addTo(map);
                 
                     var eventsPointeur = {
-                        "Usine":            {"lat": 46.204      ,   "lon":6.13628},
-                        "Motel Campo":      {"lat": 46.185281864,   "lon": 6.1290354},
-                        "Village du soir":  {"lat": 46.176426   ,   "lon":6.127385},
-                        "MonteCristo Club": {"lat": 46.1900356995,  "lon":6.1382010525},
+                        '<?php echo ("<a href=\"event.php?event=". $event_id ."\"><img class=\"imgMap\" src=\"". $user_image['imageuser_url'] ."\"></a><br><a href=\"event.php?event=". $event_id ."\">".$event['event_title'] ."</a>")?>':            {"lat":<?php echo ($lat)?>      ,   "lon":<?php echo ($lon)?>}
                     };
 
                     for(lieu in eventsPointeur){
@@ -62,7 +111,7 @@
                 // Une pop va apparaitre sur le pointeur en mode pop up
                 var marker = L.marker([eventsPointeur[lieu].lat, eventsPointeur[lieu].lon])
                 .addTo(map); 
-                marker.bindPopup("<p>" +lieu+ "</p>")
+                marker.bindPopup(lieu)
             }
                 </script>
             </div>

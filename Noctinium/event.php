@@ -35,7 +35,9 @@
         </header>
             <?php
               if (isset($_GET['event'])){
-                $sql = "SELECT * FROM events WHERE event_id = '". $_GET['event'] ."';";
+                $event_id = $_GET['event'];
+
+                $sql = "SELECT * FROM events WHERE event_id = '". $event_id ."';";
         
                 $statement = mysqli_query($mysqli, $sql);
                 if ($statement->num_rows === 0){
@@ -67,7 +69,7 @@
                   </div>
                   <div class=\"blog-slider__content infoCont\">
                     <div class=\"txtEvent\">". $event['event_description'] ."</div>
-                    <a href=\"map.php\" class=\"btnEvent\">TROUVER L'ÉVENEMENT</a>
+                    <a href=\"map.php?event=". $event_id ."\" class=\"btnEvent\">TROUVER L'ÉVENEMENT</a>
                   </div>
                   </div>
                   </section>
