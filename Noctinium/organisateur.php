@@ -35,7 +35,7 @@
         </header>
         <?php
               if (isset($_GET['organisateur'])){
-                $sql = "SELECT user_username, user_decription, user_imageuser_id, user_instagram, user_twitter, user_site FROM user WHERE user_id = '". $_GET['organisateur'] ."';";
+                $sql = "SELECT user_username, user_description, user_imageuser_id, user_instagram, user_twitter, user_site FROM user WHERE user_id = '". $_GET['organisateur'] ."';";
         
                 $statement = mysqli_query($mysqli, $sql);
                 if ($statement->num_rows === 0){
@@ -57,8 +57,8 @@
                   $statement2 = mysqli_query($mysqli, $orga_img);
                   $orga_image = mysqli_fetch_array($statement2);
 
-                  if ($organisateur['user_decription'] == []){
-                    $organisateur['user_decription'] = "<div style=\"text-align: center;\">Aucune description.</div>";
+                  if ($organisateur['user_description'] == []){
+                    $organisateur['user_description'] = "<div style=\"text-align: center;\">Aucune description.</div>";
                   }
 
                   echo ("<section class=\"content content-small\">
@@ -73,7 +73,7 @@
                             <img src=\"". $orga_image['imageuser_url'] ."\" class=\"img-Orga\" alt=\"Organisateur\">
                         </div>
                         <div class=\"infoCont\">
-                            <p id=\"infoBio\" class=\"infoUser\">". $organisateur['user_decription'] ."</p>
+                            <p id=\"infoBio\" class=\"infoUser\">". $organisateur['user_description'] ."</p>
                         </div>
                     </div>");
 

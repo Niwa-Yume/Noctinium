@@ -50,15 +50,10 @@
                 $statement = mysqli_query($mysqli, $sql);
                 $event = mysqli_fetch_array($statement);
 
-                $sql2 = "SELECT user_imageuser_id FROM user WHERE user_id = '". $event['event_user_id'] ."';";
-
-                $statement2 = mysqli_query($mysqli, $sql2);
-                $user = mysqli_fetch_array($statement2);
-
-                $sql3 = "SELECT imageuser_url FROM imageuser WHERE imageuser_id = '". $user['user_imageuser_id'] ."';";
+                $sql3 = "SELECT imageevent_url FROM imageevent WHERE imageevent_id = '". $event['event_imageevent_id'] ."';";
 
                 $statement3 = mysqli_query($mysqli, $sql3);
-                $user_image = mysqli_fetch_array($statement3);
+                $event_image = mysqli_fetch_array($statement3);
               }
               $address = $event['event_location'];
 
@@ -103,7 +98,7 @@
                      }).addTo(map);
                 
                     var eventsPointeur = {
-                        '<?php echo ("<a href=\"event.php?event=". $event_id ."\"><img class=\"imgMap\" src=\"". $user_image['imageuser_url'] ."\"></a><br><a href=\"event.php?event=". $event_id ."\">".$event['event_title'] ."</a>")?>':            {"lat":<?php echo ($lat)?>      ,   "lon":<?php echo ($lon)?>}
+                        '<?php echo ("<a href=\"event.php?event=". $event_id ."\"><div class=\"popup-container\"><h1 class=\"titleEvent\">".$event['event_title'] ."</h1><br><img class=\"imgMap\" src=\"". $event_image['imageevent_url'] ."\"></div></a>")?>':            {"lat":<?php echo ($lat)?>      ,   "lon":<?php echo ($lon)?>}
                     };
 
                     for(lieu in eventsPointeur){

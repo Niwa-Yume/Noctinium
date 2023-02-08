@@ -51,7 +51,13 @@
 
                   $orga = "SELECT user_username FROM user WHERE user_id = '". $event['event_user_id'] ."';";
                   $statement3 = mysqli_query($mysqli, $orga);
-                  $organisateur = mysqli_fetch_array($statement3);
+                  
+
+                  if(mysqli_num_rows($statement3) > 0){
+                    $organisateur = mysqli_fetch_array($statement3);
+                  }else{
+                    $organisateur['user_username'] = "Utilisateur supprimé";
+                  }
 
                   echo ("<section class=\"subscribe\">
                   <div class=\"eventCont\">

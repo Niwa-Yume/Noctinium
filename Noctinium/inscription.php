@@ -39,6 +39,27 @@
     </section>
     <hr class="gradient">
     <section class="subscribe">
+      <?php
+        if(isset($_GET['error'])){
+          if($_GET['error'] == 1){
+            if(isset($_GET['email'])){
+              if($_GET['email'] == 1){
+                echo ('<div id="error" class="errorCont"><div id="errorMessage" class="errorMessage"><h1>Erreur</h1><br>Cet email est déjà utilisé.<br><button onclick="closeError()">Continuer</button></div></div>');
+              }
+            }
+            if(isset($_GET['telephone'])){
+              if($_GET['telephone'] == 1){
+                echo ('<div id="error" class="errorCont"><div id="errorMessage" class="errorMessage"><h1>Erreur</h1><br>Ce numéro de téléphone est déjà utilisé.<br><button onclick="closeError()">Continuer</button></div></div>');
+              }
+            }
+            if(isset($_GET['birth'])){
+              if($_GET['birth'] == 1){
+                echo ('<div id="error" class="errorCont"><div id="errorMessage" class="errorMessage"><h1>Erreur</h1><br>La date de naissance n\'est pas valide.<br><button onclick="closeError()">Continuer</button></div></div>');
+              }
+            }
+          }
+        }
+      ?>
     <div class="login">
         <div class="heading">
             <div class="insc-cont">
@@ -117,7 +138,7 @@
         ?>
 </body>
 <script>
-  var element = document.getElementById("logo")
+  var element = document.getElementById("logo");
   var formN = document.getElementById("nom");
   var formE = document.getElementById("email");
   var formD = document.getElementById("date");
@@ -143,5 +164,12 @@
         formM2.classList.toggle("form-control");
         formM2.classList.toggle("form-control-M");
   }
+</script>
+<script>
+  function closeError() {
+    var error = document.getElementById("error");
+    var errorMessage = document.getElementById("errorMessage");
+    error.classList.toggle("hidden");
+  }; 
 </script>
 </html>

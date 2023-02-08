@@ -1173,3 +1173,30 @@ textarea.text-control{
     right: 10px;
     margin-top: -10px;
 }
+.errorCont{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    height: auto;
+    transition: 1s;
+}
+.errorMessage{
+    margin: auto;
+    text-align: center;
+    width: 300px;
+    padding: 20px;
+    color: #000000;
+    background-color: #ec7070;
+    border: solid 2px #9f3939;
+    border-radius: 10px;
+    transition: 1s;
+}
+.errorMessage button{
+    background-color: #9f3939;
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    cursor: pointer;
+}

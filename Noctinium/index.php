@@ -65,31 +65,80 @@
         </section>
        
         <hr class="gradient" id="ancre">
+        <?php
+                $sql = "SELECT * FROM events;";
+        
+                $statement = mysqli_query($mysqli, $sql);
+            // Envoi de la requête à Nominatim
+            //$url = "https://nominatim.openstreetmap.org/search?q=".urlencode($address)."&limit=1&format=json";
+            
+            function geocode($address){
+                $addresse = urlencode($address);
+            
+                $url = "https://nominatim.openstreetmap.org/?addressdetails=1&q=$addresse&format=json&limit=1";
+            
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_URL,$url);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($ch, CURLOPT_HEADER, false);
+                curl_setopt($ch, CURLOPT_REFERER, $url);
+                curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36");
+            
+                $result = curl_exec($ch);
+            
+                curl_close($ch);
+            
+                return json_decode($result, true);
+            }
 
+        ?>
         <section class="subscribe">
             <div id="map" class="map">
                 <script>
                     // Make sure you put this AFTER Leaflet's CSS
-                    var map = L.map('map').setView([46.19620, 6.14020], 15);
+                    var map = L.map('map').setView([46.19620, 6.14020], 13.5);
                      L.tileLayer('https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
                      minZoom: 1,
                      maxZoom: 19,
                      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                      }).addTo(map);
                 
-                    var eventsPointeur = {
-                        "Usine":            {"lat": 46.204      ,   "lon":6.13628},
-                        "Motel Campo":      {"lat": 46.185281864,   "lon": 6.1290354},
-                        "Village du soir":  {"lat": 46.176426   ,   "lon":6.127385},
-                        "MonteCristo Club": {"lat": 46.1900356995,  "lon":6.1382010525},
-                    };
+                    
+                        <?php
+                            echo ("var eventsPointeur = {\n");
+                            if (mysqli_num_rows($statement) > 0){
+                                while($event = mysqli_fetch_assoc($statement)){
+                                    $sql3 = "SELECT imageevent_url FROM imageevent WHERE imageevent_id = '". $event['event_imageevent_id'] ."';";
+                
+                                    $statement3 = mysqli_query($mysqli, $sql3);
+                                    $event_image = mysqli_fetch_array($statement3);
+
+                                    $address = $event['event_location'];
+
+                                    $response = geocode($address);
+
+                                    //Récupération des coordonnées GPS
+                                    $lat = $response[0]['lat'];
+                                    $lon = $response[0]['lon'];
+
+                                    echo ('\'<a href="event.php?event='. $event['event_id'] .'"><div class="popup-container"><h1 class="titleEvent">'. $event['event_title'] .'</h1><img class="imgMapIndex" src="'. $event_image['imageevent_url'] .'"></div></a>\': {\'lat\':'. $lat .',\'lon\':'. $lon .'},');
+                                }
+                            }
+                            
+                            echo ("\n};")
+                        ?>
+                        // 'Usine':            {'lat': 46.204      ,   'lon':6.13628},
+                        // "Motel Campo":      {"lat": 46.185281864,   "lon": 6.1290354},
+                        // "Village du soir":  {"lat": 46.176426   ,   "lon":6.127385},
+                        // "MonteCristo Club": {"lat": 46.1900356995,  "lon":6.1382010525},
 
                     for(lieu in eventsPointeur){
                 // On va mettre un pointeur sur une des zone de la map selon des coordonéees GPS
                 // Une pop va apparaitre sur le pointeur en mode pop up
                 var marker = L.marker([eventsPointeur[lieu].lat, eventsPointeur[lieu].lon])
                 .addTo(map); 
-                marker.bindPopup("<p>" +lieu+ "</p>")
+                marker.bindPopup(lieu)
             }
                 </script>
             </div>

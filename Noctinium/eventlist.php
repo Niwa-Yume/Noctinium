@@ -54,7 +54,11 @@
               </form>
             </div>
             <div class="newEventCont">
-              <a href="eventAdd.php" id="newEvent" class="newEvent">Ajouter</a>
+              <?php
+                if($logged_in == true){
+                  echo('<a href="eventAdd.php" id="newEvent" class="newEvent">Ajouter</a>');
+                }
+              ?>
             </div>
           </div>
         <div id="main" class="main-f">

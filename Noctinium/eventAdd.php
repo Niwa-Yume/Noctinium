@@ -39,6 +39,27 @@
     </section>
     <hr class="gradient">
     <section class="subscribe">
+    <?php
+        if(isset($_GET['error'])){
+          if($_GET['error'] == 1){
+            if(isset($_GET['address'])){
+              if($_GET['address'] == 1){
+                echo ('<div id="error" class="errorCont"><div id="errorMessage" class="errorMessage"><h1>Erreur</h1><br>Cette adresse est introuvable ou n\'existe pas.<br><button onclick="closeError()">Continuer</button></div></div>');
+              }
+            }
+            if(isset($_GET['date'])){
+              if($_GET['date'] == 1){
+                echo ('<div id="error" class="errorCont"><div id="errorMessage" class="errorMessage"><h1>Erreur</h1><br>La date sélectionée est antérieure à aujourd\'hui.<br><button onclick="closeError()">Continuer</button></div></div>');
+              }
+            }
+            if(isset($_GET['masked'])){
+              if($_GET['masked'] == 1){
+                echo ('<div id="error" class="errorCont"><div id="errorMessage" class="errorMessage"><h1>Erreur</h1><br>Vous ne pouvez pas révéler la date de l\'évènement après celui-ci.<br><button onclick="closeError()">Continuer</button></div></div>');
+              }
+            }
+          }
+        }
+      ?>
     <div class="login">
         <div class="heading">
             <div class="insc-cont">
@@ -219,5 +240,12 @@
       document.getElementById("prix").classList.toggle("hidden");
     }
   }
+</script>
+<script>
+  function closeError() {
+    var error = document.getElementById("error");
+    var errorMessage = document.getElementById("errorMessage");
+    error.classList.toggle("hidden");
+  }; 
 </script>
 </html>
