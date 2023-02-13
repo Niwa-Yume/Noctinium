@@ -1,6 +1,6 @@
 <?php
     require 'database-connection.php';
-    include 'sessions.php';
+    require 'sessions.php';
 
     if (isset($_POST['mdp']) and isset($_POST['mdp2']) and isset($_POST['mdp3']) and $_POST['mdp'] == $_POST['mdp2']){
         $passowrd = $_POST['mdp3'];
@@ -10,7 +10,7 @@
 
             $sql = "UPDATE user SET user_password = '". $new_password_hashed ."' WHERE user_id = ". $_SESSION['user_id'] .";";
             
-            $statement = $mysqli->prepare($sql);
+            $statement = $pdo->prepare($sql);
             $statement->execute();
 
             $_SESSION['user_password'] = $new_password_hashed;

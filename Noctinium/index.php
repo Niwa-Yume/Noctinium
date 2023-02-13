@@ -1,6 +1,6 @@
 <?php
     require 'script_php/database-connection.php';
-    include 'script_php/sessions.php';
+    require 'script_php/sessions.php';
 ?>
 <html>
     <head>
@@ -66,9 +66,13 @@
        
         <hr class="gradient" id="ancre">
         <?php
-                $sql = "SELECT * FROM events;";
-        
-                $statement = mysqli_query($mysqli, $sql);
+                $today = date('Y-m-d H:i:s');
+                $today2 = date('Y-m-d H:i:s');
+                $event_param['today'] = $today;
+                $event_param['today2'] = $today2;
+                $sql = "SELECT event_id, event_title, event_location, event_description FROM events WHERE DATEDIFF(event_datetime, :today) < 1 AND event_datetime > :today2;";
+                $statement = $pdo->prepare($sql);
+                $statement->execute($event_param);
             // Envoi de la requête à Nominatim
             //$url = "https://nominatim.openstreetmap.org/search?q=".urlencode($address)."&limit=1&format=json";
             
@@ -91,12 +95,25 @@
             
                 return json_decode($result, true);
             }
-
         ?>
         <section class="subscribe">
+            <h1 class="gradient-text titleMap">Évènements du jour</h1>
             <div id="map" class="map">
                 <script>
                     // Make sure you put this AFTER Leaflet's CSS
+                    /* if(navigator.geolocation){
+                        navigator.geolocation.getCurrentPosition(showLocation);
+                    }
+                    function showLocation(position){
+                        var latitude = position.coords.latitude;
+                        var longitude = position.coords.longitude;
+                        if(!latitude){
+                            latitude = 46.19620;
+                        }
+                        if(!longitude){
+                            longitude = 6.14020;
+                        }
+                    } */
                     var map = L.map('map').setView([46.19620, 6.14020], 13.5);
                      L.tileLayer('https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
                      minZoom: 1,
@@ -104,16 +121,16 @@
                      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                      }).addTo(map);
                 
-                    
+                     var pointeurMaison = L.icon({
+                        iconUrl: 'image/pointeurmaison-min.png',
+                        iconSize:     [49.1, 80], // size of the icon
+                        iconAnchor:   [24, 78], // point of the icon which will correspond to marker's location
+                        popupAnchor:  [1, -75]
+                    });
                         <?php
                             echo ("var eventsPointeur = {\n");
-                            if (mysqli_num_rows($statement) > 0){
-                                while($event = mysqli_fetch_assoc($statement)){
-                                    $sql3 = "SELECT imageevent_url FROM imageevent WHERE imageevent_id = '". $event['event_imageevent_id'] ."';";
-                
-                                    $statement3 = mysqli_query($mysqli, $sql3);
-                                    $event_image = mysqli_fetch_array($statement3);
-
+                            if ($statement->rowCount() > 0){
+                                while($event = $statement->fetch()){
                                     $address = $event['event_location'];
 
                                     $response = geocode($address);
@@ -122,7 +139,15 @@
                                     $lat = $response[0]['lat'];
                                     $lon = $response[0]['lon'];
 
-                                    echo ('\'<a href="event.php?event='. $event['event_id'] .'"><div class="popup-container"><h1 class="titleEvent">'. $event['event_title'] .'</h1><img class="imgMapIndex" src="'. $event_image['imageevent_url'] .'"></div></a>\': {\'lat\':'. $lat .',\'lon\':'. $lon .'},');
+                                    $desc_cut = str_split($event['event_description'], 150);
+                                    $desc_test = $desc_cut[0];
+                                    if(strlen($desc_test)==150){
+                                    $desc_test .= '...';
+                                    }
+                                    $desc_test2 = str_replace("\r\n", " ", $desc_test);
+                                    $description = str_replace("\"", "`", $desc_test2);
+
+                                    echo ('"<a title=\"Voir cet évènement\" href=\"event.php?event='. $event['event_id'] .'\"><div class=\"popup-container\"><h1 class=\"titleEvent\">'. $event['event_title'] .'</h1><div class=\"descEvent\">'. $description .'</div></div></a>": {\'lat\':'. $lat .',\'lon\':'. $lon .'},');
                                 }
                             }
                             
@@ -136,7 +161,7 @@
                     for(lieu in eventsPointeur){
                 // On va mettre un pointeur sur une des zone de la map selon des coordonéees GPS
                 // Une pop va apparaitre sur le pointeur en mode pop up
-                var marker = L.marker([eventsPointeur[lieu].lat, eventsPointeur[lieu].lon])
+                var marker = L.marker([eventsPointeur[lieu].lat, eventsPointeur[lieu].lon],{icon: pointeurMaison})
                 .addTo(map); 
                 marker.bindPopup(lieu)
             }

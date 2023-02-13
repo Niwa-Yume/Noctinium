@@ -1,6 +1,6 @@
 <?php
     require './script_php/database-connection.php';
-    include './script_php/sessions.php';
+    require './script_php/sessions.php';
 ?>
 <html>
 <head>
@@ -34,13 +34,12 @@
     </header>
     <section class="content content-small">
         <div class="container">
-            <h1 class="gradient-text">Questions Fréquentes</h1>
+            <h1 class="gradient-text">Foire Aux Questions</h1>
         </div>
     </section>
     <hr class="gradient">
     <section class="faq">
         <div class="container">
-            <h1>FAQ Questions</h1>
             <ul class="faq-question">
                 <li>
                     <h2 class="faq-title">
@@ -114,7 +113,7 @@
                 </li>
                 <li>
                     <h2 class="faq-title">
-                        Je suis une associtations/organistation du monde de la nuit, comment pius-je devenir partenaire ?
+                        Je suis une associtations/organistation du monde de la nuit, comment puis-je devenir partenaire ?
                     </h2>
                     <svg height="24" viewBox="0 0 24 24" version="1.1" width="24" aria-hidden="true">
                         <path fill-rule="evenodd"
@@ -123,7 +122,7 @@
                     </svg>
                     <div class="faq-content">
                         <p>
-                            Il suffit de faire des évènements de manière régulière (hebdomadaire, mensuel et/ou annuel). Il faudra ensuite de nous contacter par mail ou téléphone directement pour procéder partenariat.
+                            Il suffit d'organiser des évènements régulièrement (hebdomadaire, mensuel et/ou annuel). Il faut ensuite nous contacter par mail ou téléphone pour procéder à la création d'un partenariat.
                         </p>
                     </div>
                 </li>

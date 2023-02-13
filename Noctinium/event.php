@@ -1,6 +1,6 @@
 <?php
     require './script_php/database-connection.php';
-    include './script_php/sessions.php';
+    require './script_php/sessions.php';
 ?>
 <html>
     <head>
@@ -39,24 +39,32 @@
 
                 $sql = "SELECT * FROM events WHERE event_id = '". $event_id ."';";
         
-                $statement = mysqli_query($mysqli, $sql);
-                if ($statement->num_rows === 0){
+                $statement = $pdo->query($sql);
+                if ($statement->rowCount() == 0){
                   echo ("<section class=\"subscribe\"><div style=\"height: 80%;margin-top: 100px;\" class=\"adresseEvent\"><h1>L'évènement sélectionné n'existe pas.<br><br>Veuillez réessayer.</h1></div></section>");
                 }else{
-                  $event = mysqli_fetch_array($statement);
-  
+                  $event = $statement->fetch();
+                  /* $event_desc = str_replace("<","", $event['event_description']);
+                  $event_description = str_replace(">","", $event_desc); */
+
                   $image = "SELECT imageevent_url FROM imageevent WHERE imageevent_id = '". $event['event_imageevent_id'] ."';";
-                  $statement2 = mysqli_query($mysqli, $image);
-                  $image_event = mysqli_fetch_array($statement2);
+                  $statement2 = $pdo->query($image);
+                  $image_event = $statement2->fetch();
 
                   $orga = "SELECT user_username FROM user WHERE user_id = '". $event['event_user_id'] ."';";
-                  $statement3 = mysqli_query($mysqli, $orga);
+                  $statement3 = $pdo->query($orga);
                   
-
-                  if(mysqli_num_rows($statement3) > 0){
-                    $organisateur = mysqli_fetch_array($statement3);
+                  if($statement3->rowCount() > 0){
+                    $organisateur = $statement3->fetch();
                   }else{
                     $organisateur['user_username'] = "Utilisateur supprimé";
+                  }
+
+                  $today = date('Y-m-d H:i:s');
+                  if($event['event_maskedlocation'] > $today ){
+                    $adresse = "Adresse masquée jusqu'au ".$event['event_maskedlocation'];
+                  }else{
+                    $adresse = $event['event_location'];
                   }
 
                   echo ("<section class=\"subscribe\">
@@ -69,7 +77,7 @@
                     <img class=\"imgEvent\" src=\"". $image_event['imageevent_url'] ."\" alt=\"Image de l'évènement\">
                     <div class=\"infoSup\">
                       <span class=\"dateEvent\">". $event['event_datetime'] ."</span>
-                      <div class=\"adresseEvent\">". $event['event_location'] ."</div>
+                      <div class=\"adresseEvent\">". $adresse ."</div>
                       <div class=\"userEvent\"><a href=\"organisateur.php?organisateur=". $event['event_user_id'] ."\">". $organisateur['user_username'] ."</a></div>
                     </div>
                   </div>

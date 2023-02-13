@@ -39,7 +39,7 @@
 .eventCont {
     width: 80%;
     position: relative;
-    max-width: 1000px;
+    max-width: 1100px;
     background: #343435;
     box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
     padding: 40px 25px 25px 25px;
@@ -53,6 +53,7 @@
     grid-template-columns: auto auto;
     width: 80%;
     margin: 40px auto auto auto;
+    column-gap: 20px;
 }
 .infoSup{
     padding-top: 18%;

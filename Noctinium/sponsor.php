@@ -1,6 +1,6 @@
 <?php
     require './script_php/database-connection.php';
-    include './script_php/sessions.php';
+    require './script_php/sessions.php';
 ?>
 <html>
     <head>

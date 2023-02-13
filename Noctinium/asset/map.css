@@ -64,8 +64,14 @@
 }
 .popup-container{
     margin-left: 4px;
-    width: 100px;
     margin-right: 0;
+    max-width: 200px;
+}
+.descEvent{
+    font-size: 1rem;
+    text-align: justify;
+    text-decoration: none;
+    color: black;
 }
 @media screen and (max-width: 1610px){
     .map{

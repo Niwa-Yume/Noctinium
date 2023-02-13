@@ -1,6 +1,6 @@
 <?php
     require './script_php/database-connection.php';
-    include './script_php/sessions.php';
+    require './script_php/sessions.php';
 ?>
 <html>
 <head>
@@ -42,7 +42,7 @@
     <div class="login">
         <div class="heading">
             <div class="insc-cont">
-          <form id="contact-form" class="insc-cont-1" role="form" method="POST" action="./script_php/connection_user.php">
+          <form id="contact-form" class="insc-cont-1" role="form" method="POST" action="script_php/connection_user.php" enctype="multipart/form-data">
             
             <div class="form-group-insc">
                 <div class="col-sm-12">

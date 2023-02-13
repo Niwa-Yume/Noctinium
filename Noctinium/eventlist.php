@@ -1,6 +1,6 @@
 <?php
     require './script_php/database-connection.php';
-    include './script_php/sessions.php';
+    require './script_php/sessions.php';
 ?>
 <html>
     <head>
@@ -56,7 +56,35 @@
             <div class="newEventCont">
               <?php
                 if($logged_in == true){
-                  echo('<a href="eventAdd.php" id="newEvent" class="newEvent">Ajouter</a>');
+                  $today = date('Y-m-d H:i:s');
+                  $test_param['user_id'] = $_SESSION['user_id'];
+                  $test_param['today'] = $today;
+                  $test_num_event = "SELECT event_id FROM events WHERE event_user_id = :user_id AND event_datetime > :today;";
+                  $test_num_event_user = $pdo->prepare($test_num_event);
+                  $test_num_event_user->execute($test_param);
+                  if($_SESSION['user_typesubscription'] == 1){
+                    if($test_num_event_user->rowCount() < 4){
+                      echo('<a href="eventAdd.php" id="newEvent" class="newEvent">Ajouter</a>');
+                    }else{
+                      echo ("Nombre maximum d'évènements atteint (4)");
+                    }
+                  }elseif($_SESSION['user_typesubscription'] == 2){
+                    if($test_num_event_user->rowCount() < 8){
+                      echo('<a href="eventAdd.php" id="newEvent" class="newEvent">Ajouter</a>');
+                    }else{
+                      echo ("Nombre maximum d'évènements atteint (8)");
+                    }
+                  }elseif($_SESSION['user_typesubscription'] == 3){
+                    if($test_num_event_user->rowCount() < 16){
+                      echo('<a href="eventAdd.php" id="newEvent" class="newEvent">Ajouter</a>');
+                    }else{
+                      echo ("Nombre maximum d'évènements atteint (16)");
+                    }
+                  }elseif($_SESSION['user_typesubscription'] == 4){
+                    echo('<a href="eventAdd.php" id="newEvent" class="newEvent">Ajouter</a>');
+                  }
+                }else{
+                  echo ("Connectez-vous pour créer un évènement");
                 }
               ?>
             </div>
@@ -67,16 +95,35 @@
             <form action="">
               <h3>Musique:</h3>
               <div class="typeCont">
-                <input type="checkbox" id="Teckno" name="Teckno"><label for="Teckno"> Teckno</label><br>
-                <input type="checkbox" id="Latino" name="Latino"><label for="Latino"> Latino</label><br>
-                <input type="checkbox" id="Rap" name="Rap"><label for="Rap"> Rap</label><br>
-                <input type="checkbox" id="AllStyles" name="AllStyles"><label for="AllStyles"> All Styles</label><br>
+                <select name="musique" id="musique" class="form-control">
+                      <option value="">--Veuillez choisir un style de musique--</option>
+                      <option value="1">Techno</option>
+                      <option value="2">House</option>
+                      <option value="3">Électro</option>
+                      <option value="4">Rap</option>
+                      <option value="5">Latino</option>
+                      <option value="6">Années 80</option>
+                      <option value="7">Années 90</option>
+                      <option value="8">Années 2000</option>
+                      <option value="9">Punk</option>
+                      <option value="10">Rock</option>
+                      <option value="11">Jazz</option>
+                      <option value="12">Blues</option>
+                      <option value="13">All Styles</option>
+                      <option value="14">Autres</option>
+                </select>
               </div>
               <h3>Type d'évènement:</h3>
               <div class="typeCont">
-                <input type="checkbox" id="before" name="before"><label for="before"> Before</label><br>
-                <input type="checkbox" id="soiree" name="soiree"><label for="soiree"> Soirée</label><br>
-                <input type="checkbox" id="after" name="after"><label for="after"> After</label><br>
+                <select name="type" id="type" class="form-control">
+                    <option value="">--Veuillez choisir un type d'évènement--</option>
+                      <option value="1">Before</option>
+                      <option value="2">After</option>
+                      <option value="3">Soirée</option>
+                      <option value="4">Concert/Showcase</option>
+                      <option value="5">Open Mic/Karaoké</option>
+                      <option value="6">Autres</option>
+                </select>
               </div>
               <h3>Date de l'évènement:</h3>
               <div class="typeCont">
@@ -88,9 +135,12 @@
               </div>
               <h3>Organisateurs:</h3>
               <div class="typeCont">
-                <input type="checkbox" id="Particuliers" name="Particuliers"><label for="Particuliers"> Particuliers</label><br>
-                <input type="checkbox" id="Associations" name="Associations"><label for="Associations"> Associations</label><br>
-                <input type="checkbox" id="Professionnels" name="Professionnels"><label for="Professionnels"> Professionnels</label><br>
+                <select name="type" id="type" class="form-control">
+                    <option value="">--Veuillez choisir un type d'organisateur--</option>
+                      <option value="1">Particuliers</option>
+                      <option value="2">Associations</option>
+                      <option value="3">Professionnels</option>
+                </select>
               </div>
               <h3>Heure de début:</h3>
               <div class="typeCont">
@@ -101,88 +151,85 @@
             </form>
           </div>
         <div class="eventCont">
-        <div class="blog-slider">
-            <div class="blog-slider__wrp swiper-wrapper">
-              <div class="blog-slider__item swiper-slide">
-                <div class="blog-slider__img">
-                  
-                  <img class="eventimg" src="image/l-usine-geneve.jpg" alt="Image de l'évènement">
-                </div>
-                <div class="blog-slider__content">
-                  <span class="blog-slider__code">26 December 2019</span>
-                  <div class="blog-slider__title">L'usine</div>
-                  <div class="blog-slider__text">Ouverte depuis 1989, L’Usine est un centre culturel autogéré important en Suisse et plébiscité par ses voisin-e-s européen-ne-s. L’association faîtière revendique une éthique de travail fondée sur l’autogestion, le multiculturalisme et l’ouverture aux autres.</div>
-                  <a href="event.php" class="blog-slider__button">En savoir plus</a>
-                </div>
-              </div>
-              <div class="blog-slider__item swiper-slide">
-                <div class="blog-slider__img">
-                  <img class="eventimg" src="image/ob_1876c1_len-faki-audiography-gabriel-asper.jpeg" alt="Image de l'évènement">
-                </div>
-                <div class="blog-slider__content">
-                  <span class="blog-slider__code">26 December 2019</span>
-                  <div class="blog-slider__title">L'usine</div>
-                  <div class="blog-slider__text">L’Usine est une association faîtière qui regroupe une vingtaine de collectifs et associations dont les plus visibles sont les lieux publics qui proposent une programmation de spectacles vivants, concerts, cinéma, expositions, performances, festivals et fêtes.</div>
-                  <a href="event.php" class="blog-slider__button">En savoir plus</a>
-                </div>
-              </div>
-              
-              <div class="blog-slider__item swiper-slide">
-                <div class="blog-slider__img">
-                  <img class="eventimg" src="image/2625-zoo-usine-led-outdoor-2014.jpg" alt="Image de l'évènement">
-                </div>
-                <div class="blog-slider__content">
-                  <span class="blog-slider__code">26 December 2019</span>
-                  <div class="blog-slider__title">L'usine</div>
-                  <div class="blog-slider__text">Si chaque groupe possède son fonctionnement propre, certaines idées et pratiques sont partagées par toutes et tous : rejet du profit comme seul but des activités, de toute forme de concurrence ou de hiérarchie entre les individus ainsi qu’entre les disciplines.                  </div>
-                  <a href="event.php" class="blog-slider__button">En savoir plus</a>
-                </div>
-              </div>
-              
-            </div>
-            <div class="blog-slider__pagination"></div>
-          </div>
-          <div class="blog-slider">
-            <div class="blog-slider__wrp swiper-wrapper">
-              <div class="blog-slider__item swiper-slide">
-                <div class="blog-slider__img">
-                  
-                  <img class="eventimg" src="https://res.cloudinary.com/muhammederdem/image/upload/q_60/v1535759872/kuldar-kalvik-799168-unsplash.webp" alt="Image de l'évènement">
-                </div>
-                <div class="blog-slider__content">
-                  <span class="blog-slider__code">26 December 2019</span>
-                  <div class="blog-slider__title">Lorem Ipsum Dolor</div>
-                  <div class="blog-slider__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi? </div>
-                  <a href="#" class="blog-slider__button">READ MORE</a>
-                </div>
-              </div>
-              <div class="blog-slider__item swiper-slide">
-                <div class="blog-slider__img">
-                  <img class="eventimg" src="https://res.cloudinary.com/muhammederdem/image/upload/q_60/v1535759871/jason-leung-798979-unsplash.webp" alt="Image de l'évènement">
-                </div>
-                <div class="blog-slider__content">
-                  <span class="blog-slider__code">26 December 2019</span>
-                  <div class="blog-slider__title">Lorem Ipsum Dolor2</div>
-                  <div class="blog-slider__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?</div>
-                  <a href="#" class="blog-slider__button">READ MORE</a>
-                </div>
-              </div>
-              
-              <div class="blog-slider__item swiper-slide">
-                <div class="blog-slider__img">
-                  <img class="eventimg" src="https://res.cloudinary.com/muhammederdem/image/upload/q_60/v1535759871/alessandro-capuzzi-799180-unsplash.webp" alt="Image de l'évènement">
-                </div>
-                <div class="blog-slider__content">
-                  <span class="blog-slider__code">26 December 2019</span>
-                  <div class="blog-slider__title">Lorem Ipsum Dolor</div>
-                  <div class="blog-slider__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?</div>
-                  <a href="#" class="blog-slider__button">READ MORE</a>
-                </div>
-              </div>
-              
-            </div>
-            <div class="blog-slider__pagination"></div>
-          </div>
+        <?php
+          $sql = "SELECT event_id, event_title, event_datetime, event_description, event_music, event_type, event_imageevent_id FROM events ORDER BY event_creation";
+
+          $statement = $pdo->query($sql);
+          if($statement->rowCount() == 0){
+            echo ('<div class="noEvent">Aucun évènement disponible.</div>');
+          }else{
+            while($event = $statement->fetch()){
+              $event_text = str_split($event['event_description'], 350);
+              $event_desc = $event_text[0];
+              /* $event_descri = str_replace("<"," ", $event_descr);
+              $event_desc = str_replace(">"," ", $event_descri); */
+              if(strlen($event_desc) == 350){
+                $event_desc .= "[...]";
+              }
+              if($event['event_music'] == 1){
+                $event_music = "Techno";
+              }elseif($event['event_music'] == 2){
+                $event_music = "House";
+              }elseif($event['event_music'] == 3){
+                $event_music = "Électro";
+              }elseif($event['event_music'] == 4){
+                $event_music = "Rap";
+              }elseif($event['event_music'] == 5){
+                $event_music = "Latino";
+              }elseif($event['event_music'] == 6){
+                $event_music = "Années 80";
+              }elseif($event['event_music'] == 7){
+                $event_music = "Années 90";
+              }elseif($event['event_music'] == 8){
+                $event_music = "Années 2000";
+              }elseif($event['event_music'] == 9){
+                $event_music = "Punk";
+              }elseif($event['event_music'] == 10){
+                $event_music = "Rock";
+              }elseif($event['event_music'] == 11){
+                $event_music = "Jazz";
+              }elseif($event['event_music'] == 12){
+                $event_music = "Blues";
+              }elseif($event['event_music'] == 13){
+                $event_music = "All Styles";
+              }elseif($event['event_music'] == 14){
+                $event_music = "Autres";
+              }
+              if($event['event_type'] == 1){
+                $event_type = "Before";
+              }elseif($event['event_type'] == 2){
+                $event_type = "After";
+              }elseif($event['event_type'] == 3){
+                $event_type = "Soirée";
+              }elseif($event['event_type'] == 4){
+                $event_type = "Concert/Showcase";
+              }elseif($event['event_type'] == 5){
+                $event_type = "Open Mic/Karaoké";
+              }elseif($event['event_type'] == 6){
+                $event_type = "Autres";
+              }
+              echo ('<div class="event-presentation">
+                    <div>
+                    <img src="image/nightclub-crowd-smoke-machine.jpg" alt="" class="imgEvent">
+                    </div>
+                    <div class="eventInfo">
+                    <div class="eventBottom">
+                    <div class="eventDate">'.$event['event_datetime'].'</div>
+                    <div class="musiqueEvent">'.$event_music.'</div>
+                    </div>
+                    <div class="eventTitle">'.$event['event_title'].'</div>
+                    <div class="eventText">'.$event_desc.'</div>
+                    <div class="eventBottom">
+                    <div>
+                    <a href="event.php?event='.$event['event_id'].'"><button class="btnEvent">Voir l\'évènement</button></a>
+                    </div>
+                    <div class="typeEvent">'.$event_type.'</div>
+                    </div>
+                    </div>
+                    </div>');
+            }
+          }
+        ?>
         </div>
         </div>
         </section>
@@ -225,7 +272,7 @@
           main.classList.toggle("main")
           main.classList.toggle("main-f")
           if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-            menu.style.width = "200%";
+            menu.style.width = "400%";
           }else{
             menu.style.width = "100%";
           }

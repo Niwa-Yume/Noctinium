@@ -1,12 +1,13 @@
 <?php
 	require 'database-connection.php';
-    include 'sessions.php';
+    require 'sessions.php';
 
     date_default_timezone_set('Europe/Zurich');
 
 	$sql = "INSERT INTO events (event_title, event_datetime, event_location, event_description, event_music,
-     event_type, event_private, event_maskedlocation, event_price, event_user_id, event_imageevent_id)
-				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+     event_type, event_private, event_maskedlocation, event_price, event_creation, event_user_id, event_imageevent_id)
+				VALUES (:event_title, :event_datetime, :event_location, :event_description, :event_music,
+     :event_type, :event_private, :event_maskedlocation, :event_price, :event_creation, :event_user_id, :event_imageevent_id)";
 	
     if($_SESSION['logged_in'] != true){
 		header('Location: ../connexion.php');
@@ -15,6 +16,14 @@
 
 	if (isset($_POST['nom_event']) and isset($_POST['date_event']) and isset($_POST['description_event']) 
     and isset($_POST['adresse_event']) and isset($_POST['musique']) and isset($_POST['type']) and isset($_POST['conditions'])){
+        if($_POST['musique'] == ""){
+            header("Location: ../eventAdd.php?error=1&music=1");
+            exit;
+        }
+        if($_POST['type'] == ""){
+            header("Location: ../eventAdd.php?error=1&type=1");
+            exit;
+        }
         function geocode($address){
             $addresse = urlencode($address);
         
@@ -62,6 +71,7 @@
                     $event['event_music'] = $_POST['musique'];
                     $event['event_type'] = $_POST['type'];
                     $event['event_user_id'] = $_SESSION['user_id'];
+                    $event['event_creation'] = date('Y-m-d H:i:s');
                     if ($_POST['date_event_mask'] == "") {
                         $event['event_maskedlocation'] = date('Y-m-d H:i:s');
                     }else{
@@ -119,15 +129,14 @@
                         }
                         if ($moved === true) {                                            // If it moved
                             $imgAdded = "INSERT INTO imageevent (imageevent_url)
-                                        VALUES (?);";
+                                        VALUES (:imageevent_url);";
                             
-                            $img_add['url'] = "imageevent/". $filename;
+                            $img_add['imageevent_url'] = "imageevent/". $filename;
                             
-                            $statement = $mysqli->prepare($imgAdded);
-                            $statement->bind_param("s", $img_add['url']);
-                            $statement->execute();
+                            $statement = $pdo->prepare($imgAdded);
+                            $statement->execute($img_add);
 
-                            $event['event_imageevent_id'] = $mysqli->insert_id;
+                            $event['event_imageevent_id'] = $pdo->lastInsertId();
 
                         } else {           
                             $event['event_imageevent_id'] = 1;
@@ -136,13 +145,10 @@
                         $event['event_imageevent_id'] = 1;
                     }
 
-                    $event_add = $mysqli->prepare($sql);
-                    $event_add->bind_param("ssssiissdii", $event['event_title'], $event['event_datetime'], $event['event_location'],
-                    $event['event_description'], $event['event_music'], $event['event_type'], $event['event_private'],
-                    $event['event_maskedlocation'], $event['event_price'], $event['event_user_id'], $event['event_imageevent_id']);
-                    $event_add->execute();
+                    $event_add = $pdo->prepare($sql);
+                    $event_add->execute($event);
 
-                    $event_id = $mysqli->insert_id;
+                    $event_id = $pdo->lastInsertId();
 
                     header('Location: ../event.php?event='. $event_id .'');
                     exit;

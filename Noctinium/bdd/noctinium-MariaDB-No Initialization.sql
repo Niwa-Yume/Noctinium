@@ -86,6 +86,7 @@ CREATE TABLE `events`(
   `event_private` TINYINT(1) DEFAULT(0) NOT NULL,
   `event_maskedlocation` DATETIME DEFAULT(NULL) NULL,
   `event_price` DECIMAL DEFAULT(0) NULL,
+  `event_creation` DATETIME NOT NULL,
   `event_user_id` INT NOT NULL,
   `event_imageevent_id` INT NOT NULL,
   PRIMARY KEY(`event_id`)
@@ -191,7 +192,7 @@ CREATE TABLE `user`(
   `user_timecreation` DATETIME NOT NULL,
   `user_imageuser_id` INT NOT NULL,
   `user_type` INT DEFAULT(1) NOT NULL,
-  `user_typesubcription` INT DEFAULT(1) NOT NULL,
+  `user_typesubscription` INT DEFAULT(1) NOT NULL,
   `user_description` VARCHAR(1000)  NULL,
   `user_instagram` VARCHAR(50) NULL,
   `user_twitter` VARCHAR(50) NULL,

@@ -1,6 +1,6 @@
 <?php
 require 'database-connection.php';
-include 'sessions.php';
+require 'sessions.php';
 
 $moved         = false;                                        // Initialize
 $message       = '';                                           // Initialize
@@ -44,22 +44,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {                    // If form submit
     }
     if ($moved === true) {                                            // If it moved
         $imgAdded = "INSERT INTO imageuser (imageuser_url)
-					VALUES (?);";
+					VALUES (:imageuser_url);";
 		
-		$imgurl['url'] = "imageuser/".$filename;
+		$imgurl['imageuser_url'] = "imageuser/".$filename;
 		
-		$statement = $mysqli->prepare($imgAdded);
-        $statement->bind_param("s", $imgurl['url']);
-		$statement->execute();
+		$statement = $pdo->prepare($imgAdded);
+		$statement->execute($imgurl);
 		
-		$imgid = $mysqli->insert_id;
+		$imgid = $pdo->lastInsertId();
 		
 		$imgUserNew = "UPDATE user SET user_imageuser_id = '". $imgid ."' WHERE user_id = ". $_SESSION['user_id'] .";";
 		
-		$statement2 = $mysqli->prepare($imgUserNew);
+		$statement2 = $pdo->prepare($imgUserNew);
 		$statement2->execute();
 		
-		$_SESSION['user_img'] = $imgurl['url'];
+		$_SESSION['user_img'] = $imgurl['imageuser_url'];
 		
 		header ('Location: ../compteConfiguration.php');
     } else {                                                          // Otherwise

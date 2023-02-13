@@ -1,6 +1,6 @@
 <?php
     require './script_php/database-connection.php';
-    include './script_php/sessions.php';
+    require './script_php/sessions.php';
 ?>
 <html>
     <head>
@@ -37,8 +37,8 @@
               if (isset($_GET['organisateur'])){
                 $sql = "SELECT user_username, user_description, user_imageuser_id, user_instagram, user_twitter, user_site FROM user WHERE user_id = '". $_GET['organisateur'] ."';";
         
-                $statement = mysqli_query($mysqli, $sql);
-                if ($statement->num_rows === 0){
+                $statement = $pdo->query($sql);
+                if ($statement->rowCount() === 0){
                   echo ("<section class=\"content content-small\">
                     <div class=\"container\">
                       <h1 class=\"gradient-text\">Organisateur</h1>
@@ -51,13 +51,13 @@
                     </div>
                   </section>");
                 }else{
-                  $organisateur = mysqli_fetch_array($statement);
+                  $organisateur = $statement->fetch();
 
                   $orga_img = "SELECT imageuser_url FROM imageuser WHERE imageuser_id = ". $organisateur['user_imageuser_id'] .";";
-                  $statement2 = mysqli_query($mysqli, $orga_img);
-                  $orga_image = mysqli_fetch_array($statement2);
+                  $statement2 = $pdo->query($orga_img);
+                  $orga_image = $statement2->fetch();
 
-                  if ($organisateur['user_description'] == []){
+                  if ($organisateur['user_description'] == ""){
                     $organisateur['user_description'] = "<div style=\"text-align: center;\">Aucune description.</div>";
                   }
 

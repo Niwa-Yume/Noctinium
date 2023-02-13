@@ -1,6 +1,6 @@
 <?php
     require './script_php/database-connection.php';
-    include './script_php/sessions.php';
+    require './script_php/sessions.php';
     if ($logged_in != true){
       header('Location: ./connexion.php');
     };
@@ -57,7 +57,7 @@
                   </label>
                     <input id="change" type="submit" class="btnUpload" name="addImg" value="" required>
                   </form>
-                  <form action="">
+                  <form action="script_php/delete_img.php" method="POST" enctype="multipart/form-data">
                   <label class="uploadFile">
                     <input type="submit" class="btnUpload" name="deleteImg" value="" required>
                     Supprimer l'image

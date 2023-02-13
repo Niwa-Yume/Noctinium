@@ -1,6 +1,30 @@
 <?php
     require './script_php/database-connection.php';
-    include './script_php/sessions.php';
+    require './script_php/sessions.php';
+
+    if($logged_in == true){
+      $today = date('Y-m-d H:i:s');
+      $test_param['user_id'] = $_SESSION['user_id'];
+      $test_param['today'] = $today;
+      $test_num_event = "SELECT event_id FROM events WHERE event_user_id = :user_id AND event_datetime > :today;";
+      $test_num_event_user = $pdo->prepare($test_num_event);
+      $test_num_event_user->execute($test_param);
+      if($_SESSION['user_typesubscription'] == 1){
+        if($test_num_event_user->rowCount() >= 4){
+          header('Location: eventlist.php?error=1&nbevent=1');
+        }
+      }elseif($_SESSION['user_typesubscription'] == 2){
+        if($test_num_event_user->rowCount() >= 8){
+          header('Location: eventlist.php?error=1&nbevent=1');
+        }
+      }elseif($_SESSION['user_typesubscription'] == 3){
+        if($test_num_event_user->rowCount() >= 16){
+          header('Location: eventlist.php?error=1&nbevent=1');
+        }
+      }
+    }else{
+      header('Location: connexion.php');
+    }
 ?>
 <html>
 <head>
@@ -9,6 +33,9 @@
     <link rel="stylesheet" href="asset/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="icon" href="image/logo_noctinium_16x16.png">
+    <link rel="stylesheet" href="asset/easy-autocomplete.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="asset/jquery.easy-autocomplete.min.js"></script> 
   </head>
 <body>
     <header>
@@ -57,6 +84,16 @@
                 echo ('<div id="error" class="errorCont"><div id="errorMessage" class="errorMessage"><h1>Erreur</h1><br>Vous ne pouvez pas révéler la date de l\'évènement après celui-ci.<br><button onclick="closeError()">Continuer</button></div></div>');
               }
             }
+            if(isset($_GET['music'])){
+              if($_GET['music'] == 1){
+                echo ('<div id="error" class="errorCont"><div id="errorMessage" class="errorMessage"><h1>Erreur</h1><br>Veuillez sélectionner un type de musique.<br><button onclick="closeError()">Continuer</button></div></div>');
+              }
+            }
+            if(isset($_GET['type'])){
+              if($_GET['type'] == 1){
+                echo ('<div id="error" class="errorCont"><div id="errorMessage" class="errorMessage"><h1>Erreur</h1><br>Veuillez sélectionner un type d\'évènement.<br><button onclick="closeError()">Continuer</button></div></div>');
+              }
+            }
           }
         }
       ?>
@@ -85,7 +122,7 @@
 
             <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="text" class="form-control insc-form" id="adresse" placeholder="ADRESSE (Format : N° Rue, Ville)" name="adresse_event" value="" required>
+                  <input type="text" class="form-control insc-form" id="adresse" placeholder="ADRESSE (Format : Rue N°, Ville)" name="adresse_event" value="" required>
                 </div>
               </div>
               <div class="form-group-insc">
@@ -182,7 +219,7 @@
             <div class="form-group-insc">
                 <div class="col-sm-15">
                   <input type="checkbox" required class="insc-form-checkbox" id="termes-conditions" name="conditions" value="accept"/>
-                  <label class="insc-form-checkbox-txt" for="termes-conditions">J'ai lu et j'accepte les <a href="" class="underline">termes et conditions d'utilisation</a> de G-Project</label>
+                  <label class="insc-form-checkbox-txt" for="termes-conditions">J'ai lu et j'accepte les <a href="asset/conditions.pdf" target="_blank" class="underline">termes et conditions d'utilisation</a> de Noctinium</label>
                 </div>
               </div>
             
@@ -247,5 +284,15 @@
     var errorMessage = document.getElementById("errorMessage");
     error.classList.toggle("hidden");
   }; 
+</script>
+<script language="javascript">
+var options = {
+    url: function(phrase) {
+        return "https://ge.ch/teradressews_public/v1/rest/search?searchText=" + phrase;
+    },
+    getValue: "label"
+};
+
+$("#adresse").easyAutocomplete(options);
 </script>
 </html>

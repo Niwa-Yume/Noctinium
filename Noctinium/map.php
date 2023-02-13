@@ -1,6 +1,6 @@
 <?php
     require './script_php/database-connection.php';
-    include './script_php/sessions.php';
+    require './script_php/sessions.php';
 ?>
 <html>
     <head>
@@ -47,13 +47,13 @@
 
                 $sql = "SELECT * FROM events WHERE event_id = '". $event_id ."';";
         
-                $statement = mysqli_query($mysqli, $sql);
-                $event = mysqli_fetch_array($statement);
+                $statement = $pdo->query($sql);
+                $event = $statement->fetch();
 
                 $sql3 = "SELECT imageevent_url FROM imageevent WHERE imageevent_id = '". $event['event_imageevent_id'] ."';";
 
-                $statement3 = mysqli_query($mysqli, $sql3);
-                $event_image = mysqli_fetch_array($statement3);
+                $statement3 = $pdo->query($sql3);
+                $event_image = $statement3->fetch();
               }
               $address = $event['event_location'];
 
@@ -96,7 +96,12 @@
                      maxZoom: 19,
                      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                      }).addTo(map);
-                
+                    var pointeurMaison = L.icon({
+                        iconUrl: 'image/pointeurmaison-min.png',
+                        iconSize:     [49.1, 80], // size of the icon
+                        iconAnchor:   [24, 78], // point of the icon which will correspond to marker's location
+                        popupAnchor:  [1, -75]
+                    });
                     var eventsPointeur = {
                         '<?php echo ("<a href=\"event.php?event=". $event_id ."\"><div class=\"popup-container\"><h1 class=\"titleEvent\">".$event['event_title'] ."</h1><br><img class=\"imgMap\" src=\"". $event_image['imageevent_url'] ."\"></div></a>")?>':            {"lat":<?php echo ($lat)?>      ,   "lon":<?php echo ($lon)?>}
                     };
@@ -104,7 +109,7 @@
                     for(lieu in eventsPointeur){
                 // On va mettre un pointeur sur une des zone de la map selon des coordonéees GPS
                 // Une pop va apparaitre sur le pointeur en mode pop up
-                var marker = L.marker([eventsPointeur[lieu].lat, eventsPointeur[lieu].lon])
+                var marker = L.marker([eventsPointeur[lieu].lat, eventsPointeur[lieu].lon],{icon: pointeurMaison})
                 .addTo(map); 
                 marker.bindPopup(lieu)
             }
