@@ -1,6 +1,9 @@
 <?php
     require './script_php/database-connection.php';
     require './script_php/sessions.php';
+    if($logged_in){
+      header('Location: ../compte.php');
+    }
 ?>
 <html>
 <head>

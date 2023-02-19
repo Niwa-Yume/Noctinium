@@ -48,7 +48,7 @@
               <a class="openFiltre" onclick="filtreMenu()">Filtres &#9776;</a>
             </div>
             <div class="searchBarCont">
-              <form class="searchBar">
+              <form class="searchBar" action="script/search.php">
                 <input type="text" class="search insc-form" id="search" placeholder="RECHERCHE ..." name="search" value="">
                 <button class="searchBtn" id="searchBtn" type="submit"><i class="fa fa-search"></i></button>
               </form>
@@ -92,7 +92,7 @@
         <div id="main" class="main-f">
           <div id="mySidenav" class="sidenav">
             <h2>Filtres</h2>
-            <form action="">
+            <form action="script_php/filtres.php">
               <h3>Musique:</h3>
               <div class="typeCont">
                 <select name="musique" id="musique" class="form-control">
@@ -135,7 +135,7 @@
               </div>
               <h3>Organisateurs:</h3>
               <div class="typeCont">
-                <select name="type" id="type" class="form-control">
+                <select name="orga" id="type" class="form-control">
                     <option value="">--Veuillez choisir un type d'organisateur--</option>
                       <option value="1">Particuliers</option>
                       <option value="2">Associations</option>
@@ -144,68 +144,126 @@
               </div>
               <h3>Heure de début:</h3>
               <div class="typeCont">
-                <input type="radio" id="HeureDebut" name="ordrecroissant"><label for="HeureDebut"> Ordre croissant</label><br>
-                <input type="radio" id="HeureFin" name="ordrecroissant"><label for="HeureFin"> Ordre décroissant</label><br>
+                <input type="radio" id="HeureDebut" name="ordre" value="1"><label for="HeureDebut"> Ordre croissant</label><br>
+                <input type="radio" id="HeureFin" name="ordre" value="2"><label for="HeureFin"> Ordre décroissant</label><br>
               </div>
               <input class="filtreBtn" type="submit" value="FILTRER">
             </form>
           </div>
         <div class="eventCont">
         <?php
-          $sql = "SELECT event_id, event_title, event_datetime, event_description, event_music, event_type, event_imageevent_id FROM events ORDER BY event_creation";
-
-          $statement = $pdo->query($sql);
-          if($statement->rowCount() == 0){
-            echo ('<div class="noEvent">Aucun évènement disponible.</div>');
+        $today = date('Y-m-d H:i:s', strtotime(' -6 hours'));
+        $event_param['today'] = $today;
+        if(isset($_GET['filtre'])){
+          if($_GET['filtre'] == 1){
+            $sql = "SELECT event_id, event_title, event_datetime, event_description, event_music, event_type, event_imageevent_id FROM events WHERE ";
+            if(isset($_GET['date'])){
+              if($_GET['date'] >= $today){
+                $event_param['today'] = $_GET['date'];
+                $sql .= " event_datetime = :today";
+              }else{
+                $sql .= " event_datetime > :today";
+              }
+            }else{
+              $sql .= " event_datetime > :today";
+            }
+            if(isset($_GET['music'])){
+              if(1 <= $_GET['music'] and $_GET['music'] <= 14){
+                $sql .= " AND event_music = ".$_GET['music'];
+              }
+            }
+            if(isset($_GET['type'])){
+              if(1 <= $_GET['type'] and $_GET['type'] <= 6){
+                $sql .= " AND event_type = ".$_GET['type'];
+              }
+            }
+            if(isset($_GET['orga'])){
+              if(1 <= $_GET['orga'] and $_GET['orga'] <= 3){
+                $sql .= " AND event_user_type = ".$_GET['orga'];
+              }
+            }
+            if(isset($_GET['ordre'])){
+              if($_GET['ordre'] == 1){
+                $sql .= " ORDER BY event_datetime ASC;";
+              }elseif($_GET['ordre'] == 2){
+                $sql .= " ORDER BY event_datetime DESC;";
+              }
+            }else{
+              $sql .= " ORDER BY event_datetime ASC;";
+            }
           }else{
-            while($event = $statement->fetch()){
-              $event_text = str_split($event['event_description'], 350);
-              $event_desc = $event_text[0];
-              /* $event_descri = str_replace("<"," ", $event_descr);
-              $event_desc = str_replace(">"," ", $event_descri); */
+            $sql = "SELECT event_id, event_title, event_datetime, event_description, event_music, event_type, event_imageevent_id FROM events WHERE event_datetime > :today AND event_private = 0 ORDER BY event_datetime ASC";
+          }
+        }elseif(isset($_GET['search'])){
+          $event_param['search'] = urldecode($_GET['search']);
+          $event_param['masked'] = $today;
+          $sql = "SELECT event_id, event_title, event_datetime, event_description, event_music, event_type, event_imageevent_id FROM events WHERE event_datetime > :today AND event_private = 0 AND event_title LIKE :search OR event_description LIKE :search OR event_location LIKE :search ORDER BY event_datetime ASC";
+        }else{
+          $sql = "SELECT event_id, event_title, event_datetime, event_description, event_music, event_type, event_imageevent_id FROM events WHERE event_datetime > :today AND event_private = 0 ORDER BY event_datetime ASC";
+        }
+          $statement = $pdo->prepare($sql);
+          $statement->execute($event_param);
+          if($statement->rowCount() <= 0){
+            echo ('<div class="noEvent" style="text-align: center;font-size: 1.5rem;">Aucun évènement disponible.</div>');
+          }else{
+            $event = $statement->fetchAll();
+            if(isset($_GET['page'])){
+              if($_GET['page'] > 0){
+                $page = $_GET['page'];
+              }else{
+                $page = 1;
+              }
+            }else{
+              $page = 1;
+            }
+            for($i=(($page-1)*10); $i<($page*10) && $i < $statement->rowCount();$i++){
+              $event_text = str_split($event[$i]['event_description'], 350);
+              $event_descr = $event_text[0];
+              $event_descri = str_replace("<"," ", $event_descr);
+              $event_desc = str_replace(">"," ", $event_descri);
               if(strlen($event_desc) == 350){
                 $event_desc .= "[...]";
               }
-              if($event['event_music'] == 1){
+              if($event[$i]['event_music'] == 1){
                 $event_music = "Techno";
-              }elseif($event['event_music'] == 2){
+              }elseif($event[$i]['event_music'] == 2){
                 $event_music = "House";
-              }elseif($event['event_music'] == 3){
+              }elseif($event[$i]['event_music'] == 3){
                 $event_music = "Électro";
-              }elseif($event['event_music'] == 4){
+              }elseif($event[$i]['event_music'] == 4){
                 $event_music = "Rap";
-              }elseif($event['event_music'] == 5){
+              }elseif($event[$i]['event_music'] == 5){
                 $event_music = "Latino";
-              }elseif($event['event_music'] == 6){
+              }elseif($event[$i]['event_music'] == 6){
                 $event_music = "Années 80";
-              }elseif($event['event_music'] == 7){
+              }elseif($event[$i]['event_music'] == 7){
                 $event_music = "Années 90";
-              }elseif($event['event_music'] == 8){
+              }elseif($event[$i]['event_music'] == 8){
                 $event_music = "Années 2000";
-              }elseif($event['event_music'] == 9){
+              }elseif($event[$i]['event_music'] == 9){
                 $event_music = "Punk";
-              }elseif($event['event_music'] == 10){
+              }elseif($event[$i]['event_music'] == 10){
                 $event_music = "Rock";
-              }elseif($event['event_music'] == 11){
+              }elseif($event[$i]['event_music'] == 11){
                 $event_music = "Jazz";
-              }elseif($event['event_music'] == 12){
+              }elseif($event[$i]['event_music'] == 12){
                 $event_music = "Blues";
-              }elseif($event['event_music'] == 13){
+              }elseif($event[$i]['event_music'] == 13){
                 $event_music = "All Styles";
-              }elseif($event['event_music'] == 14){
+              }elseif($event[$i]['event_music'] == 14){
                 $event_music = "Autres";
               }
-              if($event['event_type'] == 1){
+              if($event[$i]['event_type'] == 1){
                 $event_type = "Before";
-              }elseif($event['event_type'] == 2){
+              }elseif($event[$i]['event_type'] == 2){
                 $event_type = "After";
-              }elseif($event['event_type'] == 3){
+              }elseif($event[$i]['event_type'] == 3){
                 $event_type = "Soirée";
-              }elseif($event['event_type'] == 4){
+              }elseif($event[$i]['event_type'] == 4){
                 $event_type = "Concert/Showcase";
-              }elseif($event['event_type'] == 5){
+              }elseif($event[$i]['event_type'] == 5){
                 $event_type = "Open Mic/Karaoké";
-              }elseif($event['event_type'] == 6){
+              }elseif($event[$i]['event_type'] == 6){
                 $event_type = "Autres";
               }
               echo ('<div class="event-presentation">
@@ -214,19 +272,29 @@
                     </div>
                     <div class="eventInfo">
                     <div class="eventBottom">
-                    <div class="eventDate">'.$event['event_datetime'].'</div>
+                    <div class="eventDate">'.$event[$i]['event_datetime'].'</div>
                     <div class="musiqueEvent">'.$event_music.'</div>
                     </div>
-                    <div class="eventTitle">'.$event['event_title'].'</div>
+                    <div class="eventTitle">'.$event[$i]['event_title'].'</div>
                     <div class="eventText">'.$event_desc.'</div>
                     <div class="eventBottom">
                     <div>
-                    <a href="event.php?event='.$event['event_id'].'"><button class="btnEvent">Voir l\'évènement</button></a>
+                    <a href="event.php?event='.$event[$i]['event_id'].'"><button class="btnEvent">Voir l\'évènement</button></a>
                     </div>
                     <div class="typeEvent">'.$event_type.'</div>
                     </div>
                     </div>
                     </div>');
+            }
+            if($statement->rowCount()>10){
+              if($page == 1){
+                echo("<div class=\"gridComm\"><div></div><div class=\"pageNum\">Page ".$page."</div><a class=\"pageBtn\" href=\"eventlist.php?page=". $page+1 ."\" >&rarr;</a></div>");
+              }elseif($page > 1 && $i < $statement->rowCount()){
+                echo("<div class=\"gridComm\"><a class=\"pageBtn\" href=\"eventlist.php?page=". $page-1 ."\" >&larr;</a><div class=\"pageNum\">Page ".$page."</div>
+                <a class=\"pageBtn\" href=\"eventlist.php?page=". $page+1 ."\" >&rarr;</a></div>");
+              }else{
+                echo("<div class=\"gridComm\"><a class=\"pageBtn\" href=\"eventlist.php?page=". $page-1 ."\" >&larr;</a><div class=\"pageNum\">Page ".$page."</div><div></div></div>");
+              }
             }
           }
         ?>
@@ -263,6 +331,23 @@
         search.classList.toggle("search-M");
         searchBtn.classList.toggle("searchBtn");
         searchBtn.classList.toggle("searchBtn-M");
+      }else{
+        let retour = document.getElementById("btnretour");
+
+        window.onscroll = function() {scroll()};
+
+        function scroll() {
+          if (document.body.scrollTop > 475 || document.documentElement.scrollTop > 475) {
+            retour.style.display = "block";
+          } else {
+            retour.style.display = "none";
+          }
+        }
+
+        function topScroll() {
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+        }
       }
       var verif = false
       var menu = document.getElementById("mySidenav")
@@ -286,23 +371,6 @@
             main.classList.toggle("main")
           }
         }
-      }
-
-      let retour = document.getElementById("btnretour");
-
-      window.onscroll = function() {scroll()};
-
-      function scroll() {
-        if (document.body.scrollTop > 475 || document.documentElement.scrollTop > 475) {
-          retour.style.display = "block";
-        } else {
-          retour.style.display = "none";
-        }
-      }
-
-      function topScroll() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
       }
     </script>
     </body>

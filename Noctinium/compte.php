@@ -137,16 +137,34 @@
         <section class="subscribe">
           <div>
             <h1 class="myeventTitle gradient-text">Mes Évènements</h1>
-            <a href="event.php"><div class="myeventCont">
-              <div>
-                <h2>Mon Event</h2>
-                <div>jj.mm.aaaa</div>
-              </div>
-              <button class="eventParam">Modifier</button>
-              <form action="">
-                <button class="eventParam">Supprimer</button>
-              </form>
-            </div></a>
+            <?php
+              $today = date('Y-m-d H:i:s', strtotime(' -6 hours'));
+              $event_param['today'] = $today;
+              $sql = "SELECT event_id, event_title, event_datetime FROM events WHERE event_user_id = ". $_SESSION['user_id'] ." AND event_datetime > :today ORDER BY event_creation DESC;";
+              $statement = $pdo->prepare($sql);
+              $statement->execute($event_param);
+              if($statement->rowCount() > 0){
+                while($event = $statement->fetch()){
+                  echo ('
+                  <a href="event.php?event='. $event['event_id'] .'" class="myeventCont">
+                    <div>
+                      <h2>'. $event['event_title'] .'</h2>
+                      <div>'. $event['event_datetime'] .'</div>
+                    </div>
+                    <form method="POST" action="script_php/modify_event_redirect.php?event='. $event['event_id'] .'">
+                      <button class="eventParam">Modifier</button>
+                    </form>
+                    <form method="POST" action="script_php/delete_event.php?event='. $event['event_id'] .'">
+                      <button class="eventParam">Supprimer</button>
+                    </form>
+                  </a>');
+                }
+              }else{
+                echo ('<div style="margin: auto;" class="container">
+                  <h1>Vous n\'avez créé aucun évènement.</h1>
+                </div>');
+              }
+            ?>
           </div>
         </section>
         <?php

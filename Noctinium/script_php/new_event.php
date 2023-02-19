@@ -4,10 +4,10 @@
 
     date_default_timezone_set('Europe/Zurich');
 
-	$sql = "INSERT INTO events (event_title, event_datetime, event_location, event_description, event_music,
-     event_type, event_private, event_maskedlocation, event_price, event_creation, event_user_id, event_imageevent_id)
-				VALUES (:event_title, :event_datetime, :event_location, :event_description, :event_music,
-     :event_type, :event_private, :event_maskedlocation, :event_price, :event_creation, :event_user_id, :event_imageevent_id)";
+	$sql = "INSERT INTO events (event_title, event_datetime, event_location, event_lat, event_lon, event_description, event_music,
+     event_type, event_private, event_maskedlocation, event_price, event_creation, event_user_type, event_user_id, event_imageevent_id)
+				VALUES (:event_title, :event_datetime, :event_location, :event_lat, :event_lon, :event_description, :event_music,
+     :event_type, :event_private, :event_maskedlocation, :event_price, :event_creation, :event_user_type, :event_user_id, :event_imageevent_id)";
 	
     if($_SESSION['logged_in'] != true){
 		header('Location: ../connexion.php');
@@ -64,6 +64,12 @@
                     }
                 }
                 if($testmasked){
+                    if($_POST['musique'] == "" or $_POST['musique'] < 1 or $_POST['musique'] > 14){
+                        $_POST['musique'] = 14;
+                    }
+                    if($_POST['type'] == "" or $_POST['type'] < 1 or $_POST['type'] > 6){
+                        $_POST['type'] = 6;
+                    }
                     $event['event_title'] = $_POST['nom_event'];
                     $event['event_datetime'] = $_POST['date_event'];
                     $event['event_location'] = $_POST['adresse_event'];
@@ -72,6 +78,9 @@
                     $event['event_type'] = $_POST['type'];
                     $event['event_user_id'] = $_SESSION['user_id'];
                     $event['event_creation'] = date('Y-m-d H:i:s');
+                    $event['event_user_type'] = $_SESSION['user_type'];
+                    $event['event_lat'] = $lat;
+                    $event['event_lon'] = $lon;
                     if ($_POST['date_event_mask'] == "") {
                         $event['event_maskedlocation'] = date('Y-m-d H:i:s');
                     }else{

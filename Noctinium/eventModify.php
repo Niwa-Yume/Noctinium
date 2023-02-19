@@ -2,33 +2,31 @@
     require './script_php/database-connection.php';
     require './script_php/sessions.php';
 
-    if($logged_in == true){
-      $today = date('Y-m-d H:i:s');
-      $test_param['user_id'] = $_SESSION['user_id'];
-      $test_param['today'] = $today;
-      $test_num_event = "SELECT event_id FROM events WHERE event_user_id = :user_id AND event_datetime > :today;";
-      $test_num_event_user = $pdo->prepare($test_num_event);
-      $test_num_event_user->execute($test_param);
-      if($_SESSION['user_typesubscription'] == 1){
-        if($test_num_event_user->rowCount() >= 4){
-          header('Location: eventlist.php?error=1&nbevent=1');
-        }
-      }elseif($_SESSION['user_typesubscription'] == 2){
-        if($test_num_event_user->rowCount() >= 8){
-          header('Location: eventlist.php?error=1&nbevent=1');
-        }
-      }elseif($_SESSION['user_typesubscription'] == 3){
-        if($test_num_event_user->rowCount() >= 16){
-          header('Location: eventlist.php?error=1&nbevent=1');
-        }
+    if(!$logged_in){
+      header('Location: connexion.php');
+    }
+
+    if(isset($_GET['event'])){
+      $test = "SELECT event_user_id FROM events WHERE event_id = ". $_GET['event'] .";";
+      $statement_test = $pdo->query($test);
+      $id_test = $statement_test->fetch();
+      if($id_test['event_user_id'] == $_SESSION['user_id']){
+        $sql = "SELECT * FROM events WHERE event_id = ". $_GET['event'] .";";
+        $statement = $pdo->query($sql);
+        $event = $statement->fetch();
+        $sql2 = "SELECT imageevent_url FROM imageevent WHERE imageevent_id = ". $event['event_imageevent_id'] .";";
+        $statement2 = $pdo->query($sql2);
+        $image = $statement2->fetch();
+      }else{
+        header('Location: ../compte.php');
       }
     }else{
-      header('Location: connexion.php');
+      header('Location: ../compte.php');
     }
 ?>
 <html>
 <head>
-    <title>Ajout d'évènement</title>
+    <title>Modifier votre évènement</title>
 	  <meta charset="utf-8" />
     <link rel="stylesheet" href="asset/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -61,7 +59,7 @@
     </header>
     <section class="content content-small">
         <div class="container">
-            <h1 class="gradient-text">Ajout d'évènements</h1>
+            <h1 class="gradient-text">Modification d'évènements</h1>
         </div>
     </section>
     <hr class="gradient">
@@ -100,29 +98,29 @@
     <div class="login">
         <div class="heading">
             <div class="insc-cont">
-          <form id="contact-form" class="insc-cont-1" role="form" method="POST" action="script_php/new_event.php" enctype="multipart/form-data">
+          <form id="contact-form" class="insc-cont-1" role="form" method="POST" action="script_php/modify_event.php?event=<?php echo $event['event_id'] ?>" enctype="multipart/form-data">
        
             <div class="form-group-insc">
               <div class="col-sm-12">
-                <input type="text" class="form-control insc-form" id="name" placeholder="NOM DE L'ÉVÈNEMENT" name="nom_event" value="" required autofocus>
+                <input type="text" class="form-control insc-form" id="name" placeholder="NOM DE L'ÉVÈNEMENT" name="nom_event" value="<?php echo $event['event_title']; ?>" required autofocus>
               </div>
             </div>
             
             <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="datetime-local" class="form-control insc-form" id="date_event" name="date_event" value="" required>
+                  <input type="datetime-local" class="form-control insc-form" id="date_event" name="date_event" value="<?php echo $event['event_datetime']; ?>" required>
                 </div>
               </div>
             
               <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <textarea class="text-control" id="description" rows="10" placeholder="DESCRIPTION DE L'ÉVÈNEMENT (1000 caractères maximum)" name="description_event" maxlength="1000" required></textarea>
+                  <textarea class="text-control" id="description" rows="10" placeholder="DESCRIPTION DE L'ÉVÈNEMENT (1000 caractères maximum)" name="description_event" maxlength="1000" required><?php echo $event['event_description']; ?></textarea>
                 </div>
               </div>
 
             <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="text" class="form-control insc-form" id="adresse" placeholder="ADRESSE (Format : Rue N°, Ville)" name="adresse_event" value="" required>
+                  <input type="text" class="form-control insc-form" id="adresse" placeholder="ADRESSE (Format : Rue N°, Ville)" name="adresse_event" value="<?php echo $event['event_location']; ?>" required>
                 </div>
               </div>
               <div class="form-group-insc">
@@ -136,22 +134,22 @@
                     <label class="insc-form-checkbox-txt-date" for="Rap">Rap</label><br>
                     <input type="radio" id="AllStyles" name="musique" value="AllStyles" required/>
                     <label class="insc-form-checkbox-txt-date" for="AllStyles ">All Styles</label><br> -->
-                    <select name="musique" id="musique" class="form-control">
+                    <select name="musique" id="musique" class="form-control" required>
                       <option value="">--Veuillez choisir un style de musique--</option>
-                      <option value="1">Techno</option>
-                      <option value="2">House</option>
-                      <option value="3">Électro</option>
-                      <option value="4">Rap</option>
-                      <option value="5">Latino</option>
-                      <option value="6">Années 80</option>
-                      <option value="7">Années 90</option>
-                      <option value="8">Années 2000</option>
-                      <option value="9">Punk</option>
-                      <option value="10">Rock</option>
-                      <option value="11">Jazz</option>
-                      <option value="12">Blues</option>
-                      <option value="13">All Styles</option>
-                      <option value="14">Autres</option>
+                      <option value="1"<?php if($event['event_music'] == 1){echo ("selected");} ?>>Techno</option>
+                      <option value="2"<?php if($event['event_music'] == 2){echo ("selected");} ?>>House</option>
+                      <option value="3"<?php if($event['event_music'] == 3){echo ("selected");} ?>>Électro</option>
+                      <option value="4"<?php if($event['event_music'] == 4){echo ("selected");} ?>>Rap</option>
+                      <option value="5"<?php if($event['event_music'] == 5){echo ("selected");} ?>>Latino</option>
+                      <option value="6"<?php if($event['event_music'] == 6){echo ("selected");} ?>>Années 80</option>
+                      <option value="7"<?php if($event['event_music'] == 7){echo ("selected");} ?>>Années 90</option>
+                      <option value="8"<?php if($event['event_music'] == 8){echo ("selected");} ?>>Années 2000</option>
+                      <option value="9"<?php if($event['event_music'] == 9){echo ("selected");} ?>>Punk</option>
+                      <option value="10"<?php if($event['event_music'] == 10){echo ("selected");} ?>>Rock</option>
+                      <option value="11"<?php if($event['event_music'] == 11){echo ("selected");} ?>>Jazz</option>
+                      <option value="12"<?php if($event['event_music'] == 12){echo ("selected");} ?>>Blues</option>
+                      <option value="13"<?php if($event['event_music'] == 13){echo ("selected");} ?>>All Styles</option>
+                      <option value="14"<?php if($event['event_music'] == 14){echo ("selected");} ?>>Autres</option>
                     </select>
                   </div>
                 </div>
@@ -165,14 +163,14 @@
                     <label class="insc-form-checkbox-txt-date" for="Soiree" required>Soirée</label><br>
                     <input type="radio" id="After" name="type" value="After"/>
                     <label class="insc-form-checkbox-txt-date" for="After" required>After</label><br> -->
-                    <select name="type" id="type" class="form-control">
+                    <select name="type" id="type" class="form-control" required>
                     <option value="">--Veuillez choisir un type d'évènement--</option>
-                      <option value="1">Before</option>
-                      <option value="2">After</option>
-                      <option value="3">Soirée</option>
-                      <option value="4">Concert/Showcase</option>
-                      <option value="5">Open Mic/Karaoké</option>
-                      <option value="6">Autres</option>
+                      <option value="1"<?php if($event['event_type'] == 1){echo ("selected");} ?>>Before</option>
+                      <option value="2"<?php if($event['event_type'] == 2){echo ("selected");} ?>>After</option>
+                      <option value="3"<?php if($event['event_type'] == 3){echo ("selected");} ?>>Soirée</option>
+                      <option value="4"<?php if($event['event_type'] == 4){echo ("selected");} ?>>Concert/Showcase</option>
+                      <option value="5"<?php if($event['event_type'] == 5){echo ("selected");} ?>>Open Mic/Karaoké</option>
+                      <option value="6"<?php if($event['event_type'] == 6){echo ("selected");} ?>>Autres</option>
                     </select>
                   </div>
                 </div>
@@ -181,15 +179,15 @@
               <div class="col-sm-12">
                 <div class="chBox">
                   <div class="col-sm-25">
-                    <input type="checkbox" class="insc-form-checkbox-date" id="prive" name="private" value="prive"/>
+                    <input type="checkbox" class="insc-form-checkbox-date" id="prive" name="private" value="prive"<?php if($event['event_private'] == 1){echo ("checked");} ?>/>
                     <label class="insc-form-checkbox-txt-date" id="txtprive" for="prive">Soirée privée</label><br>
                   </div>
                   <div class="col-sm-25">
-                    <input type="checkbox" class="insc-form-checkbox-date" id="date-mask" name="date-mask" value="date-mask" onclick="datemask()"/>
+                    <input type="checkbox" class="insc-form-checkbox-date" id="date-mask" name="date-mask" value="date-mask" onclick="datemask()"<?php if($event['event_maskedlocation'] != $event['event_creation']){echo ("checked");} ?>/>
                     <label class="insc-form-checkbox-txt-date" id="txtdate" for="date-mask">Adresse masquée</label><br>
                   </div>
                   <div>
-                    <input type="checkbox" class="insc-form-checkbox-date" id="payant" name="payant" value="payant" onclick="privatiser()"/>
+                    <input type="checkbox" class="insc-form-checkbox-date" id="payant" name="payant" value="payant" onclick="privatiser()"<?php if($event['event_price'] != 0){echo ("checked");} ?>/>
                     <label class="insc-form-checkbox-txt-date" id="txtpayant" for="payant">Payant</label><br>
                   </div>
                   </div>
@@ -206,13 +204,13 @@
 
               <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="datetime-local" class="form-control insc-form hidden" id="adresse_cachee" name="date_event_mask" value="">
+                  <input type="datetime-local" class="form-control insc-form <?php if($event['event_maskedlocation'] == $event['event_creation']){echo ("hidden");} ?>" id="adresse_cachee" name="date_event_mask" value="<?php if($event['event_maskedlocation'] != $event['event_creation']){echo $event['event_maskedlocation'];} ?>">
                 </div>
               </div>
 
               <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="number" class="form-control insc-form hidden" id="prix" placeholder="PRIX" name="prix_event" value="" min="0">
+                  <input type="number" class="form-control insc-form <?php if($event['event_price'] == 0){echo ("hidden");} ?>" id="prix" placeholder="PRIX" name="prix_event" value="<?php if($event['event_price'] != 0){echo $event['event_price'];} ?>" min="0">
                 </div>
               </div>
 

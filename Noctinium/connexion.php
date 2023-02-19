@@ -1,6 +1,9 @@
 <?php
     require './script_php/database-connection.php';
     require './script_php/sessions.php';
+    if($logged_in){
+      header('Location: ../compte.php');
+    }
 ?>
 <html>
 <head>
@@ -39,6 +42,29 @@
     </section>
     <hr class="gradient">
     <section class="subscribe">
+    <?php
+        if(isset($_GET['error'])){
+          if($_GET['error'] == 1){
+            if(isset($_GET['email'])){
+              if($_GET['email'] == 1){
+                echo ('<div id="error" class="errorCont"><div id="errorMessage" class="errorMessage"><h1>Erreur</h1><br>Le champ email doit être rempli.<br><button onclick="closeError()">Continuer</button></div></div>');
+              }
+            }
+            if(isset($_GET['password'])){
+              if($_GET['password'] == 1){
+                echo ('<div id="error" class="errorCont"><div id="errorMessage" class="errorMessage"><h1>Erreur</h1><br>Le champ mot de passe doit être rempli.<br><button onclick="closeError()">Continuer</button></div></div>');
+              }elseif($_GET['password'] == 2){
+                echo ('<div id="error" class="errorCont"><div id="errorMessage" class="errorMessage"><h1>Erreur</h1><br>Le mot de passe est erroné.<br><button onclick="closeError()">Continuer</button></div></div>');
+              }
+            }
+            if(isset($_GET['account'])){
+              if($_GET['account'] == 1){
+                echo ('<div id="error" class="errorCont"><div id="errorMessage" class="errorMessage"><h1>Erreur</h1><br>Le compte recherché n\'existe pas.<br><button onclick="closeError()">Continuer</button></div></div>');
+              }
+            }
+          }
+        }
+      ?>
     <div class="login">
         <div class="heading">
             <div class="insc-cont">
@@ -90,5 +116,12 @@
     formE.classList.toggle("form-control");
     formE.classList.toggle("form-control-M");
   }
+</script>
+<script>
+  function closeError() {
+    var error = document.getElementById("error");
+    var errorMessage = document.getElementById("errorMessage");
+    error.classList.toggle("hidden");
+  }; 
 </script>
 </html>

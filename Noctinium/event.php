@@ -33,6 +33,7 @@
 				};?></a></li>
           </nav>
         </header>
+        <section class="subscribe">
             <?php
               if (isset($_GET['event'])){
                 $event_id = $_GET['event'];
@@ -41,11 +42,11 @@
         
                 $statement = $pdo->query($sql);
                 if ($statement->rowCount() == 0){
-                  echo ("<section class=\"subscribe\"><div style=\"height: 80%;margin-top: 100px;\" class=\"adresseEvent\"><h1>L'évènement sélectionné n'existe pas.<br><br>Veuillez réessayer.</h1></div></section>");
+                  echo ("<div style=\"height: 80%;margin-top: 100px;\" class=\"adresseEvent\"><h1>L'évènement sélectionné n'existe pas.<br><br>Veuillez réessayer.</h1></div></section>");
                 }else{
                   $event = $statement->fetch();
-                  /* $event_desc = str_replace("<","", $event['event_description']);
-                  $event_description = str_replace(">","", $event_desc); */
+                  $event_desc = str_replace("<"," ", $event['event_description']);
+                  $event_description = str_replace(">"," ", $event_desc);
 
                   $image = "SELECT imageevent_url FROM imageevent WHERE imageevent_id = '". $event['event_imageevent_id'] ."';";
                   $statement2 = $pdo->query($image);
@@ -67,7 +68,7 @@
                     $adresse = $event['event_location'];
                   }
 
-                  echo ("<section class=\"subscribe\">
+                  echo ("
                   <div class=\"eventCont\">
                     <div class=\"returnBtnCont\">
                       <a title=\"Retour\" class=\"returnBtn\" onclick=\"history.back()\">&#60;</a>
@@ -82,42 +83,99 @@
                     </div>
                   </div>
                   <div class=\"blog-slider__content infoCont\">
-                    <div class=\"txtEvent\">". $event['event_description'] ."</div>
+                    <div class=\"txtEvent\">". $event_description ."</div>
                     <a href=\"map.php?event=". $event_id ."\" class=\"btnEvent\">TROUVER L'ÉVENEMENT</a>
                   </div>
                   </div>
-                  </section>
-                  <hr class=\"gradient\">
-                  <section class=\"attends\">
-                      <div class=\"interaction\">
-                        <div class=\"comment-form\">
-                          <!-- Comment Avatar -->
-                          <div >
-                            <img class=\"comment-pp\" src=\"image/david.png\" alt=\"Image de profil\">
-                          </div>
-                      
-                          <form class=\"form\" name=\"form\">
-                            <div class=\"form-row\">
-                              <textarea
-                                        class=\"input\"
-                                        ng-model=\"cmntCtrl.comment.text\"
-                                        placeholder=\"AJOUTER UN COMMENTAIRE\"
-                                        required></textarea>
-                            </div>
-                            <div class=\"form-row\">
-                              <input type=\"submit\" value=\"COMMENTER\">
-                            </div>
-                          </form>
-                          <div class=\"commCont\">
-          
-                          </div>
-                        </div>
-                        
-                      </div>
                   </section>");
+                  if($logged_in){
+                    echo ("<hr class=\"gradient\">
+                      <section class=\"attends\">
+                        <div class=\"interaction\">
+                          <div class=\"comment-form\">
+                            <!-- Comment Avatar -->
+                            <div >
+                              <img class=\"comment-pp\" src=\"". $_SESSION['user_img'] ."\" alt=\"Image de profil\">
+                            </div>
+                        
+                            <form class=\"form\" name=\"form\" method=\"POST\" action=\"script_php/comment_event.php?event=". $event_id ."\">
+                              <div class=\"form-row\">
+                                <textarea
+                                          class=\"input\"
+                                          ng-model=\"cmntCtrl.comment.text\"
+                                          placeholder=\"COMMENTAIRE\"
+                                          name=\"comment\"
+                                          maxlength=\"500\"
+                                          required></textarea>
+                              </div>
+                              <div class=\"form-row\">
+                                <input type=\"submit\" value=\"COMMENTER\">
+                              </div>
+                            </form>
+                            <div class=\"commCont\">");
+                            $comm = "SELECT * FROM commentevent WHERE commentevent_events_id = ". $event_id ." ORDER BY commentevent_date DESC;";
+                            $statement3 = $pdo->query($comm);
+                            $commentaire = $statement3->fetchAll();
+                            if(isset($_GET['page'])){
+                              if($_GET['page'] > 0){
+                                $page = $_GET['page'];
+                              }else{
+                                $page = 1;
+                              }
+                            }else{
+                              $page = 1;
+                            }
+                            for($i=(($page-1)*10); $i<($page*10) && $i < $statement3->rowCount();$i++){
+                              $username = "SELECT user_username FROM user WHERE user_id = ". $commentaire[$i]['commentevent_user_id'] .";";
+                              $statement4 = $pdo->query($username);
+                              if($statement4->rowCount() > 0){
+                                $user = $statement4->fetch();
+                                $user_username = $user['user_username'];
+                              }else{
+                                $user_username = "Utilisateur supprimé";
+                              }
+                              echo ("<div class=\"commentBody\">
+                              <div class=\"commentHeader\">
+                                <a href=\"organisateur.php?organisateur=". $commentaire[$i]['commentevent_user_id'] ."\"><div class=\"commentUser\">
+                                  ". $user_username ."
+                                </div></a>
+                                <div class=\"commentDate\">
+                                  ". $commentaire[$i]['commentevent_date'] ."
+                                </div>
+                              </div>
+                              <div class=\"commentText\">
+                              ". $commentaire[$i]['commentevent_content'] ."
+                              </div>
+                            </div>");
+                            }
+                            if($statement3->rowCount()>10){
+                              if($page == 1){
+                                echo("<div class=\"gridComm\"><div></div><div class=\"pageNum\">Page ".$page."</div><a class=\"pageBtn\" href=\"organisateur.php?organisateur=". $event_id ."&page=". $page+1 ."\" >&rarr;</a></div>");
+                              }elseif($page > 1 && $i < $statement3->rowCount()){
+                                echo("<div class=\"gridComm\"><a class=\"pageBtn\" href=\"organisateur.php?organisateur=". $event_id."&page=". $page-1 ."\" >&larr;</a><div class=\"pageNum\">Page ".$page."</div>
+                                <a class=\"pageBtn\" href=\"organisateur.php?organisateur=". $event_id ."&page=". $page+1 ."\" >&rarr;</a></div>");
+                              }else{
+                                echo("<div class=\"gridComm\"><a class=\"pageBtn\" href=\"organisateur.php?organisateur=". $event_id ."&page=". $page-1 ."\" >&larr;</a><div class=\"pageNum\">Page ".$page."</div><div></div></div>");
+                              }
+                            }
+                    echo ("
+                            </div>
+                          </div>
+                          
+                        </div>
+                      </section>
+                    ");
+                  }else{
+                    echo ("<hr class=\"gradient\">
+                    <section class=\"attends\">
+                    <div style=\"width: 100%;\" class=\"container\">
+                      <h1>Connectez-vous pour commenter.</h1>
+                    </div>
+                    </section>");
+                  }
                 }
               }else{
-                echo ("<section class=\"subscribe\"><div style=\"height: 80%;margin-top: 100px;\" class=\"adresseEvent\"><h1>L'évènement sélectionné n'existe pas.<br><br>Veuillez réessayer.</h1></div></section>");
+                echo ("<div style=\"height: 80%;margin-top: 100px;\" class=\"adresseEvent\"><h1>L'évènement sélectionné n'existe pas.<br><br>Veuillez réessayer.</h1></div></section>");
               }
               
             ?>

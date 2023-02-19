@@ -90,6 +90,8 @@ CREATE TABLE `events`(
   `event_title` VARCHAR(30) NOT NULL,
   `event_datetime` DATETIME NOT NULL,
   `event_location` VARCHAR(50) NOT NULL,
+  `event_lat` VARCHAR(20) NOT NULL,
+  `event_lon` VARCHAR(20) NOT NULL,
   `event_description` VARCHAR(1000) NOT NULL,
   `event_music` INT NOT NULL,
   `event_type` INT NOT NULL,
@@ -97,6 +99,7 @@ CREATE TABLE `events`(
   `event_maskedlocation` DATETIME DEFAULT(NULL) NULL,
   `event_price` DECIMAL DEFAULT(0) NULL,
   `event_creation` DATETIME NOT NULL,
+  `event_user_type` int NOT NULL,
   `event_user_id` INT NOT NULL,
   `event_imageevent_id` INT NOT NULL,
   PRIMARY KEY(`event_id`)

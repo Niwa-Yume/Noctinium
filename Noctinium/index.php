@@ -10,13 +10,15 @@
           <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
           <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
         <meta charset="utf-8" />
+        <meta name="description" content="Page d'accueil du site Noctinium sur laquelle vous retrouverez notre map affichant les évènements du jours.">
         <title>Accueil</title>
         <link rel="icon" href="image/logo_noctinium_16x16.png">
     </head>
     <body>
         <header>
-            <a href="index.php"><img class="logo" id="logo" src="image/logo_noctinium.png"></a>
+            <a href="index.php"><img class="logo" id="logo" src="image/logo_noctinium.webp"></a>
             <nav>
+                <ul>
                 <li class="active"><a href="index.php">Accueil</a></li>
                 <li><a href="eventlist.php">Évènements</a></li>
                 <li><a href="contact.php">Contact</a></li>
@@ -33,6 +35,7 @@
 				}else{
 					echo("Connexion");
 				};?></a></li>
+                </ul>
             </nav>
         </header>
         <section class="main">
@@ -67,34 +70,14 @@
         <hr class="gradient" id="ancre">
         <?php
                 $today = date('Y-m-d H:i:s');
-                $today2 = date('Y-m-d H:i:s');
+                $today2 = date('Y-m-d H:i:s', strtotime(' -6 hours'));;
                 $event_param['today'] = $today;
                 $event_param['today2'] = $today2;
-                $sql = "SELECT event_id, event_title, event_location, event_description FROM events WHERE DATEDIFF(event_datetime, :today) < 1 AND event_datetime > :today2;";
+                $sql = "SELECT event_id, event_title, event_location, event_lat, event_lon, event_description FROM events WHERE DATEDIFF(event_datetime, :today) < 1 AND event_datetime > :today2;";
                 $statement = $pdo->prepare($sql);
                 $statement->execute($event_param);
             // Envoi de la requête à Nominatim
             //$url = "https://nominatim.openstreetmap.org/search?q=".urlencode($address)."&limit=1&format=json";
-            
-            function geocode($address){
-                $addresse = urlencode($address);
-            
-                $url = "https://nominatim.openstreetmap.org/?addressdetails=1&q=$addresse&format=json&limit=1";
-            
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_URL,$url);
-                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                curl_setopt($ch, CURLOPT_HEADER, false);
-                curl_setopt($ch, CURLOPT_REFERER, $url);
-                curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36");
-            
-                $result = curl_exec($ch);
-            
-                curl_close($ch);
-            
-                return json_decode($result, true);
-            }
         ?>
         <section class="subscribe">
             <h1 class="gradient-text titleMap">Évènements du jour</h1>
@@ -131,14 +114,6 @@
                             echo ("var eventsPointeur = {\n");
                             if ($statement->rowCount() > 0){
                                 while($event = $statement->fetch()){
-                                    $address = $event['event_location'];
-
-                                    $response = geocode($address);
-
-                                    //Récupération des coordonnées GPS
-                                    $lat = $response[0]['lat'];
-                                    $lon = $response[0]['lon'];
-
                                     $desc_cut = str_split($event['event_description'], 150);
                                     $desc_test = $desc_cut[0];
                                     if(strlen($desc_test)==150){
@@ -147,7 +122,7 @@
                                     $desc_test2 = str_replace("\r\n", " ", $desc_test);
                                     $description = str_replace("\"", "`", $desc_test2);
 
-                                    echo ('"<a title=\"Voir cet évènement\" href=\"event.php?event='. $event['event_id'] .'\"><div class=\"popup-container\"><h1 class=\"titleEvent\">'. $event['event_title'] .'</h1><div class=\"descEvent\">'. $description .'</div></div></a>": {\'lat\':'. $lat .',\'lon\':'. $lon .'},');
+                                    echo ('"<a title=\"Voir cet évènement\" href=\"event.php?event='. $event['event_id'] .'\"><div class=\"popup-container\"><h1 class=\"titleEvent\">'. $event['event_title'] .'</h1><div class=\"descEvent\">'. $description .'</div></div></a>": {\'lat\':'. $event['event_lat'] .',\'lon\':'. $event['event_lon'] .'},');
                                 }
                             }
                             

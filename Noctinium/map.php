@@ -45,52 +45,26 @@
               if (isset($_GET['event'])){
                 $event_id = $_GET['event'];
 
-                $sql = "SELECT * FROM events WHERE event_id = '". $event_id ."';";
+                $sql = "SELECT event_id, event_title, event_location, event_lat, event_lon, event_description FROM events WHERE event_id = '". $event_id ."';";
         
                 $statement = $pdo->query($sql);
                 $event = $statement->fetch();
 
-                $sql3 = "SELECT imageevent_url FROM imageevent WHERE imageevent_id = '". $event['event_imageevent_id'] ."';";
-
-                $statement3 = $pdo->query($sql3);
-                $event_image = $statement3->fetch();
+                $desc_cut = str_split($event['event_description'], 150);
+                                    $desc_test = $desc_cut[0];
+                                    if(strlen($desc_test)==150){
+                                    $desc_test .= '...';
+                                    }
+                                    $desc_test2 = str_replace("\r\n", " ", $desc_test);
+                                    $desc_test3 = str_replace("<", " ", $desc_test2);
+                                    $desc_test4 = str_replace(">", " ", $desc_test3);
+                                    $description = str_replace("\"", "`", $desc_test4);
               }
-              $address = $event['event_location'];
-
-            // Envoi de la requête à Nominatim
-            //$url = "https://nominatim.openstreetmap.org/search?q=".urlencode($address)."&limit=1&format=json";
-            
-            function geocode($address){
-                $addresse = urlencode($address);
-            
-                $url = "https://nominatim.openstreetmap.org/?addressdetails=1&q=$addresse&format=json&limit=1";
-            
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_URL,$url);
-                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                curl_setopt($ch, CURLOPT_HEADER, false);
-                curl_setopt($ch, CURLOPT_REFERER, $url);
-                curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36");
-            
-                $result = curl_exec($ch);
-            
-                curl_close($ch);
-            
-                return json_decode($result, true);
-            }
-
-            $response = geocode($address);
-
-            // Récupération des coordonnées GPS
-            $lat = $response[0]['lat'];
-            $lon = $response[0]['lon'];
-
         ?>
             <div id="map" class="mapBig">
                 <script>
                     // Make sure you put this AFTER Leaflet's CSS
-                    var map = L.map('map').setView([<?php echo ($lat)?>, <?php echo ($lon)?>], 18);
+                    var map = L.map('map').setView([<?php echo ($event['event_lat'])?>, <?php echo ($event['event_lon'])?>], 18);
                      L.tileLayer('https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
                      minZoom: 1,
                      maxZoom: 19,
@@ -103,7 +77,7 @@
                         popupAnchor:  [1, -75]
                     });
                     var eventsPointeur = {
-                        '<?php echo ("<a href=\"event.php?event=". $event_id ."\"><div class=\"popup-container\"><h1 class=\"titleEvent\">".$event['event_title'] ."</h1><br><img class=\"imgMap\" src=\"". $event_image['imageevent_url'] ."\"></div></a>")?>':            {"lat":<?php echo ($lat)?>      ,   "lon":<?php echo ($lon)?>}
+                        "<?php echo ('<a title=\"Voir cet évènement\" href=\"event.php?event='. $event['event_id'] .'\"><div class=\"popup-container\"><h1 class=\"titleEvent\">'. $event['event_title'] .'</h1><div class=\"descEvent\">'. $description .'</div></div></a>')?>":            {"lat":<?php echo ($event['event_lat'])?>      ,   "lon":<?php echo ($event['event_lon'])?>}
                     };
 
                     for(lieu in eventsPointeur){
