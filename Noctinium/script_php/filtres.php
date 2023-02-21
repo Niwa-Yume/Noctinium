@@ -1,5 +1,5 @@
 <?php
-    $today = date('Y-m-d H:i:s', strtotime(' -6 hours'));
+    $today = date('Y-m-d H:i:s');
 
     $link = "../eventlist.php?filtre=1&";
 
