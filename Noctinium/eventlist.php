@@ -48,7 +48,7 @@
               <a class="openFiltre" onclick="filtreMenu()">Filtres &#9776;</a>
             </div>
             <div class="searchBarCont">
-              <form class="searchBar" action="script/search.php">
+              <form class="searchBar" method="POST" action="script_php/search.php">
                 <input type="text" class="search insc-form" id="search" placeholder="RECHERCHE ..." name="search" value="">
                 <button class="searchBtn" id="searchBtn" type="submit"><i class="fa fa-search"></i></button>
               </form>
@@ -92,7 +92,7 @@
         <div id="main" class="main-f">
           <div id="mySidenav" class="sidenav">
             <h2>Filtres</h2>
-            <form action="script_php/filtres.php">
+            <form action="script_php/filtres.php" method="POST">
               <h3>Musique:</h3>
               <div class="typeCont">
                 <select name="musique" id="musique" class="form-control">
@@ -129,7 +129,7 @@
               <div class="typeCont">
                 <div class="form-group-insc">
                   <div class="col-sm-12">
-                    <input type="date" class="filtreDate insc-form" id="adresse_cachee" name="date_event" value="">
+                    <input type="date" class="filtreDate insc-form" id="adresse_cachee" name="date" value="">
                   </div>
                 </div>
               </div>
@@ -144,7 +144,7 @@
               </div>
               <h3>Heure de début:</h3>
               <div class="typeCont">
-                <input type="radio" id="HeureDebut" name="ordre" value="1"><label for="HeureDebut"> Ordre croissant</label><br>
+                <input type="radio" id="HeureDebut" name="ordre" value="1" checked><label for="HeureDebut"> Ordre croissant</label><br>
                 <input type="radio" id="HeureFin" name="ordre" value="2"><label for="HeureFin"> Ordre décroissant</label><br>
               </div>
               <input class="filtreBtn" type="submit" value="FILTRER">
@@ -152,55 +152,55 @@
           </div>
         <div class="eventCont">
         <?php
-        $today = date('Y-m-d H:i:s', strtotime(' -6 hours'));
-        $event_param['today'] = $today;
-        if(isset($_GET['filtre'])){
-          if($_GET['filtre'] == 1){
-            $sql = "SELECT event_id, event_title, event_datetime, event_description, event_music, event_type, event_imageevent_id FROM events WHERE ";
-            if(isset($_GET['date'])){
-              if($_GET['date'] >= $today){
-                $event_param['today'] = $_GET['date'];
-                $sql .= " event_datetime = :today";
+          $today = date('Y-m-d H:i:s', strtotime(' -6 hours'));
+          $event_param['today'] = $today;
+          if(isset($_GET['filtre'])){
+            if($_GET['filtre'] == 1){
+              $sql = "SELECT event_id, event_title, event_datetime, event_description, event_music, event_type, event_imageevent_id FROM events WHERE event_private = 0";
+              if(isset($_GET['date'])){
+                if($_GET['date'] >= $today){
+                  $event_param['today'] = date('Y-m-d', strtotime($_GET['date']));
+                  $event_param['tomorrow'] = date('Y-m-d', strtotime($_GET['date']. ' + 1 days'));
+                  $sql .= " AND event_datetime >= :today AND event_datetime < :tomorrow";
+                }else{
+                  $sql .= " AND event_datetime > :today";
+                }
               }else{
-                $sql .= " event_datetime > :today";
+                $sql .= " AND event_datetime > :today";
               }
-            }else{
-              $sql .= " event_datetime > :today";
-            }
-            if(isset($_GET['music'])){
-              if(1 <= $_GET['music'] and $_GET['music'] <= 14){
-                $sql .= " AND event_music = ".$_GET['music'];
+              if(isset($_GET['music'])){
+                if(1 <= $_GET['music'] and $_GET['music'] <= 14){
+                  $sql .= " AND event_music = ".$_GET['music'];
+                }
               }
-            }
-            if(isset($_GET['type'])){
-              if(1 <= $_GET['type'] and $_GET['type'] <= 6){
-                $sql .= " AND event_type = ".$_GET['type'];
+              if(isset($_GET['type'])){
+                if(1 <= $_GET['type'] and $_GET['type'] <= 6){
+                  $sql .= " AND event_type = ".$_GET['type'];
+                }
               }
-            }
-            if(isset($_GET['orga'])){
-              if(1 <= $_GET['orga'] and $_GET['orga'] <= 3){
-                $sql .= " AND event_user_type = ".$_GET['orga'];
+              if(isset($_GET['orga'])){
+                if(1 <= $_GET['orga'] and $_GET['orga'] <= 3){
+                  $sql .= " AND event_user_type = ".$_GET['orga'];
+                }
               }
-            }
-            if(isset($_GET['ordre'])){
-              if($_GET['ordre'] == 1){
+              if(isset($_GET['ordre'])){
+                if($_GET['ordre'] == 1){
+                  $sql .= " ORDER BY event_datetime ASC;";
+                }elseif($_GET['ordre'] == 2){
+                  $sql .= " ORDER BY event_datetime DESC;";
+                }
+              }else{
                 $sql .= " ORDER BY event_datetime ASC;";
-              }elseif($_GET['ordre'] == 2){
-                $sql .= " ORDER BY event_datetime DESC;";
               }
             }else{
-              $sql .= " ORDER BY event_datetime ASC;";
+              $sql = "SELECT event_id, event_title, event_datetime, event_description, event_music, event_type, event_imageevent_id FROM events WHERE event_datetime > :today AND event_private = 0 ORDER BY event_datetime ASC";
             }
+          }elseif(isset($_GET['search'])){
+            $search = urldecode($_GET['search']);
+            $sql = "SELECT event_id, event_title, event_datetime, event_description, event_music, event_type, event_imageevent_id FROM events WHERE (event_datetime > :today AND event_private = 0) AND (event_title LIKE '%".$search."%' OR event_description LIKE '%".$search."%') ORDER BY event_datetime ASC";
           }else{
             $sql = "SELECT event_id, event_title, event_datetime, event_description, event_music, event_type, event_imageevent_id FROM events WHERE event_datetime > :today AND event_private = 0 ORDER BY event_datetime ASC";
           }
-        }elseif(isset($_GET['search'])){
-          $event_param['search'] = urldecode($_GET['search']);
-          $event_param['masked'] = $today;
-          $sql = "SELECT event_id, event_title, event_datetime, event_description, event_music, event_type, event_imageevent_id FROM events WHERE event_datetime > :today AND event_private = 0 AND event_title LIKE :search OR event_description LIKE :search OR event_location LIKE :search ORDER BY event_datetime ASC";
-        }else{
-          $sql = "SELECT event_id, event_title, event_datetime, event_description, event_music, event_type, event_imageevent_id FROM events WHERE event_datetime > :today AND event_private = 0 ORDER BY event_datetime ASC";
-        }
           $statement = $pdo->prepare($sql);
           $statement->execute($event_param);
           if($statement->rowCount() <= 0){
@@ -219,11 +219,11 @@
             for($i=(($page-1)*10); $i<($page*10) && $i < $statement->rowCount();$i++){
               $event_text = str_split($event[$i]['event_description'], 350);
               $event_descr = $event_text[0];
-              $event_descri = str_replace("<"," ", $event_descr);
-              $event_desc = str_replace(">"," ", $event_descri);
-              if(strlen($event_desc) == 350){
-                $event_desc .= "[...]";
-              }
+              $event_descri = str_replace("\r\n"," ", $event_descr);
+              $event_descrip = str_replace("\n"," ", $event_descri);
+              $event_descrip .= "[...]";
+              
+              $event_desc = htmlspecialchars($event_descrip, ENT_QUOTES, 'utf-8');
               if($event[$i]['event_music'] == 1){
                 $event_music = "Techno";
               }elseif($event[$i]['event_music'] == 2){

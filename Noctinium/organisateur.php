@@ -60,6 +60,7 @@
                   if ($organisateur['user_description'] == ""){
                     $organisateur['user_description'] = "<div style=\"text-align: center;font-size: 1.2rem;\">Aucune description.</div>";
                   }
+                  $organisateur['user_description']=htmlspecialchars($organisateur['user_description'], ENT_QUOTES, 'utf-8');
                   $note = "SELECT rating_value FROM rating WHERE rating_organiser_id = ". $_GET['organisateur'] .";";
                     $query = $pdo->query($note);
                     if($query->rowCount() > 0){

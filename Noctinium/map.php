@@ -56,9 +56,8 @@
                                     $desc_test .= '...';
                                     }
                                     $desc_test2 = str_replace("\r\n", " ", $desc_test);
-                                    $desc_test3 = str_replace("<", " ", $desc_test2);
-                                    $desc_test4 = str_replace(">", " ", $desc_test3);
-                                    $description = str_replace("\"", "`", $desc_test4);
+                                    $desc_test3 = str_replace("\n", " ", $desc_test2);
+                                    $description = htmlspecialchars($desc_test3, ENT_QUOTES, 'utf-8');
               }
         ?>
             <div id="map" class="mapBig">

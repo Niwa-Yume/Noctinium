@@ -45,8 +45,7 @@
                   echo ("<div style=\"height: 80%;margin-top: 100px;\" class=\"adresseEvent\"><h1>L'évènement sélectionné n'existe pas.<br><br>Veuillez réessayer.</h1></div></section>");
                 }else{
                   $event = $statement->fetch();
-                  $event_desc = str_replace("<"," ", $event['event_description']);
-                  $event_description = str_replace(">"," ", $event_desc);
+                  $event_description = htmlspecialchars($event['event_description'], ENT_QUOTES, 'utf-8');
 
                   $image = "SELECT imageevent_url FROM imageevent WHERE imageevent_id = '". $event['event_imageevent_id'] ."';";
                   $statement2 = $pdo->query($image);

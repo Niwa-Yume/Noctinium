@@ -70,10 +70,10 @@
         <hr class="gradient" id="ancre">
         <?php
                 $today = date('Y-m-d H:i:s');
-                $today2 = date('Y-m-d H:i:s', strtotime(' -6 hours'));;
-                $event_param['today'] = $today;
-                $event_param['today2'] = $today2;
-                $sql = "SELECT event_id, event_title, event_location, event_lat, event_lon, event_description FROM events WHERE DATEDIFF(event_datetime, :today) < 1 AND event_datetime > :today2;";
+                $today2 = date('Y-m-d H:i:s', strtotime(' -6 hours'));
+                $event_param['today'] = $today2;
+                $event_param['tomorrow'] = date('Y-m-d H:i:s', strtotime($today. ' + 2 days'));
+                $sql = "SELECT event_id, event_title, event_location, event_lat, event_lon, event_description FROM events WHERE event_datetime < :tomorrow AND event_datetime > :today;";
                 $statement = $pdo->prepare($sql);
                 $statement->execute($event_param);
             // Envoi de la requête à Nominatim
@@ -120,7 +120,8 @@
                                     $desc_test .= '...';
                                     }
                                     $desc_test2 = str_replace("\r\n", " ", $desc_test);
-                                    $description = str_replace("\"", "`", $desc_test2);
+                                    $desc_test3 = str_replace("\n", " ", $desc_test2);
+                                    $description = htmlspecialchars($desc_test3, ENT_QUOTES, 'utf-8');
 
                                     echo ('"<a title=\"Voir cet évènement\" href=\"event.php?event='. $event['event_id'] .'\"><div class=\"popup-container\"><h1 class=\"titleEvent\">'. $event['event_title'] .'</h1><div class=\"descEvent\">'. $description .'</div></div></a>": {\'lat\':'. $event['event_lat'] .',\'lon\':'. $event['event_lon'] .'},');
                                 }

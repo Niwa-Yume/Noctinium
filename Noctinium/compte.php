@@ -107,7 +107,8 @@
               <div class="col-sm-12">
                 <div id="infoBio" class="infoUser"><?php
                 if ($_SESSION['user_description'] != []){
-                  echo $_SESSION['user_description'];
+                  $desc = htmlspecialchars($_SESSION['user_description'], ENT_QUOTES, 'utf-8');
+                  echo $desc;
                 } else{
                   echo ("<div style=\"text-align: center;\">Vous n'avez pas ajouté de description.</div>");
                 }
