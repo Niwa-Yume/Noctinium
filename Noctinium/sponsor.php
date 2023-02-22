@@ -13,7 +13,7 @@
     </head>
     <body>
         <header>
-            <a href="index.php"><img class="" id="logo" src="image/logo_noctinium.png" alt="Logo"></a>
+            <a href="index.php"><img class="" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
             <nav>
                 <li><a href="index.php">Accueil</a></li>
                 <li><a href="eventlist.php">Évènements</a></li>

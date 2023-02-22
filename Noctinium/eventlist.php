@@ -16,7 +16,7 @@
     </head>
     <body>
         <header>
-            <a href="index.php"><img class="logo" id="logo" src="image/logo_noctinium.png" alt="Logo"></a>
+            <a href="index.php"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
             <nav>
                 <li><a href="index.php">Accueil</a></li>
                 <li class="active"><a href="eventlist.php">Évènements</a></li>
@@ -222,8 +222,12 @@
               $event_descri = str_replace("\r\n"," ", $event_descr);
               $event_descrip = str_replace("\n"," ", $event_descri);
               $event_descrip .= "[...]";
-              
               $event_desc = htmlspecialchars($event_descrip, ENT_QUOTES, 'utf-8');
+
+              $image_get = "SELECT imageevent_url FROM imageevent WHERE imageevent_id = ".$event[$i]['event_imageevent_id'].";";
+              $statement2 = $pdo->query($image_get);
+              $image = $statement2->fetch();
+
               if($event[$i]['event_music'] == 1){
                 $event_music = "Techno";
               }elseif($event[$i]['event_music'] == 2){
@@ -268,7 +272,7 @@
               }
               echo ('<div class="event-presentation">
                     <div>
-                    <img src="image/nightclub-crowd-smoke-machine.jpg" alt="" class="imgEvent">
+                    <img src="'. $image['imageevent_url'] .'" alt="" class="imgEvent">
                     </div>
                     <div class="eventInfo">
                     <div class="eventBottom">
