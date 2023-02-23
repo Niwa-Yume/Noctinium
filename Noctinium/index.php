@@ -6,6 +6,7 @@
     <head>
         <link rel="stylesheet" href="asset/style.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
           <link rel="stylesheet" href="asset/map.css">
           <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
           <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
@@ -17,27 +18,53 @@
     <body>
         <header>
             <a href="index.php"><img class="logo" id="logo" src="image/logo_noctinium.webp"></a>
-            <nav>
+            <nav id="computer">
                 <ul>
-                <li class="active"><a href="index.php">Accueil</a></li>
-                <li><a href="eventlist.php">Évènements</a></li>
-                <li><a href="contact.php">Contact</a></li>
-                <li><a href="propos.php">A propos</a></li>
-                <li><a href="faq.php">FAQ</a></li>
-                <li><a href="<?php 
-				if($logged_in == true){
-					echo("compte.php");
-				}else{
-					echo("connexion.php");
-				};?>"><?php 
-				if($logged_in == true){
-					echo("Compte");
-				}else{
-					echo("Connexion");
-				};?></a></li>
+                    <li class="active"><a href="index.php">Accueil</a></li>
+                    <li><a href="eventlist.php">Évènements</a></li>
+                    <li><a href="contact.php">Contact</a></li>
+                    <li><a href="propos.php">A propos</a></li>
+                    <li><a href="faq.php">FAQ</a></li>
+                    <li><a href="<?php 
+                    if($logged_in == true){
+                        echo("compte.php");
+                    }else{
+                        echo("connexion.php");
+                    };?>"><?php 
+                    if($logged_in == true){
+                        echo("Compte");
+                    }else{
+                        echo("Connexion");
+                    };?></a></li>
+                </ul>
+            </nav>
+            <nav id="mobile" class="hidden">
+                <ul>
+                    <li class="bread"><a class="burger" onclick="openNav()">&#9776;</a></li>
                 </ul>
             </nav>
         </header>
+        <div id="menuBack" class="menuBack" onclick="closeNav()">
+            <div id="sidemenu" class="menu">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="index.php">Accueil</a>
+                <a href="eventlist.php">Évènements</a>
+                <a href="contact.php">Contact</a>
+                <a href="propos.php">A propos</a>
+                <a href="faq.php">FAQ</a>
+                <a href="<?php 
+                if($logged_in == true){
+                    echo("compte.php");
+                }else{
+                    echo("connexion.php");
+                };?>"><?php 
+                if($logged_in == true){
+                    echo("Compte");
+                }else{
+                    echo("Connexion");
+                };?></a>
+            </div>
+        </div>
         <section class="main">
             <div class="container">
                 <h1 class="gradient-text">Noctinium</h1>
@@ -72,7 +99,7 @@
                 $today = date('Y-m-d H:i:s');
                 $today2 = date('Y-m-d H:i:s', strtotime(' -6 hours'));
                 $event_param['today'] = $today2;
-                $event_param['tomorrow'] = date('Y-m-d H:i:s', strtotime($today. ' + 2 days'));
+                $event_param['tomorrow'] = date('Y-m-d H:i:s', strtotime($today. ' + 3 days'));
                 $sql = "SELECT event_id, event_title, event_location, event_lat, event_lon, event_description FROM events WHERE event_datetime < :tomorrow AND event_datetime > :today;";
                 $statement = $pdo->prepare($sql);
                 $statement->execute($event_param);
@@ -167,6 +194,22 @@
         var scroll_map = document.getElementById("map")
         function scroll(){
             scrollTo(scroll_map);
+        }
+    </script>
+    <script>
+        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+            document.getElementById("computer").classList.toggle("hidden");
+            document.getElementById("mobile").classList.toggle("hidden");
+        }
+        function openNav() {
+            document.getElementById("sidemenu").style.width = "250px";
+            document.getElementById("menuBack").style.visibility = "visible";
+            
+        }
+
+        function closeNav() {
+            document.getElementById("sidemenu").style.width = "0";
+            document.getElementById("menuBack").style.visibility = "hidden";
         }
     </script>
 </html>
