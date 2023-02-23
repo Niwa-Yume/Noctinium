@@ -5,10 +5,6 @@
 */
 
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
-@font-face {
-    font-family: "OSB";
-    src: url("asset/OpenSans-Bold.ttf");
-}
 * {
     padding: 0;
     margin: 0;
@@ -213,7 +209,7 @@ header nav li {
     width: auto;
 }
 header nav a{
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: bold;
 }
 header nav li.active {
@@ -222,6 +218,19 @@ header nav li.active {
 }
 header nav li a:hover{
 	color: #959da5;
+}
+.bread{
+    display: inline-block;
+	height: 105%;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 32px;
+    padding-bottom: 20px;
+    width: auto;
+}
+.burger{
+    font-size: 2.5rem;
+    margin-right: 20px;
 }
 section.blog {
     width: 100%;
@@ -279,7 +288,7 @@ header .logo-M{
     size-adjust: 100%;
     height: 100%;
     text-align: center;
-    margin-left: 30px;
+    margin-left: 50px;
     user-select: none;
     -webkit-user-drag: none;
 }
@@ -1229,3 +1238,49 @@ textarea.text-control{
     font-size: 3.5rem;
     margin-bottom: 50px;
 }
+.menu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 100px;
+  }
+  
+  .menu a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: bold;
+    font-family: 'Open Sans';
+    color: white;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .menu a:hover {
+    color: #959da5;
+  }
+  
+  .menu .closebtn {
+    position: absolute;
+    top: 40px;
+    right: 25px;
+    font-size: 2.2rem;
+    margin-left: 50px;
+  }
+  .menuBack{
+    width:  100%;
+    height: 100%;
+    visibility: hidden;
+    transition: opacity 0.5s;
+    position: fixed;
+    z-index: 90;
+    top: 0;
+    left: 0;
+    background-color: rgb(58, 58, 58, 0.5);
+  }
