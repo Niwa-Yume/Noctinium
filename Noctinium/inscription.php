@@ -11,16 +11,17 @@
 	<meta charset="utf-8" />
     <link rel="stylesheet" href="asset/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="icon" href="image/logo_noctinium_16x16.png">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
+        <link rel="icon" href="image/logo_noctinium.ico">
   </head>
 <body>
     <header>
         <a href="index.php"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
-        <nav>
+        <nav id="computer">
             <li><a href="index.php">Accueil</a></li>
             <li><a href="eventlist.php">Évènements</a></li>
             <li><a href="contact.php">Contact</a></li>
-            <li><a href="propos.php">A propos</a></li>
+            <li><a href="propos.php">À propos</a></li>
             <li><a href="faq.php">FAQ</a></li>
             <li class="active"><a href="<?php 
 				if($logged_in == true){
@@ -34,7 +35,33 @@
 					echo("Connexion");
 				};?></a></li>
         </nav>
-    </header>
+            <nav id="mobile" class="hidden">
+                <ul>
+                    <li class="bread"><a class="burger" onclick="openNav()">&#9776;</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div id="menuBack" class="menuBack" onclick="closeNav()">
+            <div id="sidemenu" class="menu">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="index.php">Accueil</a>
+                <a href="eventlist.php">Évènements</a>
+                <a href="contact.php">Contact</a>
+                <a href="propos.php">À propos</a>
+                <a href="faq.php">FAQ</a>
+                <a href="<?php 
+                if($logged_in == true){
+                    echo("compte.php");
+                }else{
+                    echo("connexion.php");
+                };?>"><?php 
+                if($logged_in == true){
+                    echo("Compte");
+                }else{
+                    echo("Connexion");
+                };?></a>
+            </div>
+        </div>
     <section class="content content-small">
         <div class="container">
             <h1 class="gradient-text">Inscription</h1>
@@ -57,7 +84,7 @@
             }
             if(isset($_GET['birth'])){
               if($_GET['birth'] == 1){
-                echo ('<div id="error" class="errorCont"><div id="errorMessage" class="errorMessage"><h1>Erreur</h1><br>La date de naissance n\'est pas valide.<br><button onclick="closeError()">Continuer</button></div></div>');
+                echo ('<div id="error" class="errorCont"><div id="errorMessage" class="errorMessage"><h1>Erreur</h1><br>Vous êtes trop jeune (minimum 16 ans).<br><button onclick="closeError()">Continuer</button></div></div>');
               }
             }
           }
@@ -88,7 +115,7 @@
 
             <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="date" class="form-control insc-form" id="date" placeholder="DATE DE NAISSANCE" name="birthdate" value="" required>
+                  <input type="text" class="form-control insc-form" id="date" placeholder="DATE DE NAISSANCE (JJ/MM/AAAA)" name="birthdate" value="" required>
                 </div>
               </div>
             
@@ -147,6 +174,7 @@
   var formD = document.getElementById("date");
   var formP = document.getElementById("prenom");
   var formPS = document.getElementById("pseudo");
+  var formT = document.getElementById("tel");
   var formM = document.getElementById("mdp");
   var formM2 = document.getElementById("mdp2");
   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
@@ -166,6 +194,8 @@
         formPS.classList.toggle("form-control-M");
         formM2.classList.toggle("form-control");
         formM2.classList.toggle("form-control-M");
+        formT.classList.toggle("form-control");
+        formT.classList.toggle("form-control-M");
   }
 </script>
 <script>
@@ -175,4 +205,64 @@
     error.classList.toggle("hidden");
   }; 
 </script>
+    <script>
+        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+            document.getElementById("computer").classList.toggle("hidden");
+            document.getElementById("mobile").classList.toggle("hidden");
+        }
+        function openNav() {
+            document.getElementById("sidemenu").style.width = "40%";
+            document.getElementById("menuBack").style.visibility = "visible";
+            
+        }
+
+        function closeNav() {
+            document.getElementById("sidemenu").style.width = "0";
+            document.getElementById("menuBack").style.visibility = "hidden";
+        }
+    </script>
+    <script>
+      document.getElementById('date').addEventListener('input', function(e){
+        this.type = 'text';
+        var input = this.value;
+        if(/\D\/$/.test(input)) input = input.substr(0, input.length - 3);
+        var values = input.split('/').map(function(v){return v.replace(/\D/g, '')});
+        if(values[0]) values[0] = checkValue(values[0], 31);
+        if(values[1]) values[1] = checkValue(values[1], 12);
+        var output = values.map(function(v, i){
+          return v.length == 2 && i < 2 ?  v + ' / ' : v;
+        });
+        this.value = output.join('').substr(0, 14);
+      });
+
+      function checkValue(str, max){
+        if(str.charAt(0) !== '0' || str == '00'){
+          var num = parseInt(str);
+          if(isNaN(num) || num <= 0 || num > max) num = 1;
+          str = num > parseInt(max.toString().charAt(0)) && num.toString().length == 1 ? '0' + num : num.toString();
+        };
+        return str;
+      };
+
+      document.getElementById('date').addEventListener('blur', function(e){
+        this.type = 'tel';
+        var input = this.value;
+        var values = input.split('/').map(function(v){return v.replace(/\D/g, '')});
+        var output = '';
+        if(values.length == 3){
+          var year = values[2].length !== 4 ? parseInt(values[2]) + 2000 : parseInt(values[2]);
+          var month = parseInt(values[1]) - 1;
+          var day = parseInt(values[0]);
+          var d = new Date(year, month, day);
+          if(!isNaN(d)){
+            var dates = [d.getDate(), d.getMonth() + 1, d.getFullYear()];
+            output = dates.map(function(v){
+              v = v.toString();
+              return v.length == 1 ? '0' + v : v;
+            }).join(' / ');
+          };
+        };
+        this.value = output;
+      });
+    </script>
 </html>

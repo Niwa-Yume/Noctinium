@@ -5,20 +5,21 @@
 <html>
     <head>
         <link rel="stylesheet" href="asset/style.css">
-		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
       <meta charset="utf-8" />
       <link rel="stylesheet" href="asset/event.css">
       <title>Évènement</title>
-      <link rel="icon" href="image/logo_noctinium_16x16.png">
+      <link rel="icon" href="image/logo_noctinium.ico">
     </head>
     <body>
         <header>
             <a href="index.php"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
-            <nav>
+            <nav id="computer">
               <li><a href="index.php">Accueil</a></li>
               <li class="active"><a href="eventlist.php">Évènements</a></li>
               <li><a href="contact.php">Contact</a></li>
-              <li><a href="propos.php">A propos</a></li>
+              <li><a href="propos.php">À propos</a></li>
               <li><a href="faq.php">FAQ</a></li>
               <li><a href="<?php 
 				if($logged_in == true){
@@ -32,7 +33,33 @@
 					echo("Connexion");
 				};?></a></li>
           </nav>
+          <nav id="mobile" class="hidden">
+                <ul>
+                    <li class="bread"><a class="burger" onclick="openNav()">&#9776;</a></li>
+                </ul>
+            </nav>
         </header>
+        <div id="menuBack" class="menuBack" onclick="closeNav()">
+            <div id="sidemenu" class="menu">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="index.php">Accueil</a>
+                <a href="eventlist.php">Évènements</a>
+                <a href="contact.php">Contact</a>
+                <a href="propos.php">À propos</a>
+                <a href="faq.php">FAQ</a>
+                <a href="<?php 
+                if($logged_in == true){
+                    echo("compte.php");
+                }else{
+                    echo("connexion.php");
+                };?>"><?php 
+                if($logged_in == true){
+                    echo("Compte");
+                }else{
+                    echo("Connexion");
+                };?></a>
+            </div>
+        </div>
         <section class="subscribe">
             <?php
               if (isset($_GET['event'])){
@@ -70,7 +97,13 @@
                   echo ("
                   <div class=\"eventCont\">
                     <div class=\"returnBtnCont\">
-                      <a title=\"Retour\" class=\"returnBtn\" onclick=\"history.back()\">&#60;</a>
+                      <button title=\"Retour\" class=\"returnBtn\" onclick=\"history.back()\">&#8630;</button>
+                    </div>
+                    <div class=\"copyBtnCont\">
+                      <div class=\"tooltip\">
+                        <span class=\"tooltiptext\" id=\"myTooltip\">Copier le lien</span>
+                      </div>
+                      <button id=\"copy-button\" class=\"copyBtn\" onmouseout=\"outFunc()\"><i class=\"fa fa-clone\"></i></button>
                     </div>
                     <div class=\"titreEvent\">". $event['event_title'] ."</div>
                   <div class=\"eventGrid\">
@@ -191,5 +224,64 @@
         cont.classList.toggle("eventCont-M");
       }
 		</script>
+    <script>
+      const copyButton = document.querySelector("#copy-button");
+      const copied = document.querySelector("#copied")
+
+      copyButton.addEventListener("click", function() {
+        // Récupère le lien de la page actuelle
+        const currentUrl = window.location.href;
+        
+        // Crée un élément input invisible
+        const input = document.createElement("input");
+        
+        // Affecte la valeur du lien de la page à l'élément input
+        input.value = currentUrl;
+        
+        // Ajoute l'élément input à la page
+        document.body.appendChild(input);
+        
+        // Sélectionne le contenu de l'élément input
+        input.select();
+        
+        // Copie le contenu sélectionné dans le presse-papiers
+        document.execCommand("copy");
+        
+        // Supprime l'élément input
+        document.body.removeChild(input);
+        
+        // Affiche un message indiquant que le lien a été copié
+        /* var tooltip = document.getElementById("myTooltip");
+        tooltip.classList.toggle("hidden");
+        setTimeout(function() {
+          $('#myTooltip').fadeOut('fast');
+        }, 2000) */
+        var tooltip = document.getElementById("myTooltip");
+        tooltip.innerHTML = "Lien copié";
+        tooltip.style.backgroundColor = "#80bd6a";
+      });
+
+      function outFunc() {
+        var tooltip = document.getElementById("myTooltip");
+        tooltip.innerHTML = "Copier le lien";
+        tooltip.style.backgroundColor = "#6c6c6c";
+      }
+    </script>
+    <script>
+        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+            document.getElementById("computer").classList.toggle("hidden");
+            document.getElementById("mobile").classList.toggle("hidden");
+        }
+        function openNav() {
+            document.getElementById("sidemenu").style.width = "40%";
+            document.getElementById("menuBack").style.visibility = "visible";
+            
+        }
+
+        function closeNav() {
+            document.getElementById("sidemenu").style.width = "0";
+            document.getElementById("menuBack").style.visibility = "hidden";
+        }
+    </script>
     </body>
 </html>

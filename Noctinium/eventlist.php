@@ -7,21 +7,22 @@
       <link rel="stylesheet" href="asset/style.css">
       <link rel="stylesheet" href="asset/eventlist.css">
 		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
       <meta charset="utf-8" />
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
       <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
       <title>Évènements</title>
-      <link rel="icon" href="image/logo_noctinium_16x16.png">
+      <link rel="icon" href="image/logo_noctinium.ico">
     </head>
     <body>
         <header>
             <a href="index.php"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
-            <nav>
+            <nav id="computer">
                 <li><a href="index.php">Accueil</a></li>
                 <li class="active"><a href="eventlist.php">Évènements</a></li>
                 <li><a href="contact.php">Contact</a></li>
-                <li><a href="propos.php">A propos</a></li>
+                <li><a href="propos.php">À propos</a></li>
                 <li><a href="faq.php">FAQ</a></li>
                 <li><a href="<?php 
 				if($logged_in == true){
@@ -35,7 +36,33 @@
 					echo("Connexion");
 				};?></a></li>
             </nav>
+            <nav id="mobile" class="hidden">
+                <ul>
+                    <li class="bread"><a class="burger" onclick="openNav()">&#9776;</a></li>
+                </ul>
+            </nav>
         </header>
+        <div id="menuBack" class="menuBack" onclick="closeNav()">
+            <div id="sidemenu" class="menu">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="index.php">Accueil</a>
+                <a href="eventlist.php">Évènements</a>
+                <a href="contact.php">Contact</a>
+                <a href="propos.php">À propos</a>
+                <a href="faq.php">FAQ</a>
+                <a href="<?php 
+                if($logged_in == true){
+                    echo("compte.php");
+                }else{
+                    echo("connexion.php");
+                };?>"><?php 
+                if($logged_in == true){
+                    echo("Compte");
+                }else{
+                    echo("Connexion");
+                };?></a>
+            </div>
+        </div>
         <section class="content content-small">
             <div class="container">
                 <h1 class="gradient-text">Liste des évènements</h1>
@@ -54,39 +81,7 @@
               </form>
             </div>
             <div class="newEventCont">
-              <?php
-                if($logged_in == true){
-                  $today = date('Y-m-d H:i:s');
-                  $test_param['user_id'] = $_SESSION['user_id'];
-                  $test_param['today'] = $today;
-                  $test_num_event = "SELECT event_id FROM events WHERE event_user_id = :user_id AND event_datetime > :today;";
-                  $test_num_event_user = $pdo->prepare($test_num_event);
-                  $test_num_event_user->execute($test_param);
-                  if($_SESSION['user_typesubscription'] == 1){
-                    if($test_num_event_user->rowCount() < 4){
-                      echo('<a href="eventAdd.php" id="newEvent" class="newEvent">Ajouter</a>');
-                    }else{
-                      echo ("Nombre maximum d'évènements atteint (4)");
-                    }
-                  }elseif($_SESSION['user_typesubscription'] == 2){
-                    if($test_num_event_user->rowCount() < 8){
-                      echo('<a href="eventAdd.php" id="newEvent" class="newEvent">Ajouter</a>');
-                    }else{
-                      echo ("Nombre maximum d'évènements atteint (8)");
-                    }
-                  }elseif($_SESSION['user_typesubscription'] == 3){
-                    if($test_num_event_user->rowCount() < 16){
-                      echo('<a href="eventAdd.php" id="newEvent" class="newEvent">Ajouter</a>');
-                    }else{
-                      echo ("Nombre maximum d'évènements atteint (16)");
-                    }
-                  }elseif($_SESSION['user_typesubscription'] == 4){
-                    echo('<a href="eventAdd.php" id="newEvent" class="newEvent">Ajouter</a>');
-                  }
-                }else{
-                  echo ("Connectez-vous pour créer un évènement");
-                }
-              ?>
+              <a href="eventAdd.php" id="newEvent" class="newEvent">Ajouter un évènement</a>
             </div>
           </div>
         <div id="main" class="main-f">
@@ -217,11 +212,13 @@
               $page = 1;
             }
             for($i=(($page-1)*10); $i<($page*10) && $i < $statement->rowCount();$i++){
-              $event_text = str_split($event[$i]['event_description'], 350);
+              $event_text = str_split($event[$i]['event_description'], 360);
               $event_descr = $event_text[0];
               $event_descri = str_replace("\r\n"," ", $event_descr);
               $event_descrip = str_replace("\n"," ", $event_descri);
-              $event_descrip .= "[...]";
+              if(strlen($event_descrip) > 340){
+                $event_descrip .= "[...]";
+              }
               $event_desc = htmlspecialchars($event_descrip, ENT_QUOTES, 'utf-8');
 
               $image_get = "SELECT imageevent_url FROM imageevent WHERE imageevent_id = ".$event[$i]['event_imageevent_id'].";";
@@ -361,7 +358,7 @@
           main.classList.toggle("main")
           main.classList.toggle("main-f")
           if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-            menu.style.width = "400%";
+            menu.style.width = "330%";
           }else{
             menu.style.width = "100%";
           }
@@ -376,6 +373,22 @@
           }
         }
       }
+    </script>
+    <script>
+        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+            document.getElementById("computer").classList.toggle("hidden");
+            document.getElementById("mobile").classList.toggle("hidden");
+        }
+        function openNav() {
+            document.getElementById("sidemenu").style.width = "40%";
+            document.getElementById("menuBack").style.visibility = "visible";
+            
+        }
+
+        function closeNav() {
+            document.getElementById("sidemenu").style.width = "0";
+            document.getElementById("menuBack").style.visibility = "hidden";
+        }
     </script>
     </body>
 </html>

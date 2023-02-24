@@ -6,23 +6,24 @@
     <head>
         <link rel="stylesheet" href="asset/style.css">
 		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
           <link rel="stylesheet" href="asset/map.css">
           <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
           <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
           <meta charset="utf-8" />
       <title>Map</title>
-      <link rel="icon" href="image/logo_noctinium_16x16.png">
+      <link rel="icon" href="image/logo_noctinium.ico">
     </head>
     
     <!--CECI EST LE CORPPS DE LA PAGE-->
     <body>
         <header>
             <a href="index.php"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
-            <nav>
+            <nav id="computer">
               <li><a href="index.php">Accueil</a></li>
               <li><a href="eventlist.php">Évènements</a></li>
               <li><a href="contact.php">Contact</a></li>
-              <li><a href="propos.php">A propos</a></li>
+              <li><a href="propos.php">À propos</a></li>
               <li><a href="faq.php">FAQ</a></li>
               <li><a href="
               <?php 
@@ -37,7 +38,33 @@
 					echo("Connexion");
 				};?></a></li>
           </nav>
+            <nav id="mobile" class="hidden">
+                <ul>
+                    <li class="bread"><a class="burger" onclick="openNav()">&#9776;</a></li>
+                </ul>
+            </nav>
         </header>
+        <div id="menuBack" class="menuBack" onclick="closeNav()">
+            <div id="sidemenu" class="menu">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="index.php">Accueil</a>
+                <a href="eventlist.php">Évènements</a>
+                <a href="contact.php">Contact</a>
+                <a href="propos.php">À propos</a>
+                <a href="faq.php">FAQ</a>
+                <a href="<?php 
+                if($logged_in == true){
+                    echo("compte.php");
+                }else{
+                    echo("connexion.php");
+                };?>"><?php 
+                if($logged_in == true){
+                    echo("Compte");
+                }else{
+                    echo("Connexion");
+                };?></a>
+            </div>
+        </div>
 
         <!--DEBUT MAP-->
         <section class="subscribe">
@@ -103,6 +130,22 @@
         map.classList.toggle("mapBig-M");
       }
 		</script>
+    <script>
+        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+            document.getElementById("computer").classList.toggle("hidden");
+            document.getElementById("mobile").classList.toggle("hidden");
+        }
+        function openNav() {
+            document.getElementById("sidemenu").style.width = "40%";
+            document.getElementById("menuBack").style.visibility = "visible";
+            
+        }
+
+        function closeNav() {
+            document.getElementById("sidemenu").style.width = "0";
+            document.getElementById("menuBack").style.visibility = "hidden";
+        }
+    </script>
 
     </body>
 </html>

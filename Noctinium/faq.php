@@ -7,17 +7,18 @@
     <title>FAQ</title>
 	<meta charset="utf-8" />
     <link rel="stylesheet" href="asset/style.css">
-    <link rel="icon" href="image/logo_noctinium_16x16.png">
+    <link rel="icon" href="image/logo_noctinium.ico">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
 </head>
 
 <body>
     <header>
         <a href="index.php"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
-        <nav>
+        <nav id="computer">
             <li><a href="index.php">Accueil</a></li>
             <li><a href="eventlist.php">Évènements</a></li>
             <li><a href="contact.php">Contact</a></li>
-            <li><a href="propos.php">A propos</a></li>
+            <li><a href="propos.php">À propos</a></li>
             <li class="active"><a href="faq.php">FAQ</a></li>
             <li><a href="<?php 
 				if($logged_in == true){
@@ -31,7 +32,33 @@
 					echo("Connexion");
 				};?></a></li>
         </nav>
-    </header>
+            <nav id="mobile" class="hidden">
+                <ul>
+                    <li class="bread"><a class="burger" onclick="openNav()">&#9776;</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div id="menuBack" class="menuBack" onclick="closeNav()">
+            <div id="sidemenu" class="menu">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="index.php">Accueil</a>
+                <a href="eventlist.php">Évènements</a>
+                <a href="contact.php">Contact</a>
+                <a href="propos.php">À propos</a>
+                <a href="faq.php">FAQ</a>
+                <a href="<?php 
+                if($logged_in == true){
+                    echo("compte.php");
+                }else{
+                    echo("connexion.php");
+                };?>"><?php 
+                if($logged_in == true){
+                    echo("Compte");
+                }else{
+                    echo("Connexion");
+                };?></a>
+            </div>
+        </div>
     <section class="content content-small">
         <div class="container">
             <h1 class="gradient-text">Foire Aux Questions</h1>
@@ -83,7 +110,7 @@
                     </svg>
                     <div class="faq-content">
                         <p>
-                            Noctinium n'a pas de publique visé spécifique, cependant la majorité des personnes utilisant l'application/site sont les 18-25 ans.
+                            Noctinium n'a pas de public visé spécifique, cependant la majorité des personnes utilisant l'application/site sont les 18-25 ans.
                         </p>
                         <p>
                             Les utilisateurs de l'application/site veulent trouver des soirées près de chez eux organisées par d'autres personnes, associations et boites de nuit ou les poster eux-mêmes.
@@ -138,4 +165,20 @@
       element.classList.toggle("logo-M");
     }
       </script>
+    <script>
+        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+            document.getElementById("computer").classList.toggle("hidden");
+            document.getElementById("mobile").classList.toggle("hidden");
+        }
+        function openNav() {
+            document.getElementById("sidemenu").style.width = "40%";
+            document.getElementById("menuBack").style.visibility = "visible";
+            
+        }
+
+        function closeNav() {
+            document.getElementById("sidemenu").style.width = "0";
+            document.getElementById("menuBack").style.visibility = "hidden";
+        }
+    </script>
 </html>

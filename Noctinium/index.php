@@ -13,7 +13,7 @@
         <meta charset="utf-8" />
         <meta name="description" content="Page d'accueil du site Noctinium sur laquelle vous retrouverez notre map affichant les évènements du jours.">
         <title>Accueil</title>
-        <link rel="icon" href="image/logo_noctinium_16x16.png">
+        <link rel="icon" href="image/logo_noctinium.ico">
     </head>
     <body>
         <header>
@@ -23,7 +23,7 @@
                     <li class="active"><a href="index.php">Accueil</a></li>
                     <li><a href="eventlist.php">Évènements</a></li>
                     <li><a href="contact.php">Contact</a></li>
-                    <li><a href="propos.php">A propos</a></li>
+                    <li><a href="propos.php">À propos</a></li>
                     <li><a href="faq.php">FAQ</a></li>
                     <li><a href="<?php 
                     if($logged_in == true){
@@ -50,7 +50,7 @@
                 <a href="index.php">Accueil</a>
                 <a href="eventlist.php">Évènements</a>
                 <a href="contact.php">Contact</a>
-                <a href="propos.php">A propos</a>
+                <a href="propos.php">À propos</a>
                 <a href="faq.php">FAQ</a>
                 <a href="<?php 
                 if($logged_in == true){
@@ -202,7 +202,7 @@
             document.getElementById("mobile").classList.toggle("hidden");
         }
         function openNav() {
-            document.getElementById("sidemenu").style.width = "250px";
+            document.getElementById("sidemenu").style.width = "40%";
             document.getElementById("menuBack").style.visibility = "visible";
             
         }
