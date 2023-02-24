@@ -6,7 +6,7 @@
   background: url(cta-bg.webp) center/100% auto no-repeat;
 	 min-height: 50vh;
 	 font-family: 'Fira Sans', sans-serif;
-   padding: 50px;
+   padding: 50px 20px;
    background-size: cover;
    height: auto;
 	 
@@ -27,7 +27,7 @@
 }
 .imgEvent{
 	position: relative;
-	left: -70px;
+	left: -50px;
 	width: 270px;
 	height: 270px;
 	object-fit: cover;
@@ -127,7 +127,7 @@
 }*/
 .searchCont{
 	display: grid;
-	grid-template-columns: 2fr 4fr 2fr;
+	grid-template-columns: 1.7fr 5fr 3fr;
 	height: 80px;
 }
 .searchBar{
@@ -283,13 +283,14 @@
     color: black;	
 }
 .filtreCont{
-	margin-top: 7px;
+	margin-top: 10px;
 	margin-left: 20%;
 	text-align: center;
 }
 .newEventCont{
-	margin-top: 7px;
-	margin-right: 20%;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-left: auto;
 	text-align: center;
 }
 .main{
