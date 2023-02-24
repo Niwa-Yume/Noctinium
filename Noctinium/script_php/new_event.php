@@ -8,14 +8,14 @@
      event_type, event_private, event_maskedlocation, event_price, event_creation, event_user_type, event_user_id, event_imageevent_id)
 				VALUES (:event_title, :event_datetime, :event_location, :event_lat, :event_lon, :event_description, :event_music,
      :event_type, :event_private, :event_maskedlocation, :event_price, :event_creation, :event_user_type, :event_user_id, :event_imageevent_id)";
-	
     if($_SESSION['logged_in'] != true){
 		header('Location: ../connexion.php');
 		exit;
 	}
 
-	if (isset($_POST['nom_event']) and isset($_POST['date_event']) and isset($_POST['description_event']) 
+	if (isset($_POST['nom_event']) and isset($_POST['date_event']) and isset($_POST['description_event']) and isset($_POST['time_event'])
     and isset($_POST['adresse_event']) and isset($_POST['musique']) and isset($_POST['type']) and isset($_POST['conditions'])){
+        
         if($_POST['musique'] == ""){
             header("Location: ../eventAdd.php?error=1&music=1");
             exit;
@@ -50,14 +50,20 @@
         $lon = $response[0]['lon'];
         if($lat and $lon){
             $today = date('Y-m-d H:i:s');
-            $date_masked = $_POST['date_event'];
-            $date_int = str_replace("T"," ",$date_masked);
-            $date_int .= ":00";
-            if($date_int >= $today){
+            $dateeventint = explode(" / ", $_POST['date_event']);
+            $timeevent = str_replace(" ","",$_POST['time_event']);
+			$dateevent = $dateeventint[2]."-".$dateeventint[1]."-".$dateeventint[0]." ".$timeevent.":00";
+            if($dateevent >= $today){
                 if($_POST['date_event_mask'] == ""){
                     $testmasked = true;
+                    $dateeventmaskint = explode(" / ", $_POST['date_event_mask']);
+                    $timeeventmask = str_replace(" ","",$_POST['time_mask']);
+                    $dateeventmask = $dateeventmaskint[2]."-".$dateeventmaskint[1]."-".$dateeventmaskint[0]." ".$timeeventmask.":00";
                 }else{
-                    if($_POST['date_event'] >= $_POST['date_event_mask']){
+                    $dateeventmaskint = explode(" / ", $_POST['date_event_mask']);
+                    $timeeventmask = str_replace(" ","",$_POST['time_mask']);
+                    $dateeventmask = $dateeventmaskint[2]."-".$dateeventmaskint[1]."-".$dateeventmaskint[0]." ".$timeeventmask.":00";
+                    if($dateevent >= $dateeventmask){
                         $testmasked = true;
                     }else{
                         $testmasked = false;
@@ -71,7 +77,7 @@
                         $_POST['type'] = 6;
                     }
                     $event['event_title'] = $_POST['nom_event'];
-                    $event['event_datetime'] = $_POST['date_event'];
+                    $event['event_datetime'] = $dateevent;
                     $event['event_location'] = $_POST['adresse_event'];
                     $event['event_description'] = $_POST['description_event'];
                     $event['event_music'] = $_POST['musique'];
@@ -84,7 +90,7 @@
                     if ($_POST['date_event_mask'] == "") {
                         $event['event_maskedlocation'] = date('Y-m-d H:i:s');
                     }else{
-                        $event['event_maskedlocation'] = $_POST['date_event_mask'];
+                        $event['event_maskedlocation'] = $dateeventmask;
                     }
                     if (isset($_POST['private'])) {
                         $event['event_private'] = 1;
