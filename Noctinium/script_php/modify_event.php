@@ -18,7 +18,7 @@
             $sql2 = "SELECT imageevent_url FROM imageevent WHERE imageevent_id = ". $event_base['event_imageevent_id'] .";";
             $statement2 = $pdo->query($sql2);
             $image = $statement2->fetch();
-            if (isset($_POST['nom_event']) and isset($_POST['date_event']) and isset($_POST['description_event']) 
+            if (isset($_POST['nom_event']) and isset($_POST['date_event']) and isset($_POST['time_event']) and isset($_POST['description_event']) 
             and isset($_POST['adresse_event']) and isset($_POST['musique']) and isset($_POST['type']) and isset($_POST['conditions'])){
                 if($_POST['musique'] == ""){
                     header("Location: ../eventModify.php?eventerror=1&music=1");
@@ -73,11 +73,19 @@
                     echo $_POST['nom_event'];
                     exit;
                 }
-                if(strncmp($_POST['date_event'], $event_base['event_datetime'], 20) != 0){
-                    $change_date = "UPDATE events SET event_datetime = :date_event WHERE event_id = ". $event_base['event_id'] .";";
-                    $date['date_event'] = $_POST['date_event'];
-                    $change_date_statement = $pdo->prepare($change_date);
-                    $change_date_statement->execute($date);
+                if($_POST['date_event'] != "" && $_POST['time_event'] != ""){
+                    $dateeventint = explode(" / ", $_POST['date_event']);
+                    $timeevent = str_replace(" ","",$_POST['time_event']);
+                    $dateevent = $dateeventint[2]."-".$dateeventint[1]."-".$dateeventint[0]." ".$timeevent.":00";
+                    if(strncmp($dateevent, $event_base['event_datetime'], 20) != 0){
+                        $change_date = "UPDATE events SET event_datetime = :date_event WHERE event_id = ". $event_base['event_id'] .";";
+                        $date['date_event'] = $dateevent;
+                        $change_date_statement = $pdo->prepare($change_date);
+                        $change_date_statement->execute($date);
+                    }
+                }else{
+                    header('Location: ../eventAdd.php?error=1&date=1');
+                    exit;
                 }
                 if(strncmp($_POST['description_event'], $event_base['event_description'], 1000) != 0){
                     $change_description = "UPDATE events SET event_description = :descr WHERE event_id = ". $event_base['event_id'] .";";
@@ -103,28 +111,39 @@
                         $change_type_statement = $pdo->prepare($change_type);
                         $change_type_statement->execute($type_event);
                 }
-                if(strncmp($_POST['date_event_mask'], $event_base['event_maskedlocation'], 20) != 0 and $_POST['date_event_mask'] != ""){
-                    if($_POST['date_event'] == $event_base['event_datetime']){
-                        if($_POST['date_event'] >= $_POST['date_event_mask']){
-                            $change_masked = "UPDATE events SET event_maskedlocation = :mask WHERE event_id = ". $event_base['event_id'] .";";
-                            $masked['mask'] = $_POST['date_event_mask'];
-                            $change_masked_statement = $pdo->prepare($change_masked);
-                            $change_masked_statement->execute($masked);
+                if($_POST['date_event_mask'] != "" && $_POST['time_mask'] != ""){
+                    $dateeventmaskint = explode(" / ", $_POST['date_event_mask']);
+                    $timeeventmask = str_replace(" ","",$_POST['time_mask']);
+                    $dateeventmask = $dateeventmaskint[2]."-".$dateeventmaskint[1]."-".$dateeventmaskint[0]." ".$timeeventmask.":00";
+                    if(strncmp($dateeventmask, $event_base['event_maskedlocation'], 20) != 0 and $dateeventmask != ""){
+                        if($_POST['date_event'] == $event_base['event_datetime']){
+                            if($_POST['date_event'] >= $_POST['date_event_mask']){
+                                $change_masked = "UPDATE events SET event_maskedlocation = :mask WHERE event_id = ". $event_base['event_id'] .";";
+                                $masked['mask'] = $_POST['date_event_mask'];
+                                $change_masked_statement = $pdo->prepare($change_masked);
+                                $change_masked_statement->execute($masked);
+                            }else{
+                                header('Location: ../eventModify.php?error=1&masked=1');
+                                exit;
+                            }
                         }else{
-                            header('Location: ../eventModify.php?error=1&masked=1');
-                            exit;
+                            if($event_base['event_datetime'] >= $_POST['date_event_mask']){
+                                $change_masked = "UPDATE events SET event_maskedlocation = :mask WHERE event_id = ". $event_base['event_id'] .";";
+                                $masked['mask'] = $_POST['date_event_mask'];
+                                $change_masked_statement = $pdo->prepare($change_masked);
+                                $change_masked_statement->execute($masked);
+                            }else{
+                                header('Location: ../eventModify.php?error=1&masked=1');
+                                exit;
+                            }
                         }
-                    }else{
-                        if($event_base['event_datetime'] >= $_POST['date_event_mask']){
-                            $change_masked = "UPDATE events SET event_maskedlocation = :mask WHERE event_id = ". $event_base['event_id'] .";";
-                            $masked['mask'] = $_POST['date_event_mask'];
-                            $change_masked_statement = $pdo->prepare($change_masked);
-                            $change_masked_statement->execute($masked);
-                        }else{
-                            header('Location: ../eventModify.php?error=1&masked=1');
-                            exit;
-                        }
-
+                    }
+                }else{
+                    if($event_base['event_maskedlocation'] > $event_base['event_creation']){
+                        $change_masked = "UPDATE events SET event_maskedlocation = :mask WHERE event_id = ". $event_base['event_id'] .";";
+                        $masked['mask'] = $event_base['event_creation'];
+                        $change_masked_statement = $pdo->prepare($change_masked);
+                        $change_masked_statement->execute($masked);
                     }
                 }
                 if($_POST['prix_event'] != $event_base['event_price'] and $_POST['prix_event'] != ""){

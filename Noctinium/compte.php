@@ -38,7 +38,7 @@
           </nav>
             <nav id="mobile" class="hidden">
                 <ul>
-                    <li class="bread"><a class="burger" onclick="openNav()">&#9776;</a></li>
+                    <li class="bread"><a class="burger" onclick="openNav()">Menu &#9776;</a></li>
                 </ul>
             </nav>
         </header>
@@ -173,11 +173,15 @@
               $statement->execute($event_param);
               if($statement->rowCount() > 0){
                 while($event = $statement->fetch()){
+                  $datetimeint = explode(" ",$event['event_datetime']);
+                  $date = explode("-",$datetimeint[0]);
+                  $timeevent = explode(":",$datetimeint[1]);
+                  $dateevent = $date[2]."/".$date[1]."/".$date[0]." | ".$timeevent[0]." : ".$timeevent[1];
                   echo ('
                   <a href="event.php?event='. $event['event_id'] .'" class="myeventCont">
                     <div>
                       <h2>'. $event['event_title'] .'</h2>
-                      <div>'. $event['event_datetime'] .'</div>
+                      <div>'. $dateevent .'</div>
                     </div>
                     <form method="POST" action="script_php/modify_event_redirect.php?event='. $event['event_id'] .'">
                       <button class="eventParam">Modifier</button>

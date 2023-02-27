@@ -59,7 +59,7 @@
         </nav>
             <nav id="mobile" class="hidden">
                 <ul>
-                    <li class="bread"><a class="burger" onclick="openNav()">&#9776;</a></li>
+                    <li class="bread"><a class="burger" onclick="openNav()">Menu &#9776;</a></li>
                 </ul>
             </nav>
         </header>
@@ -135,13 +135,19 @@
             
             <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="datetime-local" class="form-control insc-form" id="date_event" name="date_event" value="<?php echo $event['event_datetime']; ?>" required>
+                  <input type="text" class="form-control insc-form" id="date_event" name="date_event" value="<?php $dateevent = explode(" ", $event['event_datetime']); $date_event = explode("-", $dateevent[0]); echo ($date_event[2]." / ".$date_event[1]." / ".$date_event[0]); ?>" placeholder="DATE DE L'ÉVÈNEMENT (JJ/MM/AAAA)" required>
+                </div>
+              </div>
+
+              <div class="form-group-insc">
+                <div class="col-sm-12">
+                  <input type="text" class="form-control insc-form" id="time" name="time_event" value="<?php $timeevent = explode(":", $dateevent[1]); echo ($timeevent[0]." : ".$timeevent[1]); ?>" placeholder="HEURE DE L'ÉVÈNEMENT (HH:MM)" required>
                 </div>
               </div>
             
               <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <textarea class="text-control" id="description" rows="10" placeholder="DESCRIPTION DE L'ÉVÈNEMENT (1000 caractères maximum)" name="description_event" maxlength="1000" required><?php echo $event['event_description']; ?></textarea>
+                  <textarea class="text-control" id="description" rows="10" placeholder="DESCRIPTION DE L'ÉVÈNEMENT" name="description_event" maxlength="1000" required><?php echo $event['event_description']; ?></textarea>
                 </div>
               </div>
 
@@ -231,7 +237,13 @@
 
               <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="datetime-local" class="form-control insc-form <?php if($event['event_maskedlocation'] == $event['event_creation']){echo ("hidden");} ?>" id="adresse_cachee" name="date_event_mask" value="<?php if($event['event_maskedlocation'] != $event['event_creation']){echo $event['event_maskedlocation'];} ?>">
+                  <input type="text" class="form-control insc-form <?php if($event['event_maskedlocation'] == $event['event_creation']){echo ("hidden");} ?>" id="adresse_cachee" name="date_event_mask" value="<?php $datemask = explode(" ", $event['event_maskedlocation']); $date_mask = explode("-", $datemask[0]); if($event['event_maskedlocation'] != $event['event_creation']){echo ($date_mask[2]." / ".$date_mask[1]." / ".$date_mask[0]);} ?>" placeholder="RÉVÉLATION DE L'ADRESSE (JJ/MM/AAAA)">
+                </div>
+              </div>
+
+              <div class="form-group-insc">
+                <div class="col-sm-12">
+                  <input type="text" class="form-control insc-form <?php if($event['event_maskedlocation'] == $event['event_creation']){echo ("hidden");} ?>" id="time_mask" name="time_mask" value="<?php $timemask = explode(":", $datemask[1]); if($event['event_maskedlocation'] != $event['event_creation']){echo ($timemask[0]." : ".$timemask[1]);} ?>" placeholder="RÉVÉLATION DE L'ADRESSE (HH:MM)">
                 </div>
               </div>
 
@@ -248,13 +260,13 @@
                 </div>
               </div>
             
-            <button class="btn btn-primary send-button gradient insc-form-btn" id="submit" type="submit" value="SEND">
+            <button class="btn btn-primary send-button gradient insc-form-btn" id="submit" type="submit" value="SEND" onclick="getTime()">
               <div class="alt-send-button">
                 <i class="fa fa-paper-plane fa-paper-plane-1"></i><span class="send-text send-text-1">Ajouter l'évènement</span>
               </div>
             
             </button>
-            
+            <input class="hidden" type="submit" id="trueBtn">
           </form>
     </div>
     </section>
@@ -289,8 +301,10 @@
     var mask = document.getElementById("date-mask")
     if (mask.checked){
       document.getElementById("adresse_cachee").classList.toggle("hidden");
+      document.getElementById("time_mask").classList.toggle("hidden");
     }else{
       document.getElementById("adresse_cachee").classList.toggle("hidden");
+      document.getElementById("time_mask").classList.toggle("hidden");
 
     }
   }
@@ -320,6 +334,94 @@ var options = {
 
 $("#adresse").easyAutocomplete(options);
 </script>
+<script>
+      document.getElementById('date_event').addEventListener('input', function(e){
+        this.type = 'text';
+        var input = this.value;
+        if(/\D\/$/.test(input)) input = input.substr(0, input.length - 3);
+        var values = input.split('/').map(function(v){return v.replace(/\D/g, '')});
+        if(values[0]) values[0] = checkValue(values[0], 31);
+        if(values[1]) values[1] = checkValue(values[1], 12);
+        var output = values.map(function(v, i){
+          return v.length == 2 && i < 2 ?  v + ' / ' : v;
+        });
+        this.value = output.join('').substr(0, 14);
+      });
+
+      function checkValue(str, max){
+        if(str.charAt(0) !== '0' || str == '00'){
+          var num = parseInt(str);
+          if(isNaN(num) || num <= 0 || num > max) num = 1;
+          str = num > parseInt(max.toString().charAt(0)) && num.toString().length == 1 ? '0' + num : num.toString();
+        };
+        return str;
+      };
+
+      document.getElementById('date_event').addEventListener('blur', function(e){
+        this.type = 'tel';
+        var input = this.value;
+        var values = input.split('/').map(function(v){return v.replace(/\D/g, '')});
+        var output = '';
+        if(values.length == 3){
+          var year = values[2].length !== 4 ? parseInt(values[2]) + 2000 : parseInt(values[2]);
+          var month = parseInt(values[1]) - 1;
+          var day = parseInt(values[0]);
+          var d = new Date(year, month, day);
+          if(!isNaN(d)){
+            var dates = [d.getDate(), d.getMonth() + 1, d.getFullYear()];
+            output = dates.map(function(v){
+              v = v.toString();
+              return v.length == 1 ? '0' + v : v;
+            }).join(' / ');
+          };
+        };
+        this.value = output;
+      });
+    </script>
+    <script>
+      document.getElementById('adresse_cachee').addEventListener('input', function(e){
+        this.type = 'text';
+        var input = this.value;
+        if(/\D\/$/.test(input)) input = input.substr(0, input.length - 3);
+        var values = input.split('/').map(function(v){return v.replace(/\D/g, '')});
+        if(values[0]) values[0] = checkValue(values[0], 31);
+        if(values[1]) values[1] = checkValue(values[1], 12);
+        var output = values.map(function(v, i){
+          return v.length == 2 && i < 2 ?  v + ' / ' : v;
+        });
+        this.value = output.join('').substr(0, 14);
+      });
+
+      function checkValue(str, max){
+        if(str.charAt(0) !== '0' || str == '00'){
+          var num = parseInt(str);
+          if(isNaN(num) || num <= 0 || num > max) num = 1;
+          str = num > parseInt(max.toString().charAt(0)) && num.toString().length == 1 ? '0' + num : num.toString();
+        };
+        return str;
+      };
+
+      document.getElementById('adresse_cachee').addEventListener('blur', function(e){
+        this.type = 'tel';
+        var input = this.value;
+        var values = input.split('/').map(function(v){return v.replace(/\D/g, '')});
+        var output = '';
+        if(values.length == 3){
+          var year = values[2].length !== 4 ? parseInt(values[2]) + 2000 : parseInt(values[2]);
+          var month = parseInt(values[1]) - 1;
+          var day = parseInt(values[0]);
+          var d = new Date(year, month, day);
+          if(!isNaN(d)){
+            var dates = [d.getDate(), d.getMonth() + 1, d.getFullYear()];
+            output = dates.map(function(v){
+              v = v.toString();
+              return v.length == 1 ? '0' + v : v;
+            }).join(' / ');
+          };
+        };
+        this.value = output;
+      });
+    </script>
     <script>
         if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
             document.getElementById("computer").classList.toggle("hidden");
@@ -336,4 +438,148 @@ $("#adresse").easyAutocomplete(options);
             document.getElementById("menuBack").style.visibility = "hidden";
         }
     </script>
+    <script>
+      var time1 = "<?php echo ($timeevent[0]." : ".$timeevent[1]); ?>";
+
+      var timeStart = document.getElementById("time");
+
+      var checkValue = (str, max) => {
+        if (str.charAt(0) !== "0" || str === "00") {
+          let num = parseInt(str);
+          if (isNaN(num) || num < 0 || num > max) num = 0;
+
+          str =
+            num === 0 ||
+            (num > parseInt(max.toString().charAt(0)) && num.toString().length === 1)
+              ? "0" + num
+              : num.toString();
+        }
+        return str;
+      };
+
+      var formatTime = (evt) => {
+        evt.target.type = "text";
+        let input = evt.target.value;
+
+        if (/\D:$/.test(input)) input = input.substr(0, input.length - 3);
+
+
+        var values = input.split(":").map((v) => v.replace(/\D/g, ""));
+        if (values[0]) values[0] = checkValue(values[0], 23);
+        if (values[1]) values[1] = checkValue(values[1], 59);
+
+
+        var output = values.map((v, i) =>
+          v.length === 2 && i < 1 ? v + " : " : v
+        );
+
+
+        evt.target.value = output.join("").substr(0, 7);
+      };
+
+      var autoFormatTime = (autoFill) => {
+        return (evt) => {
+          let input = evt.target.value;
+          var values = input.split(":").map((v) => v.replace(/\D/g, ""));
+          let output = "";
+
+          if (values.length === 2) {
+
+            var minute = !values[1]
+              ? autoFill
+              : values[1].length === 1
+              ? values[1] + 0
+              : values[1];
+            var times = [values[0], minute];
+            output = times
+              .map((v, i) => (v.length === 2 && i < 1 ? v + " : " : v))
+              .join("");
+          }
+          evt.target.value = output;
+          time1 = output;
+        };
+      };
+
+      var autoFormatTimeStart = autoFormatTime("00");
+
+
+      timeStart.addEventListener("input", formatTime);
+      timeStart.addEventListener("blur", autoFormatTimeStart);
+
+
+    var time2 = "<?php if($event['event_maskedlocation'] != $event['event_creation']){ echo ($timeevent[0]." : ".$timeevent[1]);} ?>";
+
+    var timeStart2 = document.getElementById("time_mask");
+
+    var checkValue2 = (str, max) => {
+      if (str.charAt(0) !== "0" || str === "00") {
+        let num = parseInt(str);
+        if (isNaN(num) || num < 0 || num > max) num = 0;
+
+        str =
+          num === 0 ||
+          (num > parseInt(max.toString().charAt(0)) && num.toString().length === 1)
+            ? "0" + num
+            : num.toString();
+      }
+      return str;
+    };
+
+    var formatTime2 = (evt) => {
+      evt.target.type = "text";
+      let input = evt.target.value;
+
+      if (/\D:$/.test(input)) input = input.substr(0, input.length - 3);
+
+
+      var values = input.split(":").map((v) => v.replace(/\D/g, ""));
+      if (values[0]) values[0] = checkValue(values[0], 23);
+      if (values[1]) values[1] = checkValue(values[1], 59);
+
+
+      var output2 = values.map((v, i) =>
+        v.length === 2 && i < 1 ? v + " : " : v
+      );
+
+
+      evt.target.value = output2.join("").substr(0, 7);
+    };
+
+    var autoFormatTime2 = (autoFill) => {
+      return (evt) => {
+        let input = evt.target.value;
+        var values = input.split(":").map((v) => v.replace(/\D/g, ""));
+        let output2 = "";
+
+        if (values.length === 2) {
+
+          var minute = !values[1]
+            ? autoFill
+            : values[1].length === 1
+            ? values[1] + 0
+            : values[1];
+          var times = [values[0], minute];
+          output2 = times
+            .map((v, i) => (v.length === 2 && i < 1 ? v + " : " : v))
+            .join("");
+        }
+        evt.target.value = output2;
+        time2 = output2;
+      };
+    };
+
+    var autoFormatTimeStart2 = autoFormatTime2("00");
+
+
+    timeStart2.addEventListener("input", formatTime2);
+    timeStart2.addEventListener("blur", autoFormatTimeStart2);
+
+    var trueBtn = document.getElementById("trueBtn");
+    function getTime(){
+      timeStart.value = time1;
+      timeStart2.value = time2;
+      trueBtn.click();
+    }
+
+</script>
 </html>

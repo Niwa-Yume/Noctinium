@@ -22,8 +22,10 @@
         }
     }
     if(isset($_POST['date'])){
-        if($_POST['date'] >= $today){
-            $date = urlencode($_POST['date']);
+        $dateeventint = explode(" / ", $_POST['date_event']);
+        $dateevent = $dateeventint[2]."-".$dateeventint[1]."-".$dateeventint[0];
+        if($dateevent >= $today){
+            $date = urlencode($dateevent);
             $link .= "date=".$date;
             $link .= "&";
         }

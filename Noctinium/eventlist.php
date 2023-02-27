@@ -38,7 +38,7 @@
             </nav>
             <nav id="mobile" class="hidden">
                 <ul>
-                    <li class="bread"><a class="burger" onclick="openNav()">&#9776;</a></li>
+                    <li class="bread"><a class="burger" onclick="openNav()">Menu &#9776;</a></li>
                 </ul>
             </nav>
         </header>
@@ -124,7 +124,7 @@
               <div class="typeCont">
                 <div class="form-group-insc">
                   <div class="col-sm-12">
-                    <input type="date" class="filtreDate insc-form" id="adresse_cachee" name="date" value="">
+                    <input type="text" class="filtreDate insc-form" id="date" name="date" value="" placeholder="DATE DE L'ÉVÈNEMENT">
                   </div>
                 </div>
               </div>
@@ -267,13 +267,19 @@
               }elseif($event[$i]['event_type'] == 6){
                 $event_type = "Autres";
               }
+
+              $datetimeint = explode(" ",$event[$i]['event_datetime']);
+              $date = explode("-",$datetimeint[0]);
+              $timeevent = explode(":",$datetimeint[1]);
+              $dateevent = $date[2]."/".$date[1]."/".$date[0]." | ".$timeevent[0]." : ".$timeevent[1];
+
               echo ('<div class="event-presentation">
                     <div>
                     <img src="'. $image['imageevent_url'] .'" alt="" class="imgEvent">
                     </div>
                     <div class="eventInfo">
                     <div class="eventBottom">
-                    <div class="eventDate">'.$event[$i]['event_datetime'].'</div>
+                    <div class="eventDate">'.$dateevent.'</div>
                     <div class="musiqueEvent">'.$event_music.'</div>
                     </div>
                     <div class="eventTitle">'.$event[$i]['event_title'].'</div>
@@ -389,6 +395,50 @@
             document.getElementById("sidemenu").style.width = "0";
             document.getElementById("menuBack").style.visibility = "hidden";
         }
+    </script>
+    <script>
+      document.getElementById('date').addEventListener('input', function(e){
+        this.type = 'text';
+        var input = this.value;
+        if(/\D\/$/.test(input)) input = input.substr(0, input.length - 3);
+        var values = input.split('/').map(function(v){return v.replace(/\D/g, '')});
+        if(values[0]) values[0] = checkValue(values[0], 31);
+        if(values[1]) values[1] = checkValue(values[1], 12);
+        var output = values.map(function(v, i){
+          return v.length == 2 && i < 2 ?  v + ' / ' : v;
+        });
+        this.value = output.join('').substr(0, 14);
+      });
+
+      function checkValue(str, max){
+        if(str.charAt(0) !== '0' || str == '00'){
+          var num = parseInt(str);
+          if(isNaN(num) || num <= 0 || num > max) num = 1;
+          str = num > parseInt(max.toString().charAt(0)) && num.toString().length == 1 ? '0' + num : num.toString();
+        };
+        return str;
+      };
+
+      document.getElementById('date').addEventListener('blur', function(e){
+        this.type = 'tel';
+        var input = this.value;
+        var values = input.split('/').map(function(v){return v.replace(/\D/g, '')});
+        var output = '';
+        if(values.length == 3){
+          var year = values[2].length !== 4 ? parseInt(values[2]) + 2000 : parseInt(values[2]);
+          var month = parseInt(values[1]) - 1;
+          var day = parseInt(values[0]);
+          var d = new Date(year, month, day);
+          if(!isNaN(d)){
+            var dates = [d.getDate(), d.getMonth() + 1, d.getFullYear()];
+            output = dates.map(function(v){
+              v = v.toString();
+              return v.length == 1 ? '0' + v : v;
+            }).join(' / ');
+          };
+        };
+        this.value = output;
+      });
     </script>
     </body>
 </html>

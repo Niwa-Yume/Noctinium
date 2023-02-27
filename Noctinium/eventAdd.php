@@ -63,7 +63,7 @@
         </nav>
             <nav id="mobile" class="hidden">
                 <ul>
-                    <li class="bread"><a class="burger" onclick="openNav()">&#9776;</a></li>
+                    <li class="bread"><a class="burger" onclick="openNav()">Menu &#9776;</a></li>
                 </ul>
             </nav>
         </header>
@@ -151,7 +151,7 @@
             
               <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <textarea class="text-control" id="description" rows="10" placeholder="DESCRIPTION DE L'ÉVÈNEMENT (1000 caractères maximum)" name="description_event" maxlength="1000" required></textarea>
+                  <textarea class="text-control" id="description" rows="10" placeholder="DESCRIPTION DE L'ÉVÈNEMENT" name="description_event" maxlength="1000" required></textarea>
                 </div>
               </div>
 

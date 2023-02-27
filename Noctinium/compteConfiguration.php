@@ -38,7 +38,7 @@
           </nav>
             <nav id="mobile" class="hidden">
                 <ul>
-                    <li class="bread"><a class="burger" onclick="openNav()">&#9776;</a></li>
+                    <li class="bread"><a class="burger" onclick="openNav()">Menu &#9776;</a></li>
                 </ul>
             </nav>
         </header>
@@ -149,7 +149,7 @@
             <div>
               <form id="formBio" class="form-group-insc" action="script_php/configuration_description.php" method="POST">
                 <div class="col-sm-12">
-                  <textarea class="formUserBio" rows="10" placeholder="DESCRIPTION (1000 caractères maximum)" id="bio" name="description" required maxlength="1000"></textarea>
+                  <textarea class="formUserBio" rows="10" placeholder="DESCRIPTION" id="bio" name="description" required maxlength="1000"></textarea>
                   <label class="uploadFile">
                     <input type="submit" class="btnUpload" name="changerInfo" value="" required>
                     Modifier

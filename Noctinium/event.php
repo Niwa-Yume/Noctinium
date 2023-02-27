@@ -35,7 +35,7 @@
           </nav>
           <nav id="mobile" class="hidden">
                 <ul>
-                    <li class="bread"><a class="burger" onclick="openNav()">&#9776;</a></li>
+                    <li class="bread"><a class="burger" onclick="openNav()">Menu &#9776;</a></li>
                 </ul>
             </nav>
         </header>
@@ -94,6 +94,54 @@
                     $adresse = $event['event_location'];
                   }
 
+                  $datetimeint = explode(" ",$event['event_datetime']);
+                  $date = explode("-",$datetimeint[0]);
+                  $timeevent = explode(":",$datetimeint[1]);
+                  $dateevent = $date[2]."/".$date[1]."/".$date[0]." | ".$timeevent[0]." : ".$timeevent[1];
+
+                  if($event['event_music'] == 1){
+                    $event_music = "Techno";
+                  }elseif($event['event_music'] == 2){
+                    $event_music = "House";
+                  }elseif($event['event_music'] == 3){
+                    $event_music = "Électro";
+                  }elseif($event['event_music'] == 4){
+                    $event_music = "Rap";
+                  }elseif($event['event_music'] == 5){
+                    $event_music = "Latino";
+                  }elseif($event['event_music'] == 6){
+                    $event_music = "Années 80";
+                  }elseif($event['event_music'] == 7){
+                    $event_music = "Années 90";
+                  }elseif($event['event_music'] == 8){
+                    $event_music = "Années 2000";
+                  }elseif($event['event_music'] == 9){
+                    $event_music = "Punk";
+                  }elseif($event['event_music'] == 10){
+                    $event_music = "Rock";
+                  }elseif($event['event_music'] == 11){
+                    $event_music = "Jazz";
+                  }elseif($event['event_music'] == 12){
+                    $event_music = "Blues";
+                  }elseif($event['event_music'] == 13){
+                    $event_music = "All Styles";
+                  }elseif($event['event_music'] == 14){
+                    $event_music = "Autres";
+                  }
+                  if($event['event_type'] == 1){
+                    $event_type = "Before";
+                  }elseif($event['event_type'] == 2){
+                    $event_type = "After";
+                  }elseif($event['event_type'] == 3){
+                    $event_type = "Soirée";
+                  }elseif($event['event_type'] == 4){
+                    $event_type = "Concert/Showcase";
+                  }elseif($event['event_type'] == 5){
+                    $event_type = "Open Mic/Karaoké";
+                  }elseif($event['event_type'] == 6){
+                    $event_type = "Autres";
+                  }
+
                   echo ("
                   <div class=\"eventCont\">
                     <div class=\"returnBtnCont\">
@@ -109,7 +157,8 @@
                   <div class=\"eventGrid\">
                     <img class=\"imgEvent\" src=\"". $image_event['imageevent_url'] ."\" alt=\"Image de l'évènement\">
                     <div class=\"infoSup\">
-                      <span class=\"dateEvent\">". $event['event_datetime'] ."</span>
+                      <span class=\"dateEvent\">". $dateevent."</span>
+                      <div class=\"adresseEvent\">". $event_music ." | ". $event_type ."</div>
                       <div class=\"adresseEvent\">". $adresse ."</div>
                       <div class=\"userEvent\"><a href=\"organisateur.php?organisateur=". $event['event_user_id'] ."\">". $organisateur['user_username'] ."</a></div>
                     </div>
@@ -166,13 +215,17 @@
                               }else{
                                 $user_username = "Utilisateur supprimé";
                               }
+                              $comtimeint = explode(" ",$commentaire[$i]['commentevent_date']);
+                              $com = explode("-",$comtimeint[0]);
+                              $timecom = explode(":",$comtimeint[1]);
+                              $datecom = $com[2]."/".$com[1]."/".$com[0]." | ".$timecom[0].":".$timecom[1].":".$timecom[2];
                               echo ("<div class=\"commentBody\">
                               <div class=\"commentHeader\">
                                 <a href=\"organisateur.php?organisateur=". $commentaire[$i]['commentevent_user_id'] ."\"><div class=\"commentUser\">
                                   ". $user_username ."
                                 </div></a>
                                 <div class=\"commentDate\">
-                                  ". $commentaire[$i]['commentevent_date'] ."
+                                  ". $datecom ."
                                 </div>
                               </div>
                               <div class=\"commentText\">

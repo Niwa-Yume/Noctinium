@@ -35,7 +35,7 @@
           </nav>
             <nav id="mobile" class="hidden">
                 <ul>
-                    <li class="bread"><a class="burger" onclick="openNav()">&#9776;</a></li>
+                    <li class="bread"><a class="burger" onclick="openNav()">Menu &#9776;</a></li>
                 </ul>
             </nav>
         </header>
@@ -85,9 +85,10 @@
                   $orga_image = $statement2->fetch();
 
                   if ($organisateur['user_description'] == ""){
-                    $organisateur['user_description'] = "<div style=\"text-align: center;font-size: 1.2rem;\">Aucune description.</div>";
+                    $organisateur['user_description'] = "<div style=\"text-align: center;font-size: 1.5rem;\">Aucune description.</div>";
+                  }else{
+                    $organisateur['user_description']=htmlspecialchars($organisateur['user_description'], ENT_QUOTES, 'utf-8');
                   }
-                  $organisateur['user_description']=htmlspecialchars($organisateur['user_description'], ENT_QUOTES, 'utf-8');
                   $note = "SELECT rating_value FROM rating WHERE rating_organiser_id = ". $_GET['organisateur'] .";";
                     $query = $pdo->query($note);
                     if($query->rowCount() > 0){
@@ -120,7 +121,7 @@
                     if($organisateur['user_instagram'] != [] or $organisateur['user_twitter'] != [] or $organisateur['user_site'] != []){
                       echo ("<ul class=\"link-list\">");
                       if($organisateur['user_instagram'] != []){
-                        echo("<li class=\"orga\"><a href=\"#\" target=\"_blank\" class=\"contact-icon\" onclick=\"insta()\">
+                        echo("<li class=\"orga\" onclick=\"insta()\"><a href=\"#\" target=\"_blank\" class=\"contact-icon\">
                         <i class=\"fa fa-social fa-instagram\" aria-hidden=\"true\"></i></a>
                         </li>
                         <script>
@@ -130,7 +131,7 @@
                         </script>");
                       }
                       if($organisateur['user_twitter'] != []){
-                        echo ("<li class=\"orga\"><a href=\"#\" target=\"_blank\" class=\"contact-icon\" onclick=\"twitter()\">
+                        echo ("<li class=\"orga\" onclick=\"twitter()\"><a href=\"#\" target=\"_blank\" class=\"contact-icon\">
                         <i class=\"fa fa-social fa-twitter\" aria-hidden=\"true\"></i></a>
                         </li>
                         <script>
@@ -140,11 +141,11 @@
                         </script>");
                       }
                       if($organisateur['user_site'] != []){
-                        echo ("<li class=\"orga\"><a href=\"#\" target=\"_blank\" class=\"contact-icon\">
+                        echo ("<li class=\"orga\" onclick=\"site()\"><a href=\"#\" target=\"_blank\" class=\"contact-icon\">
                         <i class=\"fa fa-social fa-link\" aria-hidden=\"true\"></i></a>
                         </li>
                         <script>
-                          function twitter(){
+                          function site(){
                             window.open(\"". $organisateur['user_site'] ."\");
                           }
                         </script>");
@@ -199,13 +200,17 @@
                       }else{
                         $user_username = "Utilisateur supprimé";
                       }
+                      $comtimeint = explode(" ",$commentaire[$i]['commentorganiser_date']);
+                      $com = explode("-",$comtimeint[0]);
+                      $timecom = explode(":",$comtimeint[1]);
+                      $datecom = $com[2]."/".$com[1]."/".$com[0]." | ".$timecom[0].":".$timecom[1].":".$timecom[2];
                       echo ("<div class=\"commentBody\">
                       <div class=\"commentHeader\">
                         <a href=\"organisateur.php?organisateur=". $commentaire[$i]['commentorganiser_user_id'] ."\"><div class=\"commentUser\">
                           ". $user_username ."
                         </div></a>
                         <div class=\"commentDate\">
-                          ". $commentaire[$i]['commentorganiser_date'] ."
+                          ". $datecom ."
                         </div>
                       </div>
                       <div class=\"commentText\">
