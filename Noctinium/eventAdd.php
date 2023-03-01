@@ -513,79 +513,79 @@
       timeStart.addEventListener("blur", autoFormatTimeStart);
 
 
-    var time2 = "";
+      var time2 = "";
 
-    var timeStart2 = document.getElementById("time_mask");
+      var timeStart2 = document.getElementById("time_mask");
 
-    var checkValue2 = (str, max) => {
-      if (str.charAt(0) !== "0" || str === "00") {
-        let num = parseInt(str);
-        if (isNaN(num) || num < 0 || num > max) num = 0;
+      var checkValue2 = (str, max) => {
+        if (str.charAt(0) !== "0" || str === "00") {
+          let num = parseInt(str);
+          if (isNaN(num) || num < 0 || num > max) num = 0;
 
-        str =
-          num === 0 ||
-          (num > parseInt(max.toString().charAt(0)) && num.toString().length === 1)
-            ? "0" + num
-            : num.toString();
-      }
-      return str;
-    };
-
-    var formatTime2 = (evt) => {
-      evt.target.type = "text";
-      let input = evt.target.value;
-
-      if (/\D:$/.test(input)) input = input.substr(0, input.length - 3);
-
-
-      var values = input.split(":").map((v) => v.replace(/\D/g, ""));
-      if (values[0]) values[0] = checkValue(values[0], 23);
-      if (values[1]) values[1] = checkValue(values[1], 59);
-
-
-      var output2 = values.map((v, i) =>
-        v.length === 2 && i < 1 ? v + " : " : v
-      );
-
-
-      evt.target.value = output2.join("").substr(0, 7);
-    };
-
-    var autoFormatTime2 = (autoFill) => {
-      return (evt) => {
-        let input = evt.target.value;
-        var values = input.split(":").map((v) => v.replace(/\D/g, ""));
-        let output2 = "";
-
-        if (values.length === 2) {
-
-          var minute = !values[1]
-            ? autoFill
-            : values[1].length === 1
-            ? values[1] + 0
-            : values[1];
-          var times = [values[0], minute];
-          output2 = times
-            .map((v, i) => (v.length === 2 && i < 1 ? v + " : " : v))
-            .join("");
+          str =
+            num === 0 ||
+            (num > parseInt(max.toString().charAt(0)) && num.toString().length === 1)
+              ? "0" + num
+              : num.toString();
         }
-        evt.target.value = output2;
-        time2 = output2;
+        return str;
       };
-    };
 
-    var autoFormatTimeStart2 = autoFormatTime2("00");
+      var formatTime2 = (evt) => {
+        evt.target.type = "text";
+        let input = evt.target.value;
+
+        if (/\D:$/.test(input)) input = input.substr(0, input.length - 3);
 
 
-    timeStart2.addEventListener("input", formatTime2);
-    timeStart2.addEventListener("blur", autoFormatTimeStart2);
+        var values = input.split(":").map((v) => v.replace(/\D/g, ""));
+        if (values[0]) values[0] = checkValue(values[0], 23);
+        if (values[1]) values[1] = checkValue(values[1], 59);
 
-    var trueBtn = document.getElementById("trueBtn");
-    function getTime(){
-      timeStart.value = time1;
-      timeStart2.value = time2;
-      trueBtn.click();
-    }
+
+        var output2 = values.map((v, i) =>
+          v.length === 2 && i < 1 ? v + " : " : v
+        );
+
+
+        evt.target.value = output2.join("").substr(0, 7);
+      };
+
+      var autoFormatTime2 = (autoFill) => {
+        return (evt) => {
+          let input = evt.target.value;
+          var values = input.split(":").map((v) => v.replace(/\D/g, ""));
+          let output2 = "";
+
+          if (values.length === 2) {
+
+            var minute = !values[1]
+              ? autoFill
+              : values[1].length === 1
+              ? values[1] + 0
+              : values[1];
+            var times = [values[0], minute];
+            output2 = times
+              .map((v, i) => (v.length === 2 && i < 1 ? v + " : " : v))
+              .join("");
+          }
+          evt.target.value = output2;
+          time2 = output2;
+        };
+      };
+
+      var autoFormatTimeStart2 = autoFormatTime2("00");
+
+
+      timeStart2.addEventListener("input", formatTime2);
+      timeStart2.addEventListener("blur", autoFormatTimeStart2);
+
+      var trueBtn = document.getElementById("trueBtn");
+      function getTime(){
+        timeStart.value = time1;
+        timeStart2.value = time2;
+        trueBtn.click();
+      }
 
 </script>
 </html>

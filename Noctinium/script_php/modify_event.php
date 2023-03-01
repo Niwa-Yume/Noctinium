@@ -70,8 +70,6 @@
                     $title['title'] = $_POST['nom_event'];
                     $change_title_statement = $pdo->prepare($change_title);
                     $change_title_statement->execute($title);
-                    echo $_POST['nom_event'];
-                    exit;
                 }
                 if($_POST['date_event'] != "" && $_POST['time_event'] != ""){
                     $dateeventint = explode(" / ", $_POST['date_event']);
