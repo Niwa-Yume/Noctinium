@@ -5,6 +5,7 @@
 */
 
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 * {
     padding: 0;
     margin: 0;
@@ -1207,6 +1208,33 @@ textarea.text-control{
 }
 .errorMessage button{
     background-color: #9f3939;
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.okCont{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    height: auto;
+    transition: 1s;
+}
+.okMessage{
+    margin: auto;
+    text-align: center;
+    width: 300px;
+    padding: 20px;
+    color: #000000;
+    background-color: #44af56;
+    border: solid 2px #2f793b;
+    border-radius: 10px;
+    transition: 1s;
+}
+.okMessage button{
+    background-color: #2f793b;
     border: none;
     border-radius: 10px;
     padding: 5px;

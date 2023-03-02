@@ -5,16 +5,15 @@
     max-width: 800px;
     border-radius: 40px;
     margin: auto;
-    max-height: 500px;
+    max-height: 700px;
     z-index: 1;
 }
 .mapBig-M{
     width: 100%;
-    height: 100%;
+    height: 80%;
     max-width: 800px;
     border-radius: 40px;
     margin: auto;
-    max-height: 720px;
     z-index: 1;
 }
 .map{
@@ -76,6 +75,21 @@
     text-align: justify;
     text-decoration: none;
     color: black;
+}
+.locate{
+    padding: 8px 10px;
+    border-radius: 50%;
+    font-size: 2.5rem;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    position: relative;
+    bottom: 75px;
+    z-index: 5;
+    border: 2px solid rgba(100, 100, 100, 0.5);
+    cursor: pointer;
+}
+.locate:hover{
+    background-color: rgb(226, 226, 226);
 }
 @media screen and (max-width: 1610px){
     .map{
