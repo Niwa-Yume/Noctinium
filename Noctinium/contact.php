@@ -38,6 +38,20 @@
                 </ul>
             </nav>
         </header>
+        <?php
+          if(isset($_GET['sent'])){
+            if($_GET['sent'] == 1){
+              echo ('<div id="error" class="okCont"><div id="okMessage" class="okMessage"><h1>Merci</h1><br>Votre de demande de contact a été envoyée.<br><button onclick="closeError()">Continuer</button></div></div>');
+            }
+            if($_GET['sent'] == 2){
+              if(isset($_GET['date'])){
+                if($_GET['date'] == 1){
+                  echo ('<div id="error" class="errorCont"><div id="errorMessage" class="okMessage"><h1>Erreur</h1><br>Une erreur est survenue, veuillez réessayer.<br><button onclick="closeError()">Continuer</button></div></div>');
+                }
+              }
+            }
+          }
+        ?>
         <div id="menuBack" class="menuBack" onclick="closeNav()">
             <div id="sidemenu" class="menu">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -192,6 +206,13 @@
             document.getElementById("sidemenu").style.width = "0";
             document.getElementById("menuBack").style.visibility = "hidden";
         }
+    </script>
+    <script>
+      function closeError() {
+        var error = document.getElementById("error");
+        var errorMessage = document.getElementById("errorMessage");
+        error.classList.toggle("hidden");
+      }; 
     </script>
     </body>
 </html>

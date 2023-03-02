@@ -13,10 +13,10 @@ if(isset($_POST['name']) and isset($_POST['email']) and isset($_POST['message'])
 	//Send the email!
 	mail($to,$subject,$email_body,$headers);
 	//done. redirect to thank-you page.
-	header('Location: ../index.php');
+	header('Location: ../contact.php?sent=1');
 
 	
 }else{
-	header('Location: ../error.php');
+	header('Location: ../contact.php?sent=2');
 }
 ?> 
