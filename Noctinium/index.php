@@ -6,6 +6,7 @@
     <head>
         <link rel="stylesheet" href="asset/style.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="asset/fontawesome/css/all.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
           <link rel="stylesheet" href="asset/map.css">
           <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
@@ -17,7 +18,7 @@
     </head>
     <body onload="init()">
         <header>
-            <a href="index.php"><img class="logo" id="logo" src="image/logo_noctinium.webp"></a>
+            <a href="index.php"><img class="logo" id="logo" alt="Logo" src="image/logo_noctinium.webp"></a>
             <nav id="computer">
                 <ul>
                     <li class="active"><a href="index.php">Accueil</a></li>
@@ -70,7 +71,7 @@
                 <h1 class="gradient-text">Noctinium</h1>
                 <p>
                     Trouvez vos soirées simplement et rapidement sur Genève et vos alentours !<br><br>
-                    Vous pouvez aussi <a class="underline" href="">télécharger</a> l'application mobile !<br><br>
+                    Vous pouvez aussi <a class="underline" href="soon.php">télécharger</a> l'application mobile !<br><br>
                     Suivez-nous sur les réseau <span class="text-gradient-purple">#FindTheNight</span>
                     <ul class="linear-list">
                         <li>
@@ -172,13 +173,20 @@
                                 marker.bindPopup(lieu);
                         }
                     }
+                    var gpsMarker = null;
                     function onLocationFound(e) {
-                        var location = e.latlng
-                        L.marker((location), {icon: pointeurUser}).addTo(map).bindPopup("<h1>Vous êtes ici</h1>");
+                        if (gpsMarker == null) {
+                            gpsMarker = L.marker(e.latlng, {icon: pointeurUser}).addTo(map);
+                            gpsMarker.bindPopup("<h1>Vous êtes ici</h1>").openPopup();
+                            }
+                        else {
+                            gpsMarker.getPopup().setContent("<h1>Vous êtes ici</h1>");   
+                            gpsMarker.setLatLng(e.latlng);
+                        }
                     }
 
                     function onLocationError(e) {
-                        alert(e.message);
+                        alert("Nous n'avons pas accès à votre localisation.");
                     }
 
                     function getLocationLeaflet() {
@@ -190,26 +198,26 @@
                     var pointeurUser = L.icon({
                         iconUrl: 'marker/UserPointer-min.png',
                         iconSize:     [40, 58], // size of the icon
-                        iconAnchor:   [24, 81], // point of the icon which will correspond to marker's location
-                        popupAnchor:  [1, -75]
+                        iconAnchor:   [19, 57], // point of the icon which will correspond to marker's location
+                        popupAnchor:  [1.5, -54]
                     });
                     var pointeurMaison = L.icon({
                         iconUrl: 'marker/MaisonVioletBlack-min.png',
                         iconSize:     [49.1, 83], // size of the icon
                         iconAnchor:   [24, 81], // point of the icon which will correspond to marker's location
-                        popupAnchor:  [1, -75]
+                        popupAnchor:  [-0.5, -78]
                     });
                     var pointeurVerreViolet = L.icon({
                         iconUrl: 'marker/GobeletVioletBlack-min.png',
                         iconSize:     [50.6, 83], // size of the icon
                         iconAnchor:   [25.5, 81], // point of the icon which will correspond to marker's location
-                        popupAnchor:  [1, -75]
+                        popupAnchor:  [1.5, -78]
                     });
                     var pointeurNoteViolet = L.icon({
                         iconUrl: 'marker/MusiqueVioletBlack-min.png',
                         iconSize:     [49.1, 83], // size of the icon
                         iconAnchor:   [24, 81], // point of the icon which will correspond to marker's location
-                        popupAnchor:  [1, -75]
+                        popupAnchor:  [-0.5, -78]
                     });
                         // 'Usine':            {'lat': 46.204      ,   'lon':6.13628},
                         // "Motel Campo":      {"lat": 46.185281864,   "lon": 6.1290354},
@@ -217,7 +225,7 @@
                         // "MonteCristo Club": {"lat": 46.1900356995,  "lon":6.1382010525},
                 </script>
             </div>
-            <button class="locate" onclick="getLocationLeaflet()"><i class="fa fa-crosshairs" aria-hidden="true"></i></button>
+            <button class="locate" onclick="getLocationLeaflet()"><i class="fa-solid fa-location-crosshairs"></i></button>
         </section>
 
         <?php

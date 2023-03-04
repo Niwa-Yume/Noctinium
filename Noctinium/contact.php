@@ -184,7 +184,7 @@
       }
 
       function apple(){
-        window.open("");
+        window.open("soon.php");
       }
 
       function android(){

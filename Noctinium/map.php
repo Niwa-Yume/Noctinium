@@ -6,17 +6,20 @@
     <head>
         <link rel="stylesheet" href="asset/style.css">
 		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+          <link rel="stylesheet" href="asset/fontawesome/css/all.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
           <link rel="stylesheet" href="asset/map.css">
           <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
+          <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
           <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
+          <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
           <meta charset="utf-8" />
       <title>Map</title>
       <link rel="icon" href="image/logo_noctinium.ico">
     </head>
     
     <!--CECI EST LE CORPPS DE LA PAGE-->
-    <body>
+    <body onload="init()">
         <header>
             <a href="index.php"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
             <nav id="computer">
@@ -90,43 +93,118 @@
             <div id="map" class="mapBig">
                 <script>
                     // Make sure you put this AFTER Leaflet's CSS
-                    var map = L.map('map').setView([<?php echo ($event['event_lat'])?>, <?php echo ($event['event_lon'])?>], 18);
-                     L.tileLayer('https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-                     minZoom: 1,
-                     maxZoom: 19,
-                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                     }).addTo(map);
+                    function init() {
+                        map = new L.Map('map');
+                        L.tileLayer('https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+                            minZoom: 1,
+                            maxZoom: 19,
+                            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                        }).addTo(map);
+
+                        // map view before we get the location
+                        map.setView(new L.LatLng(<?php echo ($event['event_lat'])?>, <?php echo ($event['event_lon'])?>), 18);
+                        
+                        var eventsPointeur = {
+                        "<?php echo ('<a title=\"Voir cet évènement\" href=\"event.php?event='. $event['event_id'] .'\"><div class=\"popup-container\"><h1 class=\"titleEvent\">'. $event['event_title'] .'</h1><div class=\"descEvent\">'. $description .'</div></div></a>')?>": {"lat":<?php echo ($event['event_lat'])?>, "lon":<?php echo ($event['event_lon'])?>, "icone":<?php if($event['event_user_type'] == 3){echo("pointeurVerreViolet");}elseif($event['event_user_type'] == 2){echo("pointeurNoteViolet");}else{echo("pointeurMaison");} ?>}
+                        };
+                        for(lieu in eventsPointeur){
+                                // On va mettre un pointeur sur une des zone de la map selon des coordonéees GPS
+                                // Une pop va apparaitre sur le pointeur en mode pop up
+                                var marker = L.marker([eventsPointeur[lieu].lat, eventsPointeur[lieu].lon],{icon: eventsPointeur[lieu].icone})
+                                .addTo(map); 
+                                marker.bindPopup(lieu);
+                        }
+                    }
+                    var route = null
+                    function createRoute(latlng){
+                        if (route == null){
+                            route = L.Routing.control({
+                                waypoints: [
+                                    L.latLng(latlng),
+                                    L.latLng(<?php echo ($event['event_lat'])?>, <?php echo ($event['event_lon'])?>)
+                                ],
+                                language: 'fr',
+                                createMarker: function() { return null; },
+                                lineOptions : {
+                                    addWaypoints: false,
+                                    draggableWaypoints: false,
+                                    styles: [
+                                        {color: 'white', opacity: 0.9, weight: 9},
+                                        {color: 'purple', opacity: 1, weight: 3}
+                                    ]
+                                }
+                            }).addTo(map);
+                        }else{
+                            map.removeControl(route);
+                            route = null;
+                            route = L.Routing.control({
+                                waypoints: [
+                                    L.latLng(latlng),
+                                    L.latLng(<?php echo ($event['event_lat'])?>, <?php echo ($event['event_lon'])?>)
+                                ],
+                                language: 'fr',
+                                createMarker: function() { return null; },
+                                lineOptions : {
+                                    addWaypoints: false,
+                                    draggableWaypoints: false,
+                                    styles: [
+                                        {color: 'white', opacity: 0.9, weight: 9},
+                                        {color: 'purple', opacity: 1, weight: 3}
+                                    ]
+                                }
+                            }).addTo(map);
+                        }
+                    }
+                    var gpsMarker = null;
+                    function onLocationFound(e) {
+                        if (gpsMarker == null) {
+                            gpsMarker = L.marker(e.latlng, {icon: pointeurUser}).addTo(map);
+                            gpsMarker.bindPopup("<h1>Vous êtes ici</h1>").openPopup();
+                            }
+                        else {
+                            gpsMarker.getPopup().setContent("<h1>Vous êtes ici</h1>");   
+                            gpsMarker.setLatLng(e.latlng);
+                        }
+                        createRoute(e.latlng);
+                    }
+
+                    function onLocationError(e) {
+                        alert("Nous n'avons pas accès à votre localisation.");
+                    }
+
+                    function getLocationLeaflet() {
+                        map.on('locationfound', onLocationFound);
+                        map.on('locationerror', onLocationError);
+
+                        map.locate({setView: true, maxZoom: 15});
+                    }
+                    var pointeurUser = L.icon({
+                        iconUrl: 'marker/UserPointer-min.png',
+                        iconSize:     [40, 58], // size of the icon
+                        iconAnchor:   [19, 57], // point of the icon which will correspond to marker's location
+                        popupAnchor:  [1.5, -54]
+                    });
                     var pointeurMaison = L.icon({
                         iconUrl: 'marker/MaisonVioletBlack-min.png',
                         iconSize:     [49.1, 83], // size of the icon
                         iconAnchor:   [24, 81], // point of the icon which will correspond to marker's location
-                        popupAnchor:  [1, -75]
+                        popupAnchor:  [-0.5, -78]
                     });
                     var pointeurVerreViolet = L.icon({
                         iconUrl: 'marker/GobeletVioletBlack-min.png',
                         iconSize:     [50.6, 83], // size of the icon
                         iconAnchor:   [25.5, 81], // point of the icon which will correspond to marker's location
-                        popupAnchor:  [1, -75]
+                        popupAnchor:  [1.5, -78]
                     });
                     var pointeurNoteViolet = L.icon({
                         iconUrl: 'marker/MusiqueVioletBlack-min.png',
                         iconSize:     [49.1, 83], // size of the icon
                         iconAnchor:   [24, 81], // point of the icon which will correspond to marker's location
-                        popupAnchor:  [1, -75]
+                        popupAnchor:  [-0.5, -78]
                     });
-                    var eventsPointeur = {
-                        "<?php echo ('<a title=\"Voir cet évènement\" href=\"event.php?event='. $event['event_id'] .'\"><div class=\"popup-container\"><h1 class=\"titleEvent\">'. $event['event_title'] .'</h1><div class=\"descEvent\">'. $description .'</div></div></a>')?>": {"lat":<?php echo ($event['event_lat'])?>, "lon":<?php echo ($event['event_lon'])?>, "icone":<?php if($event['event_user_type'] == 3){echo("pointeurVerreViolet");}elseif($event['event_user_type'] == 2){echo("pointeurNoteViolet");}else{echo("pointeurMaison");} ?>}
-                    };
-
-                    for(lieu in eventsPointeur){
-                // On va mettre un pointeur sur une des zone de la map selon des coordonéees GPS
-                // Une pop va apparaitre sur le pointeur en mode pop up
-                var marker = L.marker([eventsPointeur[lieu].lat, eventsPointeur[lieu].lon],{icon: eventsPointeur[lieu].icone})
-                .addTo(map); 
-                marker.bindPopup(lieu)
-            }
                 </script>
             </div>
+            <button class="route" onclick="getLocationLeaflet()">Itinéraire <i class="fa-solid fa-map-location-dot"></i></button>
         </section>
         <!--FIN DE LA MAP-->
         <?php
