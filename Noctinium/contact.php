@@ -188,7 +188,7 @@
       }
 
       function android(){
-        window.open("");
+        window.open("soon.php");
       }
 		</script>
     <script>
