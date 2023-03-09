@@ -11,6 +11,6 @@
 
         $_SESSION['user_email'] = $email;
 
-        header ('Location: ../compteConfiguration.php');
+        header ('Location: ../compteConfiguration');
     }
 ?>

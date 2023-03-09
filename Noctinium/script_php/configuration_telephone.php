@@ -11,6 +11,6 @@
 
         $_SESSION['user_telephone'] = $telephone;
 
-        header ('Location: ../compteConfiguration.php');
+        header ('Location: ../compteConfiguration');
     }
 ?>

@@ -7,14 +7,14 @@
         $statement = $pdo->query($sql);
         $event = $statement->fetch();
         if($event['event_user_id'] == $_SESSION['user_id']){
-            header('Location: ../eventModify.php?event='.$_GET['event']);
+            header('Location: ../eventModify?event='.$_GET['event']);
             exit;
         }else{
-            header('Location: ../compte.php');
+            header('Location: ../compte');
             exit;
         }
     }else{
-        header('Location: ../compte.php');
+        header('Location: ../compte');
         exit;
     }
 ?> 

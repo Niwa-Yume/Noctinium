@@ -14,5 +14,5 @@
 	
 	$_SESSION['user_img'] = $img_user['imageuser_url'];
 	
-	header ('Location: ../compteConfiguration.php');
+	header ('Location: ../compteConfiguration');
 ?>

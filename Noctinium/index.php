@@ -18,19 +18,19 @@
     </head>
     <body onload="init()">
         <header>
-            <a href="index.php"><img class="logo" id="logo" alt="Logo" src="image/logo_noctinium.webp"></a>
+            <a href="index"><img class="logo" id="logo" alt="Logo" src="image/logo_noctinium.webp"></a>
             <nav id="computer">
                 <ul>
-                    <li class="active"><a href="index.php">Accueil</a></li>
-                    <li><a href="eventlist.php">Évènements</a></li>
-                    <li><a href="contact.php">Contact</a></li>
-                    <li><a href="propos.php">À propos</a></li>
-                    <li><a href="faq.php">FAQ</a></li>
+                    <li class="active"><a href="index">Accueil</a></li>
+                    <li><a href="eventlist">Évènements</a></li>
+                    <li><a href="contact">Contact</a></li>
+                    <li><a href="propos">À propos</a></li>
+                    <li><a href="faq">FAQ</a></li>
                     <li><a href="<?php 
                     if($logged_in == true){
-                        echo("compte.php");
+                        echo("compte");
                     }else{
-                        echo("connexion.php");
+                        echo("connexion");
                     };?>"><?php 
                     if($logged_in == true){
                         echo("Compte");
@@ -48,16 +48,16 @@
         <div id="menuBack" class="menuBack" onclick="closeNav()">
             <div id="sidemenu" class="menu">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <a href="index.php">Accueil</a>
-                <a href="eventlist.php">Évènements</a>
-                <a href="contact.php">Contact</a>
-                <a href="propos.php">À propos</a>
-                <a href="faq.php">FAQ</a>
+                <a href="index">Accueil</a>
+                <a href="eventlist">Évènements</a>
+                <a href="contact">Contact</a>
+                <a href="propos">À propos</a>
+                <a href="faq">FAQ</a>
                 <a href="<?php 
                 if($logged_in == true){
-                    echo("compte.php");
+                    echo("compte");
                 }else{
-                    echo("connexion.php");
+                    echo("connexion");
                 };?>"><?php 
                 if($logged_in == true){
                     echo("Compte");
@@ -71,7 +71,7 @@
                 <h1 class="gradient-text">Noctinium</h1>
                 <p>
                     Trouvez vos soirées simplement et rapidement sur Genève et vos alentours !<br><br>
-                    Vous pouvez aussi <a class="underline" href="soon.php">télécharger</a> l'application mobile !<br><br>
+                    Vous pouvez aussi <a class="underline" href="soon">télécharger</a> l'application mobile !<br><br>
                     Suivez-nous sur les réseau <span class="text-gradient-purple">#FindTheNight</span>
                     <ul class="linear-list">
                         <li>
@@ -159,7 +159,7 @@
                                         $icone = "pointeurMaison";
                                     }
 
-                                    echo ('"<a title=\"Voir cet évènement\" href=\"event.php?event='. $event['event_id'] .'\"><div class=\"popup-container\"><h1 class=\"titleEvent\">'. $event['event_title'] .'</h1><div class=\"descEvent\">'. $description .'</div></div></a>": {\'lat\':'. $event['event_lat'] .',\'lon\':'. $event['event_lon'] .', \'icone\':'. $icone .'},');
+                                    echo ('"<a title=\"Voir cet évènement\" href=\"event?event='. $event['event_id'] .'\"><div class=\"popup-container\"><h1 class=\"titleEvent\">'. $event['event_title'] .'</h1><div class=\"descEvent\">'. $description .'</div></div></a>": {\'lat\':'. $event['event_lat'] .',\'lon\':'. $event['event_lon'] .', \'icone\':'. $icone .'},');
                                 }
                             }
                         

@@ -11,6 +11,6 @@
 
         $_SESSION['user_instagram'] = $instagram;
 
-        header ('Location: ../compteConfiguration.php');
+        header ('Location: ../compteConfiguration');
     }
 ?>

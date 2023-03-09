@@ -15,18 +15,18 @@
                 
                 $statement = $pdo->prepare($sql);
                 $statement->execute($comment);
-                header('Location: ../event.php?event='. $_GET['event'] .'');
+                header('Location: ../event?event='. $_GET['event'] .'');
                 exit;
             }else{
-                header('Location: ../error.php');
+                header('Location: ../error');
                 exit;
             }
         }else{
-            header('Location: ../error.php');
+            header('Location: ../error');
             exit;
         }
     }else{
-        header('Location: ../error.php');
+        header('Location: ../error');
         exit;
     }
 ?>

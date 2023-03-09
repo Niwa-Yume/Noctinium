@@ -11,6 +11,6 @@
 
         $_SESSION['user_twitter'] = $twitter;
 
-        header ('Location: ../compteConfiguration.php');
+        header ('Location: ../compteConfiguration');
     }
 ?>

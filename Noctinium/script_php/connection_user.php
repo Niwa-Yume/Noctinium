@@ -3,7 +3,7 @@
 	require 'sessions.php';
 
 	if ($logged_in) {                              // If already logged in
-		header('Location: ../compte.php');           // Redirect to account page
+		header('Location: ../compte');           // Redirect to account page
 		exit;                                      // Stop further code running
 	}    
 
@@ -11,13 +11,13 @@
 		if(isset($_POST['email'])){
 			$user_email =  $_POST['email']; 		         // Email user sent
 		}else{
-			header('Location: ../connexion.php?error=1&email=1');
+			header('Location: ../connexion?error=1&email=1');
 			exit;
 		}
 		if(isset($_POST['mdp'])){
 			$user_password_unmasked =  $_POST['mdp'];        // Password user sent
 		}else{
-			header('Location: ../connexion.php?error=1&password=1');
+			header('Location: ../connexion?error=1&password=1');
 			exit;
 		}
 
@@ -28,12 +28,12 @@
 			$password_hashed = $statement->fetch();
 			$user_password = $password_hashed['user_password'];
 		}else{
-			header('Location: ../connexion.php?error=1&account=1');
+			header('Location: ../connexion?error=1&account=1');
 			exit;
 		}
 		$verify = password_verify($user_password_unmasked, $user_password);
 		if(!$verify){
-			header('Location: ../connexion.php?error=1&password=2');
+			header('Location: ../connexion?error=1&password=2');
 			exit;
 		} else {    //if details correct
 			$sql = "SELECT user_id, user_surname, user_name, user_username, user_telephone, user_birthdate, user_timecreation, 
@@ -63,7 +63,7 @@
 			$messageErreur = "";
 			login($user_id, $user_surname, $user_name, $user_username, $user_telephone, $user_birthdate, $user_email, 
 			$user_password, $user_timecreation, $user_img, $user_type, $user_typesubscription, $user_decription, $user_instagram, $user_twitter, $user_site);                               // Call login function
-			header('Location: ../compte.php');       // Redirect to account page
+			header('Location: ../compte');       // Redirect to account page
 			exit;                                  // Stop further code running
 		}
 	}

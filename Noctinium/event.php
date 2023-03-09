@@ -6,6 +6,7 @@
     <head>
         <link rel="stylesheet" href="asset/style.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="asset/fontawesome/css/all.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
       <meta charset="utf-8" />
       <link rel="stylesheet" href="asset/event.css">
@@ -14,18 +15,18 @@
     </head>
     <body>
         <header>
-            <a href="index.php"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
+            <a href="index"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
             <nav id="computer">
-              <li><a href="index.php">Accueil</a></li>
-              <li class="active"><a href="eventlist.php">Évènements</a></li>
-              <li><a href="contact.php">Contact</a></li>
-              <li><a href="propos.php">À propos</a></li>
-              <li><a href="faq.php">FAQ</a></li>
+              <li><a href="index">Accueil</a></li>
+              <li class="active"><a href="eventlist">Évènements</a></li>
+              <li><a href="contact">Contact</a></li>
+              <li><a href="propos">À propos</a></li>
+              <li><a href="faq">FAQ</a></li>
               <li><a href="<?php 
 				if($logged_in == true){
-					echo("compte.php");
+					echo("compte");
 				}else{
-					echo("connexion.php");
+					echo("connexion");
 				};?>"><?php 
 				if($logged_in == true){
 					echo("Compte");
@@ -42,16 +43,16 @@
         <div id="menuBack" class="menuBack" onclick="closeNav()">
             <div id="sidemenu" class="menu">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <a href="index.php">Accueil</a>
-                <a href="eventlist.php">Évènements</a>
-                <a href="contact.php">Contact</a>
-                <a href="propos.php">À propos</a>
-                <a href="faq.php">FAQ</a>
+                <a href="index">Accueil</a>
+                <a href="eventlist">Évènements</a>
+                <a href="contact">Contact</a>
+                <a href="propos">À propos</a>
+                <a href="faq">FAQ</a>
                 <a href="<?php 
                 if($logged_in == true){
-                    echo("compte.php");
+                    echo("compte");
                 }else{
-                    echo("connexion.php");
+                    echo("connexion");
                 };?>"><?php 
                 if($logged_in == true){
                     echo("Compte");
@@ -72,7 +73,9 @@
                   echo ("<div style=\"height: 80%;margin-top: 100px;\" class=\"adresseEvent\"><h1>L'évènement sélectionné n'existe pas.<br><br>Veuillez réessayer.</h1></div></section>");
                 }else{
                   $event = $statement->fetch();
-                  $event_description = htmlspecialchars($event['event_description'], ENT_QUOTES, 'utf-8');
+                  $event_desc = htmlspecialchars($event['event_description'], ENT_QUOTES, 'utf-8');
+                  $event_description = str_replace("\t", " ", $event_desc);
+
 
                   $image = "SELECT imageevent_url FROM imageevent WHERE imageevent_id = '". $event['event_imageevent_id'] ."';";
                   $statement2 = $pdo->query($image);
@@ -99,76 +102,425 @@
                   $timeevent = explode(":",$datetimeint[1]);
                   $dateevent = $date[2]."/".$date[1]."/".$date[0]." | ".$timeevent[0]." : ".$timeevent[1];
 
-                  if($event['event_music'] == 1){
-                    $event_music = "Techno";
-                  }elseif($event['event_music'] == 2){
-                    $event_music = "House";
-                  }elseif($event['event_music'] == 3){
-                    $event_music = "Électro";
-                  }elseif($event['event_music'] == 4){
-                    $event_music = "Rap";
-                  }elseif($event['event_music'] == 5){
-                    $event_music = "Latino";
-                  }elseif($event['event_music'] == 6){
-                    $event_music = "Années 80";
-                  }elseif($event['event_music'] == 7){
-                    $event_music = "Années 90";
-                  }elseif($event['event_music'] == 8){
-                    $event_music = "Années 2000";
-                  }elseif($event['event_music'] == 9){
-                    $event_music = "Punk";
-                  }elseif($event['event_music'] == 10){
-                    $event_music = "Rock";
-                  }elseif($event['event_music'] == 11){
-                    $event_music = "Jazz";
-                  }elseif($event['event_music'] == 12){
-                    $event_music = "Blues";
-                  }elseif($event['event_music'] == 13){
-                    $event_music = "All Styles";
-                  }elseif($event['event_music'] == 14){
-                    $event_music = "Autres";
-                  }
                   if($event['event_type'] == 1){
                     $event_type = "Before";
+                    if($event['event_music'] == 1){
+                      $event_music = "Afrobeat";
+                    }elseif($event['event_music'] == 2){
+                      $event_music = "All style";
+                    }elseif($event['event_music'] == 3){
+                      $event_music = "Années '70";
+                    }elseif($event['event_music'] == 4){
+                      $event_music = "Années '80";
+                    }elseif($event['event_music'] == 5){
+                      $event_music = "Années '90";
+                    }elseif($event['event_music'] == 6){
+                      $event_music = "Années '00";
+                    }elseif($event['event_music'] == 7){
+                      $event_music = "Bachata";
+                    }elseif($event['event_music'] == 8){
+                      $event_music = "Blues";
+                    }elseif($event['event_music'] == 9){
+                      $event_music = "Country";
+                    }elseif($event['event_music'] == 10){
+                      $event_music = "Dancehall";
+                    }elseif($event['event_music'] == 11){
+                      $event_music = "Dubstep";
+                    }elseif($event['event_music'] == 12){
+                      $event_music = "Électro";
+                    }elseif($event['event_music'] == 13){
+                      $event_music = "Funk";
+                    }elseif($event['event_music'] == 14){
+                      $event_music = "Hip Hop";
+                    }elseif($event['event_music'] == 15){
+                      $event_music = "House";
+                    }elseif($event['event_music'] == 16){
+                      $event_music = "Jazz";
+                    }elseif($event['event_music'] == 17){
+                      $event_music = "Latino";
+                    }elseif($event['event_music'] == 18){
+                      $event_music = "Métal";
+                    }elseif($event['event_music'] == 19){
+                      $event_music = "Punk";
+                    }elseif($event['event_music'] == 20){
+                      $event_music = "R'N'B";
+                    }elseif($event['event_music'] == 21){
+                      $event_music = "Rap";
+                    }elseif($event['event_music'] == 22){
+                      $event_music = "Reggae";
+                    }elseif($event['event_music'] == 23){
+                      $event_music = "Reggaeton";
+                    }elseif($event['event_music'] == 24){
+                      $event_music = "Rock";
+                    }elseif($event['event_music'] == 25){
+                      $event_music = "Techno";
+                    }elseif($event['event_music'] == 26){
+                      $event_music = "Autres";
+                    }else{
+                      $event_music = "Autres";
+                    }
                   }elseif($event['event_type'] == 2){
                     $event_type = "After";
+                    if($event['event_music'] == 1){
+                      $event_music = "Afrobeat";
+                    }elseif($event['event_music'] == 2){
+                      $event_music = "All style";
+                    }elseif($event['event_music'] == 3){
+                      $event_music = "Années '70";
+                    }elseif($event['event_music'] == 4){
+                      $event_music = "Années '80";
+                    }elseif($event['event_music'] == 5){
+                      $event_music = "Années '90";
+                    }elseif($event['event_music'] == 6){
+                      $event_music = "Années '00";
+                    }elseif($event['event_music'] == 7){
+                      $event_music = "Bachata";
+                    }elseif($event['event_music'] == 8){
+                      $event_music = "Blues";
+                    }elseif($event['event_music'] == 9){
+                      $event_music = "Country";
+                    }elseif($event['event_music'] == 10){
+                      $event_music = "Dancehall";
+                    }elseif($event['event_music'] == 11){
+                      $event_music = "Dubstep";
+                    }elseif($event['event_music'] == 12){
+                      $event_music = "Électro";
+                    }elseif($event['event_music'] == 13){
+                      $event_music = "Funk";
+                    }elseif($event['event_music'] == 14){
+                      $event_music = "Hip Hop";
+                    }elseif($event['event_music'] == 15){
+                      $event_music = "House";
+                    }elseif($event['event_music'] == 16){
+                      $event_music = "Jazz";
+                    }elseif($event['event_music'] == 17){
+                      $event_music = "Latino";
+                    }elseif($event['event_music'] == 18){
+                      $event_music = "Métal";
+                    }elseif($event['event_music'] == 19){
+                      $event_music = "Punk";
+                    }elseif($event['event_music'] == 20){
+                      $event_music = "R'N'B";
+                    }elseif($event['event_music'] == 21){
+                      $event_music = "Rap";
+                    }elseif($event['event_music'] == 22){
+                      $event_music = "Reggae";
+                    }elseif($event['event_music'] == 23){
+                      $event_music = "Reggaeton";
+                    }elseif($event['event_music'] == 24){
+                      $event_music = "Rock";
+                    }elseif($event['event_music'] == 25){
+                      $event_music = "Techno";
+                    }elseif($event['event_music'] == 26){
+                      $event_music = "Autres";
+                    }else{
+                      $event_music = "Autres";
+                    }
                   }elseif($event['event_type'] == 3){
                     $event_type = "Soirée";
+                    if($event['event_music'] == 1){
+                      $event_music = "Afrobeat";
+                    }elseif($event['event_music'] == 2){
+                      $event_music = "All style";
+                    }elseif($event['event_music'] == 3){
+                      $event_music = "Années '70";
+                    }elseif($event['event_music'] == 4){
+                      $event_music = "Années '80";
+                    }elseif($event['event_music'] == 5){
+                      $event_music = "Années '90";
+                    }elseif($event['event_music'] == 6){
+                      $event_music = "Années '00";
+                    }elseif($event['event_music'] == 7){
+                      $event_music = "Bachata";
+                    }elseif($event['event_music'] == 8){
+                      $event_music = "Blues";
+                    }elseif($event['event_music'] == 9){
+                      $event_music = "Country";
+                    }elseif($event['event_music'] == 10){
+                      $event_music = "Dancehall";
+                    }elseif($event['event_music'] == 11){
+                      $event_music = "Dubstep";
+                    }elseif($event['event_music'] == 12){
+                      $event_music = "Électro";
+                    }elseif($event['event_music'] == 13){
+                      $event_music = "Funk";
+                    }elseif($event['event_music'] == 14){
+                      $event_music = "Hip Hop";
+                    }elseif($event['event_music'] == 15){
+                      $event_music = "House";
+                    }elseif($event['event_music'] == 16){
+                      $event_music = "Jazz";
+                    }elseif($event['event_music'] == 17){
+                      $event_music = "Latino";
+                    }elseif($event['event_music'] == 18){
+                      $event_music = "Métal";
+                    }elseif($event['event_music'] == 19){
+                      $event_music = "Punk";
+                    }elseif($event['event_music'] == 20){
+                      $event_music = "R'N'B";
+                    }elseif($event['event_music'] == 21){
+                      $event_music = "Rap";
+                    }elseif($event['event_music'] == 22){
+                      $event_music = "Reggae";
+                    }elseif($event['event_music'] == 23){
+                      $event_music = "Reggaeton";
+                    }elseif($event['event_music'] == 24){
+                      $event_music = "Rock";
+                    }elseif($event['event_music'] == 25){
+                      $event_music = "Techno";
+                    }elseif($event['event_music'] == 26){
+                      $event_music = "Autres";
+                    }else{
+                      $event_music = "Autres";
+                    }
                   }elseif($event['event_type'] == 4){
                     $event_type = "Concert/Showcase";
+                    if($event['event_music'] == 1){
+                      $event_music = "Afrobeat";
+                    }elseif($event['event_music'] == 2){
+                      $event_music = "All style";
+                    }elseif($event['event_music'] == 3){
+                      $event_music = "Années '70";
+                    }elseif($event['event_music'] == 4){
+                      $event_music = "Années '80";
+                    }elseif($event['event_music'] == 5){
+                      $event_music = "Années '90";
+                    }elseif($event['event_music'] == 6){
+                      $event_music = "Années '00";
+                    }elseif($event['event_music'] == 7){
+                      $event_music = "Bachata";
+                    }elseif($event['event_music'] == 8){
+                      $event_music = "Blues";
+                    }elseif($event['event_music'] == 9){
+                      $event_music = "Country";
+                    }elseif($event['event_music'] == 10){
+                      $event_music = "Dancehall";
+                    }elseif($event['event_music'] == 11){
+                      $event_music = "Dubstep";
+                    }elseif($event['event_music'] == 12){
+                      $event_music = "Électro";
+                    }elseif($event['event_music'] == 13){
+                      $event_music = "Funk";
+                    }elseif($event['event_music'] == 14){
+                      $event_music = "Hip Hop";
+                    }elseif($event['event_music'] == 15){
+                      $event_music = "House";
+                    }elseif($event['event_music'] == 16){
+                      $event_music = "Jazz";
+                    }elseif($event['event_music'] == 17){
+                      $event_music = "Latino";
+                    }elseif($event['event_music'] == 18){
+                      $event_music = "Métal";
+                    }elseif($event['event_music'] == 19){
+                      $event_music = "Punk";
+                    }elseif($event['event_music'] == 20){
+                      $event_music = "R'N'B";
+                    }elseif($event['event_music'] == 21){
+                      $event_music = "Rap";
+                    }elseif($event['event_music'] == 22){
+                      $event_music = "Reggae";
+                    }elseif($event['event_music'] == 23){
+                      $event_music = "Reggaeton";
+                    }elseif($event['event_music'] == 24){
+                      $event_music = "Rock";
+                    }elseif($event['event_music'] == 25){
+                      $event_music = "Techno";
+                    }elseif($event['event_music'] == 26){
+                      $event_music = "Autres";
+                    }else{
+                      $event_music = "Autres";
+                    }
                   }elseif($event['event_type'] == 5){
                     $event_type = "Open Mic/Karaoké";
+                    if($event['event_music'] == 1){
+                      $event_music = "Afrobeat";
+                    }elseif($event['event_music'] == 2){
+                      $event_music = "All style";
+                    }elseif($event['event_music'] == 3){
+                      $event_music = "Années '70";
+                    }elseif($event['event_music'] == 4){
+                      $event_music = "Années '80";
+                    }elseif($event['event_music'] == 5){
+                      $event_music = "Années '90";
+                    }elseif($event['event_music'] == 6){
+                      $event_music = "Années '00";
+                    }elseif($event['event_music'] == 7){
+                      $event_music = "Bachata";
+                    }elseif($event['event_music'] == 8){
+                      $event_music = "Blues";
+                    }elseif($event['event_music'] == 9){
+                      $event_music = "Country";
+                    }elseif($event['event_music'] == 10){
+                      $event_music = "Dancehall";
+                    }elseif($event['event_music'] == 11){
+                      $event_music = "Dubstep";
+                    }elseif($event['event_music'] == 12){
+                      $event_music = "Électro";
+                    }elseif($event['event_music'] == 13){
+                      $event_music = "Funk";
+                    }elseif($event['event_music'] == 14){
+                      $event_music = "Hip Hop";
+                    }elseif($event['event_music'] == 15){
+                      $event_music = "House";
+                    }elseif($event['event_music'] == 16){
+                      $event_music = "Jazz";
+                    }elseif($event['event_music'] == 17){
+                      $event_music = "Latino";
+                    }elseif($event['event_music'] == 18){
+                      $event_music = "Métal";
+                    }elseif($event['event_music'] == 19){
+                      $event_music = "Punk";
+                    }elseif($event['event_music'] == 20){
+                      $event_music = "R'N'B";
+                    }elseif($event['event_music'] == 21){
+                      $event_music = "Rap";
+                    }elseif($event['event_music'] == 22){
+                      $event_music = "Reggae";
+                    }elseif($event['event_music'] == 23){
+                      $event_music = "Reggaeton";
+                    }elseif($event['event_music'] == 24){
+                      $event_music = "Rock";
+                    }elseif($event['event_music'] == 25){
+                      $event_music = "Techno";
+                    }elseif($event['event_music'] == 26){
+                      $event_music = "Autres";
+                    }else{
+                      $event_music = "Autres";
+                    }
                   }elseif($event['event_type'] == 6){
+                    $event_type = "Gaming";
+                    if($event['event_music'] == 1){
+                      $event_music = "Call of Duty";
+                    }elseif($event['event_music'] == 2){
+                      $event_music = "Counter-Strike";
+                    }elseif($event['event_music'] == 3){
+                      $event_music = "Dota 2";
+                    }elseif($event['event_music'] == 4){
+                      $event_music = "FIFA";
+                    }elseif($event['event_music'] == 5){
+                      $event_music = "Fortnite";
+                    }elseif($event['event_music'] == 6){
+                      $event_music = "Jeux WII";
+                    }elseif($event['event_music'] == 7){
+                      $event_music = "League of Legend";
+                    }elseif($event['event_music'] == 8){
+                      $event_music = "Minecraft";
+                    }elseif($event['event_music'] == 9){
+                      $event_music = "Mortal Kombat";
+                    }elseif($event['event_music'] == 10){
+                      $event_music = "Overwatch";
+                    }elseif($event['event_music'] == 11){
+                      $event_music = "PUBG";
+                    }elseif($event['event_music'] == 12){
+                      $event_music = "Rainbow 6";
+                    }elseif($event['event_music'] == 13){
+                      $event_music = "Rocket League";
+                    }elseif($event['event_music'] == 14){
+                      $event_music = "Street Fighter";
+                    }elseif($event['event_music'] == 15){
+                      $event_music = "Super Smash Bros.";
+                    }elseif($event['event_music'] == 16){
+                      $event_music = "Valorant";
+                    }elseif($event['event_music'] == 17){
+                      $event_music = "Yuh Gi Oh";
+                    }elseif($event['event_music'] == 18){
+                      $event_music = "Autres";
+                    }else{
+                      $event_music = "Autres";
+                    }
+               /* }elseif($event['event_type'] == 7){
+                    $event_type = "Art";
+                    if($event['event_music'] == 1){
+                      $event_music = "Architecture";
+                    }elseif($event['event_music'] == 2){
+                      $event_music = "Cinéma";
+                    }elseif($event['event_music'] == 3){
+                      $event_music = "Cirque";
+                    }elseif($event['event_music'] == 4){
+                      $event_music = "Comédie";
+                    }elseif($event['event_music'] == 5){
+                      $event_music = "Danse";
+                    }elseif($event['event_music'] == 6){
+                      $event_music = "Dessin";
+                    }elseif($event['event_music'] == 7){
+                      $event_music = "Graffiti";
+                    }elseif($event['event_music'] == 8){
+                      $event_music = "Littérature";
+                    }elseif($event['event_music'] == 9){
+                      $event_music = "Peinture";
+                    }elseif($event['event_music'] == 10){
+                      $event_music = "Sculpture";
+                    }elseif($event['event_music'] == 11){
+                      $event_music = "Tatoo";
+                    }elseif($event['event_music'] == 12){
+                      $event_music = "Théâtre";
+                    }elseif($event['event_music'] == 13){
+                      $event_music = "Autres";
+                    }else{
+                      $event_music = "Autres";
+                  } */
+                  }elseif($event['event_type'] == 7){
                     $event_type = "Autres";
+                    if($event['event_music'] == 1){
+                      $event_music = "Conférence";
+                    }elseif($event['event_music'] == 2){
+                      $event_music = "Mode";
+                    }elseif($event['event_music'] == 3){
+                      $event_music = "Urbain";
+                    }elseif($event['event_music'] == 4){
+                      $event_music = "Autres";
+                    }else{
+                      $event_music = "Autres";
+                    }
+                  }else{
+                    $event_type = "Autres";
+                    $event_music = "Autres";
+                  }
+
+                  if($event['event_price'] <= 0){
+                    $event_price = "Gratuit";
+                  }else{
+                    $event_price = $event['event_price']." CHF";
                   }
 
                   echo ("
                   <div class=\"eventCont\">
                     <div class=\"returnBtnCont\">
-                      <button title=\"Retour\" class=\"returnBtn\" onclick=\"history.back()\">&#8630;</button>
+                      <button title=\"Retour\" class=\"returnBtn\" onclick=\"history.back()\"><i class=\"fa-solid fa-arrow-left\"></i></button>
                     </div>
                     <div class=\"copyBtnCont\">
                       <div class=\"tooltip\">
                         <span class=\"tooltiptext\" id=\"myTooltip\">Copier le lien</span>
                       </div>
-                      <button id=\"copy-button\" class=\"copyBtn\" onmouseout=\"outFunc()\"><i class=\"fa fa-clone\"></i></button>
+                      <button id=\"copy-button\" class=\"copyBtn\" onmouseout=\"outFunc()\"><i class=\"fa-regular fa-clone\"></i></button>
                     </div>
                     <div class=\"titreEvent\">". $event['event_title'] ."</div>
                   <div class=\"eventGrid\">
                     <img class=\"imgEvent\" src=\"". $image_event['imageevent_url'] ."\" alt=\"Image de l'évènement\">
                     <div class=\"infoSup\">
                       <span class=\"dateEvent\">". $dateevent."</span>
-                      <div class=\"adresseEvent\">". $event_music ." | ". $event_type ."</div>
+                      <div class=\"adresseEvent\">". $event_music ." | ". $event_type ." | ". $event_price ."</div>
                       <div class=\"adresseEvent\">". $adresse ."</div>
-                      <div class=\"userEvent\"><a href=\"organisateur.php?organisateur=". $event['event_user_id'] ."\">". $organisateur['user_username'] ."</a></div>
+                      <div class=\"userEvent\">Organisateur :<a class=\"orgaEvent\" href=\"organisateur?organisateur=". $event['event_user_id'] ."\">". $organisateur['user_username'] ."</a></div>
                     </div>
                   </div>
                   <div class=\"blog-slider__content infoCont\">
-                    <div class=\"txtEvent\">". $event_description ."</div>
-                    <a href=\"map.php?event=". $event_id ."\" class=\"btnEvent\">TROUVER L'ÉVENEMENT</a>
-                  </div>
-                  </div>
-                  </section>");
+                    <div class=\"txtEvent\">". $event_description ."</div>");
+                  if($event['event_maskedlocation'] <= $today ){
+                    echo("
+                      <a href=\"map?event=". $event_id ."\" class=\"btnEvent\">TROUVER L'ÉVENEMENT</a>
+                      <a href=\"https://www.google.com/maps/search/?api=1&query=". urlencode($event['event_location']) ."\" class=\"btnMaps\" target=\"_blank\"><i class=\"fa-brands fa-google\"></i>\tMaps</a>
+                      </div>
+                      </div>
+                      </section>");
+                  }else{
+                    echo("
+                      <div><h1>Vous pourrez trouver l'évènement lorsque l'adresse sera révélée.</h1></div>
+                      </div>
+                      </div>
+                      </section>");
+                  }
+                  
                   if($logged_in){
                     echo ("<hr class=\"gradient\">
                       <section class=\"attends\">
@@ -184,7 +536,7 @@
                                 <textarea
                                           class=\"input\"
                                           ng-model=\"cmntCtrl.comment.text\"
-                                          placeholder=\"COMMENTAIRE\"
+                                          placeholder=\"AJOUTER UN COMMENTAIRE ...\"
                                           name=\"comment\"
                                           maxlength=\"500\"
                                           required></textarea>
@@ -221,7 +573,7 @@
                               $datecom = $com[2]."/".$com[1]."/".$com[0]." | ".$timecom[0].":".$timecom[1].":".$timecom[2];
                               echo ("<div class=\"commentBody\">
                               <div class=\"commentHeader\">
-                                <a href=\"organisateur.php?organisateur=". $commentaire[$i]['commentevent_user_id'] ."\"><div class=\"commentUser\">
+                                <a href=\"organisateur?organisateur=". $commentaire[$i]['commentevent_user_id'] ."\"><div class=\"commentUser\">
                                   ". $user_username ."
                                 </div></a>
                                 <div class=\"commentDate\">
@@ -235,12 +587,12 @@
                             }
                             if($statement3->rowCount()>10){
                               if($page == 1){
-                                echo("<div class=\"gridComm\"><div></div><div class=\"pageNum\">Page ".$page."</div><a class=\"pageBtn\" href=\"organisateur.php?organisateur=". $event_id ."&page=". $page+1 ."\" >&rarr;</a></div>");
+                                echo("<div class=\"gridComm\"><div></div><div class=\"pageNum\">Page ".$page."</div><a class=\"pageBtn\" href=\"organisateur?organisateur=". $event_id ."&page=". $page+1 ."\" >&rarr;</a></div>");
                               }elseif($page > 1 && $i < $statement3->rowCount()){
-                                echo("<div class=\"gridComm\"><a class=\"pageBtn\" href=\"organisateur.php?organisateur=". $event_id."&page=". $page-1 ."\" >&larr;</a><div class=\"pageNum\">Page ".$page."</div>
-                                <a class=\"pageBtn\" href=\"organisateur.php?organisateur=". $event_id ."&page=". $page+1 ."\" >&rarr;</a></div>");
+                                echo("<div class=\"gridComm\"><a class=\"pageBtn\" href=\"organisateur?organisateur=". $event_id."&page=". $page-1 ."\" >&larr;</a><div class=\"pageNum\">Page ".$page."</div>
+                                <a class=\"pageBtn\" href=\"organisateur?organisateur=". $event_id ."&page=". $page+1 ."\" >&rarr;</a></div>");
                               }else{
-                                echo("<div class=\"gridComm\"><a class=\"pageBtn\" href=\"organisateur.php?organisateur=". $event_id ."&page=". $page-1 ."\" >&larr;</a><div class=\"pageNum\">Page ".$page."</div><div></div></div>");
+                                echo("<div class=\"gridComm\"><a class=\"pageBtn\" href=\"organisateur?organisateur=". $event_id ."&page=". $page-1 ."\" >&larr;</a><div class=\"pageNum\">Page ".$page."</div><div></div></div>");
                               }
                             }
                     echo ("
@@ -254,7 +606,7 @@
                     echo ("<hr class=\"gradient\">
                     <section class=\"attends\">
                     <div style=\"width: 100%;\" class=\"container\">
-                      <h1>Connectez-vous pour commenter.</h1>
+                      <h1><a href=\"connexion\">Connectez-vous</a> pour commenter.</h1>
                     </div>
                     </section>");
                   }

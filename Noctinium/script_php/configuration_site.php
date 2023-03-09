@@ -11,6 +11,6 @@
 
         $_SESSION['user_site'] = $site;
 
-        header ('Location: ../compteConfiguration.php');
+        header ('Location: ../compteConfiguration');
     }
 ?>

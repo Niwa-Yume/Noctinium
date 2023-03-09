@@ -1,5 +1,5 @@
 <?php
-    $link = "../eventlist.php?search=";
+    $link = "../eventlist?search=";
 
     if(isset($_POST['search'])){
         $link .= urlencode($_POST['search']);

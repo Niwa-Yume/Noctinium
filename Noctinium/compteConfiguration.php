@@ -17,18 +17,18 @@
     </head>
     <body>
         <header>
-            <a href="index.php"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
+            <a href="index"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
             <nav id="computer">
-              <li><a href="index.php">Accueil</a></li>
-              <li><a href="eventlist.php">Évènements</a></li>
-              <li><a href="contact.php">Contact</a></li>
-              <li><a href="propos.php">À propos</a></li>
-              <li><a href="faq.php">FAQ</a></li>
+              <li><a href="index">Accueil</a></li>
+              <li><a href="eventlist">Évènements</a></li>
+              <li><a href="contact">Contact</a></li>
+              <li><a href="propos">À propos</a></li>
+              <li><a href="faq">FAQ</a></li>
               <li class="active"><a href="<?php 
 				if($logged_in == true){
-					echo("compte.php");
+					echo("compte");
 				}else{
-					echo("connexion.php");
+					echo("connexion");
 				};?>"><?php 
 				if($logged_in == true){
 					echo("Compte");
@@ -45,16 +45,16 @@
         <div id="menuBack" class="menuBack" onclick="closeNav()">
             <div id="sidemenu" class="menu">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <a href="index.php">Accueil</a>
-                <a href="eventlist.php">Évènements</a>
-                <a href="contact.php">Contact</a>
-                <a href="propos.php">À propos</a>
-                <a href="faq.php">FAQ</a>
+                <a href="index">Accueil</a>
+                <a href="eventlist">Évènements</a>
+                <a href="contact">Contact</a>
+                <a href="propos">À propos</a>
+                <a href="faq">FAQ</a>
                 <a href="<?php 
                 if($logged_in == true){
-                    echo("compte.php");
+                    echo("compte");
                 }else{
-                    echo("connexion.php");
+                    echo("connexion");
                 };?>"><?php 
                 if($logged_in == true){
                     echo("Compte");
@@ -175,7 +175,7 @@
             <form class="form-group-insc" action="script_php/configuration_instagram.php" method="POST">
               <div class="form-group">
                 <div class="col-sm-12 ajout">
-                  <input type="text" class="form-control" id="insta" placeholder="INSTAGRAM (LIEN)" name="instagram" value="" required>
+                  <input type="text" class="form-control" id="insta" placeholder="INSTAGRAM (LIEN)" name="instagram" value="" required maxlength="50">
                   <label class="uploadFile">
                     <input type="submit" class="btnUpload" name="changerInfo" value="" required>
                     Ajouter
@@ -186,7 +186,7 @@
             <form class="form-group-insc" action="script_php/configuration_twitter.php" method="POST">
               <div class="form-group">
                 <div class="col-sm-12 ajout">
-                  <input type="text" class="form-control" id="twitter" placeholder="TWITTER (LIEN)" name="twitter" value="" required>
+                  <input type="text" class="form-control" id="twitter" placeholder="TWITTER (LIEN)" name="twitter" value="" required maxlength="50">
                   <label class="uploadFile">
                     <input type="submit" class="btnUpload" name="changerInfo" value="" required>
                     Ajouter
@@ -197,7 +197,7 @@
             <form class="form-group-insc" action="script_php/configuration_site.php" method="POST">
               <div class="form-group">
                 <div class="col-sm-12 ajout">
-                  <input type="text" class="form-control" id="siteweb" placeholder="SITE WEB (LIEN)" name="site" value="" required>
+                  <input type="text" class="form-control" id="siteweb" placeholder="SITE WEB (LIEN)" name="site" value="" required maxlength="50">
                   <label class="uploadFile">
                     <input type="submit" class="btnUpload" name="changerInfo" value="" required>
                     Ajouter

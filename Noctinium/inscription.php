@@ -2,7 +2,7 @@
     require './script_php/database-connection.php';
     require './script_php/sessions.php';
     if($logged_in){
-      header('Location: ../compte.php');
+      header('Location: ../compte');
     }
 ?>
 <html>
@@ -16,18 +16,18 @@
   </head>
 <body>
     <header>
-        <a href="index.php"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
+        <a href="index"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
         <nav id="computer">
-            <li><a href="index.php">Accueil</a></li>
-            <li><a href="eventlist.php">Évènements</a></li>
-            <li><a href="contact.php">Contact</a></li>
-            <li><a href="propos.php">À propos</a></li>
-            <li><a href="faq.php">FAQ</a></li>
+            <li><a href="index">Accueil</a></li>
+            <li><a href="eventlist">Évènements</a></li>
+            <li><a href="contact">Contact</a></li>
+            <li><a href="propos">À propos</a></li>
+            <li><a href="faq">FAQ</a></li>
             <li class="active"><a href="<?php 
 				if($logged_in == true){
-					echo("compte.php");
+					echo("compte");
 				}else{
-					echo("connexion.php");
+					echo("connexion");
 				};?>"><?php 
 				if($logged_in == true){
 					echo("Compte");
@@ -44,16 +44,16 @@
         <div id="menuBack" class="menuBack" onclick="closeNav()">
             <div id="sidemenu" class="menu">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <a href="index.php">Accueil</a>
-                <a href="eventlist.php">Évènements</a>
-                <a href="contact.php">Contact</a>
-                <a href="propos.php">À propos</a>
-                <a href="faq.php">FAQ</a>
+                <a href="index">Accueil</a>
+                <a href="eventlist">Évènements</a>
+                <a href="contact">Contact</a>
+                <a href="propos">À propos</a>
+                <a href="faq">FAQ</a>
                 <a href="<?php 
                 if($logged_in == true){
-                    echo("compte.php");
+                    echo("compte");
                 }else{
-                    echo("connexion.php");
+                    echo("connexion");
                 };?>"><?php 
                 if($logged_in == true){
                     echo("Compte");
@@ -97,19 +97,19 @@
        
             <div class="form-group-insc">
               <div class="col-sm-12">
-                <input type="text" class="form-control insc-form" id="nom" placeholder="NOM" name="surname" value="" required autofocus>
+                <input type="text" class="form-control insc-form" id="nom" placeholder="NOM" name="surname" value="" required autofocus maxlength="40">
               </div>
             </div>
       
             <div class="form-group-insc">
               <div class="col-sm-12">
-                <input type="text" class="form-control insc-form" id="prenom" placeholder="PRENOM" name="name" value="" required>
+                <input type="text" class="form-control insc-form" id="prenom" placeholder="PRENOM" name="name" value="" required maxlength="40">
               </div>
             </div>
 
             <div class="form-group-insc">
               <div class="col-sm-12">
-                <input type="text" class="form-control insc-form" id="pseudo" placeholder="PSEUDO" name="username" value="" required>
+                <input type="text" class="form-control insc-form" id="pseudo" placeholder="PSEUDO" name="username" value="" required maxlength="40">
               </div>
             </div>
 
@@ -159,7 +159,7 @@
             
           </form>
         </div>
-        <p class="follow-text">Si vous possédez déjà un compte, <a href="connexion.php" class="underline">connectez vous ici.</a></p>
+        <p class="follow-text">Si vous possédez déjà un compte, <a href="connexion" class="underline">connectez vous ici.</a></p>
         </div>
     </div>
     </section>

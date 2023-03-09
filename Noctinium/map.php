@@ -21,19 +21,19 @@
     <!--CECI EST LE CORPPS DE LA PAGE-->
     <body onload="init()">
         <header>
-            <a href="index.php"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
+            <a href="index"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
             <nav id="computer">
-              <li><a href="index.php">Accueil</a></li>
-              <li><a href="eventlist.php">Évènements</a></li>
-              <li><a href="contact.php">Contact</a></li>
-              <li><a href="propos.php">À propos</a></li>
-              <li><a href="faq.php">FAQ</a></li>
+              <li><a href="index">Accueil</a></li>
+              <li><a href="eventlist">Évènements</a></li>
+              <li><a href="contact">Contact</a></li>
+              <li><a href="propos">À propos</a></li>
+              <li><a href="faq">FAQ</a></li>
               <li><a href="
               <?php 
 				if($logged_in == true){
-					echo("compte.php");
+					echo("compte");
 				}else{
-					echo("connexion.php");
+					echo("connexion");
 				};?>"><?php 
 				if($logged_in == true){
 					echo("Compte");
@@ -50,16 +50,16 @@
         <div id="menuBack" class="menuBack" onclick="closeNav()">
             <div id="sidemenu" class="menu">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <a href="index.php">Accueil</a>
-                <a href="eventlist.php">Évènements</a>
-                <a href="contact.php">Contact</a>
-                <a href="propos.php">À propos</a>
-                <a href="faq.php">FAQ</a>
+                <a href="index">Accueil</a>
+                <a href="eventlist">Évènements</a>
+                <a href="contact">Contact</a>
+                <a href="propos">À propos</a>
+                <a href="faq">FAQ</a>
                 <a href="<?php 
                 if($logged_in == true){
-                    echo("compte.php");
+                    echo("compte");
                 }else{
-                    echo("connexion.php");
+                    echo("connexion");
                 };?>"><?php 
                 if($logged_in == true){
                     echo("Compte");
@@ -72,23 +72,33 @@
         <!--DEBUT MAP-->
         <section class="subscribe">
         <?php
-              if (isset($_GET['event'])){
-                $event_id = $_GET['event'];
+                if (isset($_GET['event'])){
+                    $event_id = $_GET['event'];
 
-                $sql = "SELECT event_id, event_title, event_location, event_lat, event_lon, event_description, event_user_type FROM events WHERE event_id = '". $event_id ."';";
-        
-                $statement = $pdo->query($sql);
-                $event = $statement->fetch();
+                    $sql = "SELECT event_id, event_title, event_location, event_lat, event_lon, event_description, event_maskedlocation, event_user_type FROM events WHERE event_id = '". $event_id ."';";
+            
+                    $statement = $pdo->query($sql);
+                    if($statement->rowCount() > 0){
+                        $event = $statement->fetch();
 
-                $desc_cut = str_split($event['event_description'], 150);
-                                    $desc_test = $desc_cut[0];
-                                    if(strlen($desc_test)==150){
-                                    $desc_test .= '...';
-                                    }
-                                    $desc_test2 = str_replace("\r\n", " ", $desc_test);
-                                    $desc_test3 = str_replace("\n", " ", $desc_test2);
-                                    $description = htmlspecialchars($desc_test3, ENT_QUOTES, 'utf-8');
-              }
+                        $today = date('Y-m-d H:i:s');
+                        if($today < $event['event_maskedlocation']){
+                            header('Location: event?event='.$event['event_id']);
+                            exit;
+                        }
+
+                        $desc_cut = str_split($event['event_description'], 150);
+                                            $desc_test = $desc_cut[0];
+                                            if(strlen($desc_test)==150){
+                                            $desc_test .= '...';
+                                            }
+                                            $desc_test2 = str_replace("\r\n", " ", $desc_test);
+                                            $desc_test3 = str_replace("\n", " ", $desc_test2);
+                                            $description = htmlspecialchars($desc_test3, ENT_QUOTES, 'utf-8');
+                    }else{
+                        header('Location: error');
+                    }
+                }
         ?>
             <div id="map" class="mapBig">
                 <script>
@@ -105,7 +115,7 @@
                         map.setView(new L.LatLng(<?php echo ($event['event_lat'])?>, <?php echo ($event['event_lon'])?>), 18);
                         
                         var eventsPointeur = {
-                        "<?php echo ('<a title=\"Voir cet évènement\" href=\"event.php?event='. $event['event_id'] .'\"><div class=\"popup-container\"><h1 class=\"titleEvent\">'. $event['event_title'] .'</h1><div class=\"descEvent\">'. $description .'</div></div></a>')?>": {"lat":<?php echo ($event['event_lat'])?>, "lon":<?php echo ($event['event_lon'])?>, "icone":<?php if($event['event_user_type'] == 3){echo("pointeurVerreViolet");}elseif($event['event_user_type'] == 2){echo("pointeurNoteViolet");}else{echo("pointeurMaison");} ?>}
+                        "<?php echo ('<a title=\"Voir cet évènement\" href=\"event?event='. $event['event_id'] .'\"><div class=\"popup-container\"><h1 class=\"titleEvent\">'. $event['event_title'] .'</h1><div class=\"descEvent\">'. $description .'</div></div></a>')?>": {"lat":<?php echo ($event['event_lat'])?>, "lon":<?php echo ($event['event_lon'])?>, "icone":<?php if($event['event_user_type'] == 3){echo("pointeurVerreViolet");}elseif($event['event_user_type'] == 2){echo("pointeurNoteViolet");}else{echo("pointeurMaison");} ?>}
                         };
                         for(lieu in eventsPointeur){
                                 // On va mettre un pointeur sur une des zone de la map selon des coordonéees GPS

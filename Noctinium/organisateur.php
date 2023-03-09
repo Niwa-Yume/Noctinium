@@ -14,18 +14,18 @@
     </head>
     <body>
         <header>
-            <a href="index.php"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
+            <a href="index"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
             <nav id="computer">
-              <li><a href="index.php">Accueil</a></li>
-              <li><a href="eventlist.php">Évènements</a></li>
-              <li><a href="contact.php">Contact</a></li>
-              <li><a href="propos.php">À propos</a></li>
-              <li><a href="faq.php">FAQ</a></li>
+              <li><a href="index">Accueil</a></li>
+              <li><a href="eventlist">Évènements</a></li>
+              <li><a href="contact">Contact</a></li>
+              <li><a href="propos">À propos</a></li>
+              <li><a href="faq">FAQ</a></li>
               <li><a href="<?php 
 				if($logged_in == true){
-					echo("compte.php");
+					echo("compte");
 				}else{
-					echo("connexion.php");
+					echo("connexion");
 				};?>"><?php 
 				if($logged_in == true){
 					echo("Compte");
@@ -42,16 +42,16 @@
         <div id="menuBack" class="menuBack" onclick="closeNav()">
             <div id="sidemenu" class="menu">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <a href="index.php">Accueil</a>
-                <a href="eventlist.php">Évènements</a>
-                <a href="contact.php">Contact</a>
-                <a href="propos.php">À propos</a>
-                <a href="faq.php">FAQ</a>
+                <a href="index">Accueil</a>
+                <a href="eventlist">Évènements</a>
+                <a href="contact">Contact</a>
+                <a href="propos">À propos</a>
+                <a href="faq">FAQ</a>
                 <a href="<?php 
                 if($logged_in == true){
-                    echo("compte.php");
+                    echo("compte");
                 }else{
-                    echo("connexion.php");
+                    echo("connexion");
                 };?>"><?php 
                 if($logged_in == true){
                     echo("Compte");
@@ -206,7 +206,7 @@
                       $datecom = $com[2]."/".$com[1]."/".$com[0]." | ".$timecom[0].":".$timecom[1].":".$timecom[2];
                       echo ("<div class=\"commentBody\">
                       <div class=\"commentHeader\">
-                        <a href=\"organisateur.php?organisateur=". $commentaire[$i]['commentorganiser_user_id'] ."\"><div class=\"commentUser\">
+                        <a href=\"organisateur?organisateur=". $commentaire[$i]['commentorganiser_user_id'] ."\"><div class=\"commentUser\">
                           ". $user_username ."
                         </div></a>
                         <div class=\"commentDate\">
@@ -220,12 +220,12 @@
                     }
                     if($statement3->rowCount()>10){
                       if($page == 1){
-                        echo("<div class=\"gridComm\"><div></div><div class=\"pageNum\">Page ".$page."</div><a class=\"pageBtn\" href=\"organisateur.php?organisateur=". $_GET['organisateur'] ."&page=". $page+1 ."\" >&rarr;</a></div>");
+                        echo("<div class=\"gridComm\"><div></div><div class=\"pageNum\">Page ".$page."</div><a class=\"pageBtn\" href=\"organisateur?organisateur=". $_GET['organisateur'] ."&page=". $page+1 ."\" >&rarr;</a></div>");
                       }elseif($page > 1 && $i < $statement3->rowCount()){
-                        echo("<div class=\"gridComm\"><a class=\"pageBtn\" href=\"organisateur.php?organisateur=". $_GET['organisateur'] ."&page=". $page-1 ."\" >&larr;</a><div class=\"pageNum\">Page ".$page."</div>
-                        <a class=\"pageBtn\" href=\"organisateur.php?organisateur=". $_GET['organisateur'] ."&page=". $page+1 ."\" >&rarr;</a></div>");
+                        echo("<div class=\"gridComm\"><a class=\"pageBtn\" href=\"organisateur?organisateur=". $_GET['organisateur'] ."&page=". $page-1 ."\" >&larr;</a><div class=\"pageNum\">Page ".$page."</div>
+                        <a class=\"pageBtn\" href=\"organisateur?organisateur=". $_GET['organisateur'] ."&page=". $page+1 ."\" >&rarr;</a></div>");
                       }else{
-                        echo("<div class=\"gridComm\"><a class=\"pageBtn\" href=\"organisateur.php?organisateur=". $_GET['organisateur'] ."&page=". $page-1 ."\" >&larr;</a><div class=\"pageNum\">Page ".$page."</div><div></div></div>");
+                        echo("<div class=\"gridComm\"><a class=\"pageBtn\" href=\"organisateur?organisateur=". $_GET['organisateur'] ."&page=". $page-1 ."\" >&larr;</a><div class=\"pageNum\">Page ".$page."</div><div></div></div>");
                       }
                     }
                     echo ("</div>

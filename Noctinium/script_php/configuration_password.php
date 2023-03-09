@@ -15,14 +15,14 @@
 
             $_SESSION['user_password'] = $new_password_hashed;
 
-            header ('Location: ../compteConfiguration.php');
+            header ('Location: ../compteConfiguration');
             exit;
         }else{
-            header ('Location: ../error.php');
+            header ('Location: ../error');
             exit;
         }
     }else{
-        header ('Location: ../error.php');
+        header ('Location: ../error');
         exit;
     }
 ?>

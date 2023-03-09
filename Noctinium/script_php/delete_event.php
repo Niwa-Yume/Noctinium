@@ -10,14 +10,14 @@
             $delete = "DELETE FROM events WHERE event_id = ". $_GET['event'] .";";
             $statement2 = $pdo->prepare($delete);
             $statement2->execute();
-            header('Location: ../compte.php');
+            header('Location: ../compte');
             exit;
         }else{
-            header('Location: ../compte.php');
+            header('Location: ../compte');
             exit;
         }
     }else{
-        header('Location: ../compte.php');
+        header('Location: ../compte');
         exit;
     }
 ?>

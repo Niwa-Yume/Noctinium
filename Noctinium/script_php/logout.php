@@ -2,5 +2,5 @@
 	require 'sessions.php';
 
     logout();
-	header('Location: ../index.php');
+	header('Location: ../index');
 ?>

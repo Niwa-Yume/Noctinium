@@ -1,7 +1,7 @@
 <?php
     $today = date('Y-m-d H:i:s');
 
-    $link = "../eventlist.php?filtre=1&";
+    $link = "../eventlist?filtre=1&";
 
     if(isset($_POST['musique'])){
         if(1 <= $_POST['musique'] and $_POST['musique'] <= 14){

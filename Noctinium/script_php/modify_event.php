@@ -4,7 +4,7 @@
 
 
     if($_SESSION['logged_in'] != true){
-		header('Location: ../connexion.php');
+		header('Location: ../connexion');
 		exit;
 	}
     if(isset($_GET['event'])){
@@ -21,11 +21,11 @@
             if (isset($_POST['nom_event']) and isset($_POST['date_event']) and isset($_POST['time_event']) and isset($_POST['description_event']) 
             and isset($_POST['adresse_event']) and isset($_POST['musique']) and isset($_POST['type']) and isset($_POST['conditions'])){
                 if($_POST['musique'] == ""){
-                    header("Location: ../eventModify.php?eventerror=1&music=1");
+                    header("Location: ../eventModify?eventerror=1&music=1");
                     exit;
                 }
                 if($_POST['type'] == ""){
-                    header("Location: ../eventModify.php?error=1&type=1");
+                    header("Location: ../eventModify?error=1&type=1");
                     exit;
                 }
                 if(strncmp($_POST['adresse_event'], $event_base['event_location'], 50) != 0){
@@ -61,7 +61,7 @@
                         $change_address_statement = $pdo->prepare($change_address);
                         $change_address_statement->execute($add);
                     }else{
-                        header('Location: ../eventAdd.php?error=1&address=1');
+                        header('Location: ../eventAdd?error=1&address=1');
                         exit;
                     }
                 }
@@ -82,7 +82,7 @@
                         $change_date_statement->execute($date);
                     }
                 }else{
-                    header('Location: ../eventAdd.php?error=1&date=1');
+                    header('Location: ../eventAdd?error=1&date=1');
                     exit;
                 }
                 if(strncmp($_POST['description_event'], $event_base['event_description'], 1000) != 0){
@@ -121,7 +121,7 @@
                                 $change_masked_statement = $pdo->prepare($change_masked);
                                 $change_masked_statement->execute($masked);
                             }else{
-                                header('Location: ../eventModify.php?error=1&masked=1');
+                                header('Location: ../eventModify?error=1&masked=1');
                                 exit;
                             }
                         }else{
@@ -131,7 +131,7 @@
                                 $change_masked_statement = $pdo->prepare($change_masked);
                                 $change_masked_statement->execute($masked);
                             }else{
-                                header('Location: ../eventModify.php?error=1&masked=1');
+                                header('Location: ../eventModify?error=1&masked=1');
                                 exit;
                             }
                         }
@@ -148,7 +148,7 @@
                     $change_price = "UPDATE events SET event_price = :price WHERE event_id = ". $event_base['event_id'] .";";
                     $price['price'] = $_POST['prix_event'];
                     $change_price_statement = $pdo->prepare($change_price);
-                    $change_price_statement->execute();
+                    $change_price_statement->execute($price);
                 }
                 if ($_FILES['img_event']['name'] != "") {
                     $moved         = false;                                        // Initialize
@@ -205,15 +205,15 @@
                         $new_img_statement->execute();
                     }
                 }
-                header('Location: ../event.php?event='.$event_base['event_id']);
+                header('Location: ../event?event='.$event_base['event_id']);
                 exit;
             }
         }else{
-            header('Location: ../compte.php');
+            header('Location: ../compte');
             exit;
           }
     }else{
-        header('Location: ../compte.php');
+        header('Location: ../compte');
         exit;
       }
 ?>

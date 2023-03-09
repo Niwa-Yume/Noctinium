@@ -8,7 +8,7 @@
 				VALUES (:user_surname, :user_name, :user_username, :user_email, :user_telephone, :user_birthdate, :user_password, :user_timecreation, :user_imageuser_id)";
 	
 	if($logged_in){
-		header('Location: ../compte.php');
+		header('Location: ../compte');
 		exit;
 	}
 
@@ -35,25 +35,25 @@
 					$user['user_timecreation'] = date('Y-m-d H:i:s');
 					$user['user_imageuser_id'] = 1;
 				}else{
-					header('Location: ../inscription.php?error=1&birth=1');
+					header('Location: ../inscription?error=1&birth=1');
 					exit;
 				}
 			}else{
-				header('Location: ../inscription.php?error=1&telephone=1');
+				header('Location: ../inscription?error=1&telephone=1');
 				exit;
 			}
 		}else{
-			header('Location: ../inscription.php?error=1&email=1');
+			header('Location: ../inscription?error=1&email=1');
 			exit;
 		}
 	}else{
-		header('Location: ../error.php');
+		header('Location: ../error');
 		exit;
 	}
 	
 	$statement = $pdo->prepare($sql);
 	$statement->execute($user);
 	
-	header('Location: ../connexion.php');
+	header('Location: ../connexion');
 	exit;
 ?>

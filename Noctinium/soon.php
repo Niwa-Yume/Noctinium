@@ -11,18 +11,18 @@
     </head>
     <body>
         <header>
-            <a href="index.php"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
+            <a href="index"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
             <nav>
-                <li><a href="index.php">Accueil</a></li>
-                <li><a href="eventlist.php">Évènements</a></li>
-                <li><a href="contact.php">Contact</a></li>
-				<li><a href="propos.php">A propos</a></li>
-				<li><a href="faq.php">FAQ</a></li>
+                <li><a href="index">Accueil</a></li>
+                <li><a href="eventlist">Évènements</a></li>
+                <li><a href="contact">Contact</a></li>
+				<li><a href="propos">A propos</a></li>
+				<li><a href="faq">FAQ</a></li>
                 <li><a href="<?php 
 				if($logged_in == true){
-					echo("compte.php");
+					echo("compte");
 				}else{
-					echo("connexion.php");
+					echo("connexion");
 				};?>"><?php 
 				if($logged_in == true){
 					echo("Compte");
@@ -38,7 +38,7 @@
                     La page que vous cherchez n'est pas disponible mais le sera bientôt.<br>Encore un peu de patience.
                 </p>
                 <br>
-                <a class="button" href="index.php">
+                <a class="button" href="index">
                     RETOURNER A L'ACCUEIL
                 </a>
             </div>

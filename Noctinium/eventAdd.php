@@ -11,19 +11,19 @@
       $test_num_event_user->execute($test_param);
       if($_SESSION['user_typesubscription'] == 1){
         if($test_num_event_user->rowCount() >= 4){
-          header('Location: eventlist.php?error=1&nbevent=1');
+          header('Location: eventlist?error=1&nbevent=1');
         }
       }elseif($_SESSION['user_typesubscription'] == 2){
         if($test_num_event_user->rowCount() >= 8){
-          header('Location: eventlist.php?error=1&nbevent=1');
+          header('Location: eventlist?error=1&nbevent=1');
         }
       }elseif($_SESSION['user_typesubscription'] == 3){
         if($test_num_event_user->rowCount() >= 16){
-          header('Location: eventlist.php?error=1&nbevent=1');
+          header('Location: eventlist?error=1&nbevent=1');
         }
       }
     }else{
-      header('Location: connexion.php');
+      header('Location: connexion');
     }
 
     setcookie("time_event");
@@ -38,22 +38,23 @@
         <link rel="icon" href="image/logo_noctinium.ico">
     <link rel="stylesheet" href="asset/easy-autocomplete.min.css">
     <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="asset/jquery.easy-autocomplete.min.js"></script> 
   </head>
 <body>
     <header>
-        <a href="index.php"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
+        <a href="index"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
         <nav id="computer">
-            <li><a href="index.php">Accueil</a></li>
-            <li class="active"><a href="eventlist.php">Évènements</a></li>
-            <li><a href="contact.php">Contact</a></li>
-            <li><a href="propos.php">À propos</a></li>
-            <li><a href="faq.php">FAQ</a></li>
+            <li><a href="index">Accueil</a></li>
+            <li class="active"><a href="eventlist">Évènements</a></li>
+            <li><a href="contact">Contact</a></li>
+            <li><a href="propos">À propos</a></li>
+            <li><a href="faq">FAQ</a></li>
             <li><a href="<?php 
 				if($logged_in == true){
-					echo("compte.php");
+					echo("compte");
 				}else{
-					echo("connexion.php");
+					echo("connexion");
 				};?>"><?php 
 				if($logged_in == true){
 					echo("Compte");
@@ -70,16 +71,16 @@
         <div id="menuBack" class="menuBack" onclick="closeNav()">
             <div id="sidemenu" class="menu">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <a href="index.php">Accueil</a>
-                <a href="eventlist.php">Évènements</a>
-                <a href="contact.php">Contact</a>
-                <a href="propos.php">À propos</a>
-                <a href="faq.php">FAQ</a>
+                <a href="index">Accueil</a>
+                <a href="eventlist">Évènements</a>
+                <a href="contact">Contact</a>
+                <a href="propos">À propos</a>
+                <a href="faq">FAQ</a>
                 <a href="<?php 
                 if($logged_in == true){
-                    echo("compte.php");
+                    echo("compte");
                 }else{
-                    echo("connexion.php");
+                    echo("connexion");
                 };?>"><?php 
                 if($logged_in == true){
                     echo("Compte");
@@ -133,7 +134,7 @@
        
             <div class="form-group-insc">
               <div class="col-sm-12">
-                <input type="text" class="form-control insc-form" id="name" placeholder="NOM DE L'ÉVÈNEMENT" name="nom_event" value="" required autofocus>
+                <input type="text" class="form-control insc-form" id="name" placeholder="NOM DE L'ÉVÈNEMENT" name="nom_event" value="" required autofocus maxlength="30">
               </div>
             </div>
             
@@ -151,42 +152,28 @@
             
               <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <textarea class="text-control" id="description" rows="10" placeholder="DESCRIPTION DE L'ÉVÈNEMENT" name="description_event" maxlength="1000" required></textarea>
+                  <textarea class="form-control" id="description" rows="10" placeholder="DESCRIPTION DE L'ÉVÈNEMENT" name="description_event" maxlength="1000" required></textarea>
                 </div>
               </div>
 
             <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="text" class="form-control insc-form" id="adresse" placeholder="ADRESSE (Format : Rue N°, Ville)" name="adresse_event" value="" required>
+                  <input type="text" class="form-control insc-form" id="adresse" placeholder="ADRESSE (Format : Rue N°, Ville)" name="adresse_event" value="" required maxlength="50">
                 </div>
               </div>
               <div class="form-group-insc">
                 <div class="col-sm-12">
                   <div class="chBox-F">
-                    <!-- <input type="radio" id="Techno" name="musique" value="Techno" required/>
-                    <label class="insc-form-checkbox-txt-date" for="Techno">Techno</label><br>
-                    <input type="radio" id="Latino" name="musique" value="Latino" required/>
-                    <label class="insc-form-checkbox-txt-date" for="Latino">Latino</label><br>
-                    <input type="radio" id="Rap" name="musique" value="Rap" required/>
-                    <label class="insc-form-checkbox-txt-date" for="Rap">Rap</label><br>
-                    <input type="radio" id="AllStyles" name="musique" value="AllStyles" required/>
-                    <label class="insc-form-checkbox-txt-date" for="AllStyles ">All Styles</label><br> -->
-                    <select name="musique" id="musique" class="form-control">
-                      <option value="">--Veuillez choisir un style de musique--</option>
-                      <option value="1">Techno</option>
-                      <option value="2">House</option>
-                      <option value="3">Électro</option>
-                      <option value="4">Rap</option>
-                      <option value="5">Latino</option>
-                      <option value="6">Années 80</option>
-                      <option value="7">Années 90</option>
-                      <option value="8">Années 2000</option>
-                      <option value="9">Punk</option>
-                      <option value="10">Rock</option>
-                      <option value="11">Jazz</option>
-                      <option value="12">Blues</option>
-                      <option value="13">All Styles</option>
-                      <option value="14">Autres</option>
+                    <select name="type" id="type" class="form-control" onchange="categorie()">
+                      <option value="">--Veuillez choisir un type d'évènement--</option>
+                      <option value="1">Before</option>
+                      <option value="2">After</option>
+                      <option value="3">Soirée</option>
+                      <option value="4">Concert/Showcase</option>
+                      <option value="5">Open Mic/Karaoké</option>
+                      <option value="6">Gaming</option>
+                      <!-- <option value="7">Art</option> -->
+                      <option value="7">Autres</option>
                     </select>
                   </div>
                 </div>
@@ -194,20 +181,8 @@
               <div class="form-group-insc">
                 <div class="col-sm-12">
                   <div class="chBox-F">
-                    <!-- <input type="radio" id="Before" name="type" value="Before" required/>
-                    <label class="insc-form-checkbox-txt-date" for="Before">Before</label><br>
-                    <input type="radio" id="Soiree" name="type" value="Soiree"/>
-                    <label class="insc-form-checkbox-txt-date" for="Soiree" required>Soirée</label><br>
-                    <input type="radio" id="After" name="type" value="After"/>
-                    <label class="insc-form-checkbox-txt-date" for="After" required>After</label><br> -->
-                    <select name="type" id="type" class="form-control">
-                    <option value="">--Veuillez choisir un type d'évènement--</option>
-                      <option value="1">Before</option>
-                      <option value="2">After</option>
-                      <option value="3">Soirée</option>
-                      <option value="4">Concert/Showcase</option>
-                      <option value="5">Open Mic/Karaoké</option>
-                      <option value="6">Autres</option>
+                    <select name="musique" id="musique" class="form-control">
+                      <option value="">--Veuillez choisir une catégorie--</option>
                     </select>
                   </div>
                 </div>
@@ -253,7 +228,7 @@
 
               <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="number" class="form-control insc-form hidden" id="prix" placeholder="PRIX" name="prix_event" value="" min="0">
+                  <input type="number" step="0.05" class="form-control insc-form hidden" id="prix" placeholder="PRIX" name="prix_event" value="0.00" min="0.00" max="9999.99">
                 </div>
               </div>
 
@@ -288,12 +263,17 @@
   var formPS = document.getElementById("adresse");
   var formM = document.getElementById("musique");
   var formT = document.getElementById("type");
+  var formH = document.getElementById("time");
+  var formH2 = document.getElementById("time_mask");
+  var formD2 = document.getElementById("adresse_cachee");
+  var formPR = document.getElementById("prix");
   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
     element.classList.toggle("logo");
     element.classList.toggle("logo-M");
     formN.classList.toggle("form-control");
         formN.classList.toggle("form-control-M");
-        formE.style.margin = "";
+        formE.classList.toggle("form-control");
+        formE.classList.toggle("form-control-M");
         formD.classList.toggle("form-control");
         formD.classList.toggle("form-control-M");
         formPS.classList.toggle("form-control");
@@ -302,6 +282,14 @@
         formM.classList.toggle("form-control-M");
         formT.classList.toggle("form-control");
         formT.classList.toggle("form-control-M");
+        formH.classList.toggle("form-control");
+        formH.classList.toggle("form-control-M");
+        formH2.classList.toggle("form-control");
+        formH2.classList.toggle("form-control-M");
+        formD2.classList.toggle("form-control");
+        formD2.classList.toggle("form-control-M");
+        formPR.classList.toggle("form-control");
+        formPR.classList.toggle("form-control-M");
   }
   function datemask(){
     var mask = document.getElementById("date-mask")
@@ -587,5 +575,23 @@
         trueBtn.click();
       }
 
+</script>
+<script>
+  $(document).ready(function () {
+    $("#type").change(function () {
+        var val = $(this).val();
+        if (val == "1" | val == "2" | val == "3" | val == "4" | val == "5") {
+            $("#musique").html('<option value="1">Afrobeat</option><option value="2">All style</option><option value="3">Années \'70</option><option value="4">Années \'80</option><option value="5">Années \'90</option><option value="6">Années \'00</option><option value="7">Bachata</option><option value="8">Blues</option><option value="9">Country</option><option value="10">Dancehall</option><option value="11">Dubstep</option><option value="12">Électro</option><option value="13">Funk</option><option value="14">Hip Hop</option><option value="15">House</option><option value="16">Jazz</option><option value="17">Latino</option><option value="18">Métal</option><option value="19">Punk</option><option value="20">R\'N\'B</option><option value="21">Rap</option><option value="22">Reggae</option><option value="23">Reggaeton</option><option value="24">Rock</option><option value="25">Techno</option><option value="26">Autres</option>');
+        } else if (val == "6") {
+            $("#musique").html('<option value="1">Call of Duty</option><option value="2">Counter-Strike</option><option value="3">Dota 2</option><option value="4">FIFA</option><option value="5">Fortnite</option><option value="6">Jeux WII</option><option value="7">League of Legend</option><option value="8">Minecraft</option><option value="9">Mortal Kombat</option><option value="10">Overwatch</option><option value="11">PUBG</option><option value="12">Rainbow 6</option><option value="13">Rocket League</option><option value="14">Street Fighter</option><option value="15">Super Smash Bros.</option><option value="16">Valorant</option><option value="17">Yuh Gi Oh</option><option value="18">Autres</option>');
+        } /* else if (val == "7") {
+            $("#musique").html('<option value="1">Architecture</option><option value="2">Cinéma</option><option value="3">Cirque</option><option value="4">Comédie</option><option value="5">Danse</option><option value="6">Dessin</option><option value="7">Graffiti</option><option value="8">Littérature</option><option value="9">Peinture</option><option value="10">Sculpture</option><option value="11">Tatoo</option><option value="12">Théâtre</option><option value="13">Autres</option>');
+        } */ else if (val == "7"){
+          $("#musique").html('<option value="1">Conférence</option><option value="2">Mode</option><option value="3">Urbain</option><option value="4">Autres</option>')
+        } else{
+          $("#musique").html('<option value="">--Veuillez choisir une catégorie--</option>');
+        }
+    });
+  });
 </script>
 </html>

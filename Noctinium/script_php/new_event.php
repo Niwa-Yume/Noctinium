@@ -9,7 +9,7 @@
 				VALUES (:event_title, :event_datetime, :event_location, :event_lat, :event_lon, :event_description, :event_music,
      :event_type, :event_private, :event_maskedlocation, :event_price, :event_creation, :event_user_type, :event_user_id, :event_imageevent_id)";
     if($_SESSION['logged_in'] != true){
-		header('Location: ../connexion.php');
+		header('Location: ../connexion');
 		exit;
 	}
 
@@ -17,11 +17,11 @@
     and isset($_POST['adresse_event']) and isset($_POST['musique']) and isset($_POST['type']) and isset($_POST['conditions'])){
         
         if($_POST['musique'] == ""){
-            header("Location: ../eventAdd.php?error=1&music=1");
+            header("Location: ../eventAdd?error=1&music=1");
             exit;
         }
         if($_POST['type'] == ""){
-            header("Location: ../eventAdd.php?error=1&type=1");
+            header("Location: ../eventAdd?error=1&type=1");
             exit;
         }
         function geocode($address){
@@ -70,12 +70,6 @@
                     }
                 }
                 if($testmasked){
-                    if($_POST['musique'] == "" or $_POST['musique'] < 1 or $_POST['musique'] > 14){
-                        $_POST['musique'] = 14;
-                    }
-                    if($_POST['type'] == "" or $_POST['type'] < 1 or $_POST['type'] > 6){
-                        $_POST['type'] = 6;
-                    }
                     $event['event_title'] = $_POST['nom_event'];
                     $event['event_datetime'] = $dateevent;
                     $event['event_location'] = $_POST['adresse_event'];
@@ -165,21 +159,21 @@
 
                     $event_id = $pdo->lastInsertId();
 
-                    header('Location: ../event.php?event='. $event_id .'');
+                    header('Location: ../event?event='. $event_id .'');
                     exit;
                 }else{
-                    header('Location: ../eventAdd.php?error=1&masked=1');
+                    header('Location: ../eventAdd?error=1&masked=1');
                 }
             }else{
-                header('Location: ../eventAdd.php?error=1&date=1');
+                header('Location: ../eventAdd?error=1&date=1');
                 exit;
             }
         }else{
-            header('Location: ../eventAdd.php?error=1&address=1');
+            header('Location: ../eventAdd?error=1&address=1');
             exit;
         }
 	}else{
-		header('Location: ../error.php');
+		header('Location: ../error');
 		exit;
 	}
 	

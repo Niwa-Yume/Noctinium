@@ -60,9 +60,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {                    // If form submit
 		
 		$_SESSION['user_img'] = $imgurl['imageuser_url'];
 		
-		header ('Location: ../compteConfiguration.php');
+		header ('Location: ../compteConfiguration');
     } else {                                                          // Otherwise
-        header ('Location: ../error.php');         // Error page
+        header ('Location: ../error');         // Error page
     }
 }
 ?>

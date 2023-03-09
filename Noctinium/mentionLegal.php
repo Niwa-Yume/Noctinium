@@ -12,19 +12,19 @@
     </head>
     <body>
         <header>
-            <a href="index.php"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
+            <a href="index"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
             <nav id="computer">
-                <li><a href="index.php">Accueil</a></li>
-                <li><a href="eventlist.php">Liste des évènements</a></li>
-                <li><a href="contact.php">Nous contacter</a></li>
-                <li><a href="sponsor.php">Sponsors</a></li>
-                <li class="active"><a href="propos.php">À propos</a></li>
-                <li><a href="faq.php">FAQ</a></li>
+                <li><a href="index">Accueil</a></li>
+                <li><a href="eventlist">Liste des évènements</a></li>
+                <li><a href="contact">Nous contacter</a></li>
+                <li><a href="sponsor">Sponsors</a></li>
+                <li class="active"><a href="propos">À propos</a></li>
+                <li><a href="faq">FAQ</a></li>
                 <li><a href="<?php 
 				if($logged_in == true){
-					echo("compte.php");
+					echo("compte");
 				}else{
-					echo("connexion.php");
+					echo("connexion");
 				};?>"><?php 
 				if($logged_in == true){
 					echo("Compte");
@@ -41,16 +41,16 @@
         <div id="menuBack" class="menuBack" onclick="closeNav()">
             <div id="sidemenu" class="menu">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <a href="index.php">Accueil</a>
-                <a href="eventlist.php">Évènements</a>
-                <a href="contact.php">Contact</a>
-                <a href="propos.php">À propos</a>
-                <a href="faq.php">FAQ</a>
+                <a href="index">Accueil</a>
+                <a href="eventlist">Évènements</a>
+                <a href="contact">Contact</a>
+                <a href="propos">À propos</a>
+                <a href="faq">FAQ</a>
                 <a href="<?php 
                 if($logged_in == true){
-                    echo("compte.php");
+                    echo("compte");
                 }else{
-                    echo("connexion.php");
+                    echo("connexion");
                 };?>"><?php 
                 if($logged_in == true){
                     echo("Compte");
