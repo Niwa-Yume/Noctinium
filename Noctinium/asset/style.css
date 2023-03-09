@@ -419,7 +419,7 @@ section.main p {
     font-size: 1.3rem;
 }
 section.main-M h1 {
-    font-size: 96px;
+    font-size: 7rem;
     line-height: 125px;
     margin-top: 45px;
     margin-bottom: 25px;
@@ -694,12 +694,12 @@ section.profile .social svg {
 	background-color: #000;
 	color: #fff;
 	letter-spacing: 1px;
-	padding: 2%;
+	padding: 15px;
 	margin-bottom: 30px;
-	border-radius: 10px;
+	border-radius: 20px;
     resize: none;
     align-items: center;
-    font-size: 1.25rem;
+    font-size: 1.7rem;
 
 }
 input.form-control{
@@ -709,24 +709,26 @@ input.form-control{
 textarea.form-control{
     margin-bottom: 1%;
     width: 100%;
+    max-width: 500px;
 }
 .form-control:focus{
 	border: 1px solid white;
 	filter: drop-shadow(0 0 0.15rem white);
 }
 input.form-control-M{
-    height: 3.5%;
+    height: 75px;
     margin-bottom: 30px;
     min-height: 50px;
 }
 textarea.form-control-M{
     margin-bottom: 0;
     width: 100%;
-    height: 15%;
+    height: 400px;
     margin-bottom: 30px;
+    max-width: 500px;
 }
 select.form-control-M{
-    height: 3.5%;
+    height: 75px;
     margin-bottom: 30px;
     min-height: 50px;
 }

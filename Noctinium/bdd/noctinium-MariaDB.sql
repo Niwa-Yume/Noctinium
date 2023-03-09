@@ -97,7 +97,7 @@ CREATE TABLE `events`(
   `event_type` INT NOT NULL,
   `event_private` TINYINT(1) DEFAULT(0) NOT NULL,
   `event_maskedlocation` DATETIME DEFAULT(NULL) NULL,
-  `event_price` DECIMAL DEFAULT(0) NULL,
+  `event_price` DECIMAL(10,2) DEFAULT(0) NULL,
   `event_creation` DATETIME NOT NULL,
   `event_user_type` int NOT NULL,
   `event_user_id` INT NOT NULL,

@@ -57,23 +57,27 @@
 	margin-bottom: 23px;
 	width: 90%;
 	font-family: 'Open Sans';
+	overflow-wrap: break-word;
+	max-width: 477px;
 }
 .typeEvent{
 	color: rgb(140, 140, 140);
-	text-align: left;
+	text-align: right;
 	font-size: 1.4rem;
 	font-family: 'Open Sans';
 	padding-top: 8px;
+	padding-right: 40px;
 }
 .musiqueEvent{
 	color: rgb(140, 140, 140);
-	text-align: left;
+	text-align: right;
 	font-size: 1.4rem;
 	font-family: 'Open Sans';
+	padding-right: 40px;
 }
 .eventBottom{
 	display: grid;
-	grid-template-columns: 3fr 4fr;
+	grid-template-columns: auto auto;
 	font-family: 'Open Sans';
 }
 .btnEvent{

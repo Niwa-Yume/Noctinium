@@ -87,7 +87,7 @@ CREATE TABLE `events`(
   `event_type` INT NOT NULL,
   `event_private` TINYINT(1) DEFAULT(0) NOT NULL,
   `event_maskedlocation` DATETIME DEFAULT(NULL) NULL,
-  `event_price` DECIMAL DEFAULT(0) NULL,
+  `event_price` DECIMAL(10,2) DEFAULT(0) NULL,
   `event_creation` DATETIME NOT NULL,
   `event_user_type` int NOT NULL,
   `event_user_id` INT NOT NULL,
@@ -127,6 +127,7 @@ LOCK TABLES `imageevent` WRITE;
 /*!40000 ALTER TABLE `imageevent` DISABLE KEYS */;
 /*!40000 ALTER TABLE `imageevent` ENABLE KEYS */;
 UNLOCK TABLES;
+INSERT INTO `imageevent` (`imageevent_id`, `imageevent_url`) VALUES (1, "image/image_pour_event_vide_1.webp");
 
 --
 -- Table structure for table `imageuser`
@@ -150,6 +151,7 @@ LOCK TABLES `imageuser` WRITE;
 /*!40000 ALTER TABLE `imageuser` DISABLE KEYS */;
 /*!40000 ALTER TABLE `imageuser` ENABLE KEYS */;
 UNLOCK TABLES;
+INSERT INTO `imageuser` (`imageuser_id`, `imageuser_url`) VALUES (1, "image/compte.webp");
 
 --
 -- Table structure for table `rating`

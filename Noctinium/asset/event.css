@@ -40,7 +40,7 @@
     justify-content: center;
     text-transform: none;
     font-weight: 600;
-    font-size: 3rem;
+    font-size: 2.5rem;
     border-radius: 50%;
     overflow: hidden;
     font-feature-settings: 'salt' on, 'ss01' on, 'ss02' on;
@@ -156,6 +156,7 @@ i{
 	 line-height: 1.5em;
      text-align: justify;
      font-size: 1.4rem;
+     overflow-wrap: break-word;
 }
 .adresseEvent{
     color: #fff;
@@ -173,6 +174,9 @@ i{
 	 font-weight: 500;
      font-size: 1.2rem;
 }
+.orgaEvent{
+  margin-left: 12px;
+}
 .btnEvent{
     display: inline-flex;
 	 background-image: linear-gradient(87.54deg, #9867F0 -6.8%, #EA5DAD 84.14%);
@@ -186,6 +190,24 @@ i{
 	 text-align: center;
 	 letter-spacing: 1px;
      font-size: 1.2rem;
+}
+.btnMaps{
+  display: inline-flex;
+ background-image: linear-gradient(87.54deg, #9867F0 -6.8%, #EA5DAD 84.14%);
+ padding: 25px 45px;
+ border-radius: 50px;
+ color: #fff;
+ box-shadow: 0px 6px 8px rgba(252, 56, 56, 0.3);
+ text-decoration: none;
+ font-weight: 500;
+ justify-content: center;
+ text-align: center;
+ letter-spacing: 1px;
+   font-size: 1.2rem;
+  margin-left: 30px;
+}
+.fa-google{
+  margin-right: 5px;
 }
 .corps-M{
     max-height: 900px;
@@ -222,7 +244,8 @@ i{
 .comment-form{ 
   margin: auto;
   margin-top: 30px;
-  width: 60%;
+  width: 80%;
+  grid-area: comment;
  }
 .comment-form .comment-avatar{  }
 
@@ -238,7 +261,7 @@ i{
       background-color: #000;
       color: #fff;
       letter-spacing: 1px;
-      padding: 2%;
+      padding: 15px;
       border-radius: 10px;
       resize: none;
       align-items: center;
