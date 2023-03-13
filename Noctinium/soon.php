@@ -8,6 +8,7 @@
         <meta charset="utf-8" />
         <title>Soon...</title>
         <link rel="icon" href="image/logo_noctinium_16x16.png">
+        <meta name="viewport" content="width=100vw, initial-scale=0.5">
     </head>
     <body>
         <header>

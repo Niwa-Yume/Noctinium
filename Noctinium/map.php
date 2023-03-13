@@ -14,6 +14,7 @@
           <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
           <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
           <meta charset="utf-8" />
+          <meta name="viewport" content="width=100vw, initial-scale=0.5">
       <title>Map</title>
       <link rel="icon" href="image/logo_noctinium.ico">
     </head>

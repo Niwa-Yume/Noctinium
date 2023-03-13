@@ -11,6 +11,7 @@
       <meta charset="utf-8" />
       <title>Sponsors</title>
       <link rel="icon" href="image/logo_noctinium.ico">
+      <meta name="viewport" content="width=100vw, initial-scale=0.5">
     </head>
     <body>
         <header>

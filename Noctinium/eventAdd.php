@@ -37,6 +37,7 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
         <link rel="icon" href="image/logo_noctinium.ico">
     <link rel="stylesheet" href="asset/easy-autocomplete.min.css">
+    <meta name="viewport" content="width=100vw, initial-scale=0.5">
     <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="asset/jquery.easy-autocomplete.min.js"></script> 

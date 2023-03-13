@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
         <link rel="icon" href="image/logo_noctinium.ico">
+        <meta name="viewport" content="width=100vw, initial-scale=0.5">
   </head>
 <body>
     <header>

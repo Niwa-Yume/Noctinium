@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="asset/style.css">
     <link rel="icon" href="image/logo_noctinium.ico">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
+        <meta name="viewport" content="width=100vw, initial-scale=0.5">
 </head>
 
 <body>

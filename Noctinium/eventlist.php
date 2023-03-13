@@ -14,6 +14,7 @@
       <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
       <title>Évènements</title>
       <link rel="icon" href="image/logo_noctinium.ico">
+      <meta name="viewport" content="width=100vw, initial-scale=0.5">
     </head>
     <body>
         <header>
@@ -81,7 +82,7 @@
               </form>
             </div>
             <div class="newEventCont">
-              <a href="eventAdd" id="newEvent" class="newEvent">Ajouter un évènement</a>
+              <a href="eventAdd" id="newEvent" class="newEvent">Ajouter</a>
             </div>
           </div>
         <div id="main" class="main-f">

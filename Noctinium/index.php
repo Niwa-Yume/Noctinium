@@ -12,7 +12,10 @@
           <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
           <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
         <meta charset="utf-8" />
-        <meta name="description" content="Page d'accueil du site Noctinium sur laquelle vous retrouverez notre map affichant les évènements du jours.">
+        <meta name="title" content="Page d'accueil du site Noctinium sur laquelle vous retrouverez notre map affichant nos évènements.">
+        <meta name="viewport" content="width=100vw, initial-scale=0.5">
+        <meta name="description" content="Noctinium est votre guide des soirées à Genève ! Découvrez toutes les soirées organisées par les boîtes de nuit, associations, groupes et particuliers de la ville sur notre carte interactive. Ne manquez plus aucun événement grâce à notre plateforme dédiée à l'événementiel et aux soirées. Rejoignez la fête dès maintenant !">
+        <meta name="keywords" content="soirée proche, faire la fête genève, voir soirée genève, soirée près de chez moi, soirée thèmes genève, genève, club libertin genève, programme soirée genève, bon plan genève, libertin club genève, décadense, boite de nuit, boite de nuit proche, quoi faire à genève, soirée genève, boite de nuit près de moi, concert genève, motel campo, la décadense, fête de la musique genève, village du soir, événements genève, club genève, évènements genève, boite de nuit genève">
         <title>Accueil</title>
         <link rel="icon" href="image/logo_noctinium.ico">
     </head>
