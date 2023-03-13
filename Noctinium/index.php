@@ -105,7 +105,7 @@
                 $tomorrow = date('Y-m-d H:i:s', strtotime($today. ' + 3 days'));;
                 $event_param['today'] = $today2;
                 $event_param['tomorrow'] = $tomorrow;
-                $sql = "SELECT event_id, event_title, event_location, event_lat, event_lon, event_description, event_user_type FROM events WHERE event_datetime < :tomorrow AND event_datetime > :today;";
+                $sql = "SELECT event_id, event_title, event_location, event_lat, event_lon, event_description, event_user_type FROM events WHERE event_datetime < :tomorrow AND event_datetime > :today AND event_private = 0;";
                 $statement = $pdo->prepare($sql);
                 $statement->execute($event_param);
             // Envoi de la requête à Nominatim
