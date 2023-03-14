@@ -1,0 +1,40 @@
+h4 {
+    margin:0px;
+}
+.flex{
+    width: 350px;
+    height: auto;
+    background-color: #343435;
+    border-radius: 30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-bottom: 40px;
+}
+.flex img{
+    width: 300px;
+    height: 300px;
+    border-radius: 30px;
+    margin-top: 20px;
+    object-fit: cover;
+}
+.flex h1{
+    font-size: 2.3rem;
+}
+.description{
+    text-align: justify;
+    margin: auto;
+    font-size: 1.7rem;
+    padding: 10px;
+}
+.flexible{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    width: 100%;
+    z-index: 1;
+    padding: 40px;
+    gap: 60px;
+}
+.partenaire{
+    padding-top: 40px;
+}
