@@ -996,10 +996,10 @@ hr {
     margin-left: 0;
 }
 .insc-form-checkbox{
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
     float: left;
-    margin-top: 5px;
+    margin-top: 2px;
     margin-right: 10px;
     border: 1px solid white;
     border-radius: 50%;
@@ -1012,29 +1012,31 @@ hr {
     background-color: #9867F0;
 }
 .insc-form-checkbox-date{
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
     border: 1px solid white;
     border-radius: 50%;
     appearance: none;
     -webkit-appearance: none;
     background-color: #000;
     cursor: pointer;
-    margin-top: 8px;
+    margin-top: 20px;
+    margin-right: 5px;
 }
 .insc-form-checkbox-date:checked{
     background-color: #9867F0;
 }
 .insc-form-checkbox-txt{
     font-family: 'Open Sans';
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     float: right ;
 }
 .insc-form-checkbox-txt-date{
     font-family: 'Open Sans';
-    font-size: 1.4rem;
+    font-size: 1.7rem;
     text-align: left;
-    margin-bottom: 10px;
+    position: relative;
+    top: -4.5px;
 }
 .insc-form-checkbox-txt:hover{
     cursor: pointer;
@@ -1131,6 +1133,19 @@ hr {
     background-size: 500%;
     color: black;
   }
+.col-sm-20 .addImg{
+    border: 2px solid #FF7571;
+    display: inline-block;
+    padding: 15px 24px;
+    cursor: pointer;
+    border-radius: 15px;
+    width: 60%;
+    height: 70px;
+    font-family: 'Open Sans';
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.6rem;
+}
 #prive{
     grid-area: btn1;
 }
