@@ -135,31 +135,31 @@
        
             <div class="form-group-insc">
               <div class="col-sm-12">
-                <input type="text" class="form-control insc-form" id="name" placeholder="NOM DE L'ÉVÈNEMENT" name="nom_event" value="" required autofocus maxlength="30">
+                <input type="text" class="form-control insc-form" id="name" placeholder="TITRE" name="nom_event" value="" required autofocus maxlength="30">
               </div>
             </div>
             
             <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="text" class="form-control insc-form" id="date_event" name="date_event" value="" placeholder="DATE DE L'ÉVÈNEMENT (JJ/MM/AAAA)" required>
+                  <input type="text" class="form-control insc-form" id="date_event" name="date_event" value="" placeholder="DATE (JJ/MM/AAAA)" required>
                 </div>
               </div>
 
               <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="text" class="form-control insc-form" id="time" name="time_event" value="" placeholder="HEURE DE L'ÉVÈNEMENT (HH:MM)" required>
+                  <input type="text" class="form-control insc-form" id="time" name="time_event" value="" placeholder="HEURE (HH:MM)" required>
                 </div>
               </div>
             
               <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <textarea class="form-control" id="description" rows="10" placeholder="DESCRIPTION DE L'ÉVÈNEMENT" name="description_event" maxlength="1000" required></textarea>
+                  <textarea class="form-control" id="description" rows="10" placeholder="DESCRIPTION" name="description_event" maxlength="1000" required></textarea>
                 </div>
               </div>
 
             <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="text" class="form-control insc-form" id="adresse" placeholder="ADRESSE (Format : Rue N°, Ville)" name="adresse_event" value="" required maxlength="50">
+                  <input type="text" class="form-control insc-form" id="adresse" placeholder="ADRESSE" name="adresse_event" value="" required maxlength="50">
                 </div>
               </div>
               <div class="form-group-insc">
@@ -193,15 +193,15 @@
                 <div class="chBox">
                   <div class="col-sm-25">
                     <input type="checkbox" class="insc-form-checkbox-date" id="prive" name="private" value="prive"/>
-                    <label class="insc-form-checkbox-txt-date" id="txtprive" for="prive">Soirée privée</label><br>
+                    <label class="insc-form-checkbox-txt-date" id="txtprive" for="prive">Soirée privée</label>
                   </div>
                   <div class="col-sm-25">
                     <input type="checkbox" class="insc-form-checkbox-date" id="date-mask" name="date-mask" value="date-mask" onclick="datemask()"/>
-                    <label class="insc-form-checkbox-txt-date" id="txtdate" for="date-mask">Adresse masquée</label><br>
+                    <label class="insc-form-checkbox-txt-date" id="txtdate" for="date-mask">Adresse masquée</label>
                   </div>
                   <div>
                     <input type="checkbox" class="insc-form-checkbox-date" id="payant" name="payant" value="payant" onclick="privatiser()"/>
-                    <label class="insc-form-checkbox-txt-date" id="txtpayant" for="payant">Payant</label><br>
+                    <label class="insc-form-checkbox-txt-date" id="txtpayant" for="payant">Payant</label>
                   </div>
                   </div>
               </div>
@@ -217,13 +217,13 @@
 
               <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="text" class="form-control insc-form hidden" id="adresse_cachee" name="date_event_mask" value="" placeholder="RÉVÉLATION DE L'ADRESSE (JJ/MM/AAAA)">
+                  <input type="text" class="form-control insc-form hidden" id="adresse_cachee" name="date_event_mask" value="" placeholder="RÉVÉLATION (JJ/MM/AAAA)">
                 </div>
               </div>
 
               <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="text" class="form-control insc-form hidden" id="time_mask" name="time_mask" value="" placeholder="RÉVÉLATION DE L'ADRESSE (HH:MM)">
+                  <input type="text" class="form-control insc-form hidden" id="time_mask" name="time_mask" value="" placeholder="RÉVÉLATION (HH:MM)">
                 </div>
               </div>
 
