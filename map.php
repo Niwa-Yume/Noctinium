@@ -116,7 +116,7 @@
                         map.setView(new L.LatLng(<?php echo ($event['event_lat'])?>, <?php echo ($event['event_lon'])?>), 18);
                         
                         var eventsPointeur = {
-                        "<?php echo ('<a title=\"Voir cet évènement\" href=\"event?event='. $event['event_id'] .'\"><div class=\"popup-container\"><h1 class=\"titleEvent\">'. $event['event_title'] .'</h1><div class=\"descEvent\">'. $description .'</div></div></a>')?>": {"lat":<?php echo ($event['event_lat'])?>, "lon":<?php echo ($event['event_lon'])?>, "icone":<?php if($event['event_user_type'] == 3){echo("pointeurVerreViolet");}elseif($event['event_user_type'] == 2){echo("pointeurNoteViolet");}else{echo("pointeurMaison");} ?>}
+                        "<?php echo ('<a title=\"Voir cet évènement\" href=\"event?event='. $event['event_id'] .'\"><div class=\"popup-container\"><h1 class=\"titleEvent\">'. $event['event_title'] .'</h1><div class=\"descEvent\">'. $description .'</div></div></a>')?>": {"lat":<?php echo ($event['event_lat'])?>, "lon":<?php echo ($event['event_lon'])?>, "icone":<?php if($event['event_user_type'] == 3){echo("pointeurVerreViolet");}elseif($event['event_user_type'] == 2){echo("pointeurNoteViolet");}else{echo("pointeurMaisonViolet");} ?>}
                         };
                         for(lieu in eventsPointeur){
                                 // On va mettre un pointeur sur une des zone de la map selon des coordonéees GPS
@@ -195,20 +195,20 @@
                         iconAnchor:   [19, 57], // point of the icon which will correspond to marker's location
                         popupAnchor:  [1.5, -54]
                     });
-                    var pointeurMaison = L.icon({
-                        iconUrl: 'marker/MaisonVioletBlack-min.png',
+                    var pointeurMaisonViolet = L.icon({
+                        iconUrl: 'marker/HouseV.png',
                         iconSize:     [49.1, 83], // size of the icon
                         iconAnchor:   [24, 81], // point of the icon which will correspond to marker's location
                         popupAnchor:  [-0.5, -78]
                     });
                     var pointeurVerreViolet = L.icon({
-                        iconUrl: 'marker/GobeletVioletBlack-min.png',
+                        iconUrl: 'marker/VerreV.png',
                         iconSize:     [50.6, 83], // size of the icon
                         iconAnchor:   [25.5, 81], // point of the icon which will correspond to marker's location
                         popupAnchor:  [1.5, -78]
                     });
                     var pointeurNoteViolet = L.icon({
-                        iconUrl: 'marker/MusiqueVioletBlack-min.png',
+                        iconUrl: 'marker/MusicNoteV.png',
                         iconSize:     [49.1, 83], // size of the icon
                         iconAnchor:   [24, 81], // point of the icon which will correspond to marker's location
                         popupAnchor:  [-0.5, -78]
