@@ -135,31 +135,31 @@
        
             <div class="form-group-insc">
               <div class="col-sm-12">
-                <input type="text" class="form-control insc-form" id="name" placeholder="TITRE" name="nom_event" value="" required autofocus maxlength="30">
+                <input type="text" class="form-control insc-form" id="name" placeholder="TITRE" name="nom_event" value="<?php if(isset($_GET['title'])){echo $_GET['title'];} ?>" required autofocus maxlength="30" pattern="([^'()/><\][\\\x22,;|]+){4,}">
               </div>
             </div>
             
             <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="text" class="form-control insc-form" id="date_event" name="date_event" value="" placeholder="DATE (JJ/MM/AAAA)" required>
+                  <input type="text" class="form-control insc-form" id="date_event" name="date_event" value="<?php if(isset($_GET['evdate'])){echo $_GET['evdate'];} ?>" placeholder="DATE (JJ/MM/AAAA)" required>
                 </div>
               </div>
 
               <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="text" class="form-control insc-form" id="time" name="time_event" value="" placeholder="HEURE (HH:MM)" required>
+                  <input type="text" class="form-control insc-form" id="time" name="time_event" value="<?php if(isset($_GET['heure'])){echo $_GET['heure'];} ?>" placeholder="HEURE (HH:MM)" required>
                 </div>
               </div>
             
               <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <textarea class="form-control" id="description" rows="10" placeholder="DESCRIPTION" name="description_event" maxlength="1000" required></textarea>
+                  <textarea class="form-control" id="description" rows="10" placeholder="DESCRIPTION" name="description_event" maxlength="1000" required><?php if(isset($_GET['evdesc'])){echo urldecode($_GET['evdesc']);} ?></textarea>
                 </div>
               </div>
 
             <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="text" class="form-control insc-form" id="adresse" placeholder="ADRESSE" name="adresse_event" value="" required maxlength="50">
+                  <input type="text" class="form-control insc-form" id="adresse" placeholder="ADRESSE" name="adresse_event" value="<?php if(isset($_GET['evadresse'])){echo $_GET['evadresse'];} ?>" required maxlength="50">
                 </div>
               </div>
               <div class="form-group-insc">
@@ -208,10 +208,8 @@
             </div>
             <div class="form-group-insc">
                 <div class="col-sm-20">
-                  <label class="addImg">
-                    <input type="file" class="btnUpload" accept="images/*" id="img_event" name="img_event" value="">
-                    Upload Images
-                  </label>
+                    <button class="addImg" id="btn_img_event" value="">Choisir Image</button>
+                    <input type="file" accept="images/*" name="img_event" id="img_event" class="hidden"  value="">
                 </div>
               </div>
 
@@ -311,6 +309,22 @@
       document.getElementById("prix").classList.toggle("hidden");
     }
   }
+</script>
+<script>
+  var btnimg = document.getElementById("btn_img_event");
+  var truebtnimg = document.getElementById("img_event");
+  
+  btnimg.addEventListener("click", function() {
+    truebtnimg.click();
+  });
+
+  truebtnimg.addEventListener("change", function() {
+    if (truebtnimg.value) {
+      customTxt.innerHTML = truebtnimg.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+    } else {
+      btnimg.innerHTML = "Choisir Image";
+    }
+  });
 </script>
 <script>
   function closeError() {

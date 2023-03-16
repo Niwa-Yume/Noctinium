@@ -88,6 +88,11 @@
                 echo ('<div id="error" class="errorCont"><div id="errorMessage" class="errorMessage"><h1>Erreur</h1><br>Vous êtes trop jeune (minimum 16 ans).<br><button onclick="closeError()">Continuer</button></div></div>');
               }
             }
+            if(isset($_GET['uname'])){
+              if($_GET['uname'] == 1){
+                echo ('<div id="error" class="errorCont"><div id="errorMessage" class="errorMessage"><h1>Erreur</h1><br>Ce pseudo est déjà utilisé.<br><button onclick="closeError()">Continuer</button></div></div>');
+              }
+            }
           }
         }
       ?>
@@ -98,49 +103,49 @@
        
             <div class="form-group-insc">
               <div class="col-sm-12">
-                <input type="text" class="form-control insc-form" id="nom" placeholder="NOM" name="surname" value="" required autofocus maxlength="40">
+                <input type="text" class="form-control insc-form" id="nom" placeholder="NOM" name="surname" value="<?php if(isset($_GET['surname'])){echo $_GET['surname'];} ?>" required autofocus maxlength="40">
               </div>
             </div>
       
             <div class="form-group-insc">
               <div class="col-sm-12">
-                <input type="text" class="form-control insc-form" id="prenom" placeholder="PRENOM" name="name" value="" required maxlength="40">
+                <input type="text" class="form-control insc-form" id="prenom" placeholder="PRENOM" name="name" value="<?php if(isset($_GET['name'])){echo $_GET['name'];} ?>" required maxlength="40">
               </div>
             </div>
 
             <div class="form-group-insc">
               <div class="col-sm-12">
-                <input type="text" class="form-control insc-form" id="pseudo" placeholder="PSEUDO" name="username" value="" required maxlength="40">
+                <input type="text" class="form-control insc-form" id="pseudo" placeholder="PSEUDO" name="username" value="<?php if(isset($_GET['username'])){echo $_GET['username'];} ?>" required minlength="4" maxlength="40" pattern="([^'()/><\][\\\x22,;|' ']+){4,}">
               </div>
             </div>
 
             <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="text" class="form-control insc-form" id="date" placeholder="DATE DE NAISSANCE (JJ/MM/AAAA)" name="birthdate" value="" required>
+                  <input type="text" class="form-control insc-form" id="date" placeholder="DATE DE NAISSANCE (JJ/MM/AAAA)" name="birthdate" value="<?php if(isset($_GET['birthdate'])){echo $_GET['birthdate'];} ?>" required>
                 </div>
               </div>
             
             <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="email" class="form-control insc-form" id="email" placeholder="EMAIL" name="email" value="" required>
+                  <input type="email" class="form-control insc-form" id="email" placeholder="EMAIL" name="email" value="<?php if(isset($_GET['mail'])){echo $_GET['mail'];} ?>" required>
                 </div>
               </div>
 
             <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="tel" class="form-control insc-form" id="tel" placeholder="TÉLÉPHONE (FORMAT: 07[6-9]xxxxxxx)" name="telephone" value="" pattern="[07][6-9]\d[0-9]{7}" required>
+                  <input type="tel" class="form-control insc-form" id="tel" placeholder="TÉLÉPHONE (FORMAT: 07[6-9]xxxxxxx)" name="telephone" value="<?php if(isset($_GET['tel'])){echo $_GET['tel'];} ?>" pattern="[07][6-9]\d[0-9]{7}" required>
                 </div>
               </div>
 
             <div class="form-group-insc">
               <div class="col-sm-12">
-                <input type="password" class="form-control insc-form" id="mdp" placeholder="MOT DE PASSE" name="mdp" value="" required>
+                <input type="password" class="form-control insc-form" id="mdp" placeholder="MOT DE PASSE" name="mdp" value="" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
               </div>
             </div>
 
             <div class="form-group-insc">
               <div class="col-sm-12">
-                <input type="password" class="form-control insc-form" id="mdp2" placeholder=" CONFIRMATION MOT DE PASSE" name="mdp2" value="" required>
+                <input type="password" class="form-control insc-form" id="mdp2" placeholder=" CONFIRMATION MOT DE PASSE" name="mdp2" value="" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
               </div>
             </div>
 

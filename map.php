@@ -20,7 +20,7 @@
     </head>
     
     <!--CECI EST LE CORPPS DE LA PAGE-->
-    <body onload="init()">
+    <body onload="javascript:init()">
         <header>
             <a href="index"><img class="logo" id="logo" src="image/logo_noctinium.webp" alt="Logo"></a>
             <nav id="computer">
@@ -91,14 +91,17 @@
                         $desc_cut = str_split($event['event_description'], 150);
                                             $desc_test = $desc_cut[0];
                                             if(strlen($desc_test)==150){
-                                            $desc_test .= '...';
+                                            $desc_test .= '[...]';
                                             }
-                                            $desc_test2 = str_replace("\r\n", " ", $desc_test);
-                                            $desc_test3 = str_replace("\n", " ", $desc_test2);
-                                            $description = htmlspecialchars($desc_test3, ENT_QUOTES, 'utf-8');
+                                            $desc_test2 = htmlspecialchars($desc_test, ENT_QUOTES, 'utf-8');
+                                            $desc_test3 = str_replace("\r\n", "<br>", $desc_test2);
+                                            $desc_test4 = str_replace("\r", "<br>", $desc_test3);
+                                            $description = str_replace("\n", "<br>", $desc_test4);
+                                            
                     }else{
                         header('Location: error');
                     }
+                    
                 }
         ?>
             <div id="map" class="mapBig">
@@ -114,7 +117,6 @@
 
                         // map view before we get the location
                         map.setView(new L.LatLng(<?php echo ($event['event_lat'])?>, <?php echo ($event['event_lon'])?>), 18);
-                        
                         var eventsPointeur = {
                         "<?php echo ('<a title=\"Voir cet évènement\" href=\"event?event='. $event['event_id'] .'\"><div class=\"popup-container\"><h1 class=\"titleEvent\">'. $event['event_title'] .'</h1><div class=\"descEvent\">'. $description .'</div></div></a>')?>": {"lat":<?php echo ($event['event_lat'])?>, "lon":<?php echo ($event['event_lon'])?>, "icone":<?php if($event['event_user_type'] == 3){echo("pointeurVerreViolet");}elseif($event['event_user_type'] == 2){echo("pointeurNoteViolet");}else{echo("pointeurMaisonViolet");} ?>}
                         };

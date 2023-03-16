@@ -8,7 +8,7 @@
                   <a href="soon">Sponsors</a>
                 </li>
                 <li>
-                    <a href="mailto:#">contact@noctinium.com</a>
+                    <a href="mailto:#">noctinium@protonmail.com</a>
                 </li>
             </ul>
         </footer>

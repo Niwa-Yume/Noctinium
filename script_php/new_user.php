@@ -19,31 +19,38 @@
 			$sql3 = "SELECT user_telephone FROM user WHERE user_telephone = '". $_POST['telephone'] ."';";
 			$test2 = $pdo->query($sql3);
 			if($test2->rowCount() == 0){
-				$today = date('Y-m-d', strtotime(' -16 years'));
-				$datenaisint = explode(" / ", $_POST['birthdate']);
-				$datenaissance = $datenaisint[2]."-".$datenaisint[1]."-".$datenaisint[0];
-				if($datenaissance < $today){
-					$password_to_hash = $_POST['mdp'];
-					$password_hashed = password_hash($password_to_hash, PASSWORD_BCRYPT, ['cost' => 10]);
-					$user['user_surname'] = $_POST['surname'];
-					$user['user_name'] = $_POST['name'];
-					$user['user_username'] = $_POST['username'];
-					$user['user_telephone'] = $_POST['telephone'];
-					$user['user_birthdate'] = $datenaissance;
-					$user['user_email'] = $_POST['email'];
-					$user['user_password'] = $password_hashed;
-					$user['user_timecreation'] = date('Y-m-d H:i:s');
-					$user['user_imageuser_id'] = 1;
+				$sql4 = "SELECT user_username FROM user WHERE user_username = '". $_POST['username'] ."';";
+				$test3 = $pdo->query($sql4);
+				if($test3->rowCount() == 0){
+					$today = date('Y-m-d', strtotime(' -16 years'));
+					$datenaisint = explode(" / ", $_POST['birthdate']);
+					$datenaissance = $datenaisint[2]."-".$datenaisint[1]."-".$datenaisint[0];
+					if($datenaissance < $today){
+						$password_to_hash = $_POST['mdp'];
+						$password_hashed = password_hash($password_to_hash, PASSWORD_BCRYPT, ['cost' => 10]);
+						$user['user_surname'] = $_POST['surname'];
+						$user['user_name'] = $_POST['name'];
+						$user['user_username'] = $_POST['username'];
+						$user['user_telephone'] = $_POST['telephone'];
+						$user['user_birthdate'] = $datenaissance;
+						$user['user_email'] = $_POST['email'];
+						$user['user_password'] = $password_hashed;
+						$user['user_timecreation'] = date('Y-m-d H:i:s');
+						$user['user_imageuser_id'] = 1;
+					}else{
+						header('Location: ../inscription?error=1&birth=1&surname='. $_POST['surname'] .'&name='. $_POST['name'] .'&username='. $_POST['username'] .'&tel='. $_POST['telephone'] .'&birthdate='. $_POST['birthdate'] .'&mail='. $_POST['email'] .'');
+						exit;
+					}
 				}else{
-					header('Location: ../inscription?error=1&birth=1');
-					exit;
+					header('Location: ../inscription?error=1&uname=1&surname='. $_POST['surname'] .'&name='. $_POST['name'] .'&username='. $_POST['username'] .'&tel='. $_POST['telephone'] .'&birthdate='. $_POST['birthdate'] .'&mail='. $_POST['email'] .'');
+				exit;
 				}
 			}else{
-				header('Location: ../inscription?error=1&telephone=1');
+				header('Location: ../inscription?error=1&telephone=1&surname='. $_POST['surname'] .'&name='. $_POST['name'] .'&username='. $_POST['username'] .'&tel='. $_POST['telephone'] .'&birthdate='. $_POST['birthdate'] .'&mail='. $_POST['email'] .'');
 				exit;
 			}
 		}else{
-			header('Location: ../inscription?error=1&email=1');
+			header('Location: ../inscription?error=1&email=1&surname='. $_POST['surname'] .'&name='. $_POST['name'] .'&username='. $_POST['username'] .'&tel='. $_POST['telephone'] .'&birthdate='. $_POST['birthdate'] .'&mail='. $_POST['email'] .'');
 			exit;
 		}
 	}else{

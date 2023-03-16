@@ -10,12 +10,6 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
       <meta charset="utf-8" />
       <link rel="stylesheet" href="asset/event.css">
-
-      <meta name="title" content="Page Événement avec les informations essentitels comme infos pratiques, adresse, Type d'événement, Type de musique, Prix et heure.">
-      <meta name="viewport" content="width=100vw, initial-scale=0.5">
-      <meta name="description" content="Découvrez les soirées, festivals, boite de nuits et autre événements de la ville de Genève. Trouvez toutes les informations pratiques sur les horaires, les prix et le trajet pour vous y rendre. Créer et Rejoignez dès maintenant sur noctinium.com !">
-      <meta name="keywords" content="soirée proche, faire la fête genève, voir soirée genève, soirée près de chez moi, soirée thèmes genève, genève, club libertin genève, programme soirée genève, bon plan genève, libertin club genève, décadense, boite de nuit, boite de nuit proche, quoi faire à genève, soirée genève, boite de nuit près de moi, concert genève, motel campo, la décadense, fête de la musique genève, village du soir, événements genève, club genève, évènements genève, boite de nuit genève">
-
       <title>Évènement</title>
       <link rel="icon" href="image/logo_noctinium.ico">
       <meta name="viewport" content="width=100vw, initial-scale=0.5">
@@ -81,7 +75,10 @@
                 }else{
                   $event = $statement->fetch();
                   $event_desc = htmlspecialchars($event['event_description'], ENT_QUOTES, 'utf-8');
-                  $event_description = str_replace("\t", " ", $event_desc);
+                  $desc_test2 = str_replace("\r\n", "<br>", $event_desc);
+                  $desc_test3 = str_replace("\r", "<br>", $desc_test2);
+                  $desc_test4 = str_replace("\n", "<br>", $desc_test2);
+                  $event_description = str_replace("\t", " ", $desc_test4);
 
 
                   $image = "SELECT imageevent_url FROM imageevent WHERE imageevent_id = '". $event['event_imageevent_id'] ."';";

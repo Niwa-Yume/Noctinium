@@ -19,7 +19,7 @@
         <title>Accueil</title>
         <link rel="icon" href="image/logo_noctinium.ico">
     </head>
-    <body onload="init()">
+    <body onload="javascript:init()">
         <header>
             <a href="index"><img class="logo" id="logo" alt="Logo" src="image/logo_noctinium.webp"></a>
             <nav id="computer">
@@ -145,14 +145,15 @@
                         
                             if ($statement->rowCount() > 0){
                                 while($event = $statement->fetch()){
-                                    $desc_cut = str_split($event['event_description'], 150);
+                                    $desc_cut = str_split($event['event_description'], 140);
                                     $desc_test = $desc_cut[0];
-                                    if(strlen($desc_test)==150){
-                                    $desc_test .= '...';
+                                    if(strlen($desc_test)==140){
+                                    $desc_test .= '[...]';
                                     }
-                                    $desc_test2 = str_replace("\r\n", " ", $desc_test);
-                                    $desc_test3 = str_replace("\n", " ", $desc_test2);
-                                    $description = htmlspecialchars($desc_test3, ENT_QUOTES, 'utf-8');
+                                    $desc_test2 = htmlspecialchars($desc_test, ENT_QUOTES, 'utf-8');
+                                    $desc_test3 = str_replace("\r\n", "<br>", $desc_test2);
+                                    $desc_test4 = str_replace("\r", "<br>", $desc_test3);
+                                    $description = str_replace("\n", "<br>", $desc_test4);
 
                                     if($event['event_user_type'] == 3){
                                         $icone = "pointeurVerreViolet";

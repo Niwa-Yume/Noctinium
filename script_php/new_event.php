@@ -17,11 +17,11 @@
     and isset($_POST['adresse_event']) and isset($_POST['musique']) and isset($_POST['type']) and isset($_POST['conditions'])){
         
         if($_POST['musique'] == ""){
-            header("Location: ../eventAdd?error=1&music=1");
+            header('Location: ../eventAdd?error=1&music=1&title='. $_POST['nom_event'] .'&evdate='. $_POST['date_event'] .'&heure='. $_POST['time_event'] .'&evadresse='. $_POST['adresse_event'] .'&evdesc='. urlencode($_POST['description_event']) .'');
             exit;
         }
         if($_POST['type'] == ""){
-            header("Location: ../eventAdd?error=1&type=1");
+            header('Location: ../eventAdd?error=1&type=1&title='. $_POST['nom_event'] .'&evdate='. $_POST['date_event'] .'&heure='. $_POST['time_event'] .'&evadresse='. $_POST['adresse_event'] .'&evdesc='. urlencode($_POST['description_event']) .'');
             exit;
         }
         function geocode($address){
@@ -44,11 +44,12 @@
             return json_decode($result, true);
         }
         $response = geocode($_POST['adresse_event']);
+        print_r($response);
 
         //Récupération des coordonnées GPS
-        $lat = $response[0]['lat'];
-        $lon = $response[0]['lon'];
-        if($lat and $lon){
+        if($response != []){
+            $lat = $response[0]['lat'];
+            $lon = $response[0]['lon'];
             $today = date('Y-m-d H:i:s');
             $dateeventint = explode(" / ", $_POST['date_event']);
             $timeevent = str_replace(" ","",$_POST['time_event']);
@@ -162,14 +163,14 @@
                     header('Location: ../event?event='. $event_id .'');
                     exit;
                 }else{
-                    header('Location: ../eventAdd?error=1&masked=1');
+                    header('Location: ../eventAdd?error=1&masked=1&title='. $_POST['nom_event'] .'&evdate='. $_POST['date_event'] .'&heure='. $_POST['time_event'] .'&evadresse='. $_POST['adresse_event'] .'&evdesc='. urlencode($_POST['description_event']) .'');
                 }
             }else{
-                header('Location: ../eventAdd?error=1&date=1');
+                header('Location: ../eventAdd?error=1&date=1&title='. $_POST['nom_event'] .'&evdate='. $_POST['date_event'] .'&heure='. $_POST['time_event'] .'&evadresse='. $_POST['adresse_event'] .'&evdesc='. urlencode($_POST['description_event']) .'');
                 exit;
             }
         }else{
-            header('Location: ../eventAdd?error=1&address=1');
+            header('Location: ../eventAdd?error=1&address=1&title='. $_POST['nom_event'] .'&evdate='. $_POST['date_event'] .'&heure='. $_POST['time_event'] .'&evadresse='. $_POST['adresse_event'] .'&evdesc='. urlencode($_POST['description_event']) .'');
             exit;
         }
 	}else{

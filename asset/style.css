@@ -687,6 +687,7 @@ section.profile .social svg {
     resize: none;
     align-items: center;
     font-size: 1.25rem;
+    font-family: 'Open Sans';
 }
 .form-control-M{
 	border: 1px solid white;
@@ -700,16 +701,18 @@ section.profile .social svg {
     resize: none;
     align-items: center;
     font-size: 1.7rem;
-
+    font-family: 'Open Sans';
 }
 input.form-control{
     height: 50px;
     margin-bottom: 1%;
+    font-family: 'Open Sans';
 }
 textarea.form-control{
     margin-bottom: 1%;
     width: 100%;
     max-width: 500px;
+    font-family: 'Open Sans';
 }
 .form-control:focus{
 	border: 1px solid white;
@@ -719,6 +722,7 @@ input.form-control-M{
     height: 75px;
     margin-bottom: 30px;
     min-height: 50px;
+    font-family: 'Open Sans';
 }
 textarea.form-control-M{
     margin-bottom: 0;
@@ -726,11 +730,13 @@ textarea.form-control-M{
     height: 400px;
     margin-bottom: 30px;
     max-width: 500px;
+    font-family: 'Open Sans';
 }
 select.form-control-M{
     height: 75px;
     margin-bottom: 30px;
     min-height: 50px;
+    font-family: 'Open Sans';
 }
 .form-control-M:focus{
 	border: 1px solid white;
@@ -1136,15 +1142,24 @@ hr {
 .col-sm-20 .addImg{
     border: 2px solid #FF7571;
     display: inline-block;
-    padding: 15px 24px;
+    padding: 15px 24px 15px 24px;
     cursor: pointer;
     border-radius: 15px;
     width: 60%;
-    height: 70px;
     font-family: 'Open Sans';
     margin-left: auto;
     margin-right: auto;
     font-size: 1.6rem;
+    background-color: transparent;
+    color: white;
+    height: auto;
+}
+.col-sm-20 .addImg:hover{
+    background: linear-gradient(269.16deg, #FFE580 -15.83%, #FF7571 -4.97%, #FF7270 15.69%, #EA5DAD 32.43%, #C2A0FD 50.09%, #9867F0 67.47%, #3BF0E4 84.13%, #33CE43 105.13%, #B2F4B6 123.24%);
+    background-position: 58% 50%;
+    background-size: 500%;
+    color: black;
+    font-family: 'Open Sans';
 }
 #prive{
     grid-area: btn1;

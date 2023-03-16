@@ -162,8 +162,8 @@
           <form class="mdp" class="form-group-insc" action="script_php/configuration_password.php" method="POST">
             <div id="formMdp" class="form-group-insc">
               <div class="col-sm-12">
-                <input type="password" class="formUser insc-form" id="mdp" placeholder="NOUVEAU MOT DE PASSE" name="mdp" value="" required autofocus>
-                <input type="password" class="formUser insc-form" id="mdp2" placeholder="CONFIRMATION" name="mdp2" value="" required>
+                <input type="password" class="formUser insc-form" id="mdp" placeholder="NOUVEAU MOT DE PASSE" name="mdp" value="" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                <input type="password" class="formUser insc-form" id="mdp2" placeholder="CONFIRMATION" name="mdp2" value="" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
                 <input type="password" class="formUser insc-form" id="mdp3" placeholder="ANCIEN MOT DE PASSE" name="mdp3" value="" required>
                 <label class="uploadFile">
                   <input type="submit" class="btnUpload" name="changerInfo" value="" required>
