@@ -12,7 +12,13 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
       <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-      <title>Évènements</title>
+
+      <meta name="title" content="Page liste les Événements avec les informations essentitels comme infos pratiques, adresse, Type d'événement, Type de musique, Prix et heure.">
+      <meta name="viewport" content="width=100vw, initial-scale=0.5">
+      <meta name="description" content="Découvrez les soirées, festivals, boite de nuits et autre événements de la ville de Genève. Trouvez toutes les informations pratiques sur les horaires, les prix et le trajet pour vous y rendre. Créer et Rejoignez dès maintenant sur noctinium.com !">
+      <meta name="keywords" content="soirée proche, faire la fête genève, voir soirée genève, soirée près de chez moi, soirée thèmes genève, genève, club libertin genève, programme soirée genève, bon plan genève, libertin club genève, décadense, boite de nuit, boite de nuit proche, quoi faire à genève, soirée genève, boite de nuit près de moi, concert genève, motel campo, la décadense, fête de la musique genève, village du soir, événements genève, club genève, évènements genève, boite de nuit genève">
+
+      <title>liste d'Évènements</title>
       <link rel="icon" href="image/logo_noctinium.ico">
       <meta name="viewport" content="width=100vw, initial-scale=0.5">
     </head>
