@@ -155,12 +155,12 @@
                     }
                   echo ("
                     </section>");
-                  if($logged_in){
                     echo("<hr class=\"gradient\">
                     <section class=\"attends\">
                         <div class=\"interaction\">
-                          <div class=\"comment-form\">
-                            <!-- Comment Avatar -->
+                        <div class=\"comment-form\">");
+                  if($logged_in){
+                    echo("<!-- Comment Avatar -->
                             <div >
                               <img class=\"comment-pp\" src=\"". $_SESSION['user_img'] ."\" alt=\"Image de profil\">
                             </div>
@@ -180,6 +180,10 @@
                               </div>
                             </form>
                             <div class=\"commCont\">");
+                  }else{
+                    echo("<h1 style=\"margin-top:20px;\"><a href=\"connexion\" class=\"underline\">Connectez-vous</a> pour commenter.</h1>
+                    <div class=\"commCont\">");
+                  }
                     $comm = "SELECT * FROM commentorganiser WHERE commentorganiser_organiser_id = ". $_GET['organisateur'] ." ORDER BY commentorganiser_date DESC;";
                     $statement3 = $pdo->query($comm);
                     $commentaire = $statement3->fetchAll();
@@ -232,7 +236,9 @@
                     echo ("</div>
                           </div>
                           <div class=\"star\">
-                            <h3 class=\"starTitle\">Note : ". $final ."/5</h3>
+                            <h3 class=\"starTitle\">Note : ". $final ."/5</h3>");
+                    if($logged_in){
+                      echo("
                             <form class=\"starCont\" method=\"POST\" action=\"script_php/rating.php?organisateur=". $_GET['organisateur'] ."\">
                               <fieldset class=\"rate\">
                                 <input type=\"radio\" id=\"rating10\" name=\"rating\" value=\"10\" /><label for=\"rating10\" title=\"5 stars\"></label>
@@ -249,17 +255,15 @@
                                 <div class=\"form-row\">
                                   <input class=\"noter\" type=\"submit\" value=\"NOTER\">
                               </div>
-                            </form>
+                            </form>");
+                    }else{
+                      echo("<h1 style=\"margin-top:20px;\"><a href=\"connexion\" class=\"underline\">Connectez-vous</a> pour noter.</h1>
+                      <div class=\"commCont\">");
+                    }
+                    echo("
                           </div>
                         </div>
                     </section>");
-                  }else{
-                    echo ("<section class=\"attends\">
-                    <div style=\"width: 100%;\" class=\"container\">
-                      <h1>Connectez-vous pour noter et commenter.</h1>
-                    </div>
-                    </section>");
-                  }
                 }
               }else{
                 echo ("<section class=\"content content-small\">

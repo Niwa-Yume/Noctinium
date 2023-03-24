@@ -531,16 +531,16 @@
                       </section>");
                   }
                   
-                  if($logged_in){
                     echo ("<hr class=\"gradient\">
                       <section class=\"attends\">
                         <div class=\"interaction\">
-                          <div class=\"comment-form\">
-                            <!-- Comment Avatar -->
+                        <div class=\"comment-form\">
+                          ");
+                  if($logged_in){
+                    echo("<!-- Comment Avatar -->
                             <div >
                               <img class=\"comment-pp\" src=\"". $_SESSION['user_img'] ."\" alt=\"Image de profil\">
                             </div>
-                        
                             <form class=\"form\" name=\"form\" method=\"POST\" action=\"script_php/comment_event.php?event=". $event_id ."\">
                               <div class=\"form-row\">
                                 <textarea
@@ -556,6 +556,11 @@
                               </div>
                             </form>
                             <div class=\"commCont\">");
+                  }else{
+                    echo("<h1 style=\"margin-top:20px;\"><a href=\"connexion\" class=\"underline\">Connectez-vous</a> pour commenter.</h1>
+                    <div class=\"commCont\">");
+                  }
+                            
                             $comm = "SELECT * FROM commentevent WHERE commentevent_events_id = ". $event_id ." ORDER BY commentevent_date DESC;";
                             $statement3 = $pdo->query($comm);
                             $commentaire = $statement3->fetchAll();
@@ -612,14 +617,6 @@
                         </div>
                       </section>
                     ");
-                  }else{
-                    echo ("<hr class=\"gradient\">
-                    <section class=\"attends\">
-                    <div style=\"width: 100%;\" class=\"container\">
-                      <h1><a href=\"connexion\">Connectez-vous</a> pour commenter.</h1>
-                    </div>
-                    </section>");
-                  }
                 }
               }else{
                 echo ("<div style=\"height: 80%;margin-top: 100px;\" class=\"adresseEvent\"><h1>L'évènement sélectionné n'existe pas.<br><br>Veuillez réessayer.</h1></div></section>");

@@ -435,9 +435,9 @@ i{
   float: left;
 }
 .commentBody{
-  width: 90%;
+  width: 100%;
   margin-left: auto;
-  margin-right: 0;
+  margin-right: auto;
   padding: 10px 15px;
   font-family: 'Open Sans';
   background-color: #343435;

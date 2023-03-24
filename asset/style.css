@@ -294,7 +294,7 @@ header .logo-M{
     user-select: none;
     -webkit-user-drag: none;
 }
-@media screen and (max-width: 1160px) {
+@media screen and (max-width: 1410px) {
     .logo  {
      margin-left: 0 !important;
     }
