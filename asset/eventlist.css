@@ -151,8 +151,7 @@
     align-items: center;
 	vertical-align: middle;
 	font-size: 1.4rem;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	padding: 20px;
 }
 .search:focus{
 	filter: drop-shadow(0 0 0.15rem white);
@@ -177,6 +176,7 @@
 	margin-left: -5px;
 	cursor: pointer;
 	padding-top: 10px;
+	font-size: 1.2rem;
 }
 .searchBtn:focus{
 	border: 1px solid white;
@@ -186,8 +186,8 @@
 	border: 1px solid white;
 	filter: drop-shadow(0 0 0.15rem white);
 }
-.fa{
-	margin-top: -4%;
+.fa-search{
+	margin-top: -5%;
 }
 .search-M{
 	border: 1px solid white;
@@ -196,7 +196,7 @@
 	background-color: #000;
 	color: #fff;
 	letter-spacing: 1px;
-	padding: 30px;
+	padding: 30px 10px;
 	margin-bottom: 2.5%;
 	border-radius: 30px 0 0 30px;
     resize: none;
@@ -228,6 +228,7 @@
 	vertical-align: middle;
 	margin-left: -4.5px;
 	cursor: pointer;
+	font-size: 1.2rem;
 }
 .searchBtn-M:focus{
 	border: 1px solid white;
@@ -236,6 +237,9 @@
 .searchBtn-M:hover{
 	border: 1px solid white;
 	filter: drop-shadow(0 0 0.15rem white);
+}
+.searchBtn-M .fa-search{
+	margin-top: -2.5%;
 }
 .newEvent{
 	padding: 7px 13px;
@@ -386,9 +390,6 @@
 }
 .sepFiltre{
 	background-color: rgba(66,82,109,0.5);
-}
-#btnretour{
-	cursor: pointer;
 }
 .pageNum{
 	font-size: 1.35rem;

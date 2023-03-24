@@ -6,6 +6,7 @@
     <head>
       <link rel="stylesheet" href="asset/style.css">
       <link rel="stylesheet" href="asset/eventlist.css">
+      <link rel="stylesheet" href="asset/fontawesome/css/all.css">
 		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
       <meta charset="utf-8" />
@@ -18,7 +19,7 @@
       <meta name="description" content="Découvrez les soirées, festivals, boite de nuits et autre événements de la ville de Genève. Trouvez toutes les informations pratiques sur les horaires, les prix et le trajet pour vous y rendre. Créer et Rejoignez dès maintenant sur noctinium.com !">
       <meta name="keywords" content="soirée proche, faire la fête genève, voir soirée genève, soirée près de chez moi, soirée thèmes genève, genève, club libertin genève, programme soirée genève, bon plan genève, libertin club genève, décadense, boite de nuit, boite de nuit proche, quoi faire à genève, soirée genève, boite de nuit près de moi, concert genève, motel campo, la décadense, fête de la musique genève, village du soir, événements genève, club genève, évènements genève, boite de nuit genève">
 
-      <title>liste d'Évènements</title>
+      <title>Liste des évènements</title>
       <link rel="icon" href="image/logo_noctinium.ico">
       <meta name="viewport" content="width=100vw, initial-scale=0.5">
     </head>
@@ -615,7 +616,7 @@
               $datetimeint = explode(" ",$event[$i]['event_datetime']);
               $date = explode("-",$datetimeint[0]);
               $timeevent = explode(":",$datetimeint[1]);
-              $dateevent = $date[2]."/".$date[1]."/".$date[0]." | ".$timeevent[0]." : ".$timeevent[1];
+              $dateevent = $date[2]."/".$date[1]."/".$date[0]." | ".$timeevent[0].":".$timeevent[1];
 
               echo ('<div class="event-presentation">
                     <div>
@@ -655,7 +656,7 @@
         <?php
           include './script_php/footer.php'
         ?>
-        <button id="btnretour" onclick="topScroll()"> &#8613; </button>
+        <i id="btnretour" onclick="topScroll()" class="fa-solid fa-circle-up"></i>
 		<script>
 			var swiper = new Swiper('.blog-slider', {
     spaceBetween: 30,

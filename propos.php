@@ -5,6 +5,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="asset/style.css">
+        <link rel="stylesheet" href="asset/fontawesome/css/all.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
         <meta charset="utf-8" />
         <title>À propos</title>
@@ -83,12 +84,13 @@
         <!-- <hr> -->
         <section class="subscribe">
             <p>
-                Il y aura de nouveaux événements chaque jour !<br><br> Inscrivez-vous à la newsletter pour rester informé !    
+                Il y aura de nouveaux évènements chaque jour !<br> Inscrivez-vous à la newsletter pour rester informé !    
             </p>
             <br>
-            <a href="#subscribe" class="buttonBW" target="_blank">
-                <span>Inscrivez-vous à la newsletter</span>
-            </a>
+            <form class="newsBar" method="POST" action="">
+                <input type="email" class="news insc-form" id="news" placeholder="EMAIL" name="news" value="">
+                <button class="newsBtn" id="newsBtn" type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+            </form>
         </section>
     
         <?php
@@ -97,9 +99,15 @@
 </body>
 <script>
     var element = document.getElementById("logo")
+    var news = document.getElementById("news")
+    var newsBtn = document.getElementById("newsBtn")
           if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
       element.classList.toggle("logo");
       element.classList.toggle("logo-M");
+      news.classList.toggle("news");
+        news.classList.toggle("news-M");
+        newsBtn.classList.toggle("newsBtn");
+        newsBtn.classList.toggle("newsBtn-M");
     }
       </script>
     <script>

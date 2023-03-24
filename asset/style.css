@@ -120,19 +120,17 @@ a.underline:hover{
     color: black;
 }
 #btnretour{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    color: black;
-    background-color: white;
-    font-weight: bolder;
+    color: white;
     position: fixed;
     bottom: 20;
     right: 20;
-    z-index: 100;
-    border: none;
-    font-size: 2.2rem;
+    z-index: 5;
+    font-size: 3.5rem;
     display: none;
+    cursor: pointer;
+}
+#btnretour:hover{
+    color: #c3ccd4;
 }
 section.updates {
     text-align: center;
@@ -295,8 +293,16 @@ header .logo-M{
     -webkit-user-drag: none;
 }
 @media screen and (max-width: 1410px) {
-    .logo  {
-     margin-left: 0 !important;
+    #computer  {
+     display: none !important;
+    }
+    #mobile{
+        display: block !important;
+    }
+}
+@media screen and (max-width: 912px) {
+    section.main h1  {
+     font-size: 6rem !important;
     }
 }
 header .time {
@@ -410,7 +416,7 @@ section.content p {
 section.main h1 {
     font-size: 9rem;
     line-height: 125px;
-    margin-top: 140px;
+    margin-top: 100px;
     margin-bottom: 80px;
 }
 section.main p {
@@ -543,6 +549,8 @@ ul.faq-question .faq-content {
     font-weight: 500;
     margin-bottom: 26px;
     color: #959da5;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,.3);
 }
 ul.speaker-list {
     width: 100%;
@@ -1298,7 +1306,7 @@ textarea.text-control{
 }
 .titleMap{
     font-size: 3.5rem;
-    margin-bottom: 50px;
+    margin: auto auto 50px auto;
 }
 .menu {
     height: 100%;
@@ -1347,3 +1355,119 @@ textarea.text-control{
     left: 0;
     background-color: rgba(0, 0, 0, 0.3);
   }
+  /*Newsletter*/
+  .newsCont{
+	display: grid;
+	grid-template-columns: 2fr 5fr 2fr;
+	height: 80px;
+}
+.newsBar{
+	text-align: center;
+    height: 80px;
+    width: 60%;
+    margin: auto;
+}
+.news{
+	border: 1px solid white;
+	width: 40%;
+	height: 65%;
+	background-color: #000;
+	color: #fff;
+	letter-spacing: 1px;
+	padding-left: 10px;
+	margin-bottom: 2.5%;
+	border-radius: 15px 0 0 15px;
+    resize: none;
+    align-items: center;
+	vertical-align: middle;
+	font-size: 1.4rem;
+	padding: 20px;
+}
+.news:focus{
+	filter: drop-shadow(0 0 0.15rem white);
+	height: 62%;
+}
+.news:focus ~ .newsBtn{
+	border: 1px solid white;
+	filter: drop-shadow(0 0 0.15rem white);
+}
+.newsBtn{
+	border: 1px solid white;
+	width: 10%;
+	height: 65%;
+	background-color: #000;
+	color: #fff;
+	letter-spacing: 1px;
+	margin-bottom: 2.5%;
+	border-radius: 0 15px 15px 0;
+    resize: none;
+    align-items: center;
+	vertical-align: middle;
+	margin-left: -5px;
+	cursor: pointer;
+	padding-top: 10px;
+    font-size: 1.2rem;
+}
+.newsBtn:focus{
+	border: 1px solid white;
+	filter: drop-shadow(0 0 0.15rem white);
+}
+.newsBtn:hover{
+	border: 1px solid white;
+	filter: drop-shadow(0 0 0.15rem white);
+}
+.newsBtn .fa-paper-plane{
+	margin-top: -7%;
+}
+.news-M{
+	border: 1px solid white;
+	width: 80%;
+	height: 85%;
+	background-color: #000;
+	color: #fff;
+	letter-spacing: 1px;
+	padding: 30px 10px;
+	margin-bottom: 2.5%;
+	border-radius: 15px 0 0 15px;
+    resize: none;
+    align-items: center;
+	vertical-align: middle;
+	font-size: 1.7rem;
+}
+.news-M:focus{
+	filter: drop-shadow(0 0 0.15rem white);
+	height: 83%;
+}
+.news-M:focus ~ .newsBtn-M{
+	border: 1px solid white;
+	filter: drop-shadow(0 0 0.15rem white);
+}
+.newsBtn-M{
+	border: 1px solid white;
+	width: 15%;
+	height: 85%;
+	background-color: #000;
+	color: #fff;
+	letter-spacing: 1px;
+	padding-top: 26px;
+	padding-bottom: 29px;
+	margin-bottom: 2.5%;
+	border-radius: 0 15px 15px 0;
+    resize: none;
+    align-items: center;
+	vertical-align: middle;
+	margin-left: -4.5px;
+	cursor: pointer;
+    font-size: 1.2rem;
+}
+.newsBtn-M:focus{
+	border: 1px solid white;
+	filter: drop-shadow(0 0 0.15rem white);
+}
+.newsBtn-M:hover{
+	border: 1px solid white;
+	filter: drop-shadow(0 0 0.15rem white);
+}
+.newsBtn-M .fa-paper-plane{
+	margin-top: -4%;
+}

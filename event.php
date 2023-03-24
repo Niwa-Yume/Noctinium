@@ -110,7 +110,7 @@
                   $datetimeint = explode(" ",$event['event_datetime']);
                   $date = explode("-",$datetimeint[0]);
                   $timeevent = explode(":",$datetimeint[1]);
-                  $dateevent = $date[2]."/".$date[1]."/".$date[0]." | ".$timeevent[0]." : ".$timeevent[1];
+                  $dateevent = $date[2]."/".$date[1]."/".$date[0]." | ".$timeevent[0].":".$timeevent[1];
 
                   if($event['event_type'] == 1){
                     $event_type = "Before";

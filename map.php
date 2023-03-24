@@ -192,25 +192,25 @@
                         map.locate({setView: true, maxZoom: 15});
                     }
                     var pointeurUser = L.icon({
-                        iconUrl: 'marker/UserPointer-min.png',
+                        iconUrl: 'marker/UserPointer-min.webp',
                         iconSize:     [40, 58], // size of the icon
                         iconAnchor:   [19, 57], // point of the icon which will correspond to marker's location
                         popupAnchor:  [1.5, -54]
                     });
                     var pointeurMaisonViolet = L.icon({
-                        iconUrl: 'marker/HouseV.png',
+                        iconUrl: 'marker/HouseV.webp',
                         iconSize:     [49.1, 83], // size of the icon
                         iconAnchor:   [24, 81], // point of the icon which will correspond to marker's location
                         popupAnchor:  [-0.5, -78]
                     });
                     var pointeurVerreViolet = L.icon({
-                        iconUrl: 'marker/VerreV.png',
+                        iconUrl: 'marker/VerreV.webp',
                         iconSize:     [50.6, 83], // size of the icon
                         iconAnchor:   [25.5, 81], // point of the icon which will correspond to marker's location
                         popupAnchor:  [1.5, -78]
                     });
                     var pointeurNoteViolet = L.icon({
-                        iconUrl: 'marker/MusicNoteV.png',
+                        iconUrl: 'marker/MusicNoteV.webp',
                         iconSize:     [49.1, 83], // size of the icon
                         iconAnchor:   [24, 81], // point of the icon which will correspond to marker's location
                         popupAnchor:  [-0.5, -78]
