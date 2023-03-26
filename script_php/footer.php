@@ -12,3 +12,11 @@
                 </li>
             </ul>
         </footer>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-NPMXV2ECTG"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-NPMXV2ECTG');
+        </script>

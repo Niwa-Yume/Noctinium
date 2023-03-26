@@ -754,4 +754,5 @@ label:hover ~ input:checked ~ label /* highlight previous selected stars */ { co
 .star{
   grid-area: star;
   border-left: rgba(66,82,109,0.5);
+  margin-top: 30px;
 }

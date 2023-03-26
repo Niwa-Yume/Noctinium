@@ -168,22 +168,16 @@
                     <label class="insc-form-checkbox-txt-date" for="Rap">Rap</label><br>
                     <input type="radio" id="AllStyles" name="musique" value="AllStyles" required/>
                     <label class="insc-form-checkbox-txt-date" for="AllStyles ">All Styles</label><br> -->
-                    <select name="musique" id="musique" class="form-control" required>
-                      <option value="">--Veuillez choisir un style de musique--</option>
-                      <option value="1"<?php if($event['event_music'] == 1){echo ("selected");} ?>>Techno</option>
-                      <option value="2"<?php if($event['event_music'] == 2){echo ("selected");} ?>>House</option>
-                      <option value="3"<?php if($event['event_music'] == 3){echo ("selected");} ?>>Électro</option>
-                      <option value="4"<?php if($event['event_music'] == 4){echo ("selected");} ?>>Rap</option>
-                      <option value="5"<?php if($event['event_music'] == 5){echo ("selected");} ?>>Latino</option>
-                      <option value="6"<?php if($event['event_music'] == 6){echo ("selected");} ?>>Années 80</option>
-                      <option value="7"<?php if($event['event_music'] == 7){echo ("selected");} ?>>Années 90</option>
-                      <option value="8"<?php if($event['event_music'] == 8){echo ("selected");} ?>>Années 2000</option>
-                      <option value="9"<?php if($event['event_music'] == 9){echo ("selected");} ?>>Punk</option>
-                      <option value="10"<?php if($event['event_music'] == 10){echo ("selected");} ?>>Rock</option>
-                      <option value="11"<?php if($event['event_music'] == 11){echo ("selected");} ?>>Jazz</option>
-                      <option value="12"<?php if($event['event_music'] == 12){echo ("selected");} ?>>Blues</option>
-                      <option value="13"<?php if($event['event_music'] == 13){echo ("selected");} ?>>All Styles</option>
-                      <option value="14"<?php if($event['event_music'] == 14){echo ("selected");} ?>>Autres</option>
+                    <select name="type" id="type" class="form-control" onchange="categorie()">
+                      <option value="">--Veuillez choisir un type d'évènement--</option>
+                      <option value="1">Before</option>
+                      <option value="2">After</option>
+                      <option value="3">Soirée</option>
+                      <option value="4">Concert/Showcase</option>
+                      <option value="5">Open Mic/Karaoké</option>
+                      <option value="6">Gaming</option>
+                      <!-- <option value="7">Art</option> -->
+                      <option value="7">Autres</option>
                     </select>
                   </div>
                 </div>
@@ -197,14 +191,8 @@
                     <label class="insc-form-checkbox-txt-date" for="Soiree" required>Soirée</label><br>
                     <input type="radio" id="After" name="type" value="After"/>
                     <label class="insc-form-checkbox-txt-date" for="After" required>After</label><br> -->
-                    <select name="type" id="type" class="form-control" required>
-                    <option value="">--Veuillez choisir un type d'évènement--</option>
-                      <option value="1"<?php if($event['event_type'] == 1){echo ("selected");} ?>>Before</option>
-                      <option value="2"<?php if($event['event_type'] == 2){echo ("selected");} ?>>After</option>
-                      <option value="3"<?php if($event['event_type'] == 3){echo ("selected");} ?>>Soirée</option>
-                      <option value="4"<?php if($event['event_type'] == 4){echo ("selected");} ?>>Concert/Showcase</option>
-                      <option value="5"<?php if($event['event_type'] == 5){echo ("selected");} ?>>Open Mic/Karaoké</option>
-                      <option value="6"<?php if($event['event_type'] == 6){echo ("selected");} ?>>Autres</option>
+                    <select name="musique" id="musique" class="form-control">
+                      <option value="">--Veuillez choisir une catégorie--</option>
                     </select>
                   </div>
                 </div>
@@ -582,5 +570,23 @@ $("#adresse").easyAutocomplete(options);
       trueBtn.click();
     }
 
+</script>
+<script>
+  $(document).ready(function () {
+    $("#type").change(function () {
+        var val = $(this).val();
+        if (val == "1" | val == "2" | val == "3" | val == "4" | val == "5") {
+            $("#musique").html('<option value="1">Afrobeat</option><option value="2">All style</option><option value="3">Années \'70</option><option value="4">Années \'80</option><option value="5">Années \'90</option><option value="6">Années \'00</option><option value="7">Bachata</option><option value="8">Blues</option><option value="9">Country</option><option value="10">Dancehall</option><option value="11">Dubstep</option><option value="12">Électro</option><option value="13">Funk</option><option value="14">Hip Hop</option><option value="15">House</option><option value="16">Jazz</option><option value="17">Latino</option><option value="18">Métal</option><option value="19">Punk</option><option value="20">R\'N\'B</option><option value="21">Rap</option><option value="22">Reggae</option><option value="23">Reggaeton</option><option value="24">Rock</option><option value="25">Techno</option><option value="26">Autres</option>');
+        } else if (val == "6") {
+            $("#musique").html('<option value="1">Call of Duty</option><option value="2">Counter-Strike</option><option value="3">Dota 2</option><option value="4">FIFA</option><option value="5">Fortnite</option><option value="6">Jeux WII</option><option value="7">League of Legend</option><option value="8">Minecraft</option><option value="9">Mortal Kombat</option><option value="10">Overwatch</option><option value="11">PUBG</option><option value="12">Rainbow 6</option><option value="13">Rocket League</option><option value="14">Street Fighter</option><option value="15">Super Smash Bros.</option><option value="16">Valorant</option><option value="17">Yuh Gi Oh</option><option value="18">Autres</option>');
+        } /* else if (val == "7") {
+            $("#musique").html('<option value="1">Architecture</option><option value="2">Cinéma</option><option value="3">Cirque</option><option value="4">Comédie</option><option value="5">Danse</option><option value="6">Dessin</option><option value="7">Graffiti</option><option value="8">Littérature</option><option value="9">Peinture</option><option value="10">Sculpture</option><option value="11">Tatoo</option><option value="12">Théâtre</option><option value="13">Autres</option>');
+        } */ else if (val == "7"){
+          $("#musique").html('<option value="1">Conférence</option><option value="2">Mode</option><option value="3">Urbain</option><option value="4">Autres</option>')
+        } else{
+          $("#musique").html('<option value="">--Veuillez choisir une catégorie--</option>');
+        }
+    });
+  });
 </script>
 </html>

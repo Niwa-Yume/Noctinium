@@ -234,9 +234,15 @@
                         echo("<div class=\"gridComm\"><a class=\"pageBtn\" href=\"organisateur?organisateur=". $_GET['organisateur'] ."&page=". $page-1 ."\" >&larr;</a><div class=\"pageNum\">Page ".$page."</div><div></div></div>");
                       }
                     }
+                    
                     echo ("</div>
                           </div>
-                          <div class=\"star\">
+                          <div class=\"star\">");
+                    if(!$logged_in){
+                      echo("<h1 style=\"margin-top:20px; margin-bottom:20px\"><a href=\"connexion\" class=\"underline\">Connectez-vous</a> pour noter.</h1>
+                      <div class=\"commCont\">");
+                    }
+                    echo("
                             <h3 class=\"starTitle\">Note : ". $final ."/5</h3>");
                     if($logged_in){
                       echo("
@@ -257,9 +263,6 @@
                                   <input class=\"noter\" type=\"submit\" value=\"NOTER\">
                               </div>
                             </form>");
-                    }else{
-                      echo("<h1 style=\"margin-top:20px;\"><a href=\"connexion\" class=\"underline\">Connectez-vous</a> pour noter.</h1>
-                      <div class=\"commCont\">");
                     }
                     echo("
                           </div>

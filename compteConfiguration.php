@@ -64,6 +64,27 @@
                 };?></a>
             </div>
         </div>
+        <?php
+        if(isset($_GET['error'])){
+          if($_GET['error'] == 1){
+            if(isset($_GET['email'])){
+              if($_GET['email'] == 1){
+                echo ('<div id="error" class="errorCont"><div id="errorMessage" class="errorMessage"><h1>Erreur</h1><br>Cette adresse mail est déjà utilisée.<br><button onclick="closeError()">Continuer</button></div></div>');
+              }
+            }
+            if(isset($_GET['username'])){
+              if($_GET['username'] == 1){
+                echo ('<div id="error" class="errorCont"><div id="errorMessage" class="errorMessage"><h1>Erreur</h1><br>Ce non d\'utilisateur est déjà utilisée.<br><button onclick="closeError()">Continuer</button></div></div>');
+              }
+            }
+            if(isset($_GET['telephone'])){
+              if($_GET['telephone'] == 1){
+                echo ('<div id="error" class="errorCont"><div id="errorMessage" class="errorMessage"><h1>Erreur</h1><br>Ce numéro de téléphone est déjà utilisée.<br><button onclick="closeError()">Continuer</button></div></div>');
+              }
+            }
+          }
+        }
+      ?>
         <section class="content content-small">
           <div class="container">
               <h1 class="gradient-text">Modification</h1>
@@ -246,6 +267,13 @@
             document.getElementById("sidemenu").style.width = "0";
             document.getElementById("menuBack").style.visibility = "hidden";
         }
+    </script>
+    <script>
+      function closeError() {
+        var error = document.getElementById("error");
+        var errorMessage = document.getElementById("errorMessage");
+        error.classList.toggle("hidden");
+      }; 
     </script>
     </body>
 </html>
