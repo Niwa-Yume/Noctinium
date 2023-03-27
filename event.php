@@ -11,12 +11,13 @@
       <meta charset="utf-8" />
       <link rel="stylesheet" href="asset/event.css">
 
-      <meta name="title" content="Page Événement avec les informations essentitels comme infos pratiques, adresse, Type d'événement, Type de musique, Prix et heure.">
-      <meta name="viewport" content="width=100vw, initial-scale=0.5">
-      <meta name="description" content="Découvrez les soirées, festivals, boite de nuits et autre événements de la ville de Genève. Trouvez toutes les informations pratiques sur les horaires, les prix et le trajet pour vous y rendre. Créer et Rejoignez dès maintenant sur noctinium.com !">
-      <meta name="keywords" content="soirée proche, faire la fête genève, voir soirée genève, soirée près de chez moi, soirée thèmes genève, genève, club libertin genève, programme soirée genève, bon plan genève, libertin club genève, décadense, boite de nuit, boite de nuit proche, quoi faire à genève, soirée genève, boite de nuit près de moi, concert genève, motel campo, la décadense, fête de la musique genève, village du soir, événements genève, club genève, évènements genève, boite de nuit genève">
+    <meta name="title" content="[Type d'événement] - [Titre de l'événement] - [Artistes] | Noctinium">
+    <meta name="viewport" content="width=100vw, initial-scale=0.5">
+    <meta name="description" content="Rejoignez-nous pour une soirée [type d'événement] inoubliable avec [artistes] à [heure de début] jusqu'à [heure de fin]. Retrouvez la soirée sur une carte interactive et découvrez comment y accéder facilement.">
+    <meta name="keywords" content="soirée proche, faire la fête genève, voir soirée genève, soirée près de chez moi, soirée thèmes genève, genève, club libertin genève, programme soirée genève, bon plan genève, libertin club genève, décadense, boite de nuit, boite de nuit proche, quoi faire à genève, soirée genève, boite de nuit près de moi, concert genève, motel campo, la décadense, fête de la musique genève, village du soir, événements genève, club genève, évènements genève, boite de nuit genève, DJ, programmation">
+    <title>Évènement - [Titre de l'événement] - [Artistes] | Noctinium</title>
 
-      <title>Évènement</title>
+
       <link rel="icon" href="image/logo_noctinium.ico">
       <meta name="viewport" content="width=100vw, initial-scale=0.5">
     </head>

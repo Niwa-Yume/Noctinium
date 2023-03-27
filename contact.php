@@ -8,7 +8,14 @@
 		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
       <meta charset="utf-8" />
-      <title>Contact</title>
+
+    <meta name="title" content="Contactez-nous - Réseaux sociaux et formulaire de contact | Noctinium">
+    <meta name="viewport" content="width=100vw, initial-scale=0.5">
+    <meta name="description" content="Contactez Noctinium pour toutes vos questions, suggestions et demandes d'informations. Retrouvez-nous sur nos différents réseaux sociaux ou envoyez-nous un message via notre formulaire de contact.">
+    <meta name="keywords" content="soirée proche, faire la fête genève, voir soirée genève, soirée près de chez moi, soirée thèmes genève, genève, club libertin genève, programme soirée genève, bon plan genève, libertin club genève, décadense, boite de nuit, boite de nuit proche, quoi faire à genève, soirée genève, boite de nuit près de moi, concert genève, motel campo, la décadense, fête de la musique genève, village du soir, événements genève, club genève, évènements genève, boite de nuit genève, DJ, programmation">
+    <title>Contact</title>
+
+
       <link rel="icon" href="image/logo_noctinium.ico">
       <meta name="viewport" content="width=100vw, initial-scale=0.5">
     </head>
