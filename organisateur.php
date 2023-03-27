@@ -11,8 +11,19 @@
         <meta name="viewport" content="width=100vw, initial-scale=0.5">
       <meta charset="utf-8" />
       <link rel="stylesheet" href="asset/user.css">
-      <title>Organisateur</title>
-      <link rel="icon" href="image/logo_noctinium.ico">
+      
+      
+      
+    <meta name="title" content="Les meilleures soirées et événements à Genève sur Noctinium - [Nom de la page]">
+    <meta name="viewport" content="width=100vw, initial-scale=0.5">
+    <meta name="description" content="Trouvez les meilleures soirées et événements à Genève sur Noctinium. Consultez les dernières informations sur les soirées et événements les plus populaires, trouvez votre prochain événement en fonction de votre musique préférée, notez et commentez les soirées auxquelles vous avez assisté. Ne manquez plus aucune soirée à Genève, découvrez les événements les plus branchés et les plus exclusifs sur Noctinium.">
+    <meta name="keywords" content="soirée proche, faire la fête genève, voir soirée genève, soirée près de chez moi, soirée thèmes genève, genève, club libertin genève, programme soirée genève, bon plan genève, libertin club genève, décadense, boite de nuit, boite de nuit proche, quoi faire à genève, soirée genève, boite de nuit près de moi, concert genève, motel campo, la décadense, fête de la musique genève, village du soir, événements genève, club genève, évènements genève, boite de nuit genève, DJ, programmation">
+    <title>Organisateur</title>
+      
+      
+
+      
+    <link rel="icon" href="image/logo_noctinium.ico">
     </head>
     <body>
         <header>
