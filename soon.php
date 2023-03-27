@@ -6,6 +6,11 @@
     <head>
         <link rel="stylesheet" href="asset/style.css">
         <meta charset="utf-8" />
+        
+        <meta name="title" content="Page coming soon page en cours de finition">
+        <meta name="viewport" content="width=100vw, initial-scale=0.5">
+        <meta name="description" content="Noctinium est la nouvelle boîte de nuit à Genève. Soyez parmi les premiers à découvrir notre nouvel établissement. Restez à l'affût pour l'annonce de notre ouverture officielle.">
+        <meta name="keywords" content="soirée proche, faire la fête genève, voir soirée genève, soirée près de chez moi, soirée thèmes genève, genève, club libertin genève, programme soirée genève, bon plan genève, libertin club genève, décadense, boite de nuit, boite de nuit proche, quoi faire à genève, soirée genève, boite de nuit près de moi, concert genève, motel campo, la décadense, fête de la musique genève, village du soir, événements genève, club genève, évènements genève, boite de nuit genève">
         <title>Soon...</title>
         <link rel="icon" href="image/logo_noctinium_16x16.png">
         <meta name="viewport" content="width=100vw, initial-scale=0.5">
