@@ -8,7 +8,13 @@
         <link rel="stylesheet" href="asset/fontawesome/css/all.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
         <meta charset="utf-8" />
-        <title>À propos</title>
+
+    <meta name="title" content="Découvrez pourquoi choisir Noctinium - Carte des événements à Genève et environs">
+    <meta name="viewport" content="width=100vw, initial-scale=0.5">
+    <meta name="description" content="Trouvez les meilleurs événements à Genève et ses environs grâce à Noctinium. Découvrez notre carte détaillée pour explorer les événements en un coup d'œil et trouver toutes les informations dont vous avez besoin sur chaque événement. Créez et partagez vos propres événements avec notre communauté grandissante. Inscrivez-vous à notre newsletter pour ne manquer aucun événement !">
+    <meta name="keywords" content="soirée proche, faire la fête genève, voir soirée genève, soirée près de chez moi, soirée thèmes genève, genève, club libertin genève, programme soirée genève, bon plan genève, libertin club genève, décadense, boite de nuit, boite de nuit proche, quoi faire à genève, soirée genève, boite de nuit près de moi, concert genève, motel campo, la décadense, fête de la musique genève, village du soir, événements genève, club genève, évènements genève, boite de nuit genève, DJ, programmation">
+    <title>À propos</title>
+
         <link rel="icon" href="image/logo_noctinium.ico">
         <meta name="viewport" content="width=100vw, initial-scale=0.5">
     </head>
