@@ -6,7 +6,7 @@
 <head>
 
 
-    <meta name="title" content="FAQ - Noctinium, la nouvelle boîte de nuit à Genève">
+    <meta name="title" content="FAQ - Noctinium, cette page répond à toute les questions que vous pouvez concernant la plateforme et les soirées de Genève">
     <meta name="viewport" content="width=100vw, initial-scale=0.5">
     <meta name="description" content="Vous avez des questions sur la nouvelle boîte de nuit Noctinium à Genève ? Consultez notre FAQ pour trouver toutes les réponses.">
     <meta name="keywords" content="soirée proche, faire la fête genève, voir soirée genève, soirée près de chez moi, soirée thèmes genève, genève, club libertin genève, programme soirée genève, bon plan genève, libertin club genève, décadense, boite de nuit, boite de nuit proche, quoi faire à genève, soirée genève, boite de nuit près de moi, concert genève, motel campo, la décadense, fête de la musique genève, village du soir, événements genève, club genève, évènements genève, boite de nuit genève, DJ, programmation">

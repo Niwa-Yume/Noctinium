@@ -7,7 +7,14 @@
 ?>
 <html>
 <head>
-    <title>Connexion</title>
+
+  <meta name="title" content="Connectez-vous à Noctinium pour créer, commenter et noter des événements">
+  <meta name="viewport" content="width=100vw, initial-scale=0.5">
+  <meta name="keywords" content="soirée proche, faire la fête genève, voir soirée genève, soirée près de chez moi, soirée thèmes genève, genève, club libertin genève, programme soirée genève, bon plan genève, libertin club genève, décadense, boite de nuit, boite de nuit proche, quoi faire à genève, soirée genève, boite de nuit près de moi, concert genève, motel campo, la décadense, fête de la musique genève, village du soir, événements genève, club genève, évènements genève, boite de nuit genève, DJ, programmation">
+  <meta name="description" content="Connectez-vous à votre compte Noctinium pour accéder à votre profil, vos événements préférés, vos réservations et plus encore.">
+  <title>Connexion</title>
+
+
 	<meta charset="utf-8" />
     <link rel="stylesheet" href="asset/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
