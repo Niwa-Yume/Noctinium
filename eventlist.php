@@ -7,7 +7,6 @@
       <link rel="stylesheet" href="asset/style.css">
       <link rel="stylesheet" href="asset/eventlist.css">
       <link rel="stylesheet" href="asset/fontawesome/css/all.css">
-		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
       <meta charset="utf-8" />
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -46,13 +45,13 @@
             </nav>
             <nav id="mobile" class="hidden">
                 <ul>
-                    <li class="bread"><a class="burger" onclick="openNav()">Menu &#9776;</a></li>
+                    <li class="bread"><a class="burger" onclick="openNav()">&#9776;</a></li>
                 </ul>
             </nav>
         </header>
         <div id="menuBack" class="menuBack" onclick="closeNav()">
             <div id="sidemenu" class="menu">
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a class="closebtn" onclick="closeNav()">&times;</a>
                 <a href="index">Accueil</a>
                 <a href="eventlist">Évènements</a>
                 <a href="contact">Contact</a>

@@ -5,6 +5,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="asset/style.css">
+        <link rel="stylesheet" href="asset/fontawesome/css/all.css">
 		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
       <meta charset="utf-8" />
@@ -42,7 +43,7 @@
           </nav>
             <nav id="mobile" class="hidden">
                 <ul>
-                    <li class="bread"><a class="burger" onclick="openNav()">Menu &#9776;</a></li>
+                    <li class="bread"><a class="burger" onclick="openNav()">&#9776;</a></li>
                 </ul>
             </nav>
         </header>
@@ -62,7 +63,7 @@
         ?>
         <div id="menuBack" class="menuBack" onclick="closeNav()">
             <div id="sidemenu" class="menu">
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a class="closebtn" onclick="closeNav()">&times;</a>
                 <a href="index">Accueil</a>
                 <a href="eventlist">Évènements</a>
                 <a href="contact">Contact</a>
@@ -120,10 +121,9 @@
     </form>
     
   <!-- Left contact page --> 
-      <div id="spacer" class="spacer hidden"></div>
       <div class="direct-contact-container">
 
-        <ul class="contact-list">
+      <ul class="contact-list">
           <li class="list-item"><i class="fa fa-map-marker fa-2x"><span class="contact-text place">Genève</span></i></li>
           
           <li class="list-item"><i class="fa fa-phone fa-2x"><span class="contact-text phone"><a href="tel:079 895 14 84" title="Give me a call">079 895 14 84</a></span></i></li>
@@ -163,7 +163,6 @@
     <script>
       var element = document.getElementById("logo");
       var formCont = document.getElementById("contactForm");
-      var spacer = document.getElementById("spacer");
       var formN = document.getElementById("name");
       var formE = document.getElementById("email");
       var formM = document.getElementById("message");
@@ -173,7 +172,6 @@
         element.classList.toggle("logo-M");
         formCont.classList.toggle("contact-wrapper");
         formCont.classList.toggle("contact-wrapper-M");
-        spacer.classList.toggle("hidden");
         formN.classList.toggle("form-control");
         formN.classList.toggle("form-control-M");
         formE.classList.toggle("form-control");

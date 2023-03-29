@@ -1,5 +1,6 @@
 <?php
 require 'database-connection.php';
+header('Cache-Control: max-age=172800');
 
 $options['cookie_samesite'] = 'STRICT';
 

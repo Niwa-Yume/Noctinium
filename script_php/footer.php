@@ -8,7 +8,13 @@
                   <a href="soon">Sponsors</a>
                 </li>
                 <li>
-                    <a href="mailto:#">noctinium@protonmail.com</a>
+                    <a href="contact">Contact</a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://twitter.com/NoctiniumGE"><i class="fa-brands fa-twitter"></i></a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://www.instagram.com/noctiniumge"><i class="fa-brands fa-instagram"></i></a>
                 </li>
             </ul>
         </footer>

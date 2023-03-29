@@ -5,6 +5,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="asset/style.css">
+        <link rel="stylesheet" href="asset/fontawesome/css/all.css">
         <meta charset="utf-8" />
         
         <meta name="title" content="Page coming soon page en cours de finition">
@@ -36,7 +37,33 @@
 					echo("Connexion");
 				};?></a></li>
             </nav>
+            <nav id="mobile" class="hidden">
+                <ul>
+                    <li class="bread"><a class="burger" onclick="openNav()">&#9776;</a></li>
+                </ul>
+            </nav>
         </header>
+        <div id="menuBack" class="menuBack" onclick="closeNav()">
+            <div id="sidemenu" class="menu">
+                <a class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="index">Accueil</a>
+                <a href="eventlist">Évènements</a>
+                <a href="contact">Contact</a>
+                <a href="propos">À propos</a>
+                <a href="faq">FAQ</a>
+                <a href="<?php 
+                if($logged_in == true){
+                    echo("compte");
+                }else{
+                    echo("connexion");
+                };?>"><?php 
+                if($logged_in == true){
+                    echo("Compte");
+                }else{
+                    echo("Connexion");
+                };?></a>
+            </div>
+        </div>
         <section class="content">
             <div class="container">
                 <h1 class="gradient-subtext">Coming Soon ...</h1>
@@ -60,4 +87,20 @@
         element.classList.toggle("logo-M");
       }
 		</script>
+        <script>
+        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+            document.getElementById("computer").classList.toggle("hidden");
+            document.getElementById("mobile").classList.toggle("hidden");
+        }
+        function openNav() {
+            document.getElementById("sidemenu").style.width = "40%";
+            document.getElementById("menuBack").style.visibility = "visible";
+            
+        }
+
+        function closeNav() {
+            document.getElementById("sidemenu").style.width = "0";
+            document.getElementById("menuBack").style.visibility = "hidden";
+        }
+    </script>
 </html>

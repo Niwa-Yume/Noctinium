@@ -5,7 +5,6 @@
 <html>
     <head>
         <link rel="stylesheet" href="asset/style.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="asset/fontawesome/css/all.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
           <link rel="stylesheet" href="asset/map.css">
@@ -44,13 +43,13 @@
             </nav>
             <nav id="mobile" class="hidden">
                 <ul>
-                    <li class="bread"><a class="burger" onclick="openNav()">Menu &#9776;</a></li>
+                    <li class="bread"><a class="burger" onclick="openNav()">&#9776;</a></li>
                 </ul>
             </nav>
         </header>
         <div id="menuBack" class="menuBack" onclick="closeNav()">
             <div id="sidemenu" class="menu">
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a class="closebtn" onclick="closeNav()">&times;</a>
                 <a href="index">Accueil</a>
                 <a href="eventlist">Évènements</a>
                 <a href="contact">Contact</a>
@@ -92,7 +91,7 @@
                 </p>
                 <br>
                 <br>
-                <a class="button" href="#map" onclick="scroll()">
+                <a class="button" href="eventlist">
                     Voir les évènements
                 </a>
             </div>
@@ -112,7 +111,8 @@
             //$url = "https://nominatim.openstreetmap.org/search?q=".urlencode($address)."&limit=1&format=json";
         ?>
         <section class="subscribe">
-            <h1 class="gradient-text titleMap">Évènements du <?php $date_1 = explode(" ", $today); $date_2 = explode(" ", $tomorrow); $date1 = explode("-", $date_1[0]); $date2 = explode("-", $date_2[0]); echo ($date1[2]."/".$date1[1]."/".$date1[0]." au ".$date2[2]."/".$date2[1]."/".$date2[0]); ?></h1>
+            <h1 class="gradient-text titleMap">Évènements</h1>
+            <h2 class="gradient-text subtitleMap"><?php $date_1 = explode(" ", $today); $date_2 = explode(" ", $tomorrow); $date1 = explode("-", $date_1[0]); $date2 = explode("-", $date_2[0]); echo ($date1[2]."/".$date1[1]."/".$date1[0]." au ".$date2[2]."/".$date2[1]."/".$date2[0]); ?></h2>
             <div id="map" class="map">
                 
                 <script>
@@ -240,7 +240,6 @@
         var element = document.getElementById("logo")
         var map = document.getElementById("map")
         var main = document.querySelector(".main")
-        var btn = document.querySelector(".button")
             if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
                 element.classList.toggle("logo");
                 element.classList.toggle("logo-M");
@@ -248,7 +247,6 @@
                 map.classList.toggle("map-M");
                 main.classList.toggle("main-M");
                 main.classList.toggle("main");
-                btn.classList.toggle("hidden")
             }
 
         var scroll_map = document.getElementById("map")

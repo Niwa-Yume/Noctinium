@@ -41,13 +41,13 @@
             </nav>
             <nav id="mobile" class="hidden">
                 <ul>
-                    <li class="bread"><a class="burger" onclick="openNav()">Menu &#9776;</a></li>
+                    <li class="bread"><a class="burger" onclick="openNav()">&#9776;</a></li>
                 </ul>
             </nav>
         </header>
         <div id="menuBack" class="menuBack" onclick="closeNav()">
             <div id="sidemenu" class="menu">
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a class="closebtn" onclick="closeNav()">&times;</a>
                 <a href="index">Accueil</a>
                 <a href="eventlist">Évènements</a>
                 <a href="contact">Contact</a>
