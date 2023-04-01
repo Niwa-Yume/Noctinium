@@ -12,7 +12,7 @@
 	 
 }
 .event-presentation{
-	width: 730px;
+	width: 700px;
 	height: 420px;
 	background-color: #343435;
 	margin: auto;
@@ -25,6 +25,11 @@
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
 .imgEvent{
 	position: relative;
 	left: -30px;
@@ -32,7 +37,7 @@
 	height: 250px;
 	object-fit: cover;
 	border-radius: 20px;
-	margin-top: 85px;
+	vertical-align: middle;
 	box-shadow: 5px 5px 8px rgba(134, 26, 228, 0.3);
 }
 .eventTitle{
@@ -40,6 +45,7 @@
 	text-align: left;
 	font-size: 1.6rem;
 	font-family: 'Open Sans';
+	font-weight: 700;
 }
 .eventDate{
 	color: rgb(140, 140, 140);
@@ -145,13 +151,13 @@
 	color: #fff;
 	letter-spacing: 1px;
 	padding-left: 10px;
-	margin-bottom: 2.5%;
 	border-radius: 30px 0 0 30px;
     resize: none;
     align-items: center;
 	vertical-align: middle;
 	font-size: 1.4rem;
 	padding: 20px;
+	vertical-align: middle;
 }
 .search:focus{
 	filter: drop-shadow(0 0 0.15rem white);
@@ -168,7 +174,6 @@
 	background-color: #000;
 	color: #fff;
 	letter-spacing: 1px;
-	margin-bottom: 2.5%;
 	border-radius: 0 30px 30px 0;
     resize: none;
     align-items: center;
@@ -177,6 +182,7 @@
 	cursor: pointer;
 	padding-top: 10px;
 	font-size: 1.2rem;
+	vertical-align: middle;
 }
 .searchBtn:focus{
 	border: 1px solid white;
@@ -187,7 +193,8 @@
 	filter: drop-shadow(0 0 0.15rem white);
 }
 .fa-search{
-	margin-top: -5%;
+	position: relative;
+	top: -5;
 }
 .search-M{
 	border: 1px solid white;
@@ -197,12 +204,12 @@
 	color: #fff;
 	letter-spacing: 1px;
 	padding: 30px 10px;
-	margin-bottom: 2.5%;
 	border-radius: 30px 0 0 30px;
     resize: none;
     align-items: center;
 	vertical-align: middle;
 	font-size: 1.7rem;
+	vertical-align: middle;
 }
 .search-M:focus{
 	filter: drop-shadow(0 0 0.15rem white);
@@ -221,7 +228,6 @@
 	letter-spacing: 1px;
 	padding-top: 26px;
 	padding-bottom: 29px;
-	margin-bottom: 2.5%;
 	border-radius: 0 30px 30px 0;
     resize: none;
     align-items: center;
@@ -229,6 +235,7 @@
 	margin-left: -4.5px;
 	cursor: pointer;
 	font-size: 1.2rem;
+	vertical-align: middle;
 }
 .searchBtn-M:focus{
 	border: 1px solid white;
@@ -239,7 +246,8 @@
 	filter: drop-shadow(0 0 0.15rem white);
 }
 .searchBtn-M .fa-search{
-	margin-top: -2.5%;
+	position: relative;
+	top: -3;
 }
 .newEvent{
 	padding: 7px 13px;
@@ -253,6 +261,7 @@
 	line-height: 1.5;
 	margin: auto;
 	height: 100%;
+	vertical-align: middle;
 }
 .newEvent:hover{
 	background: #fff;
@@ -265,7 +274,7 @@
 
 .sidenav {
 	height: auto;
-	width: 0;
+	width: 10px;
 	z-index: 5;
 	background-color: #111;
 	overflow-x: hidden;
@@ -289,18 +298,18 @@
 	height: 100%;
 	margin: auto;
 	background-color: #000;
+	vertical-align: middle;
 }
 .openFiltre:hover{
 	background: #fff;
     color: black;	
 }
 .filtreCont{
-	margin-top: 10px;
-	margin-left: 20%;
+	margin-left: auto;
+	margin-right: auto;
 	text-align: center;
 }
 .newEventCont{
-	margin-top: 10px;
 	margin-right: auto;
 	margin-left: auto;
 	text-align: center;

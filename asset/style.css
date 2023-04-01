@@ -1163,7 +1163,7 @@ hr {
     padding: 15px 24px 15px 24px;
     cursor: pointer;
     border-radius: 15px;
-    width: 60%;
+    width: auto;
     font-family: 'Open Sans';
     margin-left: auto;
     margin-right: auto;
