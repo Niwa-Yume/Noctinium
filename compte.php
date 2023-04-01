@@ -166,13 +166,15 @@
         <hr class="gradient">
         <section class="subscribe">
           <div>
-            <h1 class="myeventTitle gradient-text">Mes Évènements</h1>
             <?php
               $today = date('Y-m-d H:i:s', strtotime(' -6 hours'));
               $event_param['today'] = $today;
               $sql = "SELECT event_id, event_title, event_datetime FROM events WHERE event_user_id = ". $_SESSION['user_id'] ." AND event_datetime > :today ORDER BY event_creation DESC;";
               $statement = $pdo->prepare($sql);
               $statement->execute($event_param);
+            ?>
+            <h1 class="myeventTitle gradient-text">Mes Évènements<?php echo(" (".$statement->rowCount().")"); ?></h1>
+            <?php
               if($statement->rowCount() > 0){
                 while($event = $statement->fetch()){
                   $datetimeint = explode(" ",$event['event_datetime']);

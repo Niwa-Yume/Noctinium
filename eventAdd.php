@@ -209,8 +209,8 @@
             </div>
             <div class="form-group-insc">
                 <div class="col-sm-20">
-                    <button class="addImg" id="btn_img_event" value="">Choisir Image</button>
-                    <input type="file" accept="images/*" name="img_event" id="img_event" class="hidden"  value="">
+                  <label id="img_txt" for="img_event" class="addImg">Choisir Image</label>
+                  <input class="hidden" type="file" accept="images/*" name="img_event" id="img_event" value="">
                 </div>
               </div>
 
@@ -312,12 +312,8 @@
   }
 </script>
 <script>
-  var btnimg = document.getElementById("btn_img_event");
+  var customTxt = document.getElementById("img_txt");
   var truebtnimg = document.getElementById("img_event");
-  
-  btnimg.addEventListener("click", function() {
-    truebtnimg.click();
-  });
 
   truebtnimg.addEventListener("change", function() {
     if (truebtnimg.value) {

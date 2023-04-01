@@ -79,15 +79,18 @@
         <section class="eventlist">
           <div class="searchCont">
             <div class="filtreCont">
+            <span class="helper"></span>
               <a class="openFiltre" onclick="filtreMenu()">Filtres &#9776;</a>
             </div>
             <div class="searchBarCont">
               <form class="searchBar" method="POST" action="script_php/search.php">
+                <span class="helper"></span>
                 <input type="text" class="search insc-form" id="search" placeholder="RECHERCHE ..." name="search" value="">
                 <button class="searchBtn" id="searchBtn" type="submit"><i class="fa fa-search"></i></button>
               </form>
             </div>
             <div class="newEventCont">
+              <span class="helper"></span>
               <a href="eventAdd" id="newEvent" class="newEvent">Ajouter</a>
             </div>
           </div>
@@ -607,7 +610,7 @@
 
               echo ('<div class="event-presentation">
                     <div>
-                    <img src="'. $image['imageevent_url'] .'" alt="" class="imgEvent">
+                    <span class="helper"></span><img src="'. $image['imageevent_url'] .'" alt="" class="imgEvent">
                     </div>
                     <div class="eventInfo">
                     <div class="eventBottom">
@@ -695,8 +698,12 @@
         if(verif == false){
           main.classList.toggle("main")
           main.classList.toggle("main-f")
-          if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-            menu.style.width = "330%";
+          if(/webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+            menu.style.width = "3000%";
+          }else if(/Android/i.test(navigator.userAgent)){
+            menu.style.width = "600%";
+          }else if(/iPad/i.test(navigator.userAgent)){
+            menu.style.width = "250%";
           }else{
             menu.style.width = "100%";
           }

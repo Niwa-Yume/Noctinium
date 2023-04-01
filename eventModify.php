@@ -218,10 +218,8 @@
             </div>
             <div class="form-group-insc">
                 <div class="col-sm-20">
-                  <label class="addImg">
-                    <input type="file" class="btnUpload" accept="images/*" id="img_event" name="img_event" value="">
-                    Upload Images
-                  </label>
+                <label id="img_txt" for="img_event" class="addImg">Choisir Image</label>
+                  <input class="hidden" type="file" accept="images/*" name="img_event" id="img_event" value="">
                 </div>
               </div>
 
@@ -306,6 +304,18 @@
       document.getElementById("prix").classList.toggle("hidden");
     }
   }
+</script>
+<script>
+  var customTxt = document.getElementById("img_txt");
+  var truebtnimg = document.getElementById("img_event");
+
+  truebtnimg.addEventListener("change", function() {
+    if (truebtnimg.value) {
+      customTxt.innerHTML = truebtnimg.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+    } else {
+      btnimg.innerHTML = "Choisir Image";
+    }
+  });
 </script>
 <script>
   function closeError() {
