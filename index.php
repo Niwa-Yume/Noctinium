@@ -72,11 +72,11 @@
             <div class="container">
                 <h1 class="gradient-text">Noctinium</h1>
                 <p>
-                Noctinium est votre guide des soirées à Genève !<br><br>
-                Découvrez toutes les soirées organisées par les boîtes de nuit, associations, groupes et particuliers de la ville sur notre carte interactive.<br>
-                 Ne manquez plus aucun événement grâce à notre plateforme dédiée à l'événementiel et aux soirées.<br><br>
-                     Rejoignez la fête dès maintenant !!<br>
-                    Suivez-nous sur les réseau <span class="text-gradient-purple">#FindTheNight</span>
+                    Noctinium est votre guide des soirées à Genève !<br><br>
+                    Découvrez toutes les soirées organisées par les boîtes de nuit, associations, groupes et particuliers de la ville sur notre carte interactive.<br>
+                    Ne manquez plus aucun événement grâce à notre plateforme dédiée à l'événementiel et aux soirées.<br><br>
+                    Suivez-nous sur les réseau <span class="text-gradient-purple">#FindTheNight</span><br>
+                    Rejoignez la fête dès maintenant !!
                     <ul class="linear-list">
                         <li>
                             <a target="_blank" href="https://twitter.com/NoctiniumGE">

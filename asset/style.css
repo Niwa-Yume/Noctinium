@@ -431,8 +431,11 @@ section.main h1 {
 }
 section.main p {
     margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
     color: #B5BFD2;
     font-size: 1.7rem;
+    max-width: 50%;
 }
 section.main-M h1 {
     font-size: 7rem;
