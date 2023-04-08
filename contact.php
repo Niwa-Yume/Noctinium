@@ -143,7 +143,7 @@
           <li onclick="twitter()"><a href="https://twitter.com/NoctiniumGE" target="_blank" class="contact-icon">
             <i class="fa fa-social fa-twitter" aria-hidden="true"></i></a>
           </li>
-          <li onclick="insta()"><a href="https://www.instagram.com/noctiniumge" target="_blank" class="contact-icon">
+          <li onclick="insta()"><a href="https://www.instagram.com/noctinium" target="_blank" class="contact-icon">
             <i class="fa fa-social fa-instagram" aria-hidden="true"></i></a>
           </li>       
         </ul>
@@ -186,7 +186,7 @@
       }
 
       function insta(){
-        window.open("https://www.instagram.com/noctiniumge");
+        window.open("https://www.instagram.com/noctinium");
       }
 
       function apple(){

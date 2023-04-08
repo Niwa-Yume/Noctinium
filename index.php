@@ -84,7 +84,7 @@
                             </a>
                         </li>
                         <li>
-                            <a target="_blank" href="https://www.instagram.com/noctiniumge">
+                            <a target="_blank" href="https://www.instagram.com/noctinium">
                                 <img src="asset/instagram.svg" alt="Instagram">
                             </a>
                         </li>
