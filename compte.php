@@ -116,7 +116,7 @@
 
             <div id="formTel" class="form-group-insc">
               <div class="col-sm-12">
-                <div id="infoEmail" class="infoUser"><?php
+                <div id="infoTel" class="infoUser"><?php
                 echo $_SESSION['user_telephone'];
                 ?></div>
               </div>
@@ -180,19 +180,29 @@
                   $datetimeint = explode(" ",$event['event_datetime']);
                   $date = explode("-",$datetimeint[0]);
                   $timeevent = explode(":",$datetimeint[1]);
-                  $dateevent = $date[2]."/".$date[1]."/".$date[0]." | ".$timeevent[0]." : ".$timeevent[1];
+                  $dateevent = $date[2]."/".$date[1]."/".$date[0]." | ".$timeevent[0].":".$timeevent[1];
                   echo ('
                   <a href="event?event='. $event['event_id'] .'" class="myeventCont">
-                    <div>
-                      <h2>'. $event['event_title'] .'</h2>
-                      <div>'. $dateevent .'</div>
+                    <div class="myeventContInt">
+                      <span class="helper"></span>
+                      <div class="myeventBtn">
+                        <h2>'. $event['event_title'] .'</h2>
+                        <div class="myeventDate">'. $dateevent .'</div>
+                      </div>
                     </div>
-                    <form method="POST" action="script_php/modify_event_redirect.php?event='. $event['event_id'] .'">
-                      <button class="eventParam">Modifier</button>
-                    </form>
-                    <form method="POST" action="script_php/delete_event.php?event='. $event['event_id'] .'">
-                      <button class="eventParam">Supprimer</button>
-                    </form>
+                    <div class="myeventContInt">
+                      <span class="helper"></span>
+                      <div class="myeventBtn">
+                        <div class="myeventBtn2">
+                          <form method="POST" action="script_php/modify_event_redirect.php?event='. $event['event_id'] .'">
+                            <button class="eventParam">Modifier</button>
+                          </form>
+                          <form method="POST" action="script_php/delete_event.php?event='. $event['event_id'] .'">
+                            <button class="eventParam">Supprimer</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
                   </a>');
                 }
               }else{

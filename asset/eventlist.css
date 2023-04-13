@@ -25,11 +25,6 @@
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
-.helper {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-}
 .imgEvent{
 	position: relative;
 	left: -30px;

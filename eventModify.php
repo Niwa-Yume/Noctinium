@@ -131,7 +131,7 @@
        
             <div class="form-group-insc">
               <div class="col-sm-12">
-                <input type="text" class="form-control insc-form" id="name" placeholder="NOM DE L'ÉVÈNEMENT" name="nom_event" value="<?php echo $event['event_title']; ?>" required autofocus>
+                <input type="text" class="form-control insc-form" id="name" placeholder="NOM DE L'ÉVÈNEMENT" name="nom_event" value="<?php echo $event['event_title']; ?>" required autofocus maxlength="30" pattern="([^()/><\][\\\x22,;|]+){4,}">
               </div>
             </div>
             
@@ -149,13 +149,13 @@
             
               <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <textarea class="text-control" id="description" rows="10" placeholder="DESCRIPTION DE L'ÉVÈNEMENT" name="description_event" maxlength="1000" required><?php echo $event['event_description']; ?></textarea>
+                  <textarea class="form-control" id="description" rows="10" placeholder="DESCRIPTION DE L'ÉVÈNEMENT" name="description_event" maxlength="1000" required><?php echo $event['event_description']; ?></textarea>
                 </div>
               </div>
 
             <div class="form-group-insc">
                 <div class="col-sm-12">
-                  <input type="text" class="form-control insc-form" id="adresse" placeholder="ADRESSE (Format : Rue N°, Ville)" name="adresse_event" value="<?php echo $event['event_location']; ?>" required>
+                  <input type="text" class="form-control insc-form" id="adresse" placeholder="ADRESSE (Format : Rue N°, Ville)" name="adresse_event" value="<?php echo $event['event_location']; ?>" required maxlength="50">
                 </div>
               </div>
               <div class="form-group-insc">
@@ -219,7 +219,7 @@
             <div class="form-group-insc">
                 <div class="col-sm-20">
                 <label id="img_txt" for="img_event" class="addImg">Choisir Image</label>
-                  <input class="hidden" type="file" accept="images/*" name="img_event" id="img_event" value="">
+                  <input class="hidden" type="file" accept="image/*" name="img_event" id="img_event" value="">
                 </div>
               </div>
 
@@ -241,9 +241,12 @@
                 </div>
               </div>
 
-            <div class="form-group-insc">
+              <div class="form-group-insc">
                 <div class="col-sm-15">
-                  <input type="checkbox" required class="insc-form-checkbox" id="termes-conditions" name="conditions" value="accept"/>
+                  <div>
+                    <div class="checkboxSpacer"></div>
+                    <input type="checkbox" required class="insc-form-checkbox" id="termes-conditions" name="conditions" value="accept"/>
+                  </div>
                   <label class="insc-form-checkbox-txt" for="termes-conditions">J'ai lu et j'accepte les <a href="asset/conditions.pdf" target="_blank" class="underline">termes et conditions d'utilisation</a> de Noctinium</label>
                 </div>
               </div>
@@ -270,12 +273,17 @@
   var formPS = document.getElementById("adresse");
   var formM = document.getElementById("musique");
   var formT = document.getElementById("type");
+  var formH = document.getElementById("time");
+  var formH2 = document.getElementById("time_mask");
+  var formD2 = document.getElementById("adresse_cachee");
+  var formPR = document.getElementById("prix");
   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
     element.classList.toggle("logo");
     element.classList.toggle("logo-M");
     formN.classList.toggle("form-control");
         formN.classList.toggle("form-control-M");
-        formE.style.margin = "";
+        formE.classList.toggle("form-control");
+        formE.classList.toggle("form-control-M");
         formD.classList.toggle("form-control");
         formD.classList.toggle("form-control-M");
         formPS.classList.toggle("form-control");
@@ -284,6 +292,14 @@
         formM.classList.toggle("form-control-M");
         formT.classList.toggle("form-control");
         formT.classList.toggle("form-control-M");
+        formH.classList.toggle("form-control");
+        formH.classList.toggle("form-control-M");
+        formH2.classList.toggle("form-control");
+        formH2.classList.toggle("form-control-M");
+        formD2.classList.toggle("form-control");
+        formD2.classList.toggle("form-control-M");
+        formPR.classList.toggle("form-control");
+        formPR.classList.toggle("form-control-M");
   }
   function datemask(){
     var mask = document.getElementById("date-mask")

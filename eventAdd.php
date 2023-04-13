@@ -136,7 +136,7 @@
        
             <div class="form-group-insc">
               <div class="col-sm-12">
-                <input type="text" class="form-control insc-form" id="name" placeholder="TITRE" name="nom_event" value="<?php if(isset($_GET['title'])){echo $_GET['title'];} ?>" required autofocus maxlength="30" pattern="([^'()/><\][\\\x22,;|]+){4,}">
+                <input type="text" class="form-control insc-form" id="name" placeholder="TITRE" name="nom_event" value="<?php if(isset($_GET['title'])){echo $_GET['title'];} ?>" required autofocus maxlength="30" pattern="([^()/><\][\\\x22,;|]+){4,}">
               </div>
             </div>
             
@@ -210,7 +210,7 @@
             <div class="form-group-insc">
                 <div class="col-sm-20">
                   <label id="img_txt" for="img_event" class="addImg">Choisir Image</label>
-                  <input class="hidden" type="file" accept="images/*" name="img_event" id="img_event" value="">
+                  <input class="hidden" type="file" accept="image/*" name="img_event" id="img_event" value="">
                 </div>
               </div>
 
@@ -234,7 +234,10 @@
 
             <div class="form-group-insc">
                 <div class="col-sm-15">
-                  <input type="checkbox" required class="insc-form-checkbox" id="termes-conditions" name="conditions" value="accept"/>
+                  <div>
+                    <div class="checkboxSpacer"></div>
+                    <input type="checkbox" required class="insc-form-checkbox" id="termes-conditions" name="conditions" value="accept"/>
+                  </div>
                   <label class="insc-form-checkbox-txt" for="termes-conditions">J'ai lu et j'accepte les <a href="asset/conditions.pdf" target="_blank" class="underline">termes et conditions d'utilisation</a> de Noctinium</label>
                 </div>
               </div>

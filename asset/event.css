@@ -149,6 +149,11 @@ i{
 	 font-weight: 700;
 	 color: #9f3fcc;
 	 margin-bottom: 20px;
+   white-space: wrap;
+   width: 60%;
+   margin-left: auto;
+   margin-right: auto;
+   overflow-wrap: break-word;
 }
 .txtEvent{
     color: #fff;
