@@ -12,18 +12,18 @@
   - https://noctinium.com
     <br>
   - https://www.instagram.com/noctinium/
-- [Mes étapes :](#my-process)
+    [Mes étapes :](#my-process)
     - Commencer par faire un agenda des événements de Genève
     - affichage sur la map qui permet de situer ou se trouver les événements
     - Automatiser le contenue sur le site
     - Ajouter la possibilité d'avoir des interraction avec la communauté 
-  - [Fait avec :](#built-with)
+    [Fait avec :](#built-with)
    <br> HTML
    <br> CSS
    <br> JavaScript
    <br> PhP
    <br> MariaDB
-  - [Ce que j'ai appris :](#what-i-learned)
+    [Ce que j'ai appris :](#what-i-learned)
       - Javascript
       - backend developement
       - Digital marketing
