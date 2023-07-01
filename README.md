@@ -3,10 +3,11 @@
 ## Table of contents
 
 - [Overview](#overview)
+  <br>
    Projet d'agenda qui deviendra une plateforme de mise en relation pour de l'événementiel 
-  - [Screenshot](#screenshot)
+- [Screenshot](#screenshot)
 
-  - [Liens](#links)
+- [Liens](#links)
      <br>
     https://noctinium.com
     <br>
