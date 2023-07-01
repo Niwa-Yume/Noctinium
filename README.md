@@ -23,16 +23,16 @@
    <br>
       - Ajouter la possibilité d'avoir des interraction avec la communauté
    <br>
-  - [Fait avec :](#built-with)
+-  [Fait avec :](#built-with)
    <br> HTML
    <br> CSS
    <br> JavaScript
    <br> PhP
    <br> MariaDB
  <br>
-- [Ce que j'ai appris :](#what-i-learned)
+ -  Ce que j'ai appris :](#what-i-learned)
   <br>
-      - Javascript
+      -  Javascript
    <br>
       - backend developement
    <br>
