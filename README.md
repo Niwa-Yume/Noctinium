@@ -3,12 +3,14 @@
 ## Table of contents
 
 - [Overview](#overview)
--   Projet d'agenda qui deviendra une plateforme de mise en relation pour de l'événementiel 
+   Projet d'agenda qui deviendra une plateforme de mise en relation pour de l'événementiel 
   - [Screenshot](#screenshot)
 
   - [Liens](#links)
-      https://noctinium.com
-      https://www.instagram.com/noctinium/
+     <br>
+    https://noctinium.com
+    <br>
+    https://www.instagram.com/noctinium/
 - [Mes étapes :](#my-process)
     - Commencer par faire un agenda des événements de Genève
     - affichage sur la map qui permet de situer ou se trouver les événements
