@@ -9,9 +9,9 @@
 
 - [Liens](#links)
      <br>
-    - https://noctinium.com
+  -  https://noctinium.com
     <br>
-    - https://www.instagram.com/noctinium/
+  -  https://www.instagram.com/noctinium/
     <br>
 - [Mes étapes :](#my-process)
    <br>
@@ -43,6 +43,6 @@
       - Community management
    <br>
   - [Dévelloppement en continue](#continued-development)
-[Resources](#useful-resources)
-[Auteur](#author)
-[Acknowledgments](#acknowledgments)
+- [Resources](#useful-resources)
+- [Auteur](#author)
+- [Acknowledgments](#acknowledgments)
