@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<style>
+.card {
+ width: 25vw;
+ height: 25vw15vw;
+ background-image: linear-gradient(133deg, #9867F0 -6.8%, #ED4E50 84.14%);
+ border-radius: 20px;
+ transition: all .3s;
+}
+
+.card2 {
+ width: 25vw;
+ height: 15vw;
+ background-color: #1a1a1a;
+ border-radius: 10px;
+ transition: all .2s;
+}
+
+.card2:hover {
+ transform: scale(0.985);
+ border-radius: 20px;
+}
+
+.card:hover {
+ box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card2">
+  </div>
+</div>
+
+</body>
+</html>
